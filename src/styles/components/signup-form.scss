@@ -1,0 +1,50 @@
+.signup-form {
+  width: 100%;
+  padding: 0;
+  &__inner {
+    min-height:240px;
+    flex-wrap: wrap;
+    max-width: $grid-large;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .common-header__outer {
+    margin-bottom: 0;
+  }
+
+  &__header, &__form {
+    width: 100%;
+  }
+  &.layout--columns {
+    .signup-form__inner {
+      flex-direction: row;
+    }
+    .signup-form__header, .signup-form__form {
+      flex: 1 1 300px;
+    }
+  }
+
+  input {
+    background: transparent;
+
+    &[type=email] {
+      color: var(--color-text);
+      border: $border-thickness solid currentColor;
+    }
+    border: 1px solid var()
+  }
+
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.footer-signup .signup-form {
+  padding: calc(22px + 3.4vw);
+  margin: -5px;
+}

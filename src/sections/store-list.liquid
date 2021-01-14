@@ -1,0 +1,92 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add "Collection list" section in the Theme Editor.
+
+  Theme Store required settings
+  - Heading: title of the collection list section
+  - Collection
+{%- endcomment -%}
+<section class="collection-list {% if section.settings.overlay == true%} style--overlay {%endif%}" >
+  {% if section.settings.title != blank %}
+ 
+    <h2 class="collection-list__title">{{ section.settings.title | escape }}</h2>
+    
+  {% endif %}
+  <div class="collection-list__grid">
+  
+  {% for block in section.blocks %}
+    {%- assign collection = collections[block.settings.collection] -%}
+
+    <a href="{{ collection.url | default: "#" }}" class="collection-list-item" {{ block.shopify_attributes }}>
+      {% if collection.image != blank or collection.products.first != blank %}
+        {%- assign image_object = collection.image | default: collection.products.first.featured_image -%}
+        <div class="collection-list__image">
+          {% include 'responsive-image' with
+            image: image_object,
+            max_width: 600,
+            max_height: 480
+          %}
+        </div>
+      {% elsif collection == empty %}
+        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+        {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+      {% endif %}
+
+      {%- assign default_label = 'homepage.onboarding.collection_title' | t -%}
+      <div class="collection-item-content">
+      
+          {% if block.settings.pre_header != blank %} 
+          <h4 class="h5">{{block.settings.pre_header}}</h5>
+        {%endif%}
+        <h2 class="h2">{{ collection.title | default: default_label }}</h3>
+        <div class="button secondary">Shop Now</div>
+      </div>
+    </a>
+  {% endfor %}
+
+  {% if section.blocks.size == 0 %}
+    {% include 'no-blocks' %}
+  {% endif %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Collection list",
+    "max_blocks": 12,
+   "class" : "standard-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Collection list"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "overlay",
+        "label" : "Overlay style?",
+        "default" : true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "collection",
+        "name": "Collection",
+        "settings": [
+          {
+            "label": "Collection",
+            "id": "collection",
+            "type": "collection"
+          },
+          {
+            "type" : "text",
+            "id" : "pre_header",
+            "label" : "Pre-Header",
+            "default" : "Shop"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

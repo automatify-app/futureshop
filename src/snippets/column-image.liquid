@@ -1,0 +1,46 @@
+<aside class="content-column type--{{block.type}} size--{{block.settings.size}} {% if block.settings.image2 != blank %}has--img2{%endif%} {% if block.settings.image3 != blank %}has--img3{%endif%}" data-aos-delay="200" data-aos="fade-in">
+    {% if block.settings.image_link != blank %}
+      <a  data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" data-aos="fade-in" href="{{block.settings.image_link}}" {% if block.settings.link_external == true %} target="_blank" rel="nofollow" {%endif%} class=" content-column__image {% if block.settings.parallax == true %} rellax-float {%endif%}"  data-rellax-speed="4">
+         {% if block.settings.image != blank %}
+          {% include 'responsive-image' with
+            image: block.settings.image,
+            max_width: 1000,
+            max_height: 1000
+          %}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </a>
+  {%else %}
+    <div data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" data-aos="fade-in"  class="content-column__image {% if block.settings.parallax == true %} rellax-float"  data-rellax-speed="3" {% else %} " {% endif %}>
+        {% if block.settings.image != blank %}
+          {% include 'responsive-image' with
+            image: block.settings.image,
+            max_width: 1000,
+            max_height: 1000
+          %}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+  </div>
+
+      {% if block.settings.image2 != blank %}
+        <div  data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" data-aos="fade-in" class=" content-column__image {% if block.settings.parallax == true %} rellax-float "  data-rellax-speed="1" {% else %} " {% endif %}>
+                  {% include 'responsive-image' with
+                    image: block.settings.image2,
+                    max_width: 1000,
+                    max_height: 1000
+                  %}
+          </div>
+      {%endif%}
+      {% if block.settings.image3 != blank %}
+        <div  data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" data-aos="fade-in" class=" content-column__image {% if block.settings.parallax == true %} rellax-float" data-rellax-speed="5" {% else %} " {% endif %}>
+             {% include 'responsive-image' with
+          image: block.settings.image3,
+          max_width: 1000,
+          max_height: 1000
+        %}
+        </div>
+      {%endif%}
+    {%endif%}
+</aside>

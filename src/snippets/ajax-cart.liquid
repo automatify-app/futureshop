@@ -1,0 +1,139 @@
+<div class="shop-drawer" data-drawer-container data-module="ajax-cart" data-offscreen="{{settings.cart_offscreen | default: right}}">
+  <div class="shop-drawer__background" data-drawer-closer></div>
+  <div class="shop-drawer__content" data-drawer-content>
+    <div class="shop-drawer__inner cart-drawer" data-cart-drawer>
+      <div class="cart-drawer__header" data-cart-header>
+        <h2 class="h3 caps cart-drawer__title">{{ 'cart.general.title' | t }}</h2>
+        <button class="cart-drawer__closer" data-drawer-closer aria-label="Close Cart"></button>
+
+      </div>
+      <form class="cart-form {% if cart.items.size > 0 %} has-items{%endif%}" action="/cart" method="post" novalidate data-ajax-cart data-cart-form>
+      <div class="broadcast" data-broadcast-wrap><button class="broadcast__close close-button" data-broadcast-close><i class="icon-times" aria-label="Dismiss message"></i></button><div class="broadcast__message" data-broadcast-message></div></div>
+        <ul class="cart-drawer__items {% if cart.items.size > 0%} has-items{%endif%}" data-cart-items>
+           {% for item in cart.items %}
+
+        {% comment %}
+
+        Cart Item Template
+        =====================
+        The data-label attributes on <td> elements are mobile-friendly
+        helpers used for responsive-table labels
+        {% endcomment %}
+          <li class="cart-drawer-item" data-cart-item="{{item.variant.id}}">
+            <div class="cart-drawer-item__header">
+              <div class="item-image cart-drawer-item__image" data-label="{{ 'customer.order.product' | t }}">
+
+                {% if item.image != blank %}
+                  <a href="{{ item.url | within: collections.all }}">
+                    {{ item | img_url: '240x240' | img_tag: item.title }}
+                  </a>
+                {% endif %}
+
+              </div>
+              <div class="item-info">
+              <header class="item-info__header">
+               <a class="remove-item" data-remove-item href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
+                    <small><i class="icon-times" aria-label="{{ 'cart.general.remove' | t }}"></i> </small>
+                  </a>
+                <a class="item-title" href="{{ item.url }}"><h4 class="h4">{{ item.product.title }}</h4></a>
+                <div class="item-details">
+                  {% assign all_options = item.options_with_values | map : "name" | downcase %}
+                  {% for option in item.options_with_values %}
+                    {% unless option.value == 'Default Title' or option.value contains 'default' %}
+                      <div class="item-details__row">
+                        <span class="item-details__label">{{option.name}}: </span><span class="item-info__value">{{option.value}}</span>
+                      </div>
+                    {% endunless %}
+                  {% endfor %}
+                   {%- assign property_size = item.properties | size -%}
+
+                {% if property_size > 0 %}
+                  {% for p in item.properties %}
+                    {% unless p.last == blank %}
+                    {{ p.first }}:
+
+                    {% if p.last contains '/uploads/' %}
+                      <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                    {% else %}
+                      {{ p.last }}
+                    {% endif %}
+
+                    {% endunless %}
+                  {% endfor %}
+                {% endif %}
+                </div>
+
+
+              </header>
+              <div class="cart-drawer-item__details">
+
+                  <div data-label="{{ 'cart.label.quantity' | t }}" class="item-edits">
+                  <div class="quantity-select" data-module="quantity-selector">
+                      <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
+                          <div class="quantity-wrapper__inner">
+                            <div class="quantity-adjust adjust-minus">-</div>
+                            <input type="number"
+                              name="updates[]"
+                              id="updates_{{ item.key }}"
+                              value="{{ item.quantity }}"
+                              min="0"
+                              class="quantity"
+                              data-quantity
+                              aria-label="{{ 'cart.general.item_quantity' | t }}">
+                            <div class="quantity-adjust adjust-plus">+</div>
+                          </div>
+                    </div>
+
+                  </div>
+                  <div class="item-total"  data-label="{{ 'cart.label.total' | t }}">
+                    <span class="total-price" data-price-total>{{ item.line_price | money }}</span>
+                  </div>
+                </div>
+            </div>
+          </li>
+
+        {% endfor %}
+        </ul> {% comment %} End ul regardless of if there are items {% endcomment %}
+        <div class="cart-form__loader" data-fallback-text>
+              <div class="supports-cookies">
+          <p>{{ 'cart.general.empty' | t }}</p>
+          <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+        </div>
+
+        {% comment %}
+        Cart no cookies state
+        ---------------------
+        Browser cookies are required to use the cart. If cookies aren't enabled in the
+        browser a message is displayed prompting the user to enable them.
+        {% endcomment %}
+        <div class="supports-no-cookies">
+          <p>{{ 'cart.general.cookies_required' | t }}</p>
+        </div>
+      </div>
+
+        <div class="cart-drawer__footer" data-cart-footer>
+        {% if settings.cart_notes_enable %}
+            <div class="cart-footer__row cart-note" data-note="true">
+              {% capture default_cart_note %}{{ 'cart.general.note' | t }}{%endcapture %}
+              <label class="cart-footer-label" for="ajaxCartNote" data-note-toggle><i class="expand-icon switcher"></i> {{settings.cart_note | default: default_cart_note}}</label>
+              <div class="textarea-wrap" >
+                <textarea name="note" id="ajaxCartNote" width="100%" rows="4">{{ cart.note }}</textarea>
+              </div>
+            </div>
+          {%endif%}
+          <div class="cart-footer__row cart-footer__subtotal">
+            <div class="cart-footer-label">{{ 'cart.general.subtotal' | t }}</div>
+            <div data-cart-subtotal>{{cart.total_price | money}}</div>
+          </div>
+          {% if settings.discount_note  != blank%}
+          <div class="cart-footer__row cart-footer__discount"><small class="discount-note">{{settings.discount_note}}</small></div>
+          {%endif%}
+
+          <button class="button checkout accent" type="submit" name="checkout">{{ 'cart.general.checkout' | t }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% comment %} generating translated templates for the cart! {% endcomment %}
+{% include 'cart-translate' %}

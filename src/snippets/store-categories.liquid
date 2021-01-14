@@ -1,0 +1,78 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add "Collection list" section in the Theme Editor.
+
+  Theme Store required settings
+  - Heading: title of the collection list section
+  - Collection
+{%- endcomment -%}
+{% assign item_count = 0 %}
+{% assign collection_texts = 'collection1,collection2,collection3,collection4' | split: ',' %}
+{% for collection_text in collection_texts %}
+  {% if block.settings[collection_text] != blank %}
+    {%assign item_count = item_count | plus: 1 %}
+    {%endif%}
+    {%endfor%}
+
+{% include 'section-starter' with section_class: 'collection-list', section: block %}
+<div class="section-inner{% if block.settings.full_width == true %} stretch-width{%endif%}" id="block--{{block.id}}">
+ {% include 'common-header' with section: block %}
+  <div class="collection-list__grid" data-item-count="{{item_count}}">
+
+  {% for collection_text in collection_texts %}
+  {% assign handle = block.settings[collection_text] %}
+    {%- assign collection = collections[handle]  -%}
+
+    <a href="{{ collection.url | default: "#" }}" class="collection-list-item collection-block" >
+    {% if block.settings.image != blank %}
+        {%- assign image_object = block.settings.image -%}
+      {% elsif collection.image != blank or collection.products.first != blank %}
+        {%- assign image_object = collection.image | default: collection.products.first.featured_image -%}
+        {% endif%}
+        {% if image_object %}
+        <div class="collection-list-item__image">
+          {% include 'responsive-image' with
+            image: image_object,
+            max_width: 600,
+            max_height: 480
+          %}
+        </div>
+      {% elsif collection == empty %}
+      <div class="responsive-image__wrapper">
+        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+        {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+      </div>
+      {% endif %}
+
+      {%- assign default_label = 'homepage.onboarding.collection_title' | t -%}
+      <div class="collection-list-item__content">
+
+          {% if block.settings.pre_header != blank %}
+          <h4 class="h5">{{block.settings.pre_header}}</h5>
+        {%endif%}
+        <h3 class="h3">{{ collection.title | default: default_label }}</h3>
+        {% if block.settings.button_text != blank %}
+        <div class="button  lighter">{{block.settings.button_text}}</div>
+        {%endif%}
+      </div>
+    </a>
+  {% endfor %}
+
+  </div>
+  </div>
+  {% if block.settings.overlay == true %}
+  {% assign opacity = 100 | minus: block.settings.overlay_op | times: 0.01 %}
+    <style>
+      #block--{{block.id}} .collection-list-item__image {
+        opacity: {{opacity}};
+      }
+      #block--{{block.id}} .collection-list-item__content {
+        color: {{block.settings.overlay_text_color}};
+      }
+      #block--{{block.id}} .collection-list-item {
+        background: {{block.settings.overlay_color}};
+      }
+
+    </style>
+  {%endif%}
+</div>

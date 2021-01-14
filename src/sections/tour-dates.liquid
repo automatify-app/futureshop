@@ -1,0 +1,319 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add "Rich text" section on the Theme Editor.
+
+  Theme Store required settings
+  - Heading: title of the rich text section
+  - Text: description of the rich text section
+{%- endcomment -%}
+
+{% include 'section-starter' with section_class: 'tour-dates' %}
+<div class="section-inner tour-section__inner text-align--{{section.settings.align}}">
+  {% assign delay = 0 %}
+  <div class="tour-header">
+    {% include 'common-header' %}
+  </div>
+  <div class="tour-main">
+
+
+    {% if section.settings.bit_artist %}
+    {% assign limit = section.settings.limit %}
+    {% if  section.settings.limit == 0 %} {% assign limit = "" %}{%endif%}
+    <div  data-module="tour-widget" data-limit="{{section.settings.limit}}" data-artist="{{section.settings.bit_artist}}"">
+      <h2 class="loader">{{section.settings.tour_loading}}</h2>
+      <div class="button-wrap center">
+        <a {% if section.settings.bit_button_url != blank %} href="{{section.settings.bit_button_url}}" {% endif%} class="button" data-expand-bit data-more-text="{{section.settings.more_button_text}}" data-less-text="{{section.settings.less_button_text}}" href="{{section.settings.bit_button_url}}">{{section.settings.more_button_text}}</a>
+      </div>
+    {%endif%}
+    <div class="error hidden">There was an error retrieving dates. Please try again.</div>
+    <div class="fallback hidden">
+
+    {% if section.settings.fallback_header != empty %}<h3>{{section.settings.fallback_header}}</h3>{%endif%}
+    {% if section.setting.fallback_text != empty %}<div class="rte">{{section.settings.fallback_text}}</div>{%endif%}
+    {% if section.settings.fallback_button_text != empty and section.settings.fallback_button_url != empty %}
+      <div class="button-wrap center"><a href="{{section.settings.fallback_button_url}}" class="button">{{section.settings.fallback_button_text}}</a></div>
+    {%endif%}
+    </div>{% comment %} end fallback {% endcomment %}
+    </div>{% comment %} end tour-main {% endcomment %}
+  </div>{% comment %} end section inner {% endcomment %}
+</section>
+
+{% schema %}
+  {
+    "name": "Tour Dates",
+    "class" : "standard-section",
+    "settings": [
+      {
+        "type" : "header",
+        "content" : "Meta"
+      },
+      {
+        "type": "text",
+        "id" : "anchor_id",
+        "label" : "Section ID (for anchor links and specific styling)"
+      },
+  {
+        "type": "text",
+        "id" : "anchor_classes",
+        "label" : "Section classes (for  specific styling)"
+      },
+       {
+        "type": "text",
+        "id" : "title",
+        "label" : "Nice Name",
+        "info" : "Just for keeping the back end organized! Enter a nice name here",
+        "default" : "Tour Dates"
+      },
+      {
+        "type" : "header",
+        "content" : "Tour Dates Content"
+      },
+      {
+        "type" : "select",
+        "id" : "text_align",
+        "label" : "Text Alignment",
+        "default" :  "center",
+        "options" : [
+          {
+            "value" : "left",
+            "label" : "Left"
+          },
+          {
+            "value" : "center",
+            "label" : "Center"
+          },
+          {
+            "value" : "right",
+            "label" : "Right"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "text_size",
+        "label" : "Text Size",
+        "default" :  "standard",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small"
+          },
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "mega",
+            "label" : "Mega"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "introduction",
+        "label": "Introduction"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "On Tour"
+      },
+      {
+        "type" : "text",
+        "id" : "subtitle",
+        "label" : "Subtitle"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+      },
+       {
+        "type" : "header",
+        "content" : "Tour Settings"
+      },
+       {
+        "type" : "text",
+        "id" : "bit_artist",
+        "label" : "Bandsintown Artist Name",
+        "default" : "Keith Urban"
+      },
+      {
+        "type" : "range",
+        "id" : "limit",
+        "label" : "Limit dates?",
+        "min"  : 0,
+        "max": 100,
+        "default": 12,
+        "step" : 1,
+        "info" : "Set to 0 to show all"
+      },
+      {
+        "type" : "text",
+        "id" :"tour_loading",
+        "label" : "Tour Loading Text",
+        "default" : "Loading Tour Dates"
+      },
+      {
+        "type" :"text",
+        "id" :"more_button_text",
+        "label" : "More Dates Button Text",
+        "default" : "More Dates"
+      },
+      {
+        "type" :"text",
+        "id" :"less_button_text",
+        "label" : "Less Dates Button Text",
+        "default" : "Less Dates"
+      },
+      {
+        "type" : "url",
+        "id" : "bit_button_url",
+        "label" : "More Dates Button url",
+        "info" : "By default, the more/less button toggles expanding the section. Inserting a url opens that url in a new window (like a tour page!)"
+      },
+      {
+        "type" : "header",
+        "content" : "Fallback Options"
+      },
+
+      {
+        "type": "text",
+        "label" : "Fallback Header",
+        "id" : "fallback_header",
+        "default" : "More Shows Coming Soon"
+      },
+      {
+        "type": "richtext",
+        "label" : "Fallback Text",
+        "id" : "fallback_text",
+        "default" : "<p>Want more shows in your area?</p>"
+      },
+      {
+        "type" : "text",
+        "id" : "fallback_button_text",
+        "label" : "Fallback Button Text",
+        "default": "Contact Us"
+      },
+     {
+        "type" : "url",
+        "id" : "fallback_button_url",
+        "label" : "Fallback Button url",
+        "info" : "By default, the more/less button toggles expanding the section. Inserting a url opens that url in a new window (like a tour page!)"
+      },
+      {
+        "type" : "header",
+        "content" : "Section Settings"
+      },
+      {
+        "type" : "paragraph",
+        "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
+      },
+      {
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
+      },
+      {
+        "type" : "select",
+        "id" : "section_size",
+        "label" : "Section size",
+        "default" : "large",
+        "options" : [
+          {
+            "value" : "full-width",
+            "label" : "Full Width"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "section_spacing",
+        "label" : "Section Spacing",
+        "default" : "medium",
+        "options" : [
+          {
+            "value" : "none",
+            "label" : "No Spacing"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          },
+          {
+            "value" : "medium",
+            "label" : "Medium"
+          }, {
+"value" : "full-height",
+"label" : "Full Height"
+},
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value": "huge",
+            "label" : "Huge"
+          }
+        ]
+      },
+        {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
+      {
+        "type" : "select",
+        "id" : "background_style",
+        "label" : "Background Image Style",
+        "default" : "cover",
+        "options" : [
+          {
+            "value" : "cover",
+            "label" : "Cover"
+          },
+          {
+            "value" : "repeat-x",
+            "label" : "Horizontal Tile"
+          },
+          {
+            "value" : "repeat-y",
+            "label" : "Vertical Tile"
+          },
+          {
+            "value" : "repeat-all",
+            "label" : "Tile"
+          },
+          {
+            "value" : "rellax",
+            "label" : "Parallax"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+        "name": "Tour Dates",
+        "category" : "Music"
+    }
+    ]
+  }
+{% endschema %}

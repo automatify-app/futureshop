@@ -1,0 +1,52 @@
+.common-header__outer {
+  max-width: $grid-medium;
+  margin: 0 auto calc(20px + 0.96vw);
+
+
+  &.align--left {
+    margin-left: 0;
+    margin-right: auto;
+  }
+  &.align--right {
+    margin-right: 0;
+    margin-left: auto;
+  }
+  .common-header {
+
+    div:last-child {
+      margin-bottom: 0;
+    }
+
+    .label {
+      opacity: 0.8;
+      margin: 0;
+    }
+
+    &__heading {
+      @extend %mainHeader;
+      line-height: 1.1;
+
+    }
+  }
+
+  &.type--slide {
+    max-width: 700px;
+    margin-bottom: 10px;
+  }
+
+  .rte {
+    margin-bottom: 0;
+  }
+
+  .common-header__logo {
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto 4%;
+  }
+}
+
+
+.common-rte {
+  max-width: 40em;
+  margin: auto;
+}

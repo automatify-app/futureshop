@@ -1,0 +1,58 @@
+<aside class="sidebar" style="{%if section.settings.background_color != blank%}background-color: {{section.settings.background_color}};{%endif%}{% if section.settings.text_color != blank %}text-color: {{section.settings.text_color}}{%endif%};">
+    <div class="sidebar-inner">
+      {% for block in section.blocks %}
+        {% if block.settings.title != blank %}
+          <h4>{{block.settings.title}}</h4>
+        {%endif%}
+        {{block.settings.content}}
+        {% if block.settings.button_text != empty and block.settings.button_url != empty %}
+          <a class="button solid" href="{{block.settings.button_url}}">{{block.settings.button_text}}</a>
+        {%endif%}
+      {%endfor%}
+    </div>
+  </aside>
+  {% schema %}
+    {
+      "name" : "Booking Sidebar",
+      "settings" : [
+        {
+          "type" : "color",
+          "id" : "text_color",
+          "label" : "Text color"
+        },
+        {
+          "type" : "color",
+          "id" : "background_color",
+          "label" : "Background color"
+        }
+      ],
+      "blocks" : [
+        {
+          "type" : "text",
+          "name" :"Text",
+          "settings" : [
+            {
+              "type" : "text",
+              "id" : "title",
+              "label" : "Title"
+            },
+            {
+              "type" : "richtext",
+              "id" : "content",
+              "label" : "Content"
+            },
+            {
+              "type" : "url",
+              "id"  : "button_url",
+              "label" : "Button URL"
+            },
+            {
+              "type" :"text",
+              "id" : "button_text",
+              "label" : "Button Text"
+            }
+          ]
+        }
+      ]
+    }
+  {% endschema %}

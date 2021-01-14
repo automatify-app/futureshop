@@ -1,0 +1,30 @@
+nav.breadcrumb {
+  padding: 1em;
+  @extend %maxwidth;
+  margin: calc(5px + 0.5vw) auto calc(5px + 1vw);
+  color: var(--color-border-darker);
+  text-align: center;
+  @include media-query($small) {
+    text-align: center;
+    font-size: 0.9em;
+    margin: 9px auto;
+  }
+  letter-spacing: 0.01em;
+
+  max-width: 1350px;
+  // width: 94%;
+  @include font-body;
+  &+.product-grid  {
+    margin-top: 0;
+  }
+  a {
+    text-decoration: none;
+    color: var(--color-body-text);
+    font-weight: 700;
+    text-transform: uppercase;
+    @include transition(transform);
+    &:hover {
+      transform: translateY(-2px)
+    }
+  }
+}

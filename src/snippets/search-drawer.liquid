@@ -1,0 +1,21 @@
+<div class="search-outer" data-module="searchDrawer" data-search-placeholder="{{ 'general.search.placeholder' | t }}" data-search-style="drawer" data-search-value="{{ search.terms | escape }}" data-search-submit-text="{{ 'general.search.submit' | t }}">
+  <form action="/search" method="get" role="search">
+    <label for="Search-{{ section.id }}" class=" sr">
+      {{ 'general.search.placeholder' | t }}
+    </label>
+    <div class="input-holder">
+      <input type="search"
+        name="q"
+        id="Search-{{ section.id }}"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ 'general.search.placeholder' | t }}">
+    </div>
+
+    <button data-search-button type="submit" class="simple">
+      <i class="icon-search"></i>
+      <span class="{% unless settings.include_icon_text == true %}sr{%endunless%} icon-label">
+      {{ 'general.search.submit' | t}}
+      </span>
+    </button>
+  </form>
+</div>

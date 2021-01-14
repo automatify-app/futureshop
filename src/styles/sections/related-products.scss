@@ -1,0 +1,13 @@
+
+#shopify-section-related-products {
+  max-width: 100%;
+  width: 100%;
+  .related-products {
+    @extend %maxwidth;
+    padding: calc(17px + 1.8vw) 0;
+    h3 {
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+}

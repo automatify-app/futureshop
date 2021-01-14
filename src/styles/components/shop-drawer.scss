@@ -1,0 +1,75 @@
+.shop-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 0;
+overflow: visible;
+  z-index: -9999;
+  &[data-offscreen="left"] {
+    left: 0;
+    right: unset;
+    .shop-drawer__content {
+      transform: translateX(-100%);
+      right: unset;
+      left: 0;
+    }
+  }
+  &__background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(black, 0.5);
+    z-index: 1;
+     opacity: 0;
+     pointer-events: none;
+  }
+  &__content {
+    width:80vw;
+      transform: translateX(100%);
+    background: $color-drawer-bg;
+    color: $color-drawer-text;
+    max-width: 400px;
+    position: absolute;
+    right: 0;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    z-index: 10;
+    top:0;
+
+    &::before {
+      @extend %psuedo;
+      box-shadow: 0 0 30px rgba(black, 0.2);
+      z-index: -1;
+      opacity: 0;
+    }
+  }
+  &.open {
+      z-index: 9999;
+    .shop-drawer__background {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .shop-drawer__content {
+      transform: translateX(0%);
+      &:before {
+
+        opacity: 1;
+      }
+    }
+  }
+
+
+  &.transitioning {
+
+      z-index: 9999;
+      .shop-drawer__background, .shop-drawer__content, .shop-drawer__content::before {
+        transition: opacity 500ms $ease, transform 500ms $ease;;
+        display: block;
+        pointer-events: none;
+      }
+    }
+
+}

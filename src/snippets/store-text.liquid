@@ -1,0 +1,19 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add "Rich text" section on the Theme Editor.
+
+  Theme Store required settings
+  - Heading: title of the rich text section
+  - Text: description of the rich text section
+{%- endcomment -%}
+{% include 'section-starter' with section_class: 'rich-text' %}
+<div class="section-inner">
+{% assign delay = 0 %}
+   {% include 'common-header' with include_button: false%}
+  {% if block.settings.button_text != empty %}
+  <div class="rte-links button-wrap center">
+      <a href="{{block.settings.button_url}}" class="button">{{block.settings.button_text}}</a>
+  </div>
+  {%endif%}
+  </div>
+</section>

@@ -1,0 +1,27 @@
+
+  <div class="menu-header__inner">
+    <h2 class="menu-title">{{ section.settings.title | default: 'Menu' }}</h2>
+    {% if section.settings.description != blank %}
+      {{ section.settings.description }}
+    {%endif%}
+  </div>
+
+{% schema %}
+  {
+    "name": "Menu Header (2)",
+    "class" : "menu-section menu-header",
+    "settings": [
+      {
+        "type" : "text",
+        "id" : "title",
+        "label" : "Menu Title",
+        "default" : "Food Menu"
+      },
+      {
+        "type" : "richtext",
+        "id" : "description",
+        "label" : "Description"
+      }
+    ]
+  }
+{% endschema %}

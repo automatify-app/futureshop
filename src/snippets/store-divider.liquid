@@ -1,0 +1,9 @@
+<div class="custom-divider {% if block.settings.hide_mobile == true %} hide-mobile {%endif%} space--{{block.settings.spacing}} style--{{block.settings.type}} "id="divider--{{section.id}}">
+</div>
+{% if block.settings.color != empty %}
+<style>
+#divider--{{section.id}}  {
+  border-top-color: {{block.settings.color}}
+}
+</style>
+{%endif %}

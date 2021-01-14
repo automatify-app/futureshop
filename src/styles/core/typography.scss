@@ -1,0 +1,176 @@
+
+
+
+html {
+  font-size: 60.5%;
+}
+
+body {
+  @include font-body();
+  font-size: $font-size;
+  color: $color-body-text;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ @include font-heading;
+  // text-transform: uppercase;
+  margin: 0.36em auto 0.3em;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  &.light {
+    // @include font-body();
+    font-weight: 400;
+  }
+  &.caps {
+    // @include font-body();
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  &.mega, &.extra {
+    @include font-extra;
+    font-size: calc(2.2em + 3vw);
+    @include media-query($widescreen) {
+      font-size: 5em;
+    }
+  }
+
+  &.color--accent {
+    color: $color-accent;
+  }
+}
+
+h1, .h1 {
+  font-size: calc(3em + 2.2vw);
+
+  @include media-query($widescreen) {
+    font-size: 4.5em;
+  }
+  // @include font-extra;
+}
+h2, .h2 {
+  font-size: calc(2em + 1.8vw);
+  &.long {
+    font-size: calc(1.8em + 1.5vw);
+  }
+  // @include font-extra;
+}
+h3, .h3 {
+  font-size: calc(1.125em + 1vw);
+  &.caps {
+    font-size:  calc(1.125em + 0.7vw);
+  }
+
+}
+h4, .h4 {
+  font-size: calc(1em + 0.35vw);
+
+  &+h2 {
+    margin-top: 0.2em;
+  }
+}
+h5, .h5 {
+  font-size: calc(0.8em + 0.35vw);
+
+  @include media-query($large-up) {
+    font-size: 1.05em;
+  }
+
+}
+h6, .h6 {
+  font-size: calc(0.75em + 0.34vw);
+  @include media-query($large-up) {
+    font-size: 0.95em;
+  }
+
+}
+
+body,
+input,
+textarea,
+button,
+select {
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+}
+
+a:focus {
+  color: inherit;
+}
+
+
+body {
+
+  // &.heading-style--caps {
+  //   h1, .h1,
+  //   h2, .h2,
+  //   h3, .h3,
+  //   h4, .h4,
+  //   h5, .h5,
+  //   h6, .h6 {
+  //     text-transform: uppercase;
+  //     letter-spacing: 0.04em
+  //   }
+  // }
+}
+
+.main-header,
+%mainHeader {
+  word-wrap: break-word;
+  letter-spacing: var(--header-spacing);
+}
+
+.label {
+  margin: 0.3em auto;
+}
+
+
+body.header-spacing--0 {
+  --header-spacing: -0.08em;
+}
+
+body.header-spacing--1 {
+  --header-spacing: -0.04em;
+}
+
+body.header-spacing--2 {
+  --header-spacing: -0.013em;
+}
+
+body.header-spacing--3 {
+  --header-spacing: 0;
+}
+
+body.header-spacing--4 {
+  --header-spacing: 0.02em;
+}
+
+body.header-spacing--5{
+  --header-spacing: 0.039em;
+}
+
+body.header-spacing--6 {
+  --header-spacing: 0.059em
+}
+
+body.header-spacing--7 {
+  --header-spacing: 0.095em
+}
+
+body.header-spacing--8 {
+  --header-spacing: 0.12em;
+}
+
+body.header-spacing--9 {
+  --header-spacing: 0.15em;
+}
+
+body.header-spacing--10 {
+  --header-spacing: 0.175em;
+}

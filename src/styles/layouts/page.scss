@@ -1,0 +1,27 @@
+.page-basic {
+  display: flex;
+  min-height: 80vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+   & > * {
+     width: 100%;
+     flex: 0 0 auto;
+   }
+}
+
+.page-header__simple {
+  padding: calc(30px + 4vw) 20px calc(30px + 2vw);
+  text-align: center;
+  @extend %largeWidth;
+}
+
+.rte.page-content {
+  @extend %tinyWidth;
+  margin: calc(24px + 1vw) auto;
+
+}
+
+ .image-section:first-of-type + .rte.page-content {
+    margin-top: calc(50px + 2vw)
+  }

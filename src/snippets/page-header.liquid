@@ -1,0 +1,23 @@
+<section class="page-header{% if section.settings.image != blank %} has-image {% endif %}">
+{% if section.settings.image != blank %} 
+  <div class="page-header__bg rellax" >
+    <div class="page-header__img lazyload" data-bgset="{% include 'responsive-bg-image', image: section.settings.image %}"></div>
+  </div>
+  {%endif%}
+  <div class="page-header__content">
+  
+    {% if section.settings.pre-title != blank %}
+    <h3 class="page-subtitle h4 label">{{section.settings.pre-title}}</h3>
+    {%endif%}
+    <h1 class="page-title h1">{{page.title}}</h1>
+    {% if section.settings.subtitle != blank %}
+    <h3 class="page-subtitle h4 light">{{section.settings.subtitle}}</h3>
+    {%endif%}
+  </div>
+</section>
+
+{% if section.settings.image != blank %} 
+<script>
+document.body.classList.add('overlay-header')
+</script>
+{%endif%}

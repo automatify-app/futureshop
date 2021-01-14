@@ -1,0 +1,288 @@
+/**
+ * Insert your styles with Liquid below.
+ *
+ * Import additional stylesheets into this sheet using CSS imports:
+ * @import url('./global/form.scss');
+ */
+
+
+ ///SWATCH COLORS
+ //create object from liquid form
+
+
+
+
+{% assign swatch_object = settings.swatch-hexes | split: '\n' %}
+{% assign swatch_hexes = settings.swatch-hexes | strip | strip_html | newline_to_br | split: '<br />' %}
+{% for hex in swatch_hexes %}
+  {% assign hex_info = hex | split: ':' %}
+  {% assign hex_color = hex_info[0] | strip %}
+  {% assign hex_code = hex_info[1] | strip %}
+
+  .swatch--{{hex_color}} label {
+    background: {{hex_code}} !important;
+  }
+{%endfor%}
+
+//This is my custom background code
+body {
+  {% assign bg_style = settings.background_style %}
+  {% if settings.main_background != blank and settings.enable_background == true %}
+    background-image: url("{{settings.main_background | img_url: '600x'}}");
+    background-repeat: repeat;
+    background-size: auto;
+    {% if settings.background_fix == true %}
+    background-attachment: fixed;
+    {%endif%}
+    {% if bg_style == 'fit' or bg_style == 'stretch' or bg_style == "cover" %}
+    background-repeat: no-repeat;
+    background-size:  {{bg_style}};
+    @media (min-width: 600px) {
+      background-image: url({{settings.main_background | img_url: '900x'}});
+    }
+    @media (min-width: 900px) {
+      background-image: url({{settings.main_background | img_url: '1200x'}});
+    }
+    @media (min-height: 1500px) {
+      background-image: url({{settings.main_background | img_url: '1200x'}});
+    }
+    @media (min-width: 1500px) {
+      background-image: url({{settings.main_background | img_url: '1500x'}});
+    }
+    {%endif%}
+    main#mainContent {
+      background: transparent;
+    }
+  {%endif%}
+}
+
+
+.main-header {
+  {% case settings.header_size %}
+    {% when 'small' %}
+      font-size: calc(2rem + 1vw);
+      @media (min-width: 1200px) {
+        font-size: 45px;
+      }
+    {% when 'standard' %}
+      font-size: calc(2.5rem + 2vw);
+      @media (min-width: 1200px) {
+        font-size: 55px;
+      }
+    {% when 'large' %}
+      font-size: calc(3rem + 3vw);
+      @media (min-width: 1200px) {
+        font-size: 65px;
+      }
+    {% when 'huge' %}
+      font-size: calc(4rem + 4vw);
+      @media (min-width: 1200px) {
+        font-size: 80px;
+      }
+
+  {%endcase %}
+
+  {% if settings.header_style == 'caps' %}
+    text-transform: uppercase;
+  {%endif%}
+
+   {% case settings.font_family_heading %}
+   {%when 'body' %}
+    font-family: var(--font-body-real);
+    font-weight: {{ settings.font_body.weight }};
+    {%when 'heading' %}
+    font-family: var(--font-heading-real);
+    font-weight: {{ settings.font_heading.weight }};
+    {%when 'extra' %}
+    font-family: var(--font-extra-real);
+    font-weight: {{ settings.font_extra.weight }};
+  {%endcase %}
+}
+
+.label {
+    // Label styles from settings
+    {% if settings.label_style == 'caps' %}
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    {%elsif settings.label_style == 'italic' %}
+      font-style: italic;
+    {%endif%}
+
+    {% case settings.font_family_label %}
+      {%when 'body' %}
+    font-family: var(--font-body-real);
+    font-weight: {{ settings.font_body.weight }};
+    {%when 'heading' %}
+    font-family: var(--font-heading-real);
+    font-weight: {{ settings.font_heading.weight }};
+    {%when 'extra' %}
+    font-family: var(--font-extra-real);
+    font-weight: {{ settings.font_extra.weight }};
+  {%endcase %}
+
+    {% case settings.label_size %}
+      {% when 'xs' %}
+       font-size: 14px;
+      @media (min-width: 1100px) {
+        font-size: 16.5px;
+      }
+    {% when 'small' %}
+       font-size: 16px;
+      @media (min-width: 1100px) {
+        font-size: 20px;
+      }
+    {% when 'large' %}
+       font-size: 21px;
+      @media (min-width: 1100px) {
+        font-size: 25px;
+      }
+
+  {%endcase %}
+
+
+  }
+
+  h5.label, .h5.label {
+    {% case settings.label_size %}
+      {% when 'xs' %}
+       font-size: 14px;
+      @media (min-width: 1100px) {
+        font-size: 16.5px;
+      }
+    {% when 'small' %}
+       font-size: 16px;
+      @media (min-width: 1100px) {
+        font-size: 20px;
+      }
+    {% when 'large' %}
+       font-size: 21px;
+      @media (min-width: 1100px) {
+        font-size: 25px;
+      }
+
+  {%endcase %}
+}
+
+  h4.label, .h4.label {
+     {% case settings.label_size %}
+      {% when 'xs' %}
+       font-size: 16px;
+      @media (min-width: 1100px) {
+        font-size: 18.5px;
+      }
+    {% when 'small' %}
+       font-size: 19px;
+      @media (min-width: 1100px) {
+        font-size: 23px;
+      }
+    {% when 'large' %}
+       font-size: 24px;
+      @media (min-width: 1100px) {
+        font-size: 29px;
+      }
+    {%endcase %}
+}
+
+.button, button {
+  {% case settings.font_family_button %}
+  {%when 'body' %}
+    font-family: var(--font-body-real);
+    font-weight: {{ settings.font_body.weight }};
+    {%when 'heading' %}
+    font-family: var(--font-heading-real);
+    font-weight: {{ settings.font_heading.weight }};
+    {%when 'extra' %}
+    font-family: var(--font-extra-real);
+    font-weight: {{ settings.font_extra.weight }};
+  {%endcase %}
+
+}
+
+
+
+{% if settings.tag_color != blank %}
+h6.visible-tag  {
+  color: {{settings.tag_color}};
+}
+{%endif%}
+
+{% if settings.tag_background != blank %}
+.visible-tag__outer.style--backgrounded h6.visible-tag {
+  background-color: {{settings.tag_background}};
+  color: {{settings.tag_color}};
+}
+{%endif%}
+
+.stars, .twinkling, .clouds {
+	position:absolute;
+	display:block;
+	top:0; bottom:0;
+	left:0; right:0;
+  width:100%; height:100%;
+  background-repeat: repeat;
+}
+
+.space-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    content:'';
+    left: 0;
+    background: linear-gradient(to bottom right, blue, transparent 30%, transparent 60%, orange);
+    opacity: 0.2;
+    z-index: 2;
+  }
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    content:'';
+    left: 0;
+    background: radial-gradient(lightblue, transparent);
+    opacity: 0.2;
+    z-index: 2;
+  }
+}
+
+.stars {
+	z-index: 0;
+	background: #000 url({{'stars.png' | asset_url }}) repeat top center;
+}
+
+.twinkling{
+	z-index: 1;
+	background:transparent url({{'twinkling.png' | asset_url }}) repeat top center;
+  animation: move-twink-back 300s linear infinite;
+  width: calc(20000px + 100vw);
+  height: calc(10000px + 100vh);
+}
+
+.clouds{
+  z-index: 2;
+   width: calc(5000px + 100vw);
+  background:transparent url({{'clouds.png' | asset_url }}) repeat top center;
+  animation: move-clouds-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+	from {transform: translate3d(0,0,0)}
+	to {transform: translate3d(-20000px, -10000px, 0)}
+}
+
+@keyframes move-clouds-back {
+	from {transform: translate3d(0,0,0)}
+	to {transform: translate3d(-5000px, 0, 0)}
+}

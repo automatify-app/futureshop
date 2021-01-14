@@ -1,0 +1,102 @@
+
+<style>
+@font-face  {
+  font-family: "fontello";
+  src: url("{{'fontello.woff2' | asset_url}}") format('woff2'), url("{{'fontello.woff' | asset_url}}") format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+ @font-face {
+  font-family: "caro";
+  src: url("{{'caro.woff2' | asset_url}}") format('woff2'),url("{{'caro.woff' | asset_url}}") format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+  {{ settings.font_heading | font_face }}
+  {{ settings.font_extra | font_face }}
+  {{ settings.font_body | font_face }}
+
+  {%- assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder' -%}
+  {%- assign font_heading_light= settings.font_heading | font_modify: 'weight', 'lighter' -%}
+
+  {%- assign font_body_bold_italic = font_body_bold | font_modify: 'style', 'italic' -%}
+  {%- assign font_body_italic = font_body | font_modify: 'style', 'italic' -%}
+
+  {{ font_body_bold | font_face }}
+  {{ font_heading_light | font_face }}
+  {{ font_body_bold_italic | font_face }}
+  {{ font_body_italic | font_face }}
+
+  :root {
+    --font-size: {{settings.base_font_size | default: 16 |  divided_by: 10.0 }}rem;
+    --border-radius: {{ settings.border_roundness }}px;
+    --border-thickness: {{ settings.border_thickness }}px;
+    --border-thickness-big: {{ settings.border_thickness | times: 2}}px;
+    --border-radius-small: {{ settings.border_roundness | times: 0.5 }}px;
+    --border-radius-big: {{ settings.border_roundness | times: 2 }}px;
+
+
+    --color-accent: {{ settings.color_accent }};
+    --color-accent-darker: {{ settings.color_accent | color_darken: 15 }};
+    --color-accent-lighter: {{ settings.color_accent | color_lighten: 10 | color_saturate: 0}};
+    --color-accent-lightest: {{ settings.color_accent | color_lighten: 40 | color_saturate: 20 }};
+    --color-accent-downplay: {{ settings.color_accent | color_lighten: 20 | color_desaturate: 20}};
+    --color-accent-darkest: {{ settings.color_accent | color_darken: 48 | color_saturate: 10 }};
+    --color-accent-inverse: {{ settings.color_accent_inverse }};
+    --color-accent-trans: {{ settings.color_accent_inverse | color_modify: 'alpha', 0.5 }};
+
+    --color-secondary: {{ settings.color_secondary }};
+    --color-secondary-lighter: {{ settings.color_secondary | color_lighten: 25 }};
+    --color-secondary-darker: {{ settings.color_secondary | color_darken: 10 }};
+    --color-secondary-darkest: {{ settings.color_secondary | color_darken: 60 | color_saturate: 10}};
+    --color-secondary-inverse: {{ settings.color_secondary_inverse }};
+
+
+
+    --color-body-text: {{ settings.color_body_text }};
+    --color-body-text-trans: {{ settings.color_body_text | color_modify: 'alpha', 0.5}};
+    --color-main-background: {{ settings.color_main_bg }};
+    --color-main-background-trans: {{ settings.color_main_bg | color_modify: 'alpha', 0.5}};
+
+    --color-drawer-text: {{ settings.color_drawer_text  | default: '#3f3f3f'}};
+    --color-drawer-background: {{ settings.color_drawer_background | default: '#ffffff' }};
+    --color-drawer-button-text: {{ settings.color_drawer_button_text  | default: '#ffffff'}};
+    --color-drawer-button-background: {{ settings.color_drawer_button_background | default: '#3f3f3f' }};
+
+    --color-menu-drawer-text: {{ settings.color_menu_drawer_text  | default: '#3f3f3f'}};
+    --color-menu-drawer-background: {{ settings.color_menu_drawer_background | default: '#ffffff' }};
+
+
+    --color-border: {{ settings.color_border }};
+    --color-border-darker: {{ settings.color_border | color_darken: 25 | color_desaturate: 70 }};
+    --color-card-bg: {{ settings.color_card_background }};
+    --color-card-text: {{ settings.color_card_text }};
+
+    /*notifications*/
+    --color-notification-text: {{settings.color_notification_text | default: "#ffffff"}};
+    --color-error: {{settings.color_error | default: '#d64242'}};
+    --color-success: {{settings.color_success | default: '#34c240'}};
+    --color-alert: {{settings.color_alert | default: '#fa9f47'}};
+
+
+    --font-body-weight: {{ settings.font_body.weight }};
+    --font-heading-weight: {{ settings.font_heading.weight }};
+    --font-extra-weight: {{ settings.font_extra.weight }};
+    --font-body-style: {{ settings.font_body.style }};
+    --font-body-bold-weight: {{ font_body_bold.weight | default: 'bold' }};
+
+    --footer-pre: url({{'footer-fixed.jpg' | asset_img_url: '2000x'}});
+    --footer-pre-small: url({{'footer-fixed.jpg' | asset_img_url: '1000x'}});
+    --footer-bg: url({{'footer-bg.jpg' | asset_img_url: '2000x'}});
+    --footer-bg-small: url({{'footer-bg.jpg' | asset_img_url: '1000x'}});
+  }
+
+  .site-header__outer {
+     --header-bg-img: url({{'bg.jpg' | asset_img_url: '1600x'}});
+  }
+
+</style>
+
+

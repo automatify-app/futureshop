@@ -1,0 +1,63 @@
+<section data-section-id="{{ section.id }}" data-section-type="pre-header" class="preheader__outer" style="{% if section.settings.bg_color != blank %}background-color: {{section.settings.bg_color}}; --preheader-bg: {{section.settings.bg_color}}; {%endif%}{% if section.settings.text_color != blank%}color: {{section.settings.text_color}}; --preheader-text: {{section.settings.text_color}};{% endif %}">
+  <div itemscope itemtype="http://schema.org/LocalBusiness" class="preheader">
+
+    {% if section.settings.show-business-info %}
+    {% include 'business-info' %}
+    {%endif%}
+
+    {%if section.settings.show_socials != false %}
+      <div class="preheader__socials preheader__block"> {% include 'social-icons' %}</div>
+    {%endif%}
+  </div>
+</section>
+
+</div>
+
+{% if section.settings.logo != blank %}
+  <style>
+    .logo-image {
+      display: block;
+      max-width: {{ section.settings.logo_max_width }}px;
+    }
+  </style>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Pre-header",
+    "settings": [
+       {
+        "type" : "header",
+        "content": "settings"
+      },
+      {
+        "type" : "color",
+        "id" : "bg_color",
+        "label" : "Background Color",
+        "default" : "#000000"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color",
+        "default" : "#efefef"
+      },
+      {
+        "type" : "header",
+        "content" : "socials & accounts"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "show_socials",
+        "label" : "Show Socials",
+        "default" : true
+      },
+      {
+        "type" : "checkbox",
+        "id" : "show-business-info",
+        "label" : "Show business info?",
+        "default" : true
+      }
+    ]
+  }
+{% endschema %}

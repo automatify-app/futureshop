@@ -1,0 +1,389 @@
+{
+  "current": {
+    "sections": {
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "1587749623644": {
+            "type": "brand",
+            "settings": {
+              "title": "",
+              "socials": true,
+              "text_align": "center",
+              "image": "",
+              "image_snippet": "",
+              "logo_max_width": 100,
+              "email": "",
+              "phone": ""
+            }
+          },
+          "1587749641130": {
+            "type": "menu",
+            "settings": {
+              "title": "",
+              "menu": "footer",
+              "text_align": "flex"
+            }
+          }
+        },
+        "block_order": [
+          "1587749623644",
+          "1587749641130"
+        ]
+      },
+      "1587746389051": {
+        "type": "image-section",
+        "blocks": {
+          "1587746389051-0": {
+            "type": "background",
+            "settings": {
+              "background_color": "#000000"
+            }
+          }
+        },
+        "block_order": [
+          "1587746389051-0"
+        ],
+        "settings": {
+          "title": "Hero",
+          "full_width": true
+        }
+      },
+      "1587747357043": {
+        "type": "featured-collection",
+        "settings": {
+          "collection": ""
+        }
+      },
+      "1587747392537": {
+        "type": "instagram",
+        "settings": {
+          "title": "Instagram"
+        }
+      }
+    },
+    "content_for_index": [
+      "1587746389051",
+      "1587747357043",
+      "1587747392537"
+    ]
+  },
+  "presets" : {
+    "Minimal": {
+      "color_accent": "#1d8cd6",
+      "color_secondary": "#e65599",
+      "color_secondary_inverse": "#ffffff",
+      "font_body": "open_sans_n3",
+      "font_heading": "open_sans_n4",
+      "font_extra": "open_sans_n7",
+      "base_font_size": 15,
+      "header_spacing": 1,
+      "font_style_menu": "standard",
+      "font_weight_menu": "normal",
+      "label_size": "xs",
+      "header_layout": "centered",
+      "social_layout": "disabled",
+      "accounts_layout": "disabled",
+      "include_icon_text": true,
+      "general_css": ".site-header__inner img {\nmargin-top: -5%;\n}\n.site-header__inner:before {\nborder-bottom: 1px solid rgba(100,100,100,0.1);\n}\n.",
+      "visible_tags": "Best Seller\nBest Seller!\nFan Favorite\nFan Favorite!\nJust In\nJust In!\nLimited Edition\nGoing Fast\nGoing Fast!\nJust Added\nNew Item\nNew Item!\nNew!\nNew\nFeatured Item\nFeatured\nFeatured!\nOn Sale\nOn Sale!\nBack In Stock\nBack In Stock!",
+      "tag_style": "backgrounded",
+      "tag_color": "#ffffff",
+      "tag_background": "#000000",
+      "social_facebook_link": "",
+      "social_instagram_link": "https:\/\/www.instagram.com\/streamily.live\/?hl=en",
+      "social_youtube_link": "",
+      "sections": {
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "1587749623644": {
+              "type": "brand",
+              "settings": {
+                "title": "",
+                "socials": true,
+                "text_align": "center",
+                "image_snippet": "",
+                "logo_max_width": 100,
+                "email": "",
+                "phone": ""
+              }
+            },
+            "1587749641130": {
+              "type": "menu",
+              "settings": {
+                "text_align": "flex",
+                "title": "",
+                "menu": "footer"
+              }
+            }
+          },
+          "block_order": [
+            "1587749623644",
+            "1587749641130"
+          ],
+          "settings": {
+            "disable": false,
+            "info": false,
+            "hyper_simplify": true,
+            "bg_color": "#ffffff",
+            "text_color": "#8f8f8f",
+            "footer_alignment": "true-center",
+            "copy": "<p>. All rights reserved.<\/p>",
+            "center_copyright": false,
+            "fs_link": true,
+            "email_above": false,
+            "show_payment_icons": false
+          }
+        },
+        "1587746389051": {
+          "type": "image-section",
+          "disabled": true,
+          "blocks": {
+            "1587746389051-0": {
+              "type": "background",
+              "settings": {
+                "background_color": "#000000",
+                "text_color": "#ffffff",
+                "overlay": 50,
+                "parallax": false,
+                "text_align": "center",
+                "text_size": "standard",
+                "introduction": "This is an",
+                "heading": "Image Overlay Section",
+                "subtitle": "And even more!",
+                "text": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>",
+                "logo_max_width": 350,
+                "logo_format": "replace_header",
+                "button_1_text": "Collection Button",
+                "button_1_link": "shopify:\/\/collections\/all",
+                "button_2_text": ""
+              }
+            }
+          },
+          "block_order": [
+            "1587746389051-0"
+          ],
+          "settings": {
+            "anchor_id": "hero",
+            "anchor_classes": "",
+            "title": "Hero",
+            "content_style": "centered"
+          }
+        },
+        "1587747357043": {
+          "type": "featured-collection",
+          "settings": {
+            "anchor_id": "",
+            "anchor_classes": "",
+            "title": "Featured Collection",
+            "text_align": "center",
+            "text_size": "large",
+            "introduction": "Shop",
+            "heading": "Our Favorites",
+            "collection": "frontpage",
+            "size": "standard",
+            "limit": 8
+          }
+        },
+        "1587747392537": {
+          "type": "instagram",
+          "settings": {
+            "anchor_id": "",
+            "title": "Instagram",
+            "text_align": "center",
+            "text_size": "standard",
+            "introduction": "",
+            "heading": "Instagram",
+            "subtitle": "",
+            "text": "",
+            "button_text": "More Photos",
+            "include_all_icons": true,
+            "html": "<script src=\"https:\/\/apps.elfsight.com\/p\/platform.js\" defer><\/script>\n<div class=\"elfsight-app-0e36daec-32d9-4942-a3a1-542ef323e7f0\"><\/div>",
+            "background_color": "rgba(0,0,0,0)",
+            "text_color": "rgba(0,0,0,0)",
+            "section_size": "large",
+            "section_spacing": "medium",
+            "background_style": "cover"
+          }
+        },
+        "announcement": {
+          "type": "announcement",
+          "settings": {
+            "bg_color": "#1d8cd6",
+            "text_color": "#ffffff",
+            "announcement_bar_enabled": true,
+            "announcement_bar_text": "<p>Announce something <strong>here!<\/strong><\/p>",
+            "button_text": "Shop Now",
+            "button_url": "shopify:\/\/collections"
+          }
+        },
+        "header": {
+          "type": "header",
+          "settings": {
+            "bg_color": "#ffffff",
+            "text_color": "#3a3a3a",
+            "box_shadow": false,
+            "layout_header": "menu",
+            "header_center_around": "squished",
+            "header_fixed": "headroom",
+            "header_nudge": "none",
+            "logo": "shopify:\/\/shop_images\/streamily-full-logo.6bbe2ee9_8d53f8de-1588-49af-8d0c-209cf9f5d74d.png",
+            "logo_max_width": 285,
+            "logo_max_width_mobile": 140,
+            "expand_logo": true,
+            "overlay": false,
+            "overlay_color": "rgba(0,0,0,0)",
+            "overlay_shadow": false,
+            "menu": "main-menu",
+            "menu_text_align": "right",
+            "back_to_site": "none",
+            "enable_mobile_menu": true,
+            "mobile_socials": true,
+            "mobile_text": false,
+            "mobile_inner_text": true,
+            "mobile_menu_text_align": "left",
+            "layout_cart": "menu",
+            "layout_mobile": "centered-cart",
+            "show_cart_label": false,
+            "layout_account": "after-menu",
+            "layout_search": "menu",
+            "show_search_text": false
+          }
+        },
+        "1605547595b56bbbac": {
+          "type": "divider",
+          "settings": {
+            "margin": 3,
+            "type": "transparent",
+            "image_max_width": 150,
+            "color": "rgba(0,0,0,0)",
+            "hide_mobile": false
+          }
+        },
+        "1605547905bb59d517": {
+          "type": "collection-list",
+          "blocks": {
+            "1605547905bb59d517-0": {
+              "type": "collection",
+              "settings": {
+                "collection": "kid",
+                "pre_header": "Shop"
+              }
+            },
+            "1605547905bb59d517-1": {
+              "type": "collection",
+              "settings": {
+                "collection": "men",
+                "pre_header": "Shop"
+              }
+            },
+            "1605547905bb59d517-2": {
+              "type": "collection",
+              "settings": {
+                "collection": "women",
+                "pre_header": "Shop"
+              }
+            }
+          },
+          "block_order": [
+            "1605547905bb59d517-0",
+            "1605547905bb59d517-1",
+            "1605547905bb59d517-2"
+          ],
+          "settings": {
+            "anchor_id": "",
+            "anchor_classes": "",
+            "title": "Collection List",
+            "text_align": "center",
+            "text_size": "standard",
+            "introduction": "Shop By",
+            "heading": "Category",
+            "subtitle": "",
+            "text": "",
+            "list_button": "",
+            "button_text": "Shop More",
+            "layout": "big",
+            "overlay_color": "#000000",
+            "overlay_text_color": "#FFFFFF",
+            "overlay_op": 50,
+            "background_color": "#eaeaea",
+            "text_color": "rgba(0,0,0,0)",
+            "section_size": "large",
+            "section_spacing": "medium",
+            "background_style": "cover"
+          }
+        },
+        "collection-template": {
+          "type": "collection-template",
+          "settings": {
+            "size": "large",
+            "limit": 16,
+            "secondary_image": true,
+            "show_price": true,
+            "simplify": false,
+            "hoverer": false
+          }
+        },
+        "collection-list-sitewide": {
+          "type": "collection-list-sitewide",
+          "blocks": {
+            "ff070d8c-3a77-4735-9ef9-c4780972b62c": {
+              "type": "collection",
+              "settings": {
+                "collection": "kid",
+                "pre_header": "Shop"
+              }
+            },
+            "88e0f282-1112-449a-bf33-34a2eca99b76": {
+              "type": "collection",
+              "settings": {
+                "collection": "men",
+                "pre_header": "Shop"
+              }
+            },
+            "d616dd5b-2b4c-4aa4-86f3-8a07ff306cda": {
+              "type": "collection",
+              "settings": {
+                "collection": "women",
+                "pre_header": "Shop"
+              }
+            }
+          },
+          "block_order": [
+            "ff070d8c-3a77-4735-9ef9-c4780972b62c",
+            "88e0f282-1112-449a-bf33-34a2eca99b76",
+            "d616dd5b-2b4c-4aa4-86f3-8a07ff306cda"
+          ],
+          "settings": {
+            "enable": true,
+            "text_align": "center",
+            "text_size": "standard",
+            "introduction": "Shop By",
+            "heading": "Collection",
+            "subtitle": "",
+            "text": "",
+            "button_text": "",
+            "list_button": "",
+            "layout": "big",
+            "overlay_color": "#000000",
+            "overlay_text_color": "#ffffff",
+            "overlay_op": 50,
+            "background_color": "#f9f9f9",
+            "text_color": "#000000",
+            "section_size": "full-width",
+            "section_spacing": "large",
+            "background_style": "cover"
+          }
+        }
+      },
+      "content_for_index": [
+        "1605547595b56bbbac",
+        "1587746389051",
+        "1587747357043",
+        "1605547905bb59d517",
+        "1587747392537"
+      ]
+    }
+  }
+}

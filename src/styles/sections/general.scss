@@ -1,0 +1,236 @@
+body {
+  position: relative;
+  height: auto;
+}
+
+
+.section-inner {
+  position: relative;
+  z-index: 20;
+}
+
+.shopify-section {
+  position: relative;
+  z-index: 1;
+}
+
+.section-bg {
+  @extend %psuedoish;
+  z-index: 1;
+
+  &.rellax-bg {
+    height: 130%;
+    top: -10%;
+    transition: transform 20ms linear;
+  }
+}
+
+
+.section-bg__image {
+  @extend %psuedoish;
+  z-index: 1;
+  &.style--cover {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  &.style--repeat-x {
+    background-size: auto 100%;
+    background-repeat: repeat-x;
+  }
+  &.style--repeat-y {
+    background-size: 100% auto;
+    background-repeat: repeat-y;
+  }
+  &.style--repeat-all {
+    background-size: auto;
+    background-repeat: repeat;
+  }
+}
+
+.section-outer {
+  margin: 0 auto;
+  width: 100%;
+  position: static;
+  z-index: 1;p
+
+  .button.outline, body.button-style--outline & .button {
+    color: inherit;
+
+    &:hover {
+      color: $color-accent-inverse
+    }
+  }
+
+  .section-inner {
+    // @extend %maxwidth
+    width: 100%;
+  }
+  &.size--large {
+    @extend %maxwidth;
+    // .section-inner {
+    // }
+    }
+
+  &.size--small {
+    max-width: $grid-large;
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+
+  }
+
+
+  &.spacing--small {
+    padding-top: calc(14px + 1vmin);
+    padding-bottom: calc(12px + 1vmin);
+  }
+  &.spacing--medium {
+    padding-top: calc(20px + 1.9vmin);
+    padding-bottom: calc(18px + 1.4vmin);
+  }
+  &.spacing--large {
+    padding-top: calc(35px + 3.75vmin);
+    padding-bottom: calc(29px + 3vmin);
+  }
+  &.spacing--huge {
+    padding-top: calc(50px + 6vmin);
+    padding-bottom: calc(41px + 4.8vmin);
+  }
+  &.spacing--full, &.spacing--full-height {
+        padding-top: calc(40px + 5vmin);
+        padding-bottom: calc(36px + 4vmin);
+        min-height: 80vh;
+      }
+
+   &.size--full-width {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+
+    .section-inner {
+      @extend %maxwidth;
+      &.stretch-width {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+
+    &.spacing--small {
+        padding-top: calc(14px + 1vmin);
+        padding-bottom: calc(12px + 1vmin);
+      }
+      &.spacing--medium {
+        padding-top: calc(20px + 1.9vmin);
+        padding-bottom: calc(18px + 1.4vmin);
+      }
+      &.spacing--large {
+        padding-top: calc(30px + 3vmin);
+        padding-bottom: calc(24px + 2vmin);
+      }
+      &.spacing--huge {
+        padding-top: calc(40px + 5vmin);
+        padding-bottom: calc(36px + 4vmin);
+      }
+      &.spacing--full {
+        padding-top: calc(40px + 5vmin);
+        padding-bottom: calc(36px + 4vmin);
+        min-height: 80vh;
+      }
+  }
+
+
+  &.bg-style--cover {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  &.bg-style--repeat-x {
+    background-size: auto 100%;
+    background-repeat: repeat-x;
+  }
+  &.bg-style--repeat-y {
+    background-size: 100% auto;
+    background-repeat: repeat-y;
+  }
+  &.bg-style--repeat-all {
+    background-size: auto;
+    background-repeat: repeat;
+  }
+}
+
+.align--left {
+  text-align: left;
+}
+.align--right {
+  text-align: right;
+}
+.align--center {
+  text-align: center;
+}
+
+.sr, .visually-hidden {
+  @include hide-visually()
+}
+
+.font--small {
+  font-size: 1.3rem;
+}
+.font--standard {
+  font-size: 1.6rem;
+}
+.font--large {
+  font-size: 2rem;
+}
+.font--mega {
+  font-size: 2.6rem;
+}
+
+.font--body {
+  @include font-body();
+}
+.font--extra {
+  @include font-extra();
+}
+.font--heading {
+  @include font-heading();
+}
+
+.weight--normal {
+  font-weight: 400;
+}
+.weight--light {
+  font-weight: 300;
+}
+.weight--bold {
+  font-weight: 700;
+}
+
+.style--caps {
+  text-transform: uppercase;
+}
+
+
+
+.all-social-icons {
+  display: block;
+  margin: calc(12px + 1vw auto);
+  max-width: $grid-medium;
+  width: 100%;
+  text-align: center;
+  a {
+    color: inherit;
+  }
+}
+
+.fallback-image {
+  width: 100%;
+  display: block;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}

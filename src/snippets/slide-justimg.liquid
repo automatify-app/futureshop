@@ -1,0 +1,18 @@
+<div style="background-color: {{slide.settings.background_color}}; color: {{slide.settings.text_color}}" class="slideshow-slide swiper-slide background-slide">
+ {% assign overlay_op = 100 | minus: slide.settings.overlay | times: 0.01 %}
+  <div class="slide-bg" style="opacity:{{overlay_op}}" aria-label="{{section.settings.title}}">
+      {% if slide.settings.image_mobile != blank %}
+    <div class="mobile-image">  
+        {% include 'responsive-image' with image: slide.settings.image_mobile, max_width: 900, max_height: 1000 %}
+    </div>
+      {%endif%}
+    <div class="desktop-image">  
+      {% if slide.settings.image != blank %}
+        {% include 'responsive-image' with image: slide.settings.image, max_width: 2500, max_height: 1400 %}
+      {%else %}
+        {{ 'samplebg.jpg' | asset_img_url: '1600x' | img_tag}}
+      {%endif%}
+    </div>
+  </div>
+ \
+</div>

@@ -1,0 +1,12 @@
+body.template-list-collections  {
+  main h1:first-child {
+    text-align: center;
+    margin: calc(3rem + 4vw) auto calc(1.2rem + 2vw);
+  }
+    main .shopify-section {
+    @extend %maxwidth;
+
+  }
+}
+
+

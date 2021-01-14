@@ -1,0 +1,23 @@
+{% for block in section.blocks %}
+ <button href="page{{forloop.index0}}" data-index="{{forloop.index0}}" data-menu-button class="button outline">{{block.settings.title}}</a>
+{%endfor %}
+{% schema %}
+  {
+    "name": "Menu Menu",
+    "class": "menu-menu",
+    "blocks" : [
+      {
+        "type" : "link",
+        "name" : "Link",
+        "settings" : [
+          {
+            "type" : "text",
+            "id" : "title",
+            "label" : "Title"
+          }
+        ]
+      }
+    ],
+    "max_blocks" : 3
+  }
+{% endschema %}

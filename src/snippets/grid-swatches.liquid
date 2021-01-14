@@ -1,0 +1,56 @@
+{% assign file_extension = 'jpg' %}
+
+ {% for option in product.options %}
+    {% assign option_name = false %}
+    {% assign downcased_option = option | downcase %}
+    {% if downcased_option contains 'color' or downcased_option == 'colour' %}
+      {% if product.options_by_name[option].values.size > 1%}
+      <div class="grid-swatches swatches"  data-option-index="{{option}}">
+      <div class="swatch" data-module="grid-swatch">
+          {% for color_option in product.options_by_name[option].values %}
+
+
+          {%comment %}
+              getting a variant link
+            {%endcomment %}
+            {% assign foundvarianturl = false %}
+            {% assign foundvariantimage = false %}
+            {% for variant in product.variants %}
+              {% if foundvarianturl == false or foundvariandimage == false%}
+                {% if variant.option1 == color_option or variant.option2 == color_option or variant.option3 == color_option %}
+                  {% if foundvarianturl == false %}
+                    {% assign foundvarianturl = variant.url %}
+                  {%endif%}
+                  {% if variant.image  %}
+                    {% assign foundvariantimage = variant.image | img_url: '700x' %}
+                  {%endif%}
+                {%endif%}
+              {%endif%}
+            {%endfor%}{%comment%}End variant loop{%endcomment%}
+
+
+              <div data-image="{{foundvariantimage}}" data-url="{{collection.url}}{{foundvarianturl}}" data-value="{{ color_option | escape }}" class="swatch-element grid-swatch__element color swatch--{{ color_option | handle }} {% if forloop.index == 1%} selected {%endif%} {% if foundvarianturl %}available{% else %}soldout{% endif %}">
+                <div class="tooltip">{{ color_option }}</div>
+
+                {% capture filename %}{{color_option | handle }}.{{file_extension}}{%endcapture%}
+                <label style="background-color: {{ color_option | split: ' ' | last | handle }}; background-image: url({{ filename | asset_url }})">
+                  <div class="crossed-out" ></div>
+                </label>
+
+              </div>
+            {% if foundvarianturl %}
+              <script>
+                var element = document.querySelector('.swatch--{{ color_option | handle }}');
+                element.classList.remove('soldout');
+                element.classList.add('available');
+              </script>
+            {% endif %}
+
+          {%endfor%}{%comment%}End color_option loop{%endcomment%}
+            </div>
+        </div>
+      {%endif%}{%comment%}End size check{%endcomment%}
+    {%endif%}{%comment%}End check for color/colour{%endcomment%}
+
+
+  {%endfor%}{%comment%}End option loop{%endcomment%}

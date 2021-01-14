@@ -1,0 +1,45 @@
+
+.product-form-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 55rem;
+
+  @include media-query($tiny) {
+    justify-content: center;
+  }
+  .quantity-select {
+    flex: 0 0  140px;
+
+    margin: 12px 0;
+    padding: 10px;
+    label {
+      display: none;
+    }
+    @include media-query($medium-down) {
+      margin-right: 0;
+    }
+    @include media-query($tiny) {
+      margin: 0 8px;
+    }
+
+  }
+
+  button {
+    margin: 0 0;
+    &.button.solid {
+      // background: $color-secondary;
+    }
+    &.cart {
+      font-size: 1.2em;
+    }
+    &[disabled] {
+      // background-color: $color-border-darker !important;
+      opacity: 0.6;
+      &:hover {
+        transform: translateY(0);
+      }
+    }
+  }
+}

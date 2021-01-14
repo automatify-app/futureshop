@@ -1,0 +1,37 @@
+.section-faqs {
+  text-align: center;
+  @extend %sectionPadding;
+}
+
+ul.faqs-list {
+  @extend %smallWidth;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+  margin: calc(20px + 2vw) auto;
+}
+
+li.faq-block {
+  display: flex;
+  text-align: left;
+  margin: calc(12px + 2vw) auto;
+  .faq-number {
+    flex: 0 0 90px;
+    padding: 0 12px 0 0;
+    opacity: 0.4;
+
+    @include media-query($small) {
+      font-size: 20px;
+      flex: 0 0 60px;
+    }
+  }
+
+  .faq-info {
+    flex: 1 1 auto;
+    p {
+      margin: 0.75em auto;
+      line-height: 1.5;
+    }
+  }
+
+}

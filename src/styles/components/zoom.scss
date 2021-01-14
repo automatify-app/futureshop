@@ -1,0 +1,18 @@
+.mz-hint {
+  .mz-hint-message {
+    border-radius: $border-radius;
+    @include font-body();
+    background: $color-body-trans;
+    color: $color-body-text;
+  }
+}
+
+#zoomPlaceholder {
+  img {
+    background: $color-body;
+
+    body.product-style--card {
+      background: $color-card-bg;
+    }
+  }
+}

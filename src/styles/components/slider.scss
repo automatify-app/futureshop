@@ -1,0 +1,242 @@
+.image-section {
+  .swiper-slide {
+    overflow: hidden;
+  }
+}
+
+.overlay-section {
+  width: 100%;
+  margin: auto;
+  &:not(.full-width) {
+    max-width: $grid-max-width;
+    width: 90%;
+    margin: 20px auto;
+    overflow: hidden;
+  }
+  .swiper-button-prev, .swiper-button-next{
+    background: transparent;
+    display: block;
+    i {
+      font-size: 30px;
+      color: $color-body-text;
+    }
+  }
+  .swiper-pagination-bullet {
+    background: $color-body-text;
+    width: 11px;
+    height: 11px;
+    &.active {
+      background: $color-body-text;
+    }
+  }
+
+  .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .mobile-image {
+      display: none;
+    }
+    @include media-query($small) {
+      .mobile-image {
+        display: block;
+        &~.desktop-image {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .slide-bg {
+    svg path {
+      fill: gray;
+    }
+  }
+}
+
+.swiper-container:not(.swiper-container-initialized) {
+  .swiper-button-prev, .swiper-button-next, .swiper-pagination {
+    display: none;
+  }
+}
+
+.product-images, .product-thumbnails, .image-section {
+
+  .swiper-button-prev, .swiper-button-next{
+    background: transparent;
+    color: $color-body-text;
+    text-shadow: 0 0 20px rgba(black, 0.1), 2px 2px 4px rgba(black, 0.2);
+    width: 60px;
+
+    @include media-query($small) {
+      width: 30px;
+    }
+
+    &::after {
+      // content:'';
+      font-size: 20px;
+    }
+   &.swiper-button-disabled {
+     opacity: 0.3;
+   }
+    i {
+      font-size: 30px;
+      color: inherit;
+    }
+    opacity: 0.67;
+    &:hover {
+      opacity: 1
+    }
+     &.active {
+    }
+  }
+  .swiper-button-prev{
+    text-align: left;
+  }
+  .swiper-button-next{
+    text-align: right;
+  }
+  .swiper-pagination-bullet {
+    background: $color-body-text;
+    width: 11px;
+    height: 11px;
+
+
+  }
+}
+
+.species-swatch__outer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  a.fake-swatch {
+    flex: 1 1 200px;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+}
+
+
+.swiper-slide.banner-slide {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin-bottom: -4px;
+  img {
+    width: 100%;
+  }
+  .responsive-image__wrapper, .responsive-image__wrapper img {
+    max-width: 100% !important;
+    max-height: unset !important;
+    height: auto;
+
+  }
+  .slide-bg.rellax-image {
+    width: 100%;
+    position: relative;
+    height: auto;
+
+    &:before{
+      content:'';
+      display: block;
+      // padding-bottom: 84vmin;
+      // min-height: 300px;
+      // @include media-query($widescreen) {
+      //   min-height: 33vw;
+      // }
+
+    }
+
+    .responsive-image__wrapper {
+      &::before {
+        margin: calc(5% - 2vw);
+      }
+      height: 130%;
+      margin: -5% 0;
+    }
+
+
+
+    img {
+      @include object-fit();
+      height: 100%;
+    }
+  }
+}
+.swiper-slide.video-slide, .swiper-slide.background-slide {
+  padding: 8vmin 22px;
+
+   @include media-query($tiny) {
+     // min-height: 60vmin;
+    }
+    @include media-query($tiny) {
+      min-height: 250px;
+      padding: 80px 22px;
+
+    }
+  position: relative;
+  .slide-bg {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    .desktop-image, .mobile-image {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      .responsive-image__wrapper {
+        width: 100%;
+        height: 100%;
+        max-height: 100% !important;
+        max-width: 100% !important;
+        img {
+          @include object-fit()
+          width: 100%;
+          height: 100%;
+          max-height: 100% !important;
+          max-width: 100% !important;
+        }
+      }
+    }
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      @include object-fit()
+    }
+    .responsive-image__wrapper {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      width: 100%;
+      img {
+        @include object-fit()
+        object-position: 50% 50%;
+      }
+    }
+    &.rellax-image
+    {
+      top: -20%;
+      height: 135%;
+    }
+  }
+}
+
+.slideshow-slide{
+  width: 100%;
+}
+
+#hero .swiper-slide.banner-slide {
+  max-height: 90vh;
+
+}

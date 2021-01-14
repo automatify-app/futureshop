@@ -1,0 +1,36 @@
+.rotating-background {
+
+  .overlay-section {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 44vw;
+    padding: 5vw 2vw;
+
+    .header-overlay &:first-child .overlay-section {
+
+    }
+    .common-header__outer {
+      position: relative;
+      z-index: 10;
+    }
+    .swiper-container {
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-wrapper {
+      height: 100%;
+    }
+  }
+}
+
+.header-overlay .rotating-background:first-of-type .overlay-section {
+  padding: calc(3vw + 100px) 12px !important;
+}

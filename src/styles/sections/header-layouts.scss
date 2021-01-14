@@ -1,0 +1,117 @@
+%mainWSidebar {
+  @include media-query($medium-up) {
+    flex: 3 1 400px;
+    min-width: 0;
+    padding-top: 0 !important;
+  }
+}
+
+%sidebarNav {
+  pointer-events: none;
+  .site-header,
+  .menu-icon,
+  ul.main-menu{
+      pointer-events: all;
+  }
+  @include media-query($medium-up) {
+    position: sticky;
+    top: 0;
+    flex: 1 1 150px;
+    padding-right: calc(20px + 1vw);
+    min-width: 0;
+    min-height: 100vh;
+    padding: 0.8rem;
+
+      .site-header {
+      padding: 0.7em;
+      }
+    .site-header__wrap {
+      position: relative;
+    }
+
+    .nav-inner {
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    ul.main-menu{
+      pointer-events: all;
+      max-width: 300px;
+      width: auto;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    li.menu-icon {
+      margin: 0.2em 0;
+    }
+  }
+}
+
+body.header-layout--sidebar  {
+  .page {
+    @include media-query($medium-up) {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+  }
+  main#MainContent {
+    @extend %mainWSidebar;
+  }
+  #shopify-section-header {
+    @extend %sidebarNav;
+  }
+
+}
+
+body.header-layout--sidebar-modern {
+  .page {
+    position: relative;
+  }
+
+  #shopify-section-header {
+    @extend %sidebarNav;
+    background: transparent;
+    position: fixed ;
+    left: 0;
+    top: 0;
+    transform: translateY(var(--mt, 0));
+    transition: transform 200ms linear;
+
+    @include media-query($small) {
+      // transform: translateY(0);
+
+      .mobile-icons {
+        flex: 0 0 100px;
+        text-align: right;
+        div, button {
+          display: inline-block;
+          width: auto;
+          margin: 0;
+
+        }
+      }
+      .site-header__logo {
+        flex: 1 1 100%;
+        text-align: left;
+        padding: 12px;
+      }
+
+      .site-header__inner-wrap {
+        display: flex;
+        flex-direction: row-reverse;
+      }
+    }
+  }
+
+  &.scrolled {
+    #shopify-section-header {
+      transform: translateY(0);
+    }
+  }
+
+   main#MainContent {
+    padding-top: 0 !important;
+  }
+
+}

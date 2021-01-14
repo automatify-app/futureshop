@@ -1,0 +1,8 @@
+ {% assign visible_tags = settings.visible_tags | replace: '<p>', '' | replace: '</p>' , '' | newline_to_br | split: '<br />' | strip_newlines | strip %}
+{% for tag in product.tags %}
+ {% if visible_tags contains tag %}
+ <div class="visible-tag__outer style--{{settings.tag_style}} location--{{settings.tag_location}} " >
+  <h6 class="h6 visible-tag">{{tag}}</h5>
+ </div>
+  {%endif%}
+{%endfor%}

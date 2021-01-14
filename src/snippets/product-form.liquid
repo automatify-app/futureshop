@@ -1,0 +1,91 @@
+<div class="form-wrap" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" >
+  {% form 'product', product, data-product-form: '', data-productid: product.id, data-product-handle: product.handle, data-enable-history-state: 'true' %}
+      {% if product.has_only_default_variant != true %}
+      {% for option in product.options_with_values %}
+        <div class="js">
+            {% if section.settings.swatches %}
+              {% include 'swatch' with option.name %}
+              {%endif %}
+
+            <div class="selector-wrapper">
+              <label for="Option{{ option.position }}">
+                {{ option.name }}
+              </label>
+
+              <select
+                id="Option{{ option.position }}"
+                class="single-option-selector"
+                name="options[{{ option.name | escape }}]">
+                {% for value in option.values %}
+                  <option
+                    value="{{ value | escape }}"
+                    {% if option.selected_value == value %}selected="selected"{% endif %}>
+                      {{ value }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+
+        </div>{% endfor %}
+    {% else  %}
+      <input type="hidden" id="defaultOption" name="options[]" value="Default title">
+    {% endif%}
+      <select name="id" class="no-js" data-productid="{{product.id}}">
+        {% for variant in product.variants %}
+          <option
+            {% if variant == current_variant %}selected="selected"{% endif %}
+            {% unless variant.available %}disabled="disabled"{% endunless %}
+            {% if variant.option1 != blank %} data-option1="{{variant.option1}}"{%endif%}
+            {% if variant.option2 != blank %} data-option2="{{variant.option2}}"{%endif%}
+            {% if variant.option3 != blank %} data-option3="{{variant.option3}}"{%endif%}
+            value="{{ variant.id }}">
+              {{ variant.title }}
+          </option>
+        {% endfor %}
+      </select>
+
+    <div class="product-form-footer">
+
+      <div data-price-wrapper>
+
+        {% if product.compare_at_price_max > product.price %}
+          <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+          <s data-compare-price>
+            {% if current_variant.compare_at_price > current_variant.price %}
+              {{current_variant.compare_at_price | money}}
+            {% endif %}
+          </s>
+        {% endif %}
+        <span data-product-price>
+          {{ current_variant.price | money }}
+        </span>
+      </div>
+      {% if section.settings.enable_quantity == true %}
+      <div class="quantity-select" data-module="quantity-selector">
+        <label for="Quantity">{{ 'products.product.quantity' | t }}:</label>
+        <div class="quantity-wrapper__inner">
+          <div class="quantity-adjust adjust-minus">-</div>
+          <input type="number" id="Quantity" class="quantity" name="quantity" value="1" min="1" data-product-quantity>
+          <div class="quantity-adjust adjust-plus">+</div>
+        </div>
+      </div>
+      {%endif%}
+
+
+      <button
+        type="submit"
+        name="add"
+        class="button solid cart addtocart"
+        data-submit-button
+        {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+          <span data-submit-button-text>
+            {% if current_variant.available %}
+              {{ 'products.product.add_to_cart' | t }}
+            {% else %}
+              {{ 'products.product.sold_out' | t }}
+            {% endif %}
+          </span>
+      </button>
+    </div>
+  {% endform %}
+</div>

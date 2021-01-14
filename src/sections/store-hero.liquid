@@ -1,0 +1,398 @@
+{%capture overlay_type %}{% if section.blocks.size == 1 %}{{section.blocks[0].type}}{%else%}slideshow{%endif%}{%endcapture%}
+<div class="overlay-section type--{{overlay_type}} {% if section.settings.full_width == true %} full-width {%endif%}">
+  {% if overlay_type == 'banner' %}
+    {%assign slide = section.blocks[0] %}
+    {% include 'slide-banner' %}
+  {%elsif overlay_type == 'video' %}
+    {%assign slide = section.blocks[0] %}
+    {% include 'slide-video' %}
+  {%elsif overlay_type == 'background' %}
+    {%assign slide = section.blocks[0] %}
+    {% include 'slide-background' %}
+  {% else %}
+    <div class="swiper-container" data-module="swiper" data-swiper-speed="{{section.settings.speed}}" data-swiper-dots="{{section.settings.dots}}" data-swiper-arrows="{{section.settings.arrows}}" data-swiper-animation="{{section.settings.type}}">
+      <div class="swiper-wrapper">
+        {%for slide in section.blocks %}
+        {% if slide.type == 'banner' %}
+            {% include 'slide-banner' %}
+        {% elsif slide.type == 'event' %}
+            {% include 'slide-event' %}
+          {%elsif slide.type == 'video' %}
+            {% include 'slide-video' %}
+          {%elsif slide.type == 'background' %}
+            {% include 'slide-background' %}
+          {%endif%}
+        {%endfor%}
+      </div>
+      {% if section.settings.dots == true %}
+       <div class="swiper-pagination"></div>
+      {%endif%}
+
+      {% if section.settings.arrows == true %}
+      <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"><i class="icon-caret-left" aria-label="Previous Slide"></i></div>
+        <div class="swiper-button-next"><i class="icon-caret-right" aria-label="Next Slide"></i></div>
+      {% endif %}
+    </div>
+  {%endif%}
+</div>
+
+{% schema %}
+  {
+    "name" : "Store Header",
+    "class" : "image-section",
+    "settings" : [
+      {
+        "type" : "header",
+        "content" : "Image/Video/Slider Section"
+      },
+      {
+        "type" : "paragraph",
+        "content" : "Add a type of overlay or image content by adding a block below. Use JUST IMAGE for a classic image banner (with desktop and mobile sizing). Use IMAGE w/CONTENT for a background image with overlayed content. Use VIDEO for a background video with image fallback. You may add more than one block to create a slideshow."
+      },
+      {
+        "type" : "header",
+        "content" : "Slideshow Settings"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "full_width",
+        "label" : "Full width?",
+        "default" : true
+      },
+      {
+        "type" : "range",
+        "id" : "speed",
+        "label" : "Autoplay Speed (S)",
+        "info" : "Set to 0 to disable autoplay.",
+        "max" : 16,
+        "min" : 0,
+        "step" : 1,
+        "default" : 6
+      },
+      {
+        "type" : "checkbox",
+        "id" : "dots",
+        "label" : "Enable Dots?"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "arrows",
+        "label" : "Enable arrows?"
+      },
+      {
+        "type" : "select",
+        "id" : "type",
+        "label" : "Animation Type",
+        "options" : [
+          {
+            "value" : "slide",
+            "label" : "Slide"
+          },
+          {
+            "value" : "fade",
+            "label" : "fade"
+          }
+        ]
+      }
+    ],
+    "blocks" : [
+      {
+        "name" : "Image w/Content",
+        "type" : "background",
+        "settings" : [
+          {
+            "type" : "header",
+            "content" : "background"
+          },
+          {
+            "type" : "color",
+            "id" : "background_color",
+            "default" : "#000000",
+            "label" : "Background Color",
+            "info" : "Also the overlay color!"
+          },
+          {
+            "type" : "image_picker",
+            "id" : "image",
+            "label" : "Background Image"
+          },
+          {
+            "type" : "image_picker",
+            "id" : "image_mobile",
+            "label" : "Mobile Image",
+            "info" : "Use if you prefer a different image on mobile! (squarer dimensions, usually!)"
+          },
+          {
+            "type" : "range",
+            "id" : "overlay",
+            "label" : "Overlay",
+            "info" : "Set to 0 to disable overlay.",
+            "max" : 100,
+            "min" : 0,
+            "step" : 1,
+            "default" : 50
+          },
+          {
+            "type" : "header",
+            "content" : "content"
+          },
+          {
+            "type" : "text",
+            "id" : "title",
+            "label" : "Title",
+            "default" : "An Image Overlay Section"
+          },
+          {
+            "type" : "image_picker",
+            "id" : "title_image",
+            "label" : "Title Logo"
+          },
+          {
+            "type" : "text",
+            "id" : "button_1_text",
+            "default" : "Collection Button",
+            "label" : "Button 1 Text"
+          },
+          {
+            "type" : "url",
+            "id" : "button_1_link",
+            "default" : "/collections/all",
+            "label" : "Button 1 Link"
+          },
+          {
+            "type" : "text",
+            "id" : "button_2_text",
+            "label" : "Button 2 Text"
+          },
+          {
+            "type" : "url",
+            "id" : "button_2_link",
+            "label" : "Button 2 Link"
+          },
+          {
+            "type" : "select",
+            "id" : "button_style",
+            "label" : "Button Style",
+            "options" : [
+              {
+                "value" : "emphasized",
+                "label" : "Emphasized"
+              },
+              {
+                "value" : "low-emphasis",
+                "label" : "Low Emphasis"
+              },
+              {
+                "value" : "varied",
+                "label" : "Emphasis-then-low"
+              }
+            ]
+           },
+          {
+            "type" : "text",
+            "id" : "pre_title",
+            "label" : "Pre-Title",
+            "default" : "This is a"
+          },
+          {
+            "type" : "textarea",
+            "id" : "content",
+            "label" : "Content"
+          }
+        ]
+      },
+      {
+        "name" : "Just Image",
+        "type" : "banner",
+        "settings" : [
+          {
+            "type" : "header",
+            "content" : "background"
+          },
+          {
+            "type" : "color",
+            "id" : "background_color",
+            "default" : "#000000",
+            "label" : "Background Color",
+            "info" : "Also the overlay color!"
+          },
+          {
+            "type" : "image_picker",
+            "id" : "image",
+            "label" : "Background Image"
+          },
+          {
+            "type" : "image_picker",
+            "id" : "image_mobile",
+            "label" : "Mobile Image",
+            "info" : "Use if you prefer a different image on mobile! (squarer dimensions, usually!)"
+          },
+          {
+            "type" : "range",
+            "id" : "overlay",
+            "label" : "Overlay",
+            "info" : "Set to 0 to disable overlay.",
+            "max" : 100,
+            "min" : 0,
+            "step" : 1,
+            "default" : 0
+          },
+           {
+            "type" : "text",
+            "id" : "title",
+            "label" : "Label for image (accessability)"
+          },
+          {
+            "type" : "text",
+            "id" : "Link",
+            "label" : "Link"
+          }
+        ]
+      },
+     {
+        "name" : "Video w/ Content",
+        "type" : "video",
+        "settings" : [
+          {
+            "type" : "header",
+            "content" : "background"
+          },
+          {
+            "type" : "color",
+            "id" : "background_color",
+            "default" : "#000000",
+            "label" : "Background Color",
+            "info" : "Also the overlay color!"
+          },
+          {
+            "type" : "image_picker",
+            "id" : "image",
+            "label" : "Background Image"
+          },
+          {
+            "type" : "image_picker",
+            "id" : "fallback_gif",
+            "label" : "Fallback Gif"
+          },
+          {
+            "type" : "text",
+            "id" : "url",
+            "default" : "https://www.youtube.com/watch?v=qtQgbdmIO30",
+            "label" : "Video URL",
+            "info" : "Youtube (important) video url!"
+          },
+          {
+            "type" : "range",
+            "id" : "overlay_op",
+            "label" : "Overlay",
+            "info" : "Set to 0 to disable overlay.",
+            "max" : 100,
+            "min" : 0,
+            "step" : 1,
+            "default" : 50
+          },
+          {
+            "type" : "checkbox",
+            "id" : "parallax",
+            "label" : "Enable Parallax Scrolling Effect"
+          },
+          {
+            "type" : "header",
+            "content" : "Content"
+          },
+          {
+            "type" : "checkbox",
+            "id" : "mega_text",
+            "label" : "Mega Text Size?"
+          },
+          {
+            "type" : "checkbox",
+            "id" : "shadow_text",
+            "label" : "Text Shadow?"
+          },
+          {
+            "type" : "text",
+            "id" : "title",
+            "label" : "Title",
+            "default" : "An Image Overlay Section"
+          },
+          {
+            "type" : "text",
+            "id" : "pre_title",
+            "label" : "Pre-Title",
+            "default" : "This is a"
+          },
+          {
+            "type" : "textarea",
+            "id" : "content",
+            "label" : "Content"
+          },
+          {
+            "type" : "image_picker",
+            "id" : "title_image",
+            "label" : "Title Logo"
+          },
+          {
+            "type" : "header",
+            "content" : "buttons"
+          },
+          {
+            "type" : "text",
+            "id" : "button_1_text",
+            "default" : "Collection Button",
+            "label" : "Button 1 Text"
+          },
+          {
+            "type" : "url",
+            "id" : "button_1_link",
+            "default" : "/collections/all",
+            "label" : "Button 1 Link"
+          },
+          {
+            "type" : "text",
+            "id" : "button_2_text",
+            "label" : "Button 2 Text"
+          },
+          {
+            "type" : "url",
+            "id" : "button_2_link",
+            "label" : "Button 2 Link"
+          },
+          {
+            "type" : "checkbox",
+            "id" : "video_button",
+            "label" : "Show Video Button"
+          }
+        ]
+      },
+      {
+        "name" : "Event",
+        "type" : "event",
+        "settings" : [
+          {
+            "type" : "paragraph",
+            "content" : "Loads a specific show by ID!"
+          },
+          {
+            "type" : "header",
+            "content" : "settings"
+          },
+          {
+            "type" : "checkbox",
+            "id" : "placeholder",
+            "label" : "Is this a placeholder (loads most recent show)",
+            "default" : true
+          },
+          {
+            "type" : "text",
+            "id" : "show_id",
+            "label" : "Show ID"
+          }
+        ]
+      }
+
+    ],
+    "max_blocks" : 10
+  }
+{% endschema %}

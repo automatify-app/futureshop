@@ -1,0 +1,376 @@
+{% if section.settings.enable == true%}
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add "Collection list" section in the Theme Editor.
+
+  Theme Store required settings
+  - Heading: title of the collection list section
+  - Collection
+{%- endcomment -%}
+
+{% include 'section-starter' with section_class: 'collection-list' %}
+<div class="section-inner can-grid {% if section.settings.section_size == 'full-width' %} stretch-width{%endif%}" id="section--{{section.id}}">
+ {% include 'common-header' with include_button: false %}
+  <div class="collection-list__grid style--{{section.settings.layout}}" data-item-count="{{section.blocks.size}}">
+
+  {% for block in section.blocks %}
+    {%- assign collection = collections[block.settings.collection] -%}
+
+    <a href="{{ block.settings.url | default: collection.url }}" class="collection-list-item collection-block" {{ block.shopify_attributes }}>
+    {% if block.settings.image != blank %}
+        {%- assign image_object = block.settings.image -%}
+      {% elsif collection.image != blank or collection.products.first != blank %}
+        {%- assign image_object = collection.image | default: collection.products.first.featured_image -%}
+        {% endif%}
+        {% if image_object %}
+        <div class="collection-list-item__image">
+          {% include 'responsive-image' with
+            image: image_object,
+            max_width: 600,
+            max_height: 480
+          %}
+        </div>
+      {% elsif collection == empty %}
+      <div class="responsive-image__wrapper">
+        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+        {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+      </div>
+      {% endif %}
+
+      {%- assign default_label = 'homepage.onboarding.collection_title' | t -%}
+      {% unless section.settings.layout == 'simple' %}
+      <div class="collection-list-item__content">
+
+
+          {% if block.settings.pre_header != blank %}
+          <h4 class="h5 label">{{block.settings.pre_header}}</h5>
+        {%endif%}
+        <h3 class="h3 main-header font--extra">{{ collection.title | default: default_label }}</h3>
+        {% if block.settings.description  != blank %}
+          <h4 class="h5">{{block.settings.description}}</h5>
+        {%endif%}
+        {% if section.settings.list_button != blank %}
+        <div class="button  light over-dark">{{section.settings.list_button}}</div>
+        {%endif%}
+
+      </div>
+      {%endunless%}
+    </a>
+  {% endfor %}
+
+  {% if section.blocks.size == 0 %}
+    {% include 'no-blocks' %}
+  {% endif %}
+  </div>
+
+{% if section.settings.button_text != blank %}
+  <div class="button-wrap center">
+    <a href="{{section.settings.button_url | default: '/collections/all'}}" class="button">{{section.settings.button_text}}</a>
+  </div>
+  {%endif%}
+  </div>
+  {% if section.settings.layout == 'overlay' %}
+  {% assign opacity = 100 | minus: section.settings.overlay_op | times: 0.01 %}
+    <style>
+      #section--{{section.id}} .collection-list-item__image {
+        opacity: {{opacity}};
+      }
+      #section--{{section.id}} .collection-list-item__content {
+        color: {{section.settings.overlay_text_color}};
+      }
+      #section--{{section.id}} .collection-list-item {
+        background: {{section.settings.overlay_color}};
+      }
+
+    </style>
+  {%endif%}
+</div>
+{% endif%}
+{% schema %}
+  {
+    "name": "Collections (Site Wide)",
+    "max_blocks": 6,
+   "class" : "standard-section sitewide-section",
+    "settings": [
+      {
+        "type" : "header",
+        "content" : "Collection list settings"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "enable",
+        "label" : "Enable Section"
+      },
+      {
+        "type" : "header",
+        "content" : "Rich Text Content"
+      },
+{
+        "type" : "select",
+        "id" : "text_align",
+        "label" : "Text Alignment",
+        "default" :  "center",
+        "options" : [
+          {
+            "value" : "left",
+            "label" : "Left"
+          },
+          {
+            "value" : "center",
+            "label" : "Center"
+          },
+          {
+            "value" : "right",
+            "label" : "Right"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "text_size",
+        "label" : "Text Size",
+        "default" :  "standard",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small"
+          },
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "mega",
+            "label" : "Mega"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "introduction",
+        "label": "Introduction"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Shop By Collection"
+      },
+      {
+        "type" : "text",
+        "id" : "subtitle",
+        "label" : "Subtitle"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+      },
+       {
+        "type" : "text",
+        "id" : "button_text",
+        "label" : "All Button Text",
+        "info" : "Leave Blank for No Button"
+      },
+      {
+        "type" : "url",
+        "id" : "button_url",
+        "label" : "All Button url",
+        "info" : "Leave Blank to use collection link"
+      },
+       {
+         "type" : "header",
+         "content" : "Layout Settings"
+       },
+      {
+        "type" : "text",
+        "label" : "Button Text",
+        "id" : "list_button",
+        "info" : "If you input a value here, all the collection boxes will have a button on them with this text!"
+       },
+      {
+        "type" : "select",
+        "id" : "layout",
+        "label" : "Layout",
+        "default" : "big",
+        "options" : [
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "overlay",
+            "label" : "Overlay"
+          },
+          {
+            "value" : "big",
+            "label" : "Big"
+          },
+          {
+            "value" : "simple",
+            "label" : "Simple"
+          }
+        ]
+      },
+
+      {
+        "type" : "color",
+        "id" : "overlay_color",
+        "label" : "Overlay Color",
+        "default" :"#000000"
+      },
+      {
+        "type" : "color",
+        "id" : "overlay_text_color",
+        "label" : "Overlay Text Color",
+        "default" :"#FFFFFF"
+      },
+      {
+        "type" : "range",
+        "id" :"overlay_op",
+        "label" : "Overlay Opacity",
+        "default" : 50,
+        "step": 5,
+        "min": 0,
+        "max" : 100
+      },
+      {
+        "type" : "header",
+        "content" : "Section Settings"
+      },
+      {
+        "type" : "paragraph",
+        "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
+      },
+      {
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
+      },
+      {
+        "type" : "select",
+        "id" : "section_size",
+        "label" : "Section size",
+        "default" : "large",
+        "options" : [
+          {
+            "value" : "full-width",
+            "label" : "Full Width"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "section_spacing",
+        "label" : "Section Spacing",
+        "default" : "medium",
+        "options" : [
+          {
+            "value" : "none",
+            "label" : "No Spacing"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          },
+          {
+            "value" : "medium",
+            "label" : "Medium"
+          }, {
+"value" : "full-height",
+"label" : "Full Height"
+},
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value": "huge",
+            "label" : "Huge"
+          }
+        ]
+      },
+        {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
+      {
+        "type" : "select",
+        "id" : "background_style",
+        "label" : "Background Image Style",
+        "default" : "cover",
+        "options" : [
+          {
+            "value" : "cover",
+            "label" : "Cover"
+          },
+          {
+            "value" : "repeat-x",
+            "label" : "Horizontal Tile"
+          },
+          {
+            "value" : "repeat-y",
+            "label" : "Vertical Tile"
+          },
+          {
+            "value" : "repeat-all",
+            "label" : "Tile"
+          },
+          {
+            "value" : "rellax",
+            "label" : "Parallax"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "collection",
+        "name": "Collection",
+        "settings": [
+          {
+            "label": "Collection",
+            "id": "collection",
+            "type": "collection"
+          },
+          {
+            "type" : "text",
+            "id" : "pre_header",
+            "label" : "Pre-Header",
+            "default" : "Shop"
+          },
+          {
+            "type"  : "image_picker",
+            "id" : "image",
+            "label" : "Collection Image"
+          },
+          {
+            "type": "url",
+            "id": "url",
+            "label": "URL",
+            "info": "Leave blank in most cases. Overwrites the default collection URL"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

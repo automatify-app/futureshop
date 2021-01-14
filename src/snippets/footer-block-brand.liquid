@@ -1,0 +1,27 @@
+ <div class="footer-col footer-{{block.type}} align--{{block.settings.text_align}}">
+  {% if block.settings.title != blank %}<h4 class="footer-header">{{block.settings.title}}</h4>{%endif%}
+    {% if block.settings.image_snippet != blank or block.settings.image != blank %}
+      <a href="/" class="footer-logo" style="max-width: {{block.settings.logo_max_width}}px" >
+        {% if block.settings.image_snippet != blank %}
+          {%include block.settings.image_snippet %}
+        {%elsif block.settings.image != blank %}
+          {% include 'responsive-image'  with image: block.settings.image, max_width: 700, max_height: 400 %}
+        {%endif%}
+      </a>
+    {%endif%}
+    {% if block.settings.email != blank %}
+      <a class="email-contact" href="mailto:{{block.settings.email}}">
+        <i  class="icon-mail"></i> {{block.settings.email}}
+      </a>
+    {%endif%}
+    {% if block.settings.phone != blank %}
+      <a class="phone-contact" rel="tel" href="tel:{{block.settings.phone}}">
+        <i  class="icon-phone"></i> {{block.settings.phone}}
+      </a>
+    {%endif%}
+    {% if block.settings.socials == true %}
+      <ul class="social-wrap style--{{settings.social_link_style}}"  >
+        {% include 'social-icons' with nowrap: true %}
+      </ul>
+    {%endif%}
+  </div>

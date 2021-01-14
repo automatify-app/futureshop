@@ -1,0 +1,709 @@
+{% include 'section-starter' with section_class: 'content-columns--outer' %}
+<div class="section-inner columns-wrap {% if section.settings.expand == true %} expand {%endif%}">
+{% assign delay = 0 %}
+  {% for block in section.blocks %}
+        {% case block.type %}
+        {% when 'code' %}
+          {% include 'column-code'%}
+        {% when 'text' %}
+          {% include 'column-text' %}
+        {% when 'image' %}
+          {% include 'column-image' %}
+        {% when 'textimg' %}
+          {% include 'column-textimg' %}
+      {%endcase%}
+  {%endfor%}
+</div>
+</div>
+
+{% stylesheet 'scss' %}
+.shopify-section.content-columns {
+  overflow: hidden
+}
+
+.section-inner.columns-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  &.expand {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+
+    justify-content: space-between;
+
+    .type--image {
+      padding: 0;
+      margin: 0;
+      &.size--huge {
+        flex: 1 1 100%;
+      }
+    }
+
+
+    @media only screen and (min-width: 1081px) {
+      flex-wrap: nowrap;
+
+      .type--text {
+        padding: calc(12px + 1vw) calc(20px + 2vw)
+      }
+    }
+
+    @media only screen and  (min-width: 1700px) {
+      padding: 0 calc(50vw - 1000px);
+    }
+
+  }
+}
+
+.content-column {
+  &.size--small {
+    flex: 1 1 200px;
+    max-width: 600px;
+  }
+  &.size--medium {
+    flex: 1 1 440px;
+    max-width: 790px;
+  }
+  &.size--large {
+    flex: 1 1 600px;
+    max-width: 100%;
+  }
+  &.size--huge {
+    flex: 1 1 900px;
+    max-width: 100%;
+  }
+  margin:1%;
+  padding: calc(12px + 1vw);
+
+  .button-wrap {
+    text-align: inherit;
+
+    .button {
+      margin: 0;
+    }
+  }
+
+  &.align--center {
+    text-align: center;
+  }
+  &.align--right {
+    text-align: right;
+  }
+
+  &.type--text {
+    position: relative;
+    z-index: 2  ;
+  }
+  &.type--image {
+    position: relative;
+    z-index: 1;
+    &.has--img2 {
+      .content-column__image:nth-child(1) {
+        width: 85%;
+      }
+      .content-column__image:nth-child(2) {
+        width: 60%;
+        margin: -52% -7% 20% auto;
+      }
+      &.has--img3 {
+         .content-column__image:nth-child(1) {
+          width: 65%;
+        }
+        .content-column__image:nth-child(2) {
+          width: 59%;
+          margin: -52% -5% -30% auto;
+        }
+        .content-column__image:nth-child(3) {
+          width: 75% ;
+          margin: -50% auto 0 -20%
+        }
+      }
+    }
+  }
+  &.type--textimg {
+    .content-column__image {
+      margin: calc(12px + 1vw) auto;
+    }
+  }
+
+  .rte b, .rte strong {
+    font-size: 1.43em;
+  }
+}
+
+
+.embed-wrap {
+  margin: calc(22px + 0.5vw) auto;
+}
+{% endstylesheet %}
+
+
+{% schema %}
+  {
+    "name" : "Content Columns",
+    "class" : "content-columns",
+    "settings" : [
+      {
+        "type" : "header",
+        "content" : "Meta"
+      },
+      {
+        "type": "text",
+        "id" : "anchor_id",
+        "label" : "Section ID (for anchor links and specific styling)"
+      },
+  {
+        "type": "text",
+        "id" : "anchor_classes",
+        "label" : "Section classes (for  specific styling)"
+      },
+      {
+        "type": "text",
+        "id" : "title",
+        "label" : "Nice Name",
+        "info" : "Just for keeping the back end organized! Enter a nice name here",
+        "default" : "Content Columns"
+      },
+      {
+        "type" : "header",
+        "content" : "Columns Settings"
+      },
+      {
+        "type" : "checkbox",
+        "id" :"expand",
+        "label" : "Expand to edges"
+      },
+       {
+        "type" : "header",
+        "content" : "Section Settings"
+      },
+      {
+        "type" : "paragraph",
+        "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
+      },
+      {
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
+      },
+      {
+        "type" : "select",
+        "id" : "section_size",
+        "label" : "Section size",
+        "default" : "large",
+        "options" : [
+          {
+            "value" : "full-width",
+            "label" : "Full Width"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "section_spacing",
+        "label" : "Section Spacing",
+        "default" : "medium",
+        "options" : [
+          {
+            "value" : "none",
+            "label" : "No Spacing"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          },
+          {
+            "value" : "medium",
+            "label" : "Medium"
+          }, {
+"value" : "full-height",
+"label" : "Full Height"
+},
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value": "huge",
+            "label" : "Huge"
+          }
+        ]
+      },
+        {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
+      {
+        "type" : "select",
+        "id" : "background_style",
+        "label" : "Background Image Style",
+        "default" : "cover",
+        "options" : [
+          {
+            "value" : "cover",
+            "label" : "Cover"
+          },
+          {
+            "value" : "repeat-x",
+            "label" : "Horizontal Tile"
+          },
+          {
+            "value" : "repeat-y",
+            "label" : "Vertical Tile"
+          },
+          {
+            "value" : "repeat-all",
+            "label" : "Tile"
+          },
+          {
+            "value" : "rellax",
+            "label" : "Parallax"
+          }
+        ]
+      }
+    ],
+    "blocks" : [
+      {
+        "type" : "text",
+        "name" : "Rich Text",
+        "settings" : [
+          {
+            "type" : "header",
+            "content" : "Settings"
+          },
+          {
+            "type" : "select",
+            "options" : [
+              {
+                "value" : "small",
+                "label" : "Small"
+              },
+              {
+                "value" : "medium",
+                "label" : "Medium"
+              },
+              {
+                "value" : "large",
+                "label" : "Large"
+              },
+              {
+                "value" : "huge",
+                "label" : "Huge"
+              }
+            ],
+            "id" : "size",
+            "label" :"Size"
+          },
+           {
+            "type" : "select",
+            "options" : [
+              {
+                "value" : "left",
+                "label" : "Left"
+              },
+              {
+                "value" : "center",
+                "label" : "Center"
+              },
+              {
+                "value" : "right",
+                "label" : "Right"
+              }
+            ],
+            "default" : "center",
+            "id" : "align",
+            "label" :"Text Alignment"
+          },
+            {
+            "type": "text",
+            "id": "pre_title",
+            "label": "Pre-Heading",
+            "default": "Use this space to"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Talk about your brand"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          },
+          {
+            "type" : "text",
+            "id" : "button_text",
+            "label" : "Button Text"
+          },
+          {
+            "type" : "url",
+            "id" : "button_url",
+            "label" : "Button URL"
+          }
+        ]
+      },
+      {
+        "type" : "code",
+        "name" : "Code",
+        "settings" : [
+          {
+            "type" : "header",
+            "content" : "Settings"
+          },
+          {
+            "type" : "select",
+            "options" : [
+              {
+                "value" : "small",
+                "label" : "Small"
+              },
+              {
+                "value" : "medium",
+                "label" : "Medium"
+              },
+              {
+                "value" : "large",
+                "label" : "Large"
+              },
+              {
+                "value" : "huge",
+                "label" : "Huge"
+              }
+            ],
+            "id" : "size",
+            "label" :"Size"
+          },
+           {
+            "type" : "select",
+            "options" : [
+              {
+                "value" : "left",
+                "label" : "Left"
+              },
+              {
+                "value" : "center",
+                "label" : "Center"
+              },
+              {
+                "value" : "right",
+                "label" : "Right"
+              }
+            ],
+            "default" : "center",
+            "id" : "align",
+            "label" :"Text Alignment"
+          },
+            {
+            "type": "text",
+            "id": "pre_title",
+            "label": "Pre-Heading",
+            "default": "Use this text to"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Spotlight Content"
+          },
+           {
+            "type": "text",
+            "id": "post_title",
+            "label": "Post-Heading",
+            "default": "And even more!"
+          },
+          {
+              "type" : "select",
+              "id" : "header_style",
+              "label" : "Header Style",
+              "options" : [
+                {
+                  "value" : "hidden",
+                  "label" : "Hidden"
+                },
+                {
+                  "value" : "small",
+                  "label" : "Small"
+                },
+                {
+                  "value" : "standard",
+                  "label" : "Standard"
+                },
+                {
+                  "value" : "large",
+                  "label" : "Large"
+                },
+                {
+                  "value" : "xl",
+                  "label" :"Extra Large"
+                }
+              ]
+          },
+
+          {
+            "type" : "html",
+            "id" : "html",
+            "label" : "Code",
+            "info" : "Usually used for embed codes!"
+          },
+           {
+            "type" : "text",
+            "id" : "button_text",
+            "label" : "Button Text"
+          },
+          {
+            "type" : "url",
+            "id" : "button_url",
+            "label" : "Button URL"
+          }
+        ]
+      },
+      {
+        "type" : "image",
+        "name" : "Image",
+        "settings" : [
+          {
+            "type" : "header",
+            "content" : "Settings"
+          },
+          {
+            "type" : "select",
+            "options" : [
+              {
+                "value" : "small",
+                "label" : "Small"
+              },
+              {
+                "value" : "medium",
+                "label" : "Medium"
+              },
+              {
+                "value" : "large",
+                "label" : "Large"
+              },
+              {
+                "value" : "huge",
+                "label" : "Huge"
+              }
+            ],
+            "id" : "size",
+            "label" :"Size"
+          },
+          {
+            "type" : "checkbox",
+            "id" : "parallax",
+            "label" : "Scroll effect?"
+          },
+          {
+            "type" : "header",
+            "content" : "Images"
+          },
+          {
+            "type" : "image_picker",
+            "label" : "Image 1",
+            "id" : "image"
+          },
+          {
+            "type" : "image_picker",
+            "label" : "Image 2",
+            "id" : "image2"
+          },
+          {
+            "type" : "image_picker",
+            "label" : "Image 3",
+            "id" : "image3"
+          },
+          {
+            "type" : "header",
+            "content" : "Link"
+          },
+          {
+            "type" : "url",
+            "label" : "Image Link",
+            "id" : "image_link"
+          },
+          {
+            "type" : "checkbox",
+            "id" : "link_external",
+            "label" : "External Link?"
+          }
+        ]
+      },
+      {
+        "type" : "textimg",
+        "name" : "Image w/ Text",
+        "settings" : [
+          {
+            "type" : "header",
+            "content" : "Block Settings"
+          },
+          {
+            "type" : "select",
+            "id" : "layout",
+            "label" : "Layout",
+            "options" : [
+              {
+                "value" : "header-image-button",
+                "label" : "Header -> Image -> Button"
+              },
+              {
+                "value" : "image-header-button",
+                "label" : "Image -> Header -> Button"
+              },
+              {
+                "value" : "header-button-image",
+                "label" : "Header -> Button -> Image"
+              }
+            ]
+          },
+          {
+            "type" : "select",
+            "options" : [
+              {
+                "value" : "small",
+                "label" : "Small"
+              },
+              {
+                "value" : "medium",
+                "label" : "Medium"
+              },
+              {
+                "value" : "large",
+                "label" : "Large"
+              },
+              {
+                "value" : "huge",
+                "label" : "Huge"
+              }
+            ],
+            "id" : "size",
+            "label" :"Size"
+          },
+
+          {
+            "type" : "header",
+            "content" : "Images"
+          },
+          {
+            "type" : "image_picker",
+            "label" : "Image 1",
+            "id" : "image"
+          },
+          {
+            "type" : "url",
+            "label" : "Image Link",
+            "id" : "image_link"
+          },
+          {
+            "type" : "checkbox",
+            "id" : "link_external",
+            "label" : "External Link?"
+          },
+         {
+           "type" : "header",
+           "content" : "Text"
+         },
+           {
+            "type" : "select",
+            "options" : [
+              {
+                "value" : "left",
+                "label" : "Left"
+              },
+              {
+                "value" : "center",
+                "label" : "Center"
+              },
+              {
+                "value" : "right",
+                "label" : "Right"
+              }
+            ],
+            "default" : "center",
+            "id" : "align",
+            "label" :"Text Alignment"
+          },
+            {
+            "type": "text",
+            "id": "pre_title",
+            "label": "Pre-Heading",
+            "default": "Use this text to"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Spotlight Content"
+          },
+           {
+            "type": "text",
+            "id": "post_title",
+            "label": "Post-Heading",
+            "default": "And even more!"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          },
+          {
+            "type" : "text",
+            "id" : "button_text",
+            "label" : "Button Text"
+          },
+          {
+            "type" : "url",
+            "id" : "button_url",
+            "label" : "Button URL"
+          }
+        ]
+      }
+    ],
+    "max_blocks" : 3,
+    "presets": [
+      {
+        "name": "Content Columns",
+        "category": "Custom"
+      },
+      {
+        "name": "Embed",
+        "category": "Custom (Music)",
+        "blocks"  : [
+          {"type" : "code"}
+        ]
+      },
+      {
+        "name": "Image With Text",
+        "category": "Image",
+        "blocks" : [
+          {
+            "type" : "image"
+          },
+          {
+            "type" : "text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

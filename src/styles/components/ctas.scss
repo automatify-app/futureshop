@@ -1,0 +1,339 @@
+%button {
+  display: inline-block;
+  font-size: calc(1.4rem + 0.3vw);
+  padding: 0.7em 1.2em;
+  line-height: 1;
+  position: relative;
+  z-index: 10;
+  // text-transform: uppercase;
+  position: relative;
+  margin: 0.6em 0 0.4em;
+
+  @include font-heading;
+  border-radius: 0;
+  letter-spacing: -0.03em;
+  color: inherit;
+  border-radius: $border-radius;
+  background: $color-accent;
+  color: $color-accent-inverse;
+  overflow: hidden;
+  &:visited {
+    color: inherit;
+  }
+  transition: transform 300ms $ease, opacity 300ms $ease, color 300ms $ease;
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &::before {
+    @extend %psuedo;
+    position: absolute;
+    top: calc(100% + 2px);
+    height: calc(100% + 4px);
+    // margin: -2px;z
+    z-index: -1;
+    transition: transform 350ms 40ms $ease, opacity 350ms 40ms $ease;
+  }
+  &:hover  {
+
+  }
+  &.active {
+    opacity: 1;
+  }
+
+}
+
+.button {
+  @extend %button;
+
+  &.simple {
+    padding: 0.2em 0;
+    background: transparent;
+    color: inherit;
+    &.white {
+      color: white;
+    }
+  }
+  &.big {
+    font-size: calc(1.7rem + 0.5vw);
+    @include font-extra();
+    font-family: $font-extra !important;;
+  }
+  &.small {
+    font-size: 0.9em;
+  }
+  &.secondary {
+  }
+  &.solid {
+
+    background: $color-accent;
+    color: $color-accent-inverse;
+    &.secondary {
+      background: $color-secondary;
+      color: $color-secondary-inverse;
+
+    }
+  }
+  &.outline, &.border {
+    background: transparent;
+    border: $border-thickness solid currentColor;
+    color:  $color-body-text;
+  }
+  &.inherit {
+    color: inherit;
+    border-color: inherit;
+  }
+}
+button.button {
+  @extend %button;
+
+  appearance:none;
+  border:none;
+}
+
+.button-wrap {
+   .button {
+      flex: 0 0 auto;
+      margin: 0.45em
+    }
+  &.center {
+    text-align: center;
+    .button {
+      flex: 0 0 auto;
+    }
+  }
+}
+
+form button.simple {
+   appearance:none;
+  border:none;
+  background: none;
+}
+
+body {
+  &.button-font--body {
+    %button {
+      @include font-body();
+      font-weight: $font-body-weight;
+    }
+  }
+  &.button-font--extra {
+    %button {
+      @include font-extra();
+      font-weight: $font-extra-weight;
+    }
+  }
+  &.button--caps {
+    %button {
+      text-transform: uppercase;
+      letter-spacing: 0.09em
+    }
+  }
+  &.button-style--solid {
+    %button {
+      background: $color-accent;
+      color: $color-accent-inverse;
+      &.secondary {
+        background: $color-secondary;
+         color: $color-secondary-inverse;
+      }
+      &.inherit {
+        color: $color-accent-inverse;
+      }
+    }
+    .button-wrap .button+.button {
+      background: $color-secondary;
+    }
+    .button.simple {
+      background: transparent;
+    }
+  }
+  &.button-style--underline {
+    %button {
+      background: transparent;
+      color: $color-accent;
+      &:not(.solid) {
+        padding: 0.48em 0.35em;
+      }
+      &::after {
+        @extend %psuedo;
+        height: $border-thickness;
+        bottom: 0;
+        background: $color-accent;
+        transition: transform 300ms $ease;
+        top: unset;
+        left: 50%;
+        transform: translateX(-50%) scaleX(1);
+      }
+      &:hover {
+        &::after {
+
+          transform: translateX(-50%) scaleX(0.85)
+        }
+      }
+      &.over-dark {
+        color: $color-accent-lighter;
+        text-shadow: 0 0 20px rgba(black,0.85);
+        &:after {
+          background: $color-accent-lighter;
+        }
+      }
+      &.secondary {
+        &::after {
+          background: $color-secondary
+        }
+         color: $color-secondary;
+      }
+      .button-wrap .button + .button {
+        &::after {
+          background: $color-secondary;
+        }
+      }
+    }
+    %button.solid {
+      &::after {
+        display: none;
+      }
+       background: $color-accent;
+      color: $color-accent-inverse;
+      &.secondary {
+        background: $color-secondary;
+         color: $color-secondary-inverse;
+      }
+    }
+    .button.simple {
+      &::after {
+        display: none;
+      }
+      background: transparent;
+    }
+  }
+  &.button-style--gradient {
+    %button {
+      background: linear-gradient( 175deg, $color-secondary, $color-accent);
+      &.secondary {
+        background: linear-gradient( 175deg, $color-accent, $color-secondary-darker);
+
+      }
+    }
+    .button.simple {
+      background: transparent;
+    }
+  }
+  &.button-style--outline {
+    %button {
+      background: transparent;
+      color: $color-accent;
+      border: $border-thickness solid currentColor;
+      &::before {
+        background: $color-accent;
+      }
+      &:hover, &.active {
+        color: $color-accent-inverse;
+        &::before {
+          transform: translateY(-101%)
+        }
+      }
+    }
+    .overlay-section {
+      %button {
+        color: $color-accent-inverse;
+
+      }
+    }
+    .button.lighter {
+        color: $color-accent-inverse;
+        &:hover {
+        color: $color-accent-darkest;
+        }
+        &::before {
+        background: $color-accent-inverse;
+      }
+    }
+    .button.solid {
+      background: $color-accent;
+      border:none;
+      color: $color-accent-inverse;
+    }
+    .button.simple {
+      background: transparent;
+      border:none;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      &::before {
+        display: none;
+      }
+    }
+
+    .button.inherit {
+      &::before {
+        background: $color-body;
+      }
+      &:hover {
+        color: $color-body-text;
+        border-color: transparent;
+      }
+    }
+  }
+   &.button-style--minimal {
+    %button {
+      background: transparent;
+      color: $color-accent;
+      &::before {
+        background: $color-accent;
+      }
+      &:hover {
+        color: $color-accent-inverse;
+        &::before {
+          transform: translateY(-101%)
+        }
+      }
+    }
+    .overlay-section {
+      %button {
+        color: $color-accent-inverse;
+
+      }
+    }
+    .button.lighter {
+        color: $color-accent-inverse;
+        &:hover {
+        color: $color-accent-darkest;
+        }
+        &::before {
+        background: $color-accent-inverse;
+      }
+    }
+    .button.solid {
+      background: $color-accent;
+      border:none;
+      color: $color-accent-inverse;
+    }
+    .button.simple {
+      background: transparent;
+      border:none;
+    }
+  }
+
+  &:not(.button-style--solid) {
+    .button.inherit {
+      color: inherit;
+      border-color: currentColor;
+    }
+  }
+}
+
+.button-wrap {
+  &.align--left {
+    text-align: left;
+  }
+  &.align--center {
+    text-align: center;
+  }
+  &.align--right {
+    text-align: right;
+  }
+}

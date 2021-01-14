@@ -1,0 +1,22 @@
+.visibility--hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.width--small {
+  @extend %smallWidth;
+}
+.width--medium {
+  @extend %mediumWidth;
+}
+.width--large {
+  @extend %largeWidth;
+}
+
+.width--max {
+  @extend %maxWidth;
+}
+
+.shadow--normal {
+  @include shadowBefore(0.96);
+}

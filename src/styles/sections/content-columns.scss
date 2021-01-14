@@ -1,0 +1,121 @@
+.shopify-section.content-columns {
+  overflow: hidden
+}
+
+.section-inner.columns-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  &.expand {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+
+    justify-content: space-between;
+
+    .type--image {
+      padding: 0;
+      margin: 0;
+      &.size--huge {
+        flex: 1 1 100%;
+      }
+    }
+
+
+    @include media-query($medium-up) {
+      flex-wrap: nowrap;
+
+      .type--text {
+        padding: calc(12px + 1vw) calc(20px + 2vw)
+      }
+    }
+
+    @media only screen and  (min-width: 1700px) {
+      padding: 0 calc(50vw - 1000px);
+    }
+
+  }
+}
+
+.content-column {
+  &.size--small {
+    flex: 1 1 200px;
+    max-width: 600px;
+  }
+  &.size--medium {
+    flex: 1 1 440px;
+    max-width: 790px;
+  }
+  &.size--large {
+    flex: 1 1 600px;
+    max-width: 100%;
+  }
+  &.size--huge {
+    flex: 1 1 900px;
+    max-width: 100%;
+  }
+  margin:1%;
+  padding: calc(12px + 1vw);
+
+  .button-wrap {
+    text-align: inherit;
+
+    .button {
+      margin: 0;
+    }
+  }
+
+  &.align--center {
+    text-align: center;
+  }
+  &.align--right {
+    text-align: right;
+  }
+
+  &.type--text {
+    position: relative;
+    z-index: 2  ;
+  }
+  &.type--image {
+    position: relative;
+    z-index: 1;
+    &.has--img2 {
+      .content-column__image:nth-child(1) {
+        width: 85%;
+      }
+      .content-column__image:nth-child(2) {
+        width: 60%;
+        margin: -52% -7% 20% auto;
+      }
+      &.has--img3 {
+         .content-column__image:nth-child(1) {
+          width: 65%;
+        }
+        .content-column__image:nth-child(2) {
+          width: 59%;
+          margin: -52% -5% -30% auto;
+        }
+        .content-column__image:nth-child(3) {
+          width: 75% ;
+          margin: -50% auto 0 -20%
+        }
+      }
+    }
+  }
+  &.type--textimg {
+    .content-column__image {
+      margin: calc(12px + 1vw) auto;
+    }
+  }
+
+  .rte b, .rte strong {
+    font-size: 1.43em;
+  }
+}
+
+
+.embed-wrap {
+  margin: calc(22px + 0.5vw) auto;
+}

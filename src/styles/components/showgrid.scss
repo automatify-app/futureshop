@@ -1,0 +1,51 @@
+
+.shows-fallback {
+  text-align: center;
+  display: flex;
+  max-width: 720px;
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height:0;
+  opacity: 0;
+  max-height: 0;
+  margin: auto;
+  transition: opacity 300ms ease, max-height 300ms ease;
+  .no-shows & {
+    opacity: 1;
+    max-height: 500px;
+    min-height: 400px;;
+  }
+  a {
+    text-decoration: none;
+    color: $color-accent-darker;
+    font-weight: bold;
+  }
+}
+
+.showgrid[data-active-layout="calendar"] ~ .shows-fallback {
+  display: none;
+}
+
+
+.search-text {
+    display: flex;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    p {
+      text-transform: uppercase;
+      color: #afafaf;
+      span {
+        color: $color-accent-darker;
+        font-weight: bold;
+      }
+    }
+    p , .button{
+      margin: 8px;
+    }
+}
+

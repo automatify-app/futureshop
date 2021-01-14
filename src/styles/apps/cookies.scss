@@ -1,0 +1,33 @@
+.eg-cc-compliance > a {
+  @extend %button;
+  color: white ;
+  margin: 0;
+  color: white !important;
+    background: black !important;
+  border-radius: $border-radius !important;
+  &:hover {
+   @extend %button;
+   margin: 0;
+  }
+}
+
+.eg-cc-window {
+ a {
+   color: inherit;
+    // @extend %button;
+
+  }
+}
+
+body.button-style--outline {
+  .eg-cc-compliance > a:hover,
+  .eg-cc-compliance > a:focus {
+  &:hover {
+    background: transparent !important;;
+  }
+}
+}
+
+.eg-cc-message {
+  @include font-body();
+}

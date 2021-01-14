@@ -1,0 +1,40 @@
+.shopify-section .contact-form {
+  .rte p {
+    padding: 12px;
+    max-width: 800px;
+    margin: auto;
+  }
+}
+
+.contact-form__wrap form#contact_form  {
+  display: flex;
+  flex-wrap:wrap;
+  max-width: 800px;
+  margin: 20px auto;
+  .input-group {
+    flex: 1 1 33%;
+    padding: 12px;
+    &.full {
+      flex: 1 1 100%;
+      
+    }
+    &.centered {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin:  0 0 0.4em;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 0.02em;
+      font-size: 0.9em;
+    }
+    input, textarea {
+      width: 100%;
+      max-width: 100%;
+    }
+    button {
+      
+    }
+  }
+}

@@ -1,0 +1,75 @@
+$productformHeight: 40px;
+
+.quantity-select {
+  position: relative;
+  margin: 0;
+  width: 120px;
+
+  overflow: hidden;
+  // max-height: 40px;
+  label {
+    width: 100%;
+    margin:0 auto 8px auto;
+    ;
+
+    display: block;
+    font-size: 1em;
+    opacity: 0.8;
+      margin: 0.5em 0;
+      @include font-heading();
+
+      font-weight: 600;
+  }
+  .quantity-wrapper__inner {
+    display: flex;
+    height: 100%;
+    max-height: 40px;
+    width: 120px;
+    position: relative;
+    border-radius: $border-radius-small;
+     border: 1px solid currentColor;
+  }
+  .quantity-adjust {
+    // background: rgb(82, 82, 82);
+    flex:0 0 30px;
+
+    color: inherit;
+    line-height: $productformHeight;
+    text-align: center;
+    // font-size: 1em/;
+    cursor: pointer;
+    height: $productformHeight;
+    &.adjust-minus {
+      border-right: none;
+    }
+    &.adjust-plus {
+      border-left: none;
+    }
+  }
+
+  input {
+    border: none;
+    height: $productformHeight;
+    line-height: $productformHeight;
+    appearance: none;
+    -webkit-appearance: none;
+    display: block;
+    flex: 0 1 95px;
+    min-width: 60px;
+    box-sizing: border-box;
+    appearance: none;
+    display: inline-block;
+    background: transparent;
+    text-align: center;
+    padding: 6px 3px  ;
+    @include font-body();
+    color: inherit;
+    font-weight: bold;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    &::-webkit-inner-spin-button {
+      position: absolute;
+    }
+  }
+
+}

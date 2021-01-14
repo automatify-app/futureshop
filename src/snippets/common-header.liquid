@@ -1,0 +1,65 @@
+{% comment %} Get settings object {% endcomment %}
+{% if section.settings.introduction %}
+  {% assign params = section.settings %}
+  {% assign type = 'section' %}
+{% elsif block.settings.introduction %}
+  {% assign params = block.settings %}
+  {% assign type = 'block' %}
+{% elsif slide.settings.introduction %}
+  {% assign params = slide.settings %}
+  {% assign type = 'slide' %}
+{%endif %}
+{% if params.button_url != blank and params.button_text != blank %}
+  {% assign include_button = true %}
+{%endif%}
+{% if params.button_1_url != blank and params.button_1_text != blank %}
+  {% assign include_button = true %}
+{%endif%}
+{% if params.button_2_url != blank and params.button_2_text != blank %}
+  {% assign include_button = true %}
+{%endif%}
+{% if include_button == false %}
+  {% assign include_button = false %}
+{% endif %}
+{% assign delay = 0 %}
+{% if params.heading != blank or params.introduction != blank or params.text != blank or params.logo != blank%}
+<div class="common-header__outer type--{{type | default: 'section'}} align--{{params.text_align | default: settings.header_alignment }} font--{{params.text_size | default: 'standard'}}">
+    {% if params.logo != blank %}
+    <div data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="common-header__logo">
+      {% include 'responsive-image' with image: params.logo, max_width: 1200, max_height: 900 %}
+    </div>
+    <style>
+      .common-header__logo {
+        max-width: {{ params.logo_max_width }}px;
+      }
+    </style>
+    {%endif %}
+  {% if params.heading != blank or params.introduction != blank or params.subtitle != blank %}
+    <header class="common-header type--{{type}}">
+      {% if params.introduction != blank %}
+        <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__introduction {% if  params.introduction.size <= 4  %} short {%elsif params.introduction.size <= 6 %} shortish {%endif%}">{{ params.introduction | escape }}</h4>
+      {% endif %}
+      {% if params.heading != blank %}
+        <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="main-header common-header__heading">{{ params.heading | escape }}</h4>
+      {% endif %}
+      {% if params.subtitle != blank %}
+        <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__subtitle">{{ params.subtitle | escape }}</h4>
+      {% endif %}
+    </header>
+  {% endif %}
+
+   {%- if params.text != blank -%}
+    <div data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}"" class="rte common-rte">
+      {{ params.text }}
+    </div>
+  {%- endif -%}
+
+  {% if include_button == true %}
+    <div data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="button-wrap text--{{params.text_align}}">
+      {% if params.button_text != blank %}{% include 'button' %}{%endif%}
+      {% if params.button_1_text != blank %}{% include 'button' with classes: ' inherit ', url: params.button_1_url, text: params.button_1_text %}{%endif%}
+      {% if params.button_2_text != blank %}{% include 'button' with classes: ' inherit ', url: params.button_2_url, text: params.button_2_text %}{%endif%}
+    </div>
+  {% endif %}
+</div>
+{%endif%}

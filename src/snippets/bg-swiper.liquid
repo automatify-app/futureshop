@@ -1,0 +1,8 @@
+<div class="swiper-container" data-module="bg-swiper">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+            <div class="swiper-slide just-bg lazyload" data-bgset="{% include 'responsive-bg-image' with image: block.settings.image %}">
+            </div>
+      {% endfor %}
+      </div>
+    </div>

@@ -1,0 +1,119 @@
+.lightbox-content {
+  display: none;
+}
+
+.basicLightbox__placeholder {
+  width: 100%;
+  pointer-events: none;
+
+  iframe {
+
+    width: 90%;
+    margin: auto;
+    max-width: 900px !important;
+    height: 450px;
+    @include media-query($medium-down) {
+      height: 380px;
+    }
+    @include media-query($small) {
+      height: 300px;
+    }
+    @include media-query($tiny) {
+      height: 240px;
+    }
+  }
+
+}
+.popup-content {
+   max-width: $grid-medium;
+   margin: auto;
+  width: 90%;
+  pointer-events: all;
+  &.popup-password form {
+    align-items: center;
+    justify-content: center;
+    // margin: auto;
+    min-height: 100px;
+  }
+
+
+
+}
+
+.lightbox-content {
+  position: absolute;
+  z-index: -100000;
+  left: -1000%;
+}
+
+.popup-content {
+  form {
+    @extend %signup-form;
+  }
+}
+
+.popup-inner {
+
+  width: 100%;
+  padding: 32px 24px;
+  padding: calc(10px + 2.2vmax) calc(10px + 2.5vmax);
+  box-sizing: border-box;
+  background: $color-drawer-bg;
+  color: $color-drawer-text;
+  border-radius: $border-radius-big;
+  overflow: hidden;
+  text-align: center;
+  .button, button {
+    background: $color-drawer-button-background !important;
+    color: $color-drawer-button-text !important;
+  }
+  h2 {
+    line-height: 1;
+    margin-bottom: 0.4em;
+    margin-top: 0;
+  }
+  h4 {
+     margin-bottom: 0.4em;
+     line-height: 1.4;
+     font-weight: normal;
+
+  }
+  h5 {
+    font-weight: normal;
+    margin: 0 auto 0.6em
+  }
+  .form-wrap {
+    // max-width: 420px;
+    margin: 24px 0 0;
+
+    label[for="email"] {
+      display: none;
+    }
+  }
+  .large_form {
+
+  }
+}
+
+
+.popup-header {
+  h4 {
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: 0.06em;
+  }
+}
+
+
+#Login{
+  text-align: center;
+  // margin-top: 10vh;
+  label {
+    display: none;
+  }
+  a {
+    color: $color-accent-darker;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}

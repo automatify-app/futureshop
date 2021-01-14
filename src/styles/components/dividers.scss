@@ -1,0 +1,60 @@
+
+
+//Dividers
+.divider-wrap {
+ width: 95%;
+ max-width: $grid-max-width;
+ margin: auto;
+}
+.custom-divider {
+  display: block;
+  font-size: 9px;
+  padding: 1px;
+  width: 100%;
+  height: $border-thickness;
+
+  &.image-divider {
+    height: auto;
+    background: transparent !important;
+    border: none !important;
+    img {
+      display: block;
+      margin: auto;
+    }
+  }
+  @include media-query($small) {
+    font-size: 7px;
+    &.hide-mobile {
+      display: none;
+    }
+  }
+  @include media-query($widescreen) {
+    font-size: 13px;
+  }
+  // &.space--min {
+  //   margin: 0 auto
+  // }
+  // &.space--small {
+  //   margin: 1em auto 0;
+  // }
+  // &.space--medium {
+  //   margin: 1.6em auto 1em;
+  // }
+  // &.space--large {
+  //   margin: 2.4em auto 1.8em;
+  // }
+  // &.space--extra {
+  //   margin: 3.3em auto 2.7em;
+  // }
+  // &.space--huge {
+  //   margin: 4.3em auto 3.7em;
+  // }
+
+  &.style--border-full {
+    border-top: 2px solid rgba(120,120,120,0.1);
+  }
+  &.style--border-half {
+    width: 50%;
+    border-top: 2px solid rgba(120,120,120,0.1);
+  }
+}

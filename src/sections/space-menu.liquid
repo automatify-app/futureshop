@@ -1,0 +1,22 @@
+{% for block in section.blocks %}
+ <button href="page{{forloop.index0}}" data-index="{{forloop.index0}}" data-space-button class="button outline">{{block.settings.title}}</a>
+{%endfor %}
+{% schema %}
+  {
+    "name": "Space Menu",
+    "class": "space-menu",
+    "blocks" : [
+      {
+        "type" : "link",
+        "name" : "Link",
+        "settings" : [
+          {
+            "type" : "text",
+            "id" : "title",
+            "label" : "Title"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

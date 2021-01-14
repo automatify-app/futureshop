@@ -1,0 +1,56 @@
+<div class="contact-form__wrap">
+{% if settings.contact_html != blank}
+  {{settings.contact_html}}
+
+{%else %}
+
+{% form 'contact' %}
+
+{% if form.posted_successfully? %}
+    <h4 class="h4 form-success">
+      {{settings.signup_success | default : "Thanks! You'll be hearing from us soon!"}}
+    </h4>
+  {% endif %}
+
+
+  {{ form.errors | default_errors }}
+<div class="input-group">
+  <label for="ContactFormName">{{ 'contact.form.name' | t }}</label>
+  <input type="text"
+    name="contact[name]"
+    id="ContactFormName"
+    placeholder="Your {{ 'contact.form.name' | t }}"
+    value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+</div>
+<div class="input-group">
+  <label for="ContactFormEmail">{{ 'contact.form.email' | t }}</label>
+  <input type="email"
+    name="contact[email]"
+    id="ContactFormEmail"
+    placeholder="Your {{ 'contact.form.email' | t }}"
+    value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+    spellcheck="false"
+    autocomplete="off"
+    autocapitalize="off">
+</div>
+
+<div class="input-group full">
+  <label for="ContactFormMessage">{{ 'contact.form.message' | t }}</label>
+  <textarea rows="10"
+    name="contact[body]"
+    id="Your ContactFormMessage"
+    placeholder="{{ 'contact.form.message' | t }}">
+    {%- if form.body -%}
+      {{- form.body -}}
+    {%- endif -%}
+  </textarea>
+</div>
+<div class="input-group full centered">
+  <button type="submit" class="button" value="">{{ 'contact.form.send' | t }}</button>
+</div>
+
+{% endform %}
+
+{%endif%}
+
+</div>

@@ -1,0 +1,7 @@
+{% comment %}
+Params:
+url: url string
+text: string
+external : bool {% endcomment %}
+
+<a href="{{url | default: section.settings.button_url}}" {% if external == true %} target="_blank" rel="nofollow" {% endif %} class="{{classes}} button font--{{settings.font_family_buttons | default: 'heading'}} {{settings.button_style | default: 'solid'}} style--{{settings.button_text_style | default: 'caps'}}">{{text | default: section.settings.button}}</a>

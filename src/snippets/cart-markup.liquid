@@ -1,0 +1,11 @@
+<div class="cart-outer">
+  <a href="/cart" aria-label="{{ 'layout.cart.title' | t }}" data-cart-button>
+    <i class="icon-shopping-bag" aria-label="{{ 'cart.general.title' | t }}"></i>
+    {% if cart.item_count > 0 %}
+    <div class="cart-items" data-cart-items-count>{{ cart.item_count }}</div>
+    {%endif%}
+    <span class="{% unless settings.include_icon_text == true %}sr {%endunless%} icon-label">
+    {{ 'cart.general.title' | t }}
+    </span>
+  </a>
+</div>

@@ -1,0 +1,96 @@
+<div class="cart-modal__wrap" id="cartModal">
+  <div class="cart-modal__inner">
+
+    <h3 class="cart-modal__header">Your Shopping Cart</h3>
+      
+    {% if cart.item_count == 0 %}
+
+      <div class="supports-cookies cart-modal__fallback">
+        <p>{{ 'cart.general.empty' | t }}</p>
+        <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+      </div>
+
+   
+      <div class="supports-no-cookies cart-modal__fallback">
+        <p>{{ 'cart.general.cookies_required' | t }}</p>
+      </div>
+
+  {%elsif cart.item_count > 0%}
+    <div class="cart-modal__items">
+      {% for item in cart.items %}
+      {% assign metafields = item.product.variants[0].metafields %}
+            
+            {%assign hardware = '' %}
+            {%assign finish = '' %}
+            {%assign strainer = '' %}
+            {%assign size = '' %}
+            
+            {% assign hardware = metafields.builder.hardware %} 
+            {% assign strainer = metafields.builder.strainer %}
+            {% if metafields.builder.color != blank %} 
+            {% assign finish = metafields.builder.color  | append: ' (' | append: metafields.builder.finish | append: ')' %}
+            {%endif%}
+            {% if metafields.builder.size != blank %} 
+            {% assign size = metafields.builder.size %}
+            {% endif%}
+            {%assign optionCounter = 1 %}
+            {% for option in item.options_with_values %}
+              {%capture optionString%}option{{optionCounter}}{%endcapture%}
+              {% if option.name == 'Strainer' %}
+                {% assign strainer = option.value  %}
+              {%elsif option.name == 'Depth' %}
+                {%assign size = option.value  %}
+              {%elsif option.name == 'Hardware-finish' %}
+                {%assign hardware = option.value  %}
+              {%elsif option.name == 'Color' %}
+                {% assign finish = option.value  %}
+              {%endif %}
+              {% assign optionCounter = optionCounter | plus: 1 %}
+            {%endfor %}
+
+      <div class="cart-item cart-modal__item"> 
+        <div class="item-image" data-label="{{ 'customer.order.product' | t }}">
+          {% include 'cart-item-image' %}
+
+        </div>
+        <div class="item-info">
+          <a class="item-title" href="{{ item.url }}">{{ item.product.title | truncate: 35 }}</a>
+
+          <div class="item-price" data-label="{{ 'cart.label.price' | t }}">
+            <div class="price-wrapper">
+              {% if item.original_line_price != item.line_price %}
+                <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
+                  <span class="price--main">{{ item.price | money }}</span>
+                <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
+                <s class="price--compare">{{ item.original_price | money }}</s>
+              {% else %}
+                <span class="price--main">{{ item.price | money }}</span>
+              {% endif %}
+              <span class="quantity"> x {{ item.quantity }}   </span>
+            </div>
+            <a class="remove-item" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
+              <small><i class="icon-times"></i> {{ 'cart.general.remove' | t }}</small>
+            </a>
+          </div>
+        
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+        <div class="cart-modal__footer">
+        
+         <div class="subtotal price-wrapper">
+          <p class="label">{{ 'cart.general.subtotal' | t }}</p>
+          <p class="price--main">{{ cart.total_price | money }}</p>
+        </div>
+        <form action="/cart" method="post" novalidate>
+          <div class="button-wrap btn-wrap">
+            <button type="submit" href="/cart"  name="checkout" class="button btn accent">{{ 'cart.general.checkout' | t }}</button>
+          </div>
+        </form>
+      
+      </div>
+       
+        {%endif%}
+  </div>
+</div>

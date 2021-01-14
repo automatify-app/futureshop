@@ -1,0 +1,37 @@
+{% if product.featured_image != blank %}
+  <div class="grid-item__image">
+
+  {% comment %} Image shown on hover {% endcomment %}
+  {% if secondary_image == true  and product.images.size > 1 %}
+    <div class="secondary-featured-image">
+      {% include 'responsive-image' with
+      image: product.images[1],
+      max_width: 600,
+      max_height: 600
+    %}
+    </div>
+  {% endif %}
+
+  {% comment %} Standard image. Can max out rather small given that it's in the grid{% endcomment %}
+    {% include 'responsive-image' with
+      image: product.featured_image,
+      max_width: 600,
+      max_height: 600
+    %}
+
+    {% comment %} Visible tags (inside image div, to show over the image) {% endcomment %}
+    {% if settings.tag_location == 'top' or settings.tag_location == 'bottom' %}
+        {% include 'visible-tags'%}
+    {%endif%}
+
+  </div> {% comment %}  end image wrapper {% endcomment %}
+{% else %}
+  <div class="responsive-image__wrapper">
+    {% assign max = 6 %}
+    {% assign min = 1 %}
+    {% assign diff = max | minus: min %}
+    {% assign randomNumber = "now" | date: "%N" | modulo: diff | plus: min %}
+    {%capture productTag %}product-{{randomNumber}}{%endcapture%}
+    {{  productTag | placeholder_svg_tag }}
+  </div>
+{%endif%}

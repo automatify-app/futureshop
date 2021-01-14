@@ -1,0 +1,14 @@
+
+{% if settings.isw_enable and settings.isw_text_before and settings.isw_text_after %}
+    {% assign active_variant = product.selected_or_first_available_variant %}
+    {% if active_variant.inventory_policy != 'continue'  %}
+    <div class="stock-warning text--{{settings.isw_color_type}} {% if active_variant.inventory_quantity > settings.isw_threshold or active_variant.inventory_quantity == 0 %}visibility--hidden{%endif%}" data-isw="{{active_variant.inventory_quantity}}" data-threshold="{{settings.isw_threshold}}" {% if settings.isw_color_type == 'custom' %}style="color: {{settings.isw_color}};"{%endif%}>
+      {% if settings.isw_icon != 'disable' %}
+      <i class="icon-{{settings.isw_icon}}"></i>
+      {%endif%}
+      <span>{{settings.isw_text_before}}</span>
+      <span data-isw-visible="">{{active_variant.inventory_quantity}}</span>
+      <span>{{settings.isw_text_after}}</span>
+    </div>
+    {% endif %}
+{% endif %}

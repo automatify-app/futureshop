@@ -1,0 +1,13 @@
+<a {% if slide.settings.link != blank %} href="{{slide.settings.link}}" {%endif%}  style="background-color: {{slide.settings.background_color}}" class="slideshow-slide swiper-slide banner-slide ">
+ {% assign overlay_op = 100 | minus: slide.settings.overlay | times: 0.01 %}
+  <div class="slide-bg {% if slide.settings.parallax == true%} rellax-image{%endif%}" style="opacity:{{overlay_op}}" aria-label="{{section.settings.title}}">
+      {% if slide.settings.image_mobile != blank %}
+            {% include 'responsive-image' with image: slide.settings.image_mobile, wrapper_class: 'mobile-image', max_width: 900, max_height: 1000 %}
+      {%endif%}
+      {% if slide.settings.image != blank %}
+        {% include 'responsive-image' with image: slide.settings.image, wrapper_class: 'desktop-image', max_width: 2000, max_height: 1200 %}
+      {%else %}
+        <div class="fallback-image">{{ 'lifestyle-2' | placeholder_svg_tag }}</div>
+      {%endif%}
+  </div>
+</a>

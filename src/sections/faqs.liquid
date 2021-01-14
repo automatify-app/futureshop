@@ -1,0 +1,92 @@
+{% include 'section-starter' with section_class: 'content-columns--outer' %}
+  {% if section.settings.heading %}<div class="h3 caps">{{section.settings.heading}}</div>{%endif%}
+<ul class="section-inner faqs-list width--small">
+  {% for block in section.blocks%}
+  <li class="faq-block">
+    <h3 class="faq-number">{{forloop.index}}.</h3>
+    <div class="faq-info">
+  <h5 class="caps">{{block.settings.title | escape }}</h5>
+      <p>{{block.settings.answer }}</p>
+    </div>
+  </li>
+  {%endfor%}
+</ul>
+</div>
+
+{% stylesheet 'scss' %}
+  .section-faqs {
+    text-align: center;
+    padding: calc(12px + 2vw) 2vw;
+  }
+
+  ul.faqs-list {
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    margin: calc(20px + 2vw) auto;
+  }
+
+  li.faq-block {
+    display: flex;
+    text-align: left;
+    margin: calc(12px + 2vw) auto;
+    .faq-number {
+      flex: 0 0 90px;
+      padding: 0 12px 0 0;
+      opacity: 0.4;
+
+      @media only screen and (max-width: 750px) {
+        font-size: 20px;
+        flex: 0 0 60px;
+      }
+    }
+
+    .faq-info {
+      flex: 1 1 auto;
+      p {
+        margin: 0.75em auto;
+        line-height: 1.5;
+      }
+    }
+
+  }
+{% endstylesheet %}
+
+
+{% schema %}
+  {
+    "name" : "FAQs",
+    "class" : "section-faqs",
+    "settings" : [
+
+          {
+            "type": "richtext",
+            "id": "heading",
+            "label": "Heading",
+            "default": "<p><strong>Frequently Asked</strong> Questions</p>"
+          },
+          {
+             "type" : "paragraph",
+             "content" : "Grabs from the Pages->Custom Metafields"
+          }
+    ],
+    "blocks" : [
+      {
+        "type" : "faq",
+        "name" : "FAQ",
+        "settings" : [
+          {
+            "type" : "text",
+            "id" : "title",
+            "label" : "Question"
+          },
+          {
+            "type" : "richtext",
+            "id" : "answer",
+            "label" : "Answer"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

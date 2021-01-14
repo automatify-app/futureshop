@@ -1,0 +1,19 @@
+div.rc_popup__block {
+  box-shadow: 4px 4px 20px rgba(black, 0.32);
+  div.rc_popup__block__content {
+    a {
+      display: inline-block;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: bold;
+      color: $color-accent-lighter;
+      margin: 12px 0;
+    }
+    strong {
+      font-size: 1.4em;
+    }
+  }
+  div.rc_popup__block__footer {
+    margin:-9px 0 12px;
+  }
+}

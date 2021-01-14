@@ -1,0 +1,283 @@
+$color-border-darker: black;
+/*
+   Swatches Styles
+*/
+
+$swatchwidth: 60px;
+$swatchheight: 30px;
+
+.swatch {
+  margin: 0.6em 0;
+}
+/* Label */
+.swatch .header {
+  margin: 0.5em 0;
+  @include font-heading();
+  // text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.05em;
+  &:after {
+    // content:':';
+  }
+  .option-value--holder {
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: 0;
+    @include font-body();
+  }
+  color: inherit;
+}
+/* Hide radio buttons.*/
+.swatch input {
+  display: none;
+}
+.swatch label {
+  /* Rounded corners */
+  border-radius: 0;
+
+  /* To give width and height */
+  display: inline-block;
+  /* Color swatches contain no text so they need to have a width. */
+  min-width: $swatchwidth !important;
+  min-height: $swatchheight !important;
+  /* No extra spacing between them */
+  margin: 1px;
+  font-size: 0.9em;
+  letter-spacing: 0.05em;
+  text-align: center;
+  font-weight: 400;
+  line-height: $swatchheight;
+  white-space: nowrap;
+  // text-transform:uppercase;
+  letter-spacing: -0.03em;
+  @include font-heading();
+  border: 1px solid currentColor;
+  opacity: 0.8;
+  transition: opacity 200ms $ease;
+  padding: 2px 10px;
+  &:hover {
+    opacity: 0.8;
+  }
+
+  body.product-style--card & {
+    box-shadow: inset 0px 0px 0px 2px $color-card-bg;
+  }
+}
+// .swatch-element label { padding:0 10px; }
+.color.swatch-element label {
+  box-shadow: inset 0px 0px 0px 2px $color-body;
+  padding: 0;
+}
+/* Styling selected swatch */
+/* Slightly raised */
+.swatch input:checked + label {
+  opacity: 1;
+  border-width: 3px;
+}
+.swatch .swatch-element {
+  display: inline-block;
+  transform: translateZ(0); /* webkit flicker fix */
+  -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
+  /* Spacing between buttons */
+  margin: 0px 5px 5px 0;
+  position: relative;
+}
+.swatch-element.color {
+  label {
+    width: 100px;
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: 50% 50%;
+    opacity: 1;
+  }
+}
+/* Image with the cross in it */
+.crossed-out {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  &::before,
+  &::after {
+    @extend %psuedo;
+    height: 1px;
+    width: 150%;
+    background-color: currentColor;
+  }
+  &::before {
+    transform-origin: top left;
+    transform: rotate(29deg);
+  }
+
+  &::after {
+    top: auto;
+    bottom: 0;
+    transform-origin: bottom left;
+    transform: rotate(-29deg);
+  }
+}
+.swatch .swatch-element .crossed-out {
+  display: none;
+}
+.swatch .swatch-element.soldout .crossed-out {
+  display: block;
+}
+.swatch .swatch-element.soldout label {
+  opacity: 0.6;
+  position: relative;
+}
+/* Tooltips */
+.swatch .tooltip {
+  text-align: center;
+  background: $color-body-text;
+  color: $color-body;
+  bottom: 100%;
+  padding: 7px;
+  display: block;
+  position: absolute;
+  width: 100px;
+  pointer-events: none;
+  left: 50%;
+  transform: translate3d(-50%, 20px, 0);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  opacity: 0;
+  visibility: hidden;
+  /* Animations */
+  transition: all 0.25s ease-out;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  z-index: 10000;
+  box-sizing: border-box;
+}
+.swatch .tooltip:before {
+  bottom: -20px;
+  content: ' ';
+  display: block;
+  height: 20px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+/* CSS triangle */
+.swatch .tooltip:after {
+  border-left: solid transparent 8px;
+  border-right: solid transparent 8px;
+  border-top: solid $color-body-text 8px;
+  bottom: -8px;
+  content: ' ';
+  height: 0;
+  left: 50%;
+  margin-left: -6px;
+  position: absolute;
+  width: 0;
+}
+.swatch .swatch-element:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(-50%, 0px, 0);
+}
+.swatch.error {
+  background-color: #e8d2d2 !important;
+  color: #333 !important;
+  padding: 1em;
+  border-radius: 5px;
+}
+.swatch.error p {
+  margin: 0.7em 0;
+}
+.swatch.error p:first-child {
+  margin-top: 0;
+}
+.swatch.error p:last-child {
+  margin-bottom: 0;
+}
+.swatch.error code {
+  font-family: monospace;
+}
+
+.swatch-element {
+  display: inline-block;
+  margin: 2px;
+  font-size: 15px;
+  line-height: 1em;
+  transition: transform 400ms ease;
+  cursor: pointer;
+  &.sold-out {
+    opacity: 0.6;
+  }
+  &:hover {
+    transform: translateY(-2px);
+  }
+  &:first-child {
+    margin-left: 0;
+  }
+
+  input {
+    appearance: none;
+    // display: inline-block;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+  }
+}
+
+.selector-wrapper {
+  margin: 0 auto 0.5em;
+  label {
+    margin: 0.5em 0;
+    display: inline-block;
+    vertical-align: middle;
+    @include font-body();
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+  }
+  select {
+    background: transparent;
+    border-radius: 5px;
+    padding: 8px 4px;
+    // appearance: none;
+    font-size: 18px;
+    border: 2px solid $color-border;
+    margin: 5px;
+    vertical-align: middle;
+    display: inline-block;
+  }
+}
+
+.swatch-element:not(.available) {
+  opacity: 0.4;
+  label {
+    border-width: 1px !important;
+  }
+}
+
+$swatchheightsmall: 18px;
+.grid-swatches .swatch-element {
+  margin: 0 2px 2px 0
+}
+.style--round .swatch-element.color label {
+  min-width: $swatchheightsmall !important;
+  width: $swatchheightsmall;
+  height: $swatchheightsmall;
+  border-radius: $swatchheightsmall;
+  line-height: $swatchheightsmall;
+  min-height: 0 !important;
+  overflow: hidden;
+
+}
+
+.grid-swatch__element {
+  label {
+    border-width: 1px;
+    border-color: currentColor;
+  }
+  &.selected label {
+    border-width: 3px;
+    // margin: -1px;
+  }
+}

@@ -1,0 +1,82 @@
+body {
+  //Difference between this and announcement keeps them from showing a gap between them
+  transition: margin 340ms $ease;
+}
+.announcement-bar {
+  padding:  calc(4px + 0.25vw);
+  @include media-query($widescreen) {
+    padding: 7px;
+  }
+  position: relative;
+  background: var(--bg-color);
+  color: var(--text-color);
+  position: absolute;
+  width: 100%;
+  transform: translateY(-100%);
+  left: 0;
+  top: 0px;
+  margin-bottom: -2px;
+  text-align: center;
+  z-index: 1000;
+
+  &.announceActive {
+    transform: translateY(0)
+  }
+
+  &__inner {
+    position: relative;
+    padding: 2px 40px;
+    @include media-query($tiny) {
+      padding: 4px 40px 4px 4px;
+    }
+  }
+
+  button.close-button {
+    border: 0px;
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    width: 45px;
+    appearance: none;
+    color: var(--text-color);
+    border: none;
+    align-items: center;  justify-content: center;
+    background: rgba(black, 0.1);
+    padding: 5px;
+
+
+    i {
+      display: inline-block;
+    }
+  }
+
+   p {
+    margin: 3px 12px;
+    font-size: 1em;
+    display: inline-block;
+    vertical-align: middle;
+
+    @include media-query($tiny) {
+      text-align: left;
+      font-size: 0.9em;
+    }
+  }
+
+  a {
+    vertical-align: middle;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 8px;
+    color: inherit;
+    font-weight: bold;
+
+    &.button {
+      color: var(--bg-color);
+      background: var(--text-color);
+    }
+
+    @extend %hover;
+  }
+}

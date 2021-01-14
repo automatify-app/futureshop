@@ -1,0 +1,106 @@
+ {%- if section.settings.announcement_bar_enabled -%}
+  {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
+  <style>
+      .announcement-outer {
+
+      {% if section.settings.bg_color %}
+        --bg-color: {{section.settings.bg_color }};
+        --bg-color-dropdown: {{section.settings.bg_color}};
+      {%endif %}
+      {% if section.settings.text_color %}
+      --text-color: {{section.settings.text_color }};
+      {%endif %}
+      }
+    </style>
+    {% if section.settings.button_url != blank and section.settings.button_text == blank %}
+    <a href="{{section.settings.button_url}}" class="announcement-bar" data-module="announcement">
+    {%else %}
+    <div class="announcement-bar" data-module="announcement">
+    {%endif%}
+
+      <div class="announcement-bar__inner">
+          {%- if section.settings.announcement_bar_link != blank -%}
+            <a href="{{ section.settings.announcement_bar_link }}">
+              {{ section.settings.announcement_bar_text  }}
+            </a>
+          {%- else -%}
+          {% if section.settings.announcement_bar_text != blank %}
+            {{ section.settings.announcement_bar_text }}
+            {%endif%}
+          {%- endif -%}
+
+          {% if section.settings.button_text != empty and section.settings.button_url != empty %}
+            <a href="{{section.settings.button_url}}" class="button secondary small">{{section.settings.button_text}}</a>
+          {%endif %}
+      </div>
+          <button aria-label="close announcement" class="close-button" data-close-announcement><i class="icon-times" ></i></button>
+
+     {% if section.settings.button_url != blank and section.settings.button_text == blank %}
+    </a>
+    {%else %}
+    </div>
+    {%endif%}
+    {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+  {
+    "name" : "Announcement",
+    "class" : "announcement-outer",
+    "settings" : [
+      {
+        "type" : "header",
+        "content" : "Announcement Settings"
+      },
+       {
+        "type" : "color",
+        "id" : "bg_color",
+        "label" : "Background Color",
+        "default" : "#ffffff"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color",
+        "default" : "#3a3a3a"
+      },
+      {
+        "type": "checkbox",
+        "id": "announcement_bar_enabled",
+        "label": "Show announcement",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "announcement_bar_home_page_only",
+        "label": "Show only on home page?",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Announcement Content"
+      },
+      {
+        "type": "richtext",
+        "id": "announcement_bar_text",
+        "label": "Announcement text",
+        "default": "<p>Announce something <b>here!</b></p>"
+      },
+      {
+        "type" : "header",
+        "content" : "button"
+      },
+      {
+        "type" : "text",
+        "id" :"button_text",
+        "label" : "Button Text"
+      },
+      {
+        "type" : "url",
+        "id" :"button_url",
+        "label" : "Button URL"
+      }
+    ]
+  }
+{% endschema %}
+

@@ -1,0 +1,15 @@
+
+{% for i in (1..section.settings.limit) %}
+  <a data-aos="fade-in" data-aos-delay="{{delay}}" href="{{ product.url | within: collection }}" class="product-grid-item grid-item {% if simplify == true %} simplify {%endif%} {% if hover_details == true  %} detail-on-hover {%endif%} ">
+    {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+    <div class="grid-item__image">
+      {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+    </div>
+  <div class="product-details grid-item__details">
+        <h5 class="product-title font--{{settings.font_family_product}}">{{ 'homepage.onboarding.product_title' | t }}</h5>
+      <span class="price-outer">
+        {{ 1999 | money }}
+      </span>
+  </div>
+  </a>
+{% endfor %}

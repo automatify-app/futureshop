@@ -1,0 +1,39 @@
+<div class="slide-content">
+    <div class="slide-content-inner
+    {% if slide.settings.mega_text == true%} mega-text {%endif%}
+    {% if slide.settings.shadow_text == true%} shadow-text {%endif%}
+    {% if section.settings.content_style == 'boxed' %}format--boxed{%endif%}
+    {% if slide.settings.logo != blank %} has-img img--{{slide.settings.logo_format}}{%endif%}">
+      {% if slide.settings.logo != blank and slide.settings.logo_format != 'replace_header' %}
+      <div class="logo-wrap">
+        {% include 'responsive-image' with image:slide.settings.logo, max_width: slide.settings.logo_max_width, max_height: 1200 %}
+      </div>
+      {%endif%}
+      <div class="content-wrap">
+        <header class="common-header type--{{slide.type}} align--{{slide.settings.text_align}}">
+        {% if slide.settings.introduction != blank %}
+          <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__introduction">{{ slide.settings.introduction | escape }}</h4>
+        {% endif %}
+        {% if slide.settings.logo != blank and slide.settings.logo_format == 'replace_header' %}
+        <div class="logo-wrap">
+          {% include 'responsive-image' with image:slide.settings.logo, max_width: slide.settings.logo_max_width, max_height: 1200 %}
+        </div>
+        {% elsif slide.settings.heading != blank %}
+          <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="main-header common-header__heading">{{ slide.settings.heading | escape }}</h2>
+        {%endif%}
+        {% if slide.settings.subtitle != blank %}
+          <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__subtitle">{{ slide.settings.subtitle | escape }}</h4>
+        {% endif %}
+      </header>
+      {% if slide.settings.text %}
+      <div data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="rte common-rte">{{slide.settings.text}}</div>
+      {%endif%}
+          {% comment %} {% include 'common-header' %} {% endcomment %}
+          <div data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="button-wrap align--{{slide.settings.text_align}}">
+            {% if slide.settings.video_button == true%}<a href="{{slide.settings.url}}" data-module="lightbox" data-lightbox-type="video" data-lightbox-target="{{slide.settings.url}}" class="button inherit">Watch Video</a>{%endif%}
+            {% if slide.settings.button_1_link != empty and slide.settings.button_1_text != empty %}<a href="{{slide.settings.button_1_link}}" class="button inherit">{{slide.settings.button_1_text}}</a>{%endif%}
+            {% if slide.settings.button_2_link != empty and slide.settings.button_2_text != empty %}<a href="{{slide.settings.button_2_link}}" class="button inherit">{{slide.settings.button_2_text}}</a>{%endif%}
+          </div>
+      </div><!--end content-wrap-->
+  </div>
+</div>

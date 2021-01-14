@@ -1,0 +1,108 @@
+
+ul.social-wrap {
+  padding: 0;
+  margin: 0;
+  li {
+    overflow: visible;
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 2px;
+  }
+  a {
+    display: inline-block;
+    // color: $color-accent-lighter;
+    @include font-heading();
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    text-decoration: none;
+    padding: 3px;
+    margin: 0 3px 3px 0 ;
+    vertical-align: middle;
+    color: inherit;
+    // border-color: var(--text-color);
+    &:first-child {
+      margin-left: 0;
+    }
+    .icon {
+      margin: 0 5px 5px 0;
+      vertical-align: middle;
+      path {
+        fill: $color-accent-lighter;
+      }
+    }
+    transition: transform 300ms ease;
+    &:hover {
+      transform: translateY(-2px);
+    }
+    i {
+      font-weight: normal;
+    }
+  }
+
+  &.style--circle, &.style-square {
+    li {
+      margin-top: 3px;
+    }
+    &>li>a {
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+  }
+
+  &.style--circle {
+    &>li>a {
+      font-size: 18px;
+      i {
+
+        margin: -8px;
+
+      }
+      display: flex;
+      align-items: center;justify-content: center;
+    border-radius: 5em;
+    overflow: hidden;
+    width: 1.8em;
+    height: 1.8em;
+    padding: 0;
+    }
+  }
+  &.style--circle-border {
+    &>li>a {
+      font-size: 16px;
+      i {
+        margin: -6px ;
+      }
+      display: flex;
+      align-items: center;justify-content: center;
+      border-radius: 5em;
+
+      border: 1.9px solid currentColor;
+      width: 2em;
+      height: 2em;
+      padding: 0;
+    }
+  }
+  &.flip-effect {
+    &>li>a {
+      transition: color 400ms 20ms $ease, background-color 400ms 20ms $ease, transform 300ms $ease;
+      &:hover {
+        background: var(--text-color);
+        color: var(--bg-color);
+      }
+    }
+  }
+}
+
+.instagram {
+  text-align: center;
+  .all-social-icons {
+    margin: 12px auto;
+  }
+  .social-wrap {
+    a {
+      font-size: calc(20px + 0.15vw);
+    }
+  }
+}

@@ -1,0 +1,288 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add "Rich text" section on the Theme Editor.
+
+  Theme Store required settings
+  - Heading: title of the rich text section
+  - Text: description of the rich text section
+{%- endcomment -%}
+
+{% include 'section-starter' with section_class: 'rich-text' %}
+<div class="section-inner">
+{% assign delay = 0 %}
+   {% include 'common-header' %}
+  {% if section.blocks != empty %}
+  <div class="rte-links button-wrap align--{{section.settings.text_align}}">
+    {% for block in section.blocks %}
+      <a href="{{block.settings.url}}" class="button">{{block.settings.text}}</a>
+    {%endfor %}
+  </div>
+  {%endif%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .rich-text.size--full-width {
+  padding: 4vw;
+}
+{% endstylesheet %}
+
+{% schema %}
+  {
+    "name": "Rich text",
+    "class" : "standard-section",
+    "settings": [
+      {
+        "type" : "header",
+        "content" : "Meta"
+      },
+      {
+        "type": "text",
+        "id" : "anchor_id",
+        "label" : "Section ID (for anchor links and specific styling)"
+      },
+  {
+        "type": "text",
+        "id" : "anchor_classes",
+        "label" : "Section classes (for  specific styling)"
+      },
+       {
+        "type": "text",
+        "id" : "title",
+        "label" : "Nice Name",
+        "info" : "Just for keeping the back end organized! Enter a nice name here",
+        "default" : "Rich Text"
+      },
+       {
+        "type" : "image_picker",
+        "id" : "logo",
+        "label" : "Logo"
+      },
+      {
+        "type": "range",
+        "id": "logo_max_width",
+        "label": {
+            "de": "Logobreite",
+            "en": "Custom logo width",
+            "es": "Ancho del logotipo personalizado",
+            "fr": "Largeur personnalisée du logo",
+            "it": "Larghezza logo personalizzato",
+            "ja": "ロゴの幅をカスタムする",
+            "pt-BR": "Largura do logotipo personalizado"
+        },
+        "min": 50,
+        "max": 900,
+        "step": 25,
+        "unit": {
+            "de": "px",
+            "en": "px",
+            "es": "px",
+            "fr": "px",
+            "it": "px",
+            "ja": "px",
+            "pt-BR": "px"
+        },
+        "default": 350
+      },
+      {
+        "type" : "header",
+        "content" : "Rich Text Content"
+      },
+      {
+        "type" : "select",
+        "id" : "text_align",
+        "label" : "Text Alignment",
+        "default" :  "center",
+        "options" : [
+          {
+            "value" : "left",
+            "label" : "Left"
+          },
+          {
+            "value" : "center",
+            "label" : "Center"
+          },
+          {
+            "value" : "right",
+            "label" : "Right"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "text_size",
+        "label" : "Text Size",
+        "default" :  "standard",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small"
+          },
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "mega",
+            "label" : "Mega"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "introduction",
+        "label": "Introduction",
+        "default": "Use this space to"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Talk about your brand"
+      },
+      {
+        "type" : "text",
+        "id" : "subtitle",
+        "label" : "Subtitle",
+        "default" : "And even more!"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+      },
+      {
+        "type" : "header",
+        "content" : "Section Settings"
+      },
+      {
+        "type" : "paragraph",
+        "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
+      },
+      {
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
+      },
+      {
+        "type" : "select",
+        "id" : "section_size",
+        "label" : "Section size",
+        "default" : "large",
+        "options" : [
+          {
+            "value" : "full-width",
+            "label" : "Full Width"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "section_spacing",
+        "label" : "Section Spacing",
+        "default" : "medium",
+        "options" : [
+          {
+            "value" : "none",
+            "label" : "No Spacing"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          },
+          {
+            "value" : "medium",
+            "label" : "Medium"
+          }, {
+"value" : "full-height",
+"label" : "Full Height"
+},
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value": "huge",
+            "label" : "Huge"
+          }
+        ]
+      },
+        {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
+      {
+        "type" : "select",
+        "id" : "background_style",
+        "label" : "Background Image Style",
+        "default" : "cover",
+        "options" : [
+          {
+            "value" : "cover",
+            "label" : "Cover"
+          },
+          {
+            "value" : "repeat-x",
+            "label" : "Horizontal Tile"
+          },
+          {
+            "value" : "repeat-y",
+            "label" : "Vertical Tile"
+          },
+          {
+            "value" : "repeat-all",
+            "label" : "Tile"
+          },
+          {
+            "value" : "rellax",
+            "label" : "Parallax"
+          }
+        ]
+      }
+    ],
+    "blocks" : [
+      {
+        "type" : "link",
+        "name" : "Link",
+        "settings" : [
+          {
+            "type" :"url",
+            "id" : "url",
+            "label" : "URL"
+          },
+          {
+            "type" : "text",
+            "id" : "text",
+            "label" : "Text"
+          }
+        ]
+      }
+    ],
+    "max_blocks" : 3,
+    "presets": [{
+        "name": "Rich text",
+        "category": "Text"
+    }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,93 @@
+{% comment %}
+  Set the extension of your color files below. Use 'png', 'jpeg', 'jpg' or 'gif'.
+{% endcomment %}
+<div class="swatches-all" data-module="swatch">
+{% assign file_extension = 'jpg' %}
+
+{% if swatch == blank %}
+<div class="swatch error">
+  <p>You must include the snippet swatch.liquid with the name of a product option.</p>
+  <p>Use: <code>{% raw %}{% include 'swatch' with 'name of your product option here' %}{% endraw %}</code></p>
+  <p>Example: <code>{% raw %}{% include 'swatch' with 'Color' %}{% endraw %}</code></p>
+</div>
+{% else %}
+
+{% assign found_option = false %}
+{% assign is_color = false %}
+{% assign option_index = 0 %}
+
+{% for option in product.options %}
+  {% if option == swatch %}
+    {% assign found_option = true %}
+    {% assign option_index = forloop.index0 %}
+    <style>
+      label[for="product-select-option-{{ option_index }}"] { display: none; }
+      #product-select-option-{{ option_index }} { display: none; }
+      #product-select-option-{{ option_index }} + .custom-style-select-box { display: none !important; }
+    </style>
+    <script>
+    function hideWrapper{{option_index}}() {
+      let selectors = document.querySelectorAll(".selector-wrapper");
+      selectors[{{ option_index }}].style.display = 'none';
+    }
+     document.addEventListener("DOMContentLoaded", hideWrapper{{option_index}});
+    </script>
+    {% assign downcased_option = swatch | downcase %}
+    {% if downcased_option contains 'color' or downcased_option contains 'colour'%}
+      {% assign is_color = true %}
+    {% endif %}
+
+    {% unless found_option %}
+    <div class="swatch error">
+      <p>You included the snippet swatch.liquid with the name of a product option — <code>'{{ swatch }}'</code> — that does not belong to your product.</p>
+      <p>Use <code>{% raw %}{% include 'swatch' with 'name of your product option here' %}{% endraw %}</code></p>
+      <p>Example: <code>{% raw %}{% include 'swatch' with 'Color' %}{% endraw %}</code></p>
+      <p><strong>This is case-sensitive!</strong> Do not put in <code>'color'</code> if your product option name is <code>'Color'</code>.</p>
+    </div>
+    {% else %}
+    <div class="swatch clearfix {% if forloop.index0 == 0 %} last-clicked{%endif%}" data-option-index="{{ option_index }}">
+    {%capture current_value %}{% if option_index == 0%}{{current_variant.option1}}{%endif%}{% if option_index == 1%}{{current_variant.option2}}{%endif%}{% if option_index == 2%}{{current_variant.option3}}{%endif%}{%endcapture%}
+      <div class="header">{{ swatch }}: <span class="option-value--holder">{{current_value}}</span></div>
+      {% assign values = '' %}
+      {% for variant in product.variants %}
+        {% assign value = variant.options[option_index] %}
+        {% unless values contains value %}
+          {% assign values = values | join: ',' %}
+          {% assign values = values | append: ',' | append: value %}
+          {% assign values = values | split: ',' %}
+          <div data-value="{{ value | escape }}" class="swatch-element {% if is_color %}color {% endif %}swatch--{{ value | handle }} {% if variant.available %}available{% else %}soldout{% endif %}">
+            {% if is_color %}
+            <div class="tooltip">{{ value }}</div>
+            {% endif %}
+            <input class="radio-selector" id="swatch-{{ option_index }}-{{ value | handle }}" type="radio" name="option-{{ option_index }}" value="{{ value | escape }}"{% if value == current_value %} checked{% endif %} {% unless variant.available %}disabled{% endunless %} />
+            {% if is_color %}
+              {% capture filename %}{{value | handle }}.{{file_extension}}{%endcapture%}
+              <label for="swatch-{{ option_index }}-{{ value | handle }}" style="background-color: {{ value | split: ' ' | last | handle }}; background-image: url({{ filename | asset_img_url: '120x' }})">
+                <img class="crossed-out" src="{{ 'soldout.png' | asset_url }}" />
+              </label>
+            {% else %}
+              <label for="swatch-{{ option_index }}-{{ value | handle }}">
+                {{ value }}
+                <div class="crossed-out"></div>
+              </label>
+            {% endif %}
+          </div>
+
+          {% if variant.available %}
+            <script>
+              var element = document.querySelector('.swatch[data-option-index="{{ option_index }}"] .swatch--{{ value | handle }}');
+              element.classList.remove('soldout');
+              element.classList.add('available');
+              element.querySelectorAll('input[type=radio]')[0].removeAttribute('disabled');
+            </script>
+          {% endif %}
+        {% endunless %}
+      {% endfor %}
+    </div>
+    {% endunless %}
+
+  {% endif %}
+{% endfor %}
+</div>
+
+{%endif%}

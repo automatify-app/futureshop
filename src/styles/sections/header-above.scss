@@ -1,0 +1,123 @@
+.header-above {
+  width: 100%;
+  background: var(--top-bg);
+  color: var(--top-text);
+      z-index: 2000;
+      overflow: visible;
+  position: relative;
+  z-index: 110;
+  padding: 0;
+  overflow: hidden;
+  &.slide-in {
+    max-height: 0px;
+    transition: max-height 900ms 200ms $ease;
+    .loaded & {
+      max-height: 300px;
+    }
+  }
+}
+
+.header-above__inner {
+        transition: transform 300ms $ease;
+        position: relative;
+        z-index: 20000;
+        &:after {
+          position: absolute;
+          
+        }
+  // border-bottom: 1px solid rgba(#afafaf, 0.6);
+  @include media-query($small) {
+    border-bottom: 0px;
+  }
+  max-width: $grid-max-width;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0;
+  & > div,  & > ul {
+    padding: calc(2px + 0.4vw);
+    &:first-child {
+      margin-left:calc(-2px - 0.4vw);
+    }
+    &:first-child {
+      margin-right:calc(-2px - 0.4vw);
+    }
+    &:only-child {
+      margin: auto;
+    }
+  }
+  @include media-query($small) {
+    // padding: 5px;
+  }
+  @include media-query($tiny) {
+    // padding: 9px; 
+    &> div,  &> ul {
+      padding: 9px;
+    }
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  width: 95.5%;
+  // bottom: 0;
+  // left: 0;
+  .signup-outer {
+    display: flex;
+    flex: 0 1 auto;
+    margin: 0 0 0 auto;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 1.2vmin 1.2vmin 1.4vmin;
+        &:only-child {
+          flex: 1 1 auto;
+          margin: auto;
+        }
+      @include media-query($tiny) {
+        display: none;
+      }
+    .button.outline {
+      margin: 0; 
+      background: transparent;
+      border-color: $color-body-text;
+      border-color: var(--top-text);
+      color: $color-body-text;
+      color: var(--top-text);
+      font-size: 0.9em;
+    }
+  }
+  
+ .social-wrap {
+  text-align: left;;
+  margin-right: auto;
+  max-width: 400px;
+  // padding: 0.8vw;
+  // padding-left: 0;
+  margin-left: -7px;
+  &:first-child:last-child {
+      max-width: 100%;
+      text-align: center;
+      flex: 1 1 100%;
+    }
+    a {
+      color: inherit;
+      display: inline-block;
+      padding: 3px;
+      margin: 0 4px;
+      font-size: 1.2em;
+      @extend %hover;
+    }
+  }
+  
+  .search-outer {
+    &:only-child {
+      margin-left: auto;
+    }
+    button {
+      padding: 0.2em 0.2em;
+      color: var(--top_text_color);
+    }
+  }
+ 
+} //Close .header-above__inner

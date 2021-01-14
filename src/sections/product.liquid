@@ -1,0 +1,66 @@
+{% if section.settings.enable_breadcrumbs == true %}{% include 'breadcrumbs' %}{%endif%}
+<section data-section-id="{{ section.id }}" data-section-type="product" >
+{% assign delay = 0%}
+<div class="product-grid__wrap">
+  {% include 'product-images' %}
+    <div class="product-details__wrap">
+
+ {% if settings.tag_location == 'above'%}{% include 'visible-tags'%}{%endif%}
+
+      {% comment %} Product title {% endcomment %}
+      <h1 class="font--extra h2 {% if product.title.size >= 15 %}long{%endif%}" data-aos="fade-in" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ product.title }}</h1>
+
+    {% render 'in-stock-warning' with product: product %}
+      {%include 'product-form' %}
+
+      {% comment %} tags below form {% endcomment %}
+      {% if settings.tag_location == 'below'%}{% include 'visible-tags'%}{%endif%}
+
+      {% comment %} product description {% endcomment %}
+  {% if product.description != blank %}
+      <div class="rte" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+        {{ product.description }}
+      </div>
+      {%endif%}
+
+    </div>  {% comment %} end product-details__wrap  {% endcomment %}
+</div>{% comment %} end product-grid__wrap  {% endcomment %}
+</section>
+
+{% schema %}
+  {
+    "name": "Product pages",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_related_products",
+        "label": "Show related products",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "swatches",
+        "label": "Use Swatches",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_quantity",
+        "label": "Enable Quantity",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_breadcrumbs",
+        "label": "Enable Breadcrumbs Menu?",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "zoom_enabled",
+        "label": "Enable Product image zoom?",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

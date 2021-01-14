@@ -1,0 +1,175 @@
+
+$font-size: var(--font-size);
+
+$border-radius: var(--border-radius);
+$border-thickness: var(--border-thickness);
+$border-thickness-big: var(--border-thickness-big);
+$border-radius-small: var(--border-radius-small);
+$border-radius-big: var(--border-radius-big);
+
+// Text colors
+$color-body-text: var(--color-body-text);
+$color-body-text-trans: var(--color-body-text-trans);
+$color-drawer-text: var(--color-drawer-text);
+
+// Background colors
+$color-body: var(--color-main-background);
+$color-body-trans: var(--color-main-background-trans);
+$color-drawer-bg: var(--color-drawer-background);
+$color-drawer-text: var(--color-drawer-text);
+$color-menu-drawer-bg: var(--color-menu-drawer-background);
+$color-menu-drawer-text: var(--color-menu-drawer-text);
+
+//Drawers
+$color-drawer-button-text: var(--color-drawer-button-text);
+$color-drawer-button-background: var(--color-drawer-button-background);
+
+// Placeholders
+$placeholder-color-foreground: #161d25;
+$placeholder-color-background: #f9fafb;
+
+// Other colors
+$color-border: var(--color-border);
+$color-border-darker: var(--color-border-darker);
+$color-card-bg: var(--color-card-bg);
+$color-card-text: var(--color-card-text);
+$color-accent: var(--color-accent);
+$color-accent-inverse: var(--color-accent-inverse);
+$color-accent-lighter: var(--color-accent-lighter);
+$color-accent-lightest: var(--color-accent-lightest);
+$color-accent-downplay: var(--color-accent-downplay);
+$color-accent-darker: var(--color-accent-darker);
+$color-accent-darkest: var(--color-accent-darkest);
+$color-accent-trans: var(--color-accent-trans);
+$color-secondary: var(--color-secondary);
+$color-secondary-lighter: var(--color-secondary-lighter);
+$color-secondary-darker: var(--color-secondary-darker);
+$color-secondary-darkest: var(--color-secondary-darkest);
+$color-secondary-inverse: var(--color-secondary-inverse);
+
+
+$color-body-link: $color-accent;
+
+// Helper colors for form error states
+$color-disabled: #333333;
+$color-disabled-border: #333333;
+$color-error: var(--color-error);
+$color-alert: var(--color-alert);
+$color-success: var(--color-success);
+$color-notification-text: var(--color-notification-text);
+
+// Typography
+$font-heading: var(--font-heading-real);
+$font-extra: var(--font-extra-real);
+$font-script: var(--font-extra-real);
+$font-body: var(--font-body-real);
+
+
+$font-heading-weight: var(--font-heading-weight);
+$font-extra-weight: var(--font-extra-weight);
+$font-body-weight: var(--font-body-weight);
+$font-body-style: var(--font-body-style);
+$font-body-bold-weight: var(--font-body-bold-weight);
+
+
+// Transitions
+$transition-duration: 250ms;
+$transition-timing: ease-in-out;
+
+
+$grid-max-width: 1350px;
+// Grid
+$grid-tiny: 510px;
+$grid-medium: 750px;
+$grid-large: 990px;
+$grid-widescreen: 1280px;
+$grid-max-width: 1350px;
+$grid-gutter: 30px;
+
+
+
+// Breakpoints used with the media-query mixin
+$tiny: 'tiny';
+$small: 'small';
+$medium: 'medium';
+$medium-down: 'medium-down';
+$medium-up: 'medium-up';
+$large: 'large';
+$large-down: 'large-down';
+$large-up: 'large-up';
+$widescreen: 'widescreen';
+
+$breakpoints: (
+  $tiny '(max-width: #{$grid-tiny - 1})',
+  $small '(max-width: #{$grid-medium - 1})',
+  $medium '(min-width: #{$grid-medium}) and (max-width: #{$grid-large - 1})',
+  $medium-down '(max-width: #{$grid-large - 1})',
+  $medium-up '(min-width: #{$grid-medium})',
+  $large '(min-width: #{$grid-large}) and (max-width: #{$grid-widescreen - 1})',
+  $large-down '(max-width: #{$grid-widescreen - 1})',
+  $large-up '(min-width: #{$grid-large})',
+  $widescreen '(min-width: #{$grid-widescreen})'
+);
+
+$ease: cubic-bezier(0.77, 0, 0.175, 1);
+
+%psuedoish {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  content:'';
+  display: block;
+}
+
+%psuedo {
+  @extend %psuedoish;
+  content:'';
+}
+
+%hover {
+  transition: transform 300ms $ease;
+      &:hover {
+        transform: translateY(-2px)
+      }
+}
+
+
+
+
+@mixin shadowBefore($startingScale: 0.95, $endingScale: 0.99, $shadowColor: rgba(0,0,0,0.14)) {
+  &:before  {
+    @extend %psuedo;
+    position: absolute;
+    z-index: 0;
+    opacity: 0.5;
+    transition: transform 400ms $ease, opacity 400ms $ease;
+    background: transparent;
+    top: -3px;
+    box-shadow: 4px 9px 18px $shadowColor;
+    transform: scale($startingScale);
+  }
+  &:after {
+    @extend %psuedo;
+    z-index: 1;
+    background: var(--color-card-bg);
+
+  }
+
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+  transition: transform 400ms $ease, opacity 400ms $ease !important;
+  backface-visibility: visible;
+  transform:perspective(100px) translate3d(0, 0, 0px );
+  &:hover {
+    transform:perspective(100px) translate3d(0, -2px, 2px );
+
+    &::before {
+      opacity: 1;
+      transform: scale($endingScale) translate3d(0, 3px, -2px);
+    }
+  }
+}

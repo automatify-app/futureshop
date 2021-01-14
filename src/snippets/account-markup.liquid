@@ -1,0 +1,3 @@
+{% unless settings.accounts_layout == 'disabled' %}
+     <a href="/account{%unless customer%}/login{%endunless%}"><i class="icon-user" aria-hidden="false" aria-label="{{ 'customer.account.title' | t }}"></i> <span class="icon-label {% unless settings.include_icon_text == true %} sr {%endunless %}">{%unless customer%}Log In{%else %}Account{%endunless%}</span></a>
+     {%endunless %}

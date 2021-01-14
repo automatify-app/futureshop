@@ -1,0 +1,24 @@
+div.globo-form-app {
+  background-color: transparent;
+  text-align: left;
+
+  .content + p {
+    display: none;
+  }
+  div.footer {
+    margin-top: 0;
+    text-align: center;
+
+  }
+  .flat-button, [role=button] {
+    @extend %button;
+    color: white !important;
+    background: black !important;
+  }
+
+  .globo-g-recaptcha {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

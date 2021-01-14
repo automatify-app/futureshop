@@ -1,0 +1,45 @@
+
+<div class="single-event" data-module="single-event" data-redirect="{{section.settings.redirect | default: '/'}}">
+  <div class="loading" aria-hidden=""><h2>Loading Show</h2></div>
+  <div class="fallback" aria-hidden="true">
+    <h2>{{section.settings.fallback_header}}</h2>
+    <div class="rte">{{section.settings.fallback_content}}</div>
+    <a href="{{section.settings.redirect}}" class="button">{{section.settings.button_text}}</a>
+  </div>
+</div>
+
+{% schema %}
+  {
+    
+    "name" : "Event Utility",
+    "settings" : [
+      {
+        "type" : "url",
+        "label" : "Redirect Link",
+        "id" : "redirect"
+      },
+      {
+        "type" : "header",
+        "content" : "Fallback"
+      },
+      {
+        "type" : "text",
+        "id" : "fallback_header",
+        "label"  : "Fallback Header",
+        "default"  :"Show Not Found"
+      },
+      {
+        "type" : "richtext",
+        "id" : "fallback_content",
+        "label" : "Fallback Content",
+        "default" : "<p>Either the show you entered is invalid, or it happened in the past and is no longer valid! Please come visit us at another show!</p>"
+      },
+      {
+        "type" : "text",
+        "id" : "button_text",
+        "label" : "Button Text",
+        "default" : "More Shows"
+      }
+    ]
+  }
+{% endschema %}

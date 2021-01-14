@@ -1,0 +1,934 @@
+{% for block in section.blocks %}
+  {% case block.type %}
+    {%when 'divider'%} {% include 'store-divider' %}
+    {%when 'featured-collection'%} {% include 'store-collection' %}
+    {%when 'richtext'%} {% include 'store-text' %}
+    {%when 'product'%} {% include 'store-product' %}
+    {%when 'categories'%} {% include 'store-categories' %}
+    {%else%}
+  {%endcase%}
+{%endfor %}
+
+
+{% schema %}
+  {
+    "name" : "Store Main",
+    "class" : "store-main",
+    "settings" : [
+        {
+          "type" : "header",
+          "content" : "Settings"
+        }
+      ],
+      "blocks" : [
+        {
+          "type" : "divider",
+          "name" :"Divider",
+          "settings" : [
+          {
+            "type" : "select",
+            "id" : "spacing",
+            "label" : "Spacing",
+            "options" : [
+              {
+                "value" : "min",
+                "label" : "Minimum"
+              },
+              {
+                "value" : "small",
+                "label" : "Small"
+              },
+              {
+                "value" : "medium",
+                "label" : "Medium"
+              },
+              {
+                "value" : "large",
+                "label" : "Large"
+              },
+              {
+                "value" : "extra",
+                "label" : "Extra-Large"
+              },
+              {
+                "value" : "huge",
+                "label" : "Huge"
+              }
+            ],
+            "default" : "medium"
+          },
+          {
+            "type" : "select",
+            "id" : "type",
+            "label" : "Style",
+            "options" : [
+              {
+                "value":  "transparent",
+                "label" : "Transparent"
+              },
+              {
+                "value":  "border-full",
+                "label" : "Border (Full Width)"
+              },
+              {
+                "value":  "border-half",
+                "label" : "Border (Half Width)"
+              }
+            ]
+          },
+          {
+            "type" : "color",
+            "id" : "color",
+            "label" : "Border Color",
+            "info": "If left blank, uses the theme default."
+          },
+          {
+            "type" : "checkbox",
+            "id" : "hide_mobile",
+            "label" : "Hide on mobile?"
+          }
+        ]
+      },
+      {
+        "type" : "featured-collection",
+        "name" : "Featured Collection",
+        "settings": [
+      {
+        "type" : "header",
+        "content" : "Meta"
+      },
+      {
+        "type": "text",
+        "id" : "anchor_id",
+        "label" : "Section ID (for anchor links and specific styling)"
+      },
+       {
+        "type": "text",
+        "id" : "title",
+        "label" : "Nice Name",
+        "info" : "Just for keeping the back end organized! Enter a nice name here",
+        "default" : "Featured Collection"
+      },
+      {
+        "type" : "header",
+        "content" : "Featured Collection Content"
+      },
+{
+        "type" : "select",
+        "id" : "text_align",
+        "label" : "Text Alignment",
+        "default" :  "center",
+        "options" : [
+          {
+            "value" : "left",
+            "label" : "Left"
+          },
+          {
+            "value" : "center",
+            "label" : "Center"
+          },
+          {
+            "value" : "right",
+            "label" : "Right"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "text_size",
+        "label" : "Text Size",
+        "default" :  "large",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small"
+          },
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "mega",
+            "label" : "Mega"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "introduction",
+        "label": "Introduction",
+        "default": "Shop"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "New and Featured"
+      },
+      {
+        "type" : "text",
+        "id" : "subtitle",
+        "label" : "Subtitle"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "id": "collection",
+        "type": "collection",
+        "label": "Collection"
+      },
+      {
+        "type" : "header",
+        "content" : "Collection settings"
+      },
+      {
+        "type" : "select",
+        "id" : "size",
+        "label" : "Grid Size",
+        "default" : "standard",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small"
+          },
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "huge",
+            "label" : "Huge"
+          }
+        ]
+      },
+       {
+        "type" : "range",
+        "id" : "limit",
+        "label" : "Limit",
+        "default" : 8,
+        "max": 30,
+        "min" : 0,
+        "step" : 1
+      },
+      {
+        "type" : "text",
+        "id" : "button_text",
+        "label" : "All Button Text",
+        "info" : "Leave Blank for No Button",
+        "default" : "Shop More"
+      },
+      {
+        "type" : "url",
+        "id" : "button_url",
+        "label" : "All Button url",
+        "info" : "Leave Blank to use collection link"
+      },
+      {
+        "type" : "header",
+        "content" : "Product Settings"
+      },
+       {
+        "type" : "checkbox",
+        "id" : "secondary_image",
+        "label" : "Second Image on Hover",
+        "info" : "No effect if no secondary image",
+        "default" : true
+      },
+      {
+        "type" : "checkbox",
+        "id" : "show_price",
+        "label" : "Show Price?",
+        "default" : true
+      },
+      {
+        "type" : "checkbox",
+        "id" : "simplify",
+        "label" : "Simplify?",
+        "info" : "Hides everything other than photo!"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "hoverer",
+        "label" : "Details on hover?"
+      },
+      {
+        "type" : "header",
+        "content" : "Section Settings"
+      },
+      {
+        "type" : "paragraph",
+        "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
+      },
+      {
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
+      },
+      {
+        "type" : "select",
+        "id" : "section_size",
+        "label" : "Section size",
+        "default" : "large",
+        "options" : [
+          {
+            "value" : "full-width",
+            "label" : "Full Width"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "section_spacing",
+        "label" : "Section Spacing",
+        "default" : "medium",
+        "options" : [
+          {
+            "value" : "none",
+            "label" : "No Spacing"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          },
+          {
+            "value" : "medium",
+            "label" : "Medium"
+          }, {
+"value" : "full-height",
+"label" : "Full Height"
+},
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value": "huge",
+            "label" : "Huge"
+          }
+        ]
+      },
+        {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
+      {
+        "type" : "select",
+        "id" : "background_style",
+        "label" : "Background Image Style",
+        "default" : "cover",
+        "options" : [
+          {
+            "value" : "cover",
+            "label" : "Cover"
+          },
+          {
+            "value" : "repeat-x",
+            "label" : "Horizontal Tile"
+          },
+          {
+            "value" : "repeat-y",
+            "label" : "Vertical Tile"
+          },
+          {
+            "value" : "repeat-all",
+            "label" : "Tile"
+          },
+          {
+            "value" : "rellax",
+            "label" : "Parallax"
+          }
+        ]
+      }
+    ]
+      },
+      {
+        "type" : "richtext",
+        "name" : "Text",
+        "settings": [
+      {
+        "type" : "header",
+        "content" : "Meta"
+      },
+      {
+        "type": "text",
+        "id" : "anchor_id",
+        "label" : "Section ID (for anchor links and specific styling)"
+      },
+       {
+        "type": "text",
+        "id" : "title",
+        "label" : "Nice Name",
+        "info" : "Just for keeping the back end organized! Enter a nice name here",
+        "default" : "Rich Text"
+      },
+       {
+        "type" : "image_picker",
+        "id" : "logo",
+        "label" : "Logo"
+      },
+      {
+        "type": "range",
+        "id": "logo_max_width",
+        "label": {
+            "de": "Logobreite",
+            "en": "Custom logo width",
+            "es": "Ancho del logotipo personalizado",
+            "fr": "Largeur personnalisée du logo",
+            "it": "Larghezza logo personalizzato",
+            "ja": "ロゴの幅をカスタムする",
+            "pt-BR": "Largura do logotipo personalizado"
+        },
+        "min": 50,
+        "max": 900,
+        "step": 25,
+        "unit": {
+            "de": "px",
+            "en": "px",
+            "es": "px",
+            "fr": "px",
+            "it": "px",
+            "ja": "px",
+            "pt-BR": "px"
+        },
+        "default": 350
+      },
+      {
+        "type" : "header",
+        "content" : "Rich Text Content"
+      },
+      {
+        "type" : "select",
+        "id" : "text_align",
+        "label" : "Text Alignment",
+        "default" :  "center",
+        "options" : [
+          {
+            "value" : "left",
+            "label" : "Left"
+          },
+          {
+            "value" : "center",
+            "label" : "Center"
+          },
+          {
+            "value" : "right",
+            "label" : "Right"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "text_size",
+        "label" : "Text Size",
+        "default" :  "standard",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small"
+          },
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "mega",
+            "label" : "Mega"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "introduction",
+        "label": "Introduction",
+        "default": "Use this space to"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Talk about your brand"
+      },
+      {
+        "type" : "text",
+        "id" : "subtitle",
+        "label" : "Subtitle",
+        "default" : "And even more!"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+      },
+       {
+              "type" : "text",
+              "label" : "Button Text",
+              "id" : "button_text"
+            },
+       {
+              "type" : "url",
+              "label" : "Button URL",
+              "id" : "button_url"
+            },
+      {
+        "type" : "header",
+        "content" : "Section Settings"
+      },
+      {
+        "type" : "paragraph",
+        "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
+      },
+      {
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
+      },
+      {
+        "type" : "select",
+        "id" : "section_size",
+        "label" : "Section size",
+        "default" : "large",
+        "options" : [
+          {
+            "value" : "full-width",
+            "label" : "Full Width"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "section_spacing",
+        "label" : "Section Spacing",
+        "default" : "medium",
+        "options" : [
+          {
+            "value" : "none",
+            "label" : "No Spacing"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          },
+          {
+            "value" : "medium",
+            "label" : "Medium"
+          }, {
+"value" : "full-height",
+"label" : "Full Height"
+},
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value": "huge",
+            "label" : "Huge"
+          }
+        ]
+      },
+        {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
+      {
+        "type" : "select",
+        "id" : "background_style",
+        "label" : "Background Image Style",
+        "default" : "cover",
+        "options" : [
+          {
+            "value" : "cover",
+            "label" : "Cover"
+          },
+          {
+            "value" : "repeat-x",
+            "label" : "Horizontal Tile"
+          },
+          {
+            "value" : "repeat-y",
+            "label" : "Vertical Tile"
+          },
+          {
+            "value" : "repeat-all",
+            "label" : "Tile"
+          },
+          {
+            "value" : "rellax",
+            "label" : "Parallax"
+          }
+        ]
+      }
+    ]
+      },
+      {
+        "type" : "categories",
+        "name" : "Collections/Categories",
+        "settings" : [
+           {
+              "type" : "header",
+              "content" : "Collection list settings"
+            },
+            {
+              "type": "text",
+              "id": "pre_title",
+              "label": "Pre-Heading",
+              "default": "Browse our "
+            },
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Heading",
+              "default": "Featured Collections"
+            },
+            {
+              "type" : "text",
+              "label" : "Button Text",
+              "id" : "button_text"
+            },
+            {
+              "type" : "checkbox",
+              "id" : "overlay",
+              "label" : "Overlay style?",
+              "default" : true
+            },
+            {
+              "type" : "checkbox",
+              "id" : "full_width",
+              "label" : "Full Width?"
+            },
+            {
+              "type" : "color",
+              "id" : "overlay_color",
+              "label" : "Overlay Color",
+              "default" :"#000000"
+            },
+            {
+              "type" : "color",
+              "id" : "overlay_text_color",
+              "label" : "Overlay Text Color",
+              "default" :"#FFFFFF"
+            },
+            {
+              "type" : "range",
+              "id" :"overlay_op",
+              "label" : "Overlay Opacity",
+              "default" : 50,
+              "step": 5,
+              "min": 0,
+              "max" : 100
+            },
+            {
+              "type" : "header",
+              "content" : "Collections"
+            },
+            {
+              "type" : "collection",
+              "id" : "collection1",
+              "label" : "Collection 1"
+            },
+            {
+              "type" : "collection",
+              "id" : "collection2",
+              "label" : "Collection 2"
+            },
+            {
+              "type" : "collection",
+              "id" : "collection3",
+              "label" : "Collection 3"
+            },
+            {
+              "type" : "collection",
+              "id" : "collection4",
+              "label" : "Collection 4"
+            }
+        ]
+      },
+      {
+    "name": "Featured product",
+   "type" : "product",
+    "settings": [
+            {
+              "type" : "header",
+              "content" : "Meta"
+            },
+            {
+              "type": "text",
+              "id" : "anchor_id",
+              "label" : "Section ID (for anchor links and specific styling)"
+            },
+            {
+              "type": "text",
+              "id" : "title",
+              "label" : "Nice Name",
+              "info" : "Just for keeping the back end organized! Enter a nice name here",
+              "default" : "Featured Product"
+            },
+            {
+              "type" : "header",
+              "content" :"Product Settings"
+            },
+            {
+              "type": "product",
+              "id": "product",
+              "label": "Product"
+            },
+            {
+              "type" : "checkbox",
+              "id" : "hide_title",
+              "label" : "Replace Product Title?",
+              "info" : "Replace the product title with the header info above"
+            },
+            {
+              "type": "checkbox",
+              "id": "reverse",
+              "label": "Reverse layout?",
+              "info" : "Places the image section on the right side"
+            },
+            {
+              "type": "checkbox",
+              "id": "show_share_buttons",
+              "label": "Show social sharing buttons"
+            },
+            {
+              "type": "checkbox",
+              "id": "swatches",
+              "label": "Use Swatches",
+              "default": true
+            },
+            {
+              "type": "checkbox",
+              "id": "enable_quantity",
+              "label": "Enable Quantity",
+              "default": true
+            },
+            {
+              "type": "checkbox",
+              "id": "show_description",
+              "label": "Show Description",
+              "default": true
+            },
+            {
+              "type" :"header",
+              "content" : "Featured Product Header"
+            },
+            {
+              "type" : "select",
+              "id" : "text_align",
+              "label" : "Text Alignment",
+              "default" :  "center",
+              "options" : [
+                {
+                  "value" : "left",
+                  "label" : "Left"
+                },
+                {
+                  "value" : "center",
+                  "label" : "Center"
+                },
+                {
+                  "value" : "right",
+                  "label" : "Right"
+                }
+              ]
+            },
+            {
+              "type" : "select",
+              "id" : "text_size",
+              "label" : "Text Size",
+              "default" :  "standard",
+              "options" : [
+                {
+                  "value" : "small",
+                  "label" : "Small"
+                },
+                {
+                  "value" : "standard",
+                  "label" : "Standard"
+                },
+                {
+                  "value" : "large",
+                  "label" : "Large"
+                },
+                {
+                  "value" : "mega",
+                  "label" : "Mega"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "introduction",
+              "label": "Introduction",
+              "default": "Just in!"
+            },
+            {
+              "type": "text",
+              "id": "heading",
+              "label": "Heading",
+              "default": "Our Featured Product"
+            },
+            {
+              "type" : "text",
+              "id" : "subtitle",
+              "label" : "Subtitle",
+              "default" : "Get it while it lasts."
+            },
+            {
+              "type": "richtext",
+              "id": "text",
+              "label": "Text"
+            },
+
+            {
+              "type" : "header",
+              "content" : "Section Settings"
+            },
+            {
+              "type" : "paragraph",
+              "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
+            },
+            {
+              "type" : "color",
+              "id" : "background_color",
+              "label" : "Background Color"
+            },
+            {
+              "type" : "color",
+              "id" : "text_color",
+              "label" : "Text Color"
+            },
+            {
+              "type" : "select",
+              "id" : "section_size",
+              "label" : "Section size",
+              "default" : "large",
+              "options" : [
+                {
+                  "value" : "full-width",
+                  "label" : "Full Width"
+                },
+                {
+                  "value" : "large",
+                  "label" : "Large"
+                },
+                {
+                  "value" : "small",
+                  "label": "Small"
+                }
+              ]
+            },
+            {
+              "type" : "select",
+              "id" : "section_spacing",
+              "label" : "Section Spacing",
+              "default" : "medium",
+              "options" : [
+                {
+                  "value" : "none",
+                  "label" : "No Spacing"
+                },
+                {
+                  "value" : "small",
+                  "label": "Small"
+                },
+                {
+                  "value" : "medium",
+                  "label" : "Medium"
+                }, {
+      "value" : "full-height",
+      "label" : "Full Height"
+      },
+                {
+                  "value" : "large",
+                  "label" : "Large"
+                },
+                {
+                  "value": "huge",
+                  "label" : "Huge"
+                }
+              ]
+            },
+              {
+              "type" : "image_picker",
+              "id" : "background_image",
+              "label" : "Background Image",
+              "info": "Use with full-width sections, please!"
+            },
+            {
+              "type" : "select",
+              "id" : "background_style",
+              "label" : "Background Image Style",
+              "default" : "cover",
+              "options" : [
+                {
+                  "value" : "cover",
+                  "label" : "Cover"
+                },
+                {
+                  "value" : "repeat-x",
+                  "label" : "Horizontal Tile"
+                },
+                {
+                  "value" : "repeat-y",
+                  "label" : "Vertical Tile"
+                },
+                {
+                  "value" : "repeat-all",
+                  "label" : "Tile"
+                },
+                {
+                  "value" : "rellax",
+                  "label" : "Parallax"
+                }
+              ]
+            }
+          ]
+      }
+    ]
+  }
+{% endschema %}

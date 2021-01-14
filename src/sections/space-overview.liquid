@@ -1,0 +1,37 @@
+
+  <div class="space-slide__inner image--right" id=>
+    {% if section.settings.image != blank %}
+    <div class="space-slide__image lazyload" data-sizes="auto" data-bgset="{% include 'responsive-bg-image' with image: section.settings.image %}">
+    </div>
+    {%endif%}
+    <div class="space-slide__content">
+      <h2 class="h1">{{section.settings.header}}</h2>
+      <div class="rte">{{section.settings.content}}</div>
+    </div>
+  </div>
+
+{% schema %}
+  {
+    "name" : "Overview Section",
+    "tag" : "section",
+    "class": "space-slide swiper-slide overview active",
+    "settings" : [
+      {
+        "type" : "image_picker",
+        "id" : "image",
+        "label" : "Image"
+      },
+      {
+        "type" : "text",
+        "id" : "header",
+        "label" : "header"
+      },
+      {
+        "type" : "richtext",
+        "id" : "content",
+        "label" : "Content"
+      }
+
+    ]
+  }
+{% endschema %}

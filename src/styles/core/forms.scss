@@ -1,0 +1,227 @@
+form {
+  margin: 0;
+}
+
+a,
+area,
+button,
+[role='button'],
+input,
+label,
+select,
+summary,
+textarea {
+  touch-action: manipulation;
+}
+
+input,
+textarea,
+select {
+  font-size: 1.6rem;
+  max-width: 100%;
+  border: 1px solid $color-border;
+  border-radius: 0;
+
+  &[disabled] {
+    border-color: $color-disabled-border;
+    background-color: $color-disabled;
+    cursor: default;
+  }
+  padding: 8px 12px;
+}
+
+button,
+input[type='submit'],
+label[for] {
+  cursor: pointer;
+  border-radius: 0;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+// Force option color (affects IE only)
+option {
+  background-color: $color-body;
+  color: $color-body-text;
+}
+
+.input-error {
+  border-color: $color-error;
+  background-color: $color-error;
+  color: $color-notification-text;
+}
+
+.input-group {
+  flex: 0 0 auto;
+}
+
+.minimal-signup-wrap {
+  &.processing {
+    animation: pulse 4s infinite alternate-reverse;
+  }
+  &.success {
+    color: $color-success;
+    pointer-events: none;
+  }
+  &.error {
+    color: $color-error;
+  }
+  input[type=email] {
+    border: none;
+    background: none;
+    color: inherit;
+    @include font-heading();
+
+    width: 22em;
+    max-width: 100%;
+    padding: 12px;
+    appearance: none;
+    display: inline-block;
+    text-align: center;
+    &::placeholder {
+      color: inherit;
+      @include font-heading();
+      opacity: 1;
+    }
+    &:focus {
+      outline: none;
+    }
+    &:focus::placeholder {
+      opacity: 0.5;
+    }
+  }
+}
+
+
+
+@keyframes pulse {
+  0% {
+    opacity: 1,
+  }
+  100% {
+    opacity: 0.5
+  }
+}
+
+%signup-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  // justify-content: flex-start;
+  justify-content: center;
+
+  // max-width: 600px;
+  margin: 0 0 -12px;
+  .errors {
+    order: 10;
+    display: block;
+    flex: 1 1 100%;
+    color: red;
+    ul {
+      list-style: none;
+      li {
+        font-weight: normal;
+      }
+    }
+  }
+  .input-group {
+    flex: 0 1 auto;
+    margin: 0 0 12px;
+
+    input, button {
+      margin: 5px !important;
+      height: 48px;
+      box-sizing: border-box;
+    }
+
+    label {
+      display: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 12px;
+      margin: 0.1em auto;
+    }
+
+    p {
+      font-size: 18px;
+      font-weight: $font-body-bold-weight;
+      text-transform: uppercase;
+      margin: 5px 0;
+    }
+  }
+  input {
+      height: 100%;
+      height: 48px;
+      width: 280px;
+      max-width: 100%;
+      @include font-heading();
+
+      &::placeholder {
+        @include font-heading();
+      }
+
+    }
+  button.button {
+      height: 48px;
+      margin: 0;
+    }
+  .large_form {
+    text-align: left;
+    flex: 1 1 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 0px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+      .label-text {
+        padding-left: 10px;
+      }
+      input[type="checkbox"] {
+      flex: 0 0 auto;
+      margin: 5px;
+      width: auto;
+      height: auto;
+
+    }
+  }
+  .form-success {
+    flex: 1 1 100%;
+    list-style: none;
+    padding:0;
+    color: $color-success;
+  }
+  .form-inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    .input-group {
+      height: 55px;
+      margin: 4px;
+      input,button {
+        margin: 0;
+        height: 100%;
+        box-sizing: border-box;
+      }
+    }
+    &.left {
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    p {
+      flex: 1 1 100%;
+    }
+  }
+}
+
+.label-text p {
+  font-size: 0.8em;
+  font-weight: 200;
+}

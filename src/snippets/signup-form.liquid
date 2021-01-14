@@ -1,0 +1,83 @@
+
+ <div class="form-wrap signup-form layout--{{settings.signup_layout}}">
+  <style>
+  .signup-form, .footer-signup {
+    background-color: {{settings.signup_background_color}};
+    color: {{settings.signup_text_color}};
+
+    --color-background:{{settings.signup_background_color}};
+    --color-text: {{settings.signup_text_color}};
+  }
+  </style>
+
+  <div class="signup-form__inner">
+ {% if settings.signup_html != blank %}
+ <div class="custom-newsletter">
+  {{settings.signup_html}}
+ </div>
+ {%else%}
+  {%capture form_id%}signup--{{section.id}}{%endcapture%}
+
+  <div class="common-header__outer signup-form__header type--newsletter align--{{settings.signup_alignment}} font--{{settings.signup_text_size}}">
+    {% if settings.signup_title != empty or settings.signup_introduction != empty or settings.signup_subtitle != empty %}
+      <header class="common-header type--newsletter">
+        {% if settings.signup_introduction != empty %}
+          <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__introduction">{{ settings.signup_introduction | escape }}</h4>
+        {% endif %}
+        {% if settings.signup_title != empty %}
+          <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="main-header font--{{settings.font_family_heading}} style--{{settings.header_style}} color--{{settings.header_color}} spacing--{{settings.header_spacing}} common-header__heading">{{ settings.signup_title | escape }}</h4>
+        {% endif %}
+        {% if settings.signup_subtitle != empty %}
+          <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label  common-header__subtitle">{{ settings.signup_subtitle | escape }}</h4>
+        {% endif %}
+      </header>
+    {% endif %}
+
+    {%- if settings.signup_content != blank -%}
+      <div class="rte common-rte">
+        {{ settings.signup_content }}
+      </div>
+    {%- endif -%}
+  </div>
+  <div class="signup-form__form">
+    {% form 'customer' , id: form_id%}
+
+      {{ form.errors | default_errors }}
+
+      {% if form.posted_successfully? %}
+        <ul class="form-success">
+          <li>{{ 'general.password_page.signup_form_success' | t }}</li>
+        </ul>
+      {% else %}
+        <input type="hidden" name="contact[tags]" value="prospect, footer">
+
+      <div class="input-group">
+      <label for="email">
+          {{ 'general.password_page.signup_form_email_label' | t }}
+        </label>
+        <input type="email"
+          name="contact[email]"
+          id="Email"
+          spellcheck="false"
+          autocomplete="off"
+          autocapitalize="off"
+          placeholder="{{ 'general.password_page.signup_form_email_placeholder' | t }}">
+      </div>
+      <div class="input-group btn-group">
+        <button type="submit" name="commit" class="button secondary">{{settings.signup_button_text | default: 'Sign Up'}}</button>
+      </div>
+      {% if settings.gdpr_text != blank %}
+      <label class="clearfix large_form" style="font-weight:normal">
+        <input type="checkbox" name="customer[accepts_marketing]"  id="accepts_marketing_input" />
+        <span class="label-text">{{settings.gdpr_text}}</span>
+      </label>
+      {%endif%}
+      {% endif %}
+    {% endform %}
+  {%endif%}
+  </div>
+  </div>
+  {% if settings.newsletter_include_socials == true %}
+  {% render 'social-icons' %}
+  {% endif %}
+</div>

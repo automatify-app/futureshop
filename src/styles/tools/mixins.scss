@@ -1,0 +1,271 @@
+/**
+ * Sets a media query for the specified breakpoint
+ *
+ * Accepts:
+ * - $media-query: {String} Breakpoint variable (list found in variables.scss)
+ *
+ * Usage:
+ * .selector {
+ *   @include media-query($medium-up) {
+ *     color: red;
+ *   }
+ * }
+ */
+@mixin media-query($media-query) {
+  $breakpoint-found: false;
+
+  @each $breakpoint in $breakpoints {
+    $name: nth($breakpoint, 1);
+    $declaration: nth($breakpoint, 2);
+
+    @if $media-query == $name and $declaration {
+      $breakpoint-found: true;
+
+      @media only screen and #{$declaration} {
+        @content;
+      }
+    }
+  }
+}
+
+/**
+ * Outputs list of transition properties
+ *
+ * Accepts:
+ * - $transitions: {String} List of transition properties to set
+ *
+ * Usage:
+ * .selector {
+ *   @include transition(width, height 0.5s ease-in);
+ * }
+ */
+@mixin transition($transitions...) {
+  $output: ();
+
+  @each $transition in $transitions {
+    $output: append($output, get-transition-properties($transition), comma);
+  }
+  transition: $output;
+}
+
+/**
+ * Forces an element to self-clear its children
+ *
+ * Usage:
+ * .selector {
+ *   @include clearfix;
+ * }
+ */
+@mixin clearfix() {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  // stylelint-disable-next-line
+  *zoom: 1;
+}
+
+/**
+ * Hide element but make it accessible to screen readers
+ *
+ * Usage:
+ * .selector {
+ *   @include visually-hidden;
+ * }
+ */
+@mixin visually-hidden() {
+  // stylelint-disable-next-line
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+@mixin a11y-visually-hidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  word-wrap: normal;
+}
+
+
+/**
+ * Reverse the properties applied by @mixin visually-hidden
+ *
+ * Accepts:
+ * - $position: {String} Positioning method for element
+ *
+ * Usage:
+ * .selector {
+ *   @include visually-shown(relative);
+ * }
+ */
+@mixin visually-shown($position: inherit) {
+  // stylelint-disable-next-line
+  position: $position !important;
+  overflow: auto;
+  width: auto;
+  height: auto;
+  margin: 0;
+  clip: auto;
+}
+
+@mixin object-fit($style: cover, $position: 50% 50%) {
+  object-fit: $style;
+  object-position: $position;
+  font-family: "object-fit: #{$style}; object-position: #{$position};";
+}
+@mixin font-script() {
+  font-family: $font-script;
+  font-weight: 400;
+  text-transform: none !important;
+  letter-spacing: 0em;
+}
+
+@mixin font-extra($extraweight: $font-extra-weight) {
+  font-family: var(--font-extra-real);
+  font-weight: $extraweight;
+}
+@mixin font-heading($headingweight: $font-heading-weight) {
+  font-family:  var(--font-heading-real);
+  font-weight: $headingweight;
+}
+@mixin font-body($bodyweight: $font-body-weight) {
+  font-family:  var(--font-body-real);
+  font-weight: $bodyweight;
+  font-style: $font-body-style;
+}
+
+%maxwidth {
+  max-width: $grid-max-width;
+    margin: auto;
+    width: 94%  ;
+}
+
+%shadowBefore {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.12);
+  &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      content:'';
+      display: block;
+      z-index: -1;
+      box-shadow: 5px 5px 18px rgba(black, 0.1);
+      opacity: 0.1;
+      transform: scale(0.96);
+      transition: opacity 300ms $ease, transform 300ms $ease;
+    }
+  &:hover {
+    &::before {
+      opacity: 0.7;
+      transform: scale(1) translateY(2px);
+    }
+  }
+}
+
+
+%tinyWidth {
+  max-width: $grid-medium;
+    margin: auto;
+    width: 88%  ;
+    @include media-query($small) {
+      width: 92%;
+    }
+}
+%smallWidth {
+  max-width: $grid-large;
+    margin: auto;
+    width: 88%  ;
+    @include media-query($small) {
+      width: 92%;
+    }
+}
+
+%mediumWidth {
+  max-width: $grid-widescreen;
+    margin: auto;
+    width: 92%  ;
+    @include media-query($small) {
+      width: 95%;
+    }
+}
+%largeWidth {
+  max-width: $grid-max-width;
+    margin: auto;
+    width: 94%  ;
+}
+%maxWidth {
+  max-width: 1500px;
+  margin: auto;
+  width: 98%;
+}
+
+%line-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0;
+    &::before {
+    content: '';
+    display: block;
+    position: relative;
+    left: auto;
+    top: auto;
+    height: 2px;
+    background: currentColor;
+    width: 70px;
+    margin: auto 8px auto 0;
+  }
+  .button {
+    border: none;
+
+  }
+}
+
+%shadow {
+  box-shadow: 8px 8px 12px rgba(black, 0.15);
+}
+
+%sectionPadding {
+  padding: calc(12px + 2vw) 2vw;
+}
+
+
+@mixin hide-visually($toggle: "hide") {
+  @if not index("hide" "unhide", $toggle) {
+    @error "`#{$toggle}` is not a valid value for the `$toggle` argument in " +
+      "the `hide-visually` mixin. Must be either `hide` or `unhide`.";
+  } @else if $toggle == "hide" {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  } @else if $toggle == "unhide" {
+    clip: auto;
+    clip-path: none;
+    height: auto;
+    overflow: visible;
+    position: static;
+    white-space: inherit;
+    width: auto;
+  }
+}

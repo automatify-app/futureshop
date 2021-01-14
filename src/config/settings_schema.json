@@ -1,0 +1,1486 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "FutureShop-EB",
+    "theme_version": "1.0.0",
+    "theme_author": "EKF Design + Futureshirts",
+    "theme_documentation_url": "https://github.com/Shopify/starter-theme",
+    "theme_support_url": "https://github.com/Shopify/starter-theme/issues"
+  },
+
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_body_text",
+        "label": "Text",
+        "default": "#363F4B"
+      },
+      {
+        "type": "color",
+        "id": "color_main_bg",
+        "label": "Background",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color_borders",
+        "label": "Color for Borders",
+        "default": "#dfdfdf"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent",
+        "default": "#125486",
+        "info": "Buttons and special ornaments"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_inverse",
+        "label": "Accent Inverse",
+        "default": "#ffffff",
+        "info": "Inverse of accent for buttons, etc"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Secondary",
+        "default": "#003F67",
+        "info": "Another Accent Color (buttons)"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary_inverse",
+        "label": "Secondary Inverse",
+        "default": "#D7EEFC",
+        "info": "Inverse of secondary for buttons, etc"
+      },
+      {
+        "type": "header",
+        "content": "cards"
+      },
+      {
+        "type": "color",
+        "label": "Card Background",
+        "id": "color_card_background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "label": "Card Text",
+        "id": "color_card_text",
+        "default": "#3f3f3f"
+      },
+      {
+        "type": "header",
+        "content": "drawers"
+      },
+      {
+        "type": "color",
+        "id": "color_drawer_background",
+        "label": "Cart Drawer Background"
+      },
+      {
+        "type": "color",
+        "id": "color_drawer_text",
+        "label": "Cart Drawer Drawer Text"
+      },
+      {
+        "type": "color",
+        "id": "color_drawer_button_text",
+        "label": "Cart Drawer Button Text"
+      },
+      {
+        "type": "color",
+        "id": "color_drawer_button_background",
+        "label": "Cart Drawer Button Background"
+      },
+      {
+        "type": "color",
+        "id": "color_menu_drawer_background",
+        "label": "Menu Drawer Background"
+      },
+      {
+        "type": "color",
+        "id": "color_menu_drawer_text",
+        "label": "Menu Drawer Text"
+      },
+      {
+        "type": "color",
+        "id": "color_search_text",
+        "label": "Search Drawer text",
+        "default": "#3f3f3f"
+      },
+      {
+        "type": "color",
+        "id": "color_search_background",
+        "label": "Search Drawer Background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_search_border",
+        "label": "Search drawer border",
+        "default": "#cfcfcf"
+      },
+      {
+        "type": "header",
+        "content": "Notificaton Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_notification_text",
+        "label": "Color for notification text!",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_error",
+        "label": "Color for error items!",
+        "default": "#d64242"
+      },
+      {
+        "type": "color",
+        "id": "color_success",
+        "label": "Color for success items!",
+        "default": "#34c240"
+      },
+      {
+        "type": "color",
+        "id": "color_alert",
+        "label": "Color for alert items!",
+        "default": "#fa9f47"
+      }
+    ]
+  },
+  {
+    "name": "Fonts",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "default": "open_sans_n4",
+        "label": "Body text"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "default": "archivo_n7",
+        "label": "Headings"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_extra",
+        "default": "archivo_n7",
+        "label": "Extra Font"
+      },
+      {
+        "type": "header",
+        "content": "base settings"
+      },
+      {
+        "label": "Base font size",
+        "type": "range",
+        "id": "base_font_size",
+        "min": 12,
+        "max": 20,
+        "step": 1,
+        "default": 16
+      },
+      {
+        "type": "header",
+        "content": "Headers"
+      },
+      {
+        "type": "paragraph",
+        "content": "This is the common heading style for most section/poge headers, slides and more!"
+      },
+      {
+        "type": "select",
+        "id": "font_family_heading",
+        "label": "Header Font Family",
+        "default": "extra",
+        "options": [
+          {
+            "value": "body",
+            "label": "Body"
+          },
+          {
+            "value": "heading",
+            "label": "Heading"
+          },
+          {
+            "value": "extra",
+            "label": "Extra"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "header_style",
+        "label": "Header Style",
+        "default": "standard",
+        "options": [
+          {
+            "value": "standard",
+            "label": "Standard"
+          },
+          {
+            "value": "caps",
+            "label": "All Caps"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "header_size",
+        "label": "Header Size",
+        "default": "standard",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "standard",
+            "label": "Standard"
+          },
+          {
+            "value": "large",
+            "label": "Large"
+          },
+          {
+            "value": "huge",
+            "label": "Huge"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "header_spacing",
+        "label": "Header Spacing",
+        "info": "3 is normal, 1 is very tight, 10 is very spaced!",
+        "min": 0,
+        "default": 2,
+        "max": 10,
+        "step": 1
+      },
+      {
+        "type": "select",
+        "id": "header_color",
+        "label": "Header Color",
+        "options": [
+          {
+            "value": "standard",
+            "label": "Standard"
+          },
+          {
+            "value": "accent",
+            "label": "Accent"
+          },
+          {
+            "value": "secondary",
+            "label": "Secondary"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "header_alignment",
+        "label": "Default Header Alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "menu"
+      },
+      {
+        "type": "select",
+        "id": "font_family_menu",
+        "label": "Menu Font Family",
+        "default": "body",
+        "options": [
+          {
+            "value": "body",
+            "label": "Body"
+          },
+          {
+            "value": "heading",
+            "label": "Heading"
+          },
+          {
+            "value": "extra",
+            "label": "Extra"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "font_style_menu",
+        "label": "Menu Font Style",
+        "default": "narrow",
+        "options": [
+          {
+            "value": "standard",
+            "label": "Standard"
+          },
+          {
+            "value": "narrow",
+            "label": "Modern (Narrow)"
+          },
+          {
+            "value": "caps",
+            "label": "Small Caps"
+          },
+          {
+            "value": "caps-big",
+            "label": "All Caps (Big)"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "font_weight_menu",
+        "label": "Menu Font Weight",
+        "default": "bold",
+        "options": [
+          {
+            "value": "bold",
+            "label": "Bold"
+          },
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "light",
+            "label": "Light"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "buttons"
+      },
+      {
+        "type": "select",
+        "id": "font_family_buttons",
+        "label": "Button Font Family",
+        "default": "heading",
+        "options": [
+          {
+            "value": "body",
+            "label": "Body"
+          },
+          {
+            "value": "heading",
+            "label": "Heading"
+          },
+          {
+            "value": "extra",
+            "label": "Extra"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Products"
+      },
+      {
+        "type": "select",
+        "id": "font_family_product",
+        "label": "Product Font Family",
+        "default": "heading",
+        "options": [
+          {
+            "value": "body",
+            "label": "Body"
+          },
+          {
+            "value": "heading",
+            "label": "Heading"
+          },
+          {
+            "value": "extra",
+            "label": "Extra"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Labels"
+      },
+      {
+        "type": "select",
+        "id": "font_family_label",
+        "label": "Label Font Family",
+        "info": "Used in pre-headings and info across the site",
+        "default": "body",
+        "options": [
+          {
+            "value": "body",
+            "label": "Body"
+          },
+          {
+            "value": "heading",
+            "label": "Heading"
+          },
+          {
+            "value": "extra",
+            "label": "Extra"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "label_style",
+        "label": "Label Style",
+        "info": "Used in pre-headings and info across the site",
+        "default": "caps",
+        "options": [
+          {
+            "value": "caps",
+            "label": "Caps"
+          },
+          {
+            "value": "italic",
+            "label": "Italic"
+          },
+          {
+            "value": "standard",
+            "label": "Standard"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "label_size",
+        "label": "Label Size",
+        "info": "Used in pre-headings and info across the site",
+        "default": "normal",
+        "options": [
+          {
+            "value": "xs",
+            "label": "Extra-Small"
+          },
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "large",
+            "label": "Large"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Custom Fonts"
+      },
+      {
+        "type": "paragraph",
+        "content": "Use a custom font embed here from typekit/google fonts. Then add the font-family below!"
+      },
+      {
+        "type": "text",
+        "id": "typekit_text",
+        "label": "Typekit/GF Code",
+        "info": "(from the kit on fonts.adobe.com)"
+      },
+      {
+        "type": "text",
+        "id": "body_typekit",
+        "label": "Typekit/GF Body Font Family",
+        "info": "Usually all lowercase + hyphenated"
+      },
+      {
+        "type": "text",
+        "id": "heading_typekit",
+        "label": "Typekit/GF Heading Font Family",
+        "info": "Usually all lowercase + hyphenated"
+      },
+      {
+        "type": "text",
+        "id": "extra_typekit",
+        "label": "Typekit/GF Extra Font Family",
+        "info": "Usually all lowercase + hyphenated"
+      }
+    ]
+  },
+  {
+    "name" : "Site Header Settings",
+    "settings" : [
+      {
+        "type" : "header",
+        "content" : "Layout"
+      },
+      {
+        "type" : "paragraph",
+        "content" : "These are main layouts for the site header. These are major, and perhaps breaking, changes."
+      },
+
+      {
+        "type" : "select",
+        "id" : "header_layout",
+        "label" : "Header Layout",
+        "options" : [
+          {
+            "group" : "Standard",
+            "value" : "standard",
+            "label" : "Standard (Logo -> Menu)"
+          },
+          {
+            "group" : "Standard",
+            "value" : "stacked",
+            "label" : "Stacked (Logo // Menu)"
+          },
+          {
+            "group" : "Standard",
+            "value" : "standard-reverse",
+            "label" : "Standard Reverse (Menu -> Logo)"
+          },
+          {
+            "group" : "Standard",
+            "value" : "stacked-reverse",
+            "label" : "Stacked Reverse (Menu // Logo)"
+          },
+          {
+            "group" : "Centered",
+            "value" : "centered",
+            "label" : "Centered (half of menu -> Logo -> rest of menu)"
+          },
+          {
+            "group" : "Centered",
+            "value" : "centered-spaced",
+            "label" : "Centered w/ Space (half of menu -> Logo -> rest of menu)"
+          },
+          {
+            "group" : "Sidebar",
+            "value" : "sidebar",
+            "label" : "Sidebar (Logo in sidebar)"
+          },
+          {
+            "group" : "Sidebar",
+            "value" : "sidebar-header",
+            "label" : "Sidebar (Logo / icons abovecentered above)"
+          },
+          {
+            "group" : "Sidebar",
+            "value" : "sidebar-collapseable",
+            "label" : "Sidebar (Collapsable)"
+          },
+          {
+            "group" : "Sidebar",
+            "value" : "sidebar-modern",
+            "label" : "Sidebar (Logo above, OVER content)"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "header_fixed",
+        "label" : "Header Fixed Behavior",
+        "default" : "sticky",
+        "options" : [
+          {
+            "group" : "sticky",
+            "value" : "sticky",
+            "label" : "Sticky (at top until scroll)"
+          },
+           {
+            "group" : "sticky",
+            "value" : "sticky-bottom",
+            "label" : "Sticky Bottom (at bottom until scroll)"
+          },
+          {
+            "group" : "fixed",
+            "value" : "fixed",
+            "label" : "Fixed (always at top)"
+          },
+          {
+            "group" : "standard",
+            "value" : "standard",
+            "label" : "Standard "
+          }
+        ]
+      },
+      {
+        "type" : "checkbox",
+        "id" : "header_balanced",
+        "label" : "Balance Header, Menu + Social Spacing.",
+        "info" : "Only really works on 'standard' header layouts"
+      },
+      {
+        "type": "select",
+        "id": "header_nudge",
+        "label": "Centered Logo Nudge?",
+        "default": "none",
+        "info" : "This is to adjust the position of the header/menu items when the header logo is centered!",
+        "options": [{
+            "value": "less",
+            "label": "One Less"
+        }, {
+            "value": "none",
+            "label": "None"
+        }, {
+            "value": "more",
+            "label": "One More"
+        }]
+      },
+
+      {
+        "type" : "header",
+        "content" : "Header Icons"
+      },
+      {
+        "type" : "paragraph",
+        "content" : "Customize where the cart/search/header icons show up on the site!"
+      },
+      {
+        "type" : "select",
+        "id" : "social_layout",
+        "label" : "Social Layout",
+        "options" : [
+          {
+            "value" : "after-menu",
+            "label" : "After Menu"
+          },
+          {
+            "value" : "before-menu",
+            "label" : "Before Menu"
+          },
+          {
+            "value" : "after-logo",
+            "label" : "After Logo"
+          },
+          {
+            "value" : "below-logo",
+            "label" : "Below Logo"
+          },
+          {
+            "value" : "disabled",
+            "label" : "Disabled"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "search_layout",
+        "label" : "Search Layout",
+        "options" : [
+          {
+            "value" : "after-menu",
+            "label" : "After Menu"
+          },
+
+          {
+            "value" : "disabled",
+            "label" : "Disabled"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "accounts_layout",
+        "label" : "Accounts Layout",
+        "options" : [
+          {
+            "value" : "after-menu",
+            "label" : "After Menu"
+          },
+
+          {
+            "value" : "disabled",
+            "label" : "Disabled"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "cart_layout",
+        "label" : "Cart Layout",
+        "options" : [
+          {
+            "value" : "after-menu",
+            "label" : "After Menu"
+          },
+          {
+            "value" : "disabled",
+            "label" : "Disabled"
+          }
+        ]
+      },
+      {
+        "type" : "checkbox",
+        "id" : "include_icon_text",
+        "label" : "Include Icon Text on Cart, search, and account?"
+      },
+      {
+        "type" : "header",
+        "content" : "Overlay"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "overlay_header",
+        "label" : "Enable Header Overlay?",
+        "info" : "This creates a transparent header over hero images!"
+      },
+      {
+        "type": "checkbox",
+        "id": "overlay_shadow",
+        "label": "Overlay Shadow on Hero Image?"
+      }
+    ]
+  },
+  {
+    "name": "General Styles",
+    "settings": [
+      {
+        "type": "header",
+        "content": "general"
+      },
+      {
+        "type": "checkbox",
+        "id": "disable_mobile_menu",
+        "label": "Disable Mobile Menu"
+      },
+      {
+        "type": "range",
+        "unit": "px",
+        "id": "border_roundness",
+        "label": "Border Roundness",
+        "step": 1,
+        "min": 0,
+        "default": 0,
+        "max": 50
+      },
+      {
+        "type": "range",
+        "unit": "px",
+        "id": "border_thickness",
+        "label": "Border thickness",
+        "step": 1,
+        "min": 0,
+        "default": 1,
+        "max": 50
+      },
+      {
+        "type": "header",
+        "content": "Background"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_background",
+        "label": "Enable Background Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_background",
+        "label": "Main Background"
+      },
+      {
+        "type": "checkbox",
+        "id": "background_fix",
+        "label": "Fix Background on Scroll?"
+      },
+      {
+        "type": "select",
+        "id": "background_style",
+        "label": "Background Style",
+        "options": [
+          {
+            "value": "repeat-all",
+            "label": "Tile"
+          },
+          {
+            "value": "repeat-y",
+            "label": "Repeat Vertically"
+          },
+          {
+            "value": "repeat-x",
+            "label": "Repeat Horizontally"
+          },
+          {
+            "value": "fit",
+            "label": "Fit"
+          },
+          {
+            "value": "stretch",
+            "label": "Stretch"
+          },
+          {
+            "value": "cover",
+            "label": "Cover"
+          }
+        ],
+        "default": "cover"
+      },
+      {
+        "type": "html",
+        "id": "general_css",
+        "label": "Custom CSS"
+      }
+    ]
+  },
+  {
+    "name": "Product Styles",
+    "settings": [
+      {
+        "type": "select",
+        "id": "product_style",
+        "label": "Product style",
+        "options": [
+          {
+            "value": "simple",
+            "label": "Simple"
+          },
+          {
+            "value": "bordered",
+            "label": "Bordered"
+          },
+          {
+            "value": "card",
+            "label": "Card"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "price_style",
+        "default": "simple",
+        "label": "Price Style?",
+        "options": [
+          {
+            "value": "simple",
+            "label": "Simple"
+          },
+          {
+            "value": "background",
+            "label": "On Dark Background"
+          },
+          {
+            "value": "bordered",
+            "label": "Bordered"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "capitalize_product_titles",
+        "default": true,
+        "label": "Capitalize Product Titles?"
+      },
+      {
+        "type": "checkbox",
+        "id": "price_flex",
+        "label": "Price inline with title?",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "details_center",
+        "label": "Center Product Details",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Slider Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_arrows",
+        "label": "Arrows for product slider?",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "product_zoom",
+        "label": "Zoom for product Images?",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Button Styles",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Buttons"
+      },
+      {
+        "type": "select",
+        "id": "button_style",
+        "label": "Button Style",
+        "default": "outline",
+        "options": [
+          {
+            "value": "solid",
+            "label": "Solid"
+          },
+          {
+            "value": "outline",
+            "label": "Outline"
+          },
+          {
+            "value": "underline",
+            "label": "Underline"
+          },
+          {
+            "value": "gradient",
+            "label": "Gradient"
+          },
+          {
+            "value": "minimal",
+            "label": "Minimal"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "button_text_style",
+        "label": "Button Text Style",
+        "info": "Used in pre-headings and info across the site",
+        "default": "caps",
+        "options": [
+          {
+            "value": "caps",
+            "label": "Caps"
+          },
+          {
+            "value": "italic",
+            "label": "italic"
+          },
+          {
+            "value": "standard",
+            "label": "Standard"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "capitalize_buttons",
+        "default": true,
+        "label": "Capitalize Buttons?"
+      }
+    ]
+  },
+  {
+    "name" : "Visible Tags + Quantity",
+    "settings" : [{
+        "type": "header",
+        "content": "Visible Tags"
+      },
+      {
+        "type": "paragraph",
+        "content": "Enter one visible tag per line. This will make them show up as tags in the front end of the theme, on the product."
+      },
+      {
+        "type": "html",
+        "id": "visible_tags",
+        "label": "Visible Tags",
+        "default" : "Best Seller\nBest Seller!\nFan Favorite\nFan Favorite!\nJust In\nJust In!\nLimited Edition\nGoing Fast\nGoing Fast!\nJust Added\nNew Item\nNew Item!\nNew!\nNew\nFeatured Item\nFeatured\nFeatured!\nOn Sale\nOn Sale!\nBack In Stock\nBack In Stock!"
+      },
+      {
+        "type": "select",
+        "id": "tag_location",
+        "label": "Tag Location (in products)",
+        "default": "above",
+        "options": [
+          {
+            "value": "disabled",
+            "label": "Disable Tags"
+          },
+          {
+            "value": "above",
+            "label": "Above Details"
+          },
+          {
+            "value": "below",
+            "label": "Below Details"
+          },
+          {
+            "value": "top",
+            "label": "Top of image"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom Of Image"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "tag_style",
+        "label": "Tag Style",
+        "default": "simple",
+        "options": [
+          {
+            "value": "simple",
+            "label": "Simple"
+          },
+          {
+            "value": "backgrounded",
+            "label": "Backgrounded"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "id" : "tag_color",
+        "label" : "Tag Color"
+      },
+      {
+        "type": "color",
+        "id": "tag_background",
+        "label": "Tag Background Color"
+      },
+      {
+        "type": "header",
+        "content": "Visible Quantity Text"
+      },
+      {
+        "type": "paragraph",
+        "content": "For this to work, you simply need to have a 'Quantity' variant for a product. This will automatically show those quantities, followed by an 's', and preceded by the text you set below"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_visible_quantity",
+        "label": "Visible Quantity Text?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "visible_quantity_text",
+        "label": "Before Quantity Text",
+        "info": "Shows before the quantity variants",
+        "default": "Available in"
+      },
+      {
+        "type": "checkbox",
+        "id": "visible_quantity_add_s",
+        "label": "Add 's' to quantities?",
+        "info": "Useful for 'Packs'",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Swatches and Product Text",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Swatches"
+      },
+      {
+        "type": "paragraph",
+        "content": "For each color variant on the store, enter a color hex code! Use with care: pair exact color titles with hex codes (including the #, please!)"
+      },
+      {
+        "type": "html",
+        "id": "swatch-hexes",
+        "label": "Swatch Hexes"
+      },
+      {
+        "type": "select",
+        "id": "collection_swatches",
+        "label": "Swatches in collections",
+        "default": "round",
+        "info": "NOTE: only works for option exactly called 'Color'",
+        "options": [
+          {
+            "value": "disabled",
+            "label": "Disabled"
+          },
+          {
+            "value": "round",
+            "label": "Round"
+          },
+          {
+            "value": "standard",
+            "label": "Standard"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "In-stock warning",
+    "settings" : [
+      {
+        "type" : "checkbox",
+        "label" : "Enable In-stock warning",
+        "id" : "isw_enable"
+      },
+      {
+        "type" : "range",
+        "label" : "Threshold",
+        "id" : "isw_threshold",
+        "default" : 6,
+        "step": 1,
+        "min" : 1,
+        "max": 12
+      },
+      {
+        "type" : "text",
+        "label" : "In-Stock Warning Text (before)!",
+        "id" : "isw_text_before",
+        "default" : "Hurry! Only "
+      },
+      {
+        "type" : "text",
+        "label" : "In-Stock Warning Text (after)!",
+        "id" : "isw_text_after",
+        "default" : "left in stock."
+      },
+      {
+        "type": "header",
+        "content" : "Settings"
+      },
+      {
+        "type" : "select",
+        "id" : "isw_icon",
+        "label": "Icon",
+        "options": [
+          {
+            "value": "disabled",
+            "label": "Disable Icon"
+          },
+          {
+            "value": "attention",
+            "label": "Exclamation Point"
+          },
+          {
+            "value": "clock",
+            "label": "Clock"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "isw_color_type",
+        "label" : "Color Type",
+        "options" : [
+          {
+            "value" : "accent",
+            "label" : "Accent Color"
+          },
+          {
+            "value" : "secondary",
+            "label" : "Secondary Color"
+          },
+          {
+            "value" : "body",
+            "label" : "Body Text Color"
+          },
+          {
+            "value" : "custom",
+            "label" : "Custom Color"
+          }
+        ]
+      },
+      {
+        "type" : "color",
+        "id" : "isw_color",
+        "label" : "Color (custom)"
+      }
+    ]
+  },
+  {
+    "name": "Newsletter",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Settings"
+      },
+      {
+        "type": "html",
+        "id": "signup_html",
+        "label": "Custom Signup HTML"
+      },
+      {
+        "type": "html",
+        "id": "contact_html",
+        "label": "Custom Contact HTML",
+        "default": "{formbuilder:20198}"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "newsletter_include_socials",
+        "label" : "Include Socials Below Newsletter signup?",
+        "default" : true
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social sharing image"
+      },
+      {
+        "type": "image_picker",
+        "id": "share_image",
+        "label": "Image",
+        "info": "Shown when sharing a link on social media. [Learn more](https://help.shopify.com/manual/using-themes/troubleshooting/showing-social-media-thumbnail-images/) about image thumbnails."
+      },
+      {
+        "type": "header",
+        "content": "Social sharing options"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_sharing_blog",
+        "label": "Enable sharing for blog articles",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_facebook",
+        "label": "Share on Facebook",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_twitter",
+        "label": "Tweet on Twitter",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_pinterest",
+        "label": "Pin on Pinterest",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Sharing links"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter link"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook link",
+        "default": "https://facebook.com"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest link"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram link",
+        "default": "https://instagram.com"
+      },
+      {
+        "type": "text",
+        "id": "social_snapchat_link",
+        "label": "Snapchat link"
+      },
+      {
+        "type": "text",
+        "id": "social_soundcloud_link",
+        "label": "Soundcloud link"
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr_link",
+        "label": "Tumblr link"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "Youtube link",
+        "default": "https://youtube.com"
+      },
+      {
+        "type": "text",
+        "id": "social_spotify_link",
+        "label": "Spotify link"
+      },
+      {
+        "type": "text",
+        "id": "social_apple_link",
+        "label": "Apple Music link"
+      },
+      {
+        "type": "text",
+        "id": "social_amazon_music_link",
+        "label": "Amazon Music link"
+      },
+      {
+        "type": "text",
+        "id": "social_amazon_link",
+        "label": "Amazon link (NOT MUSIC LOGO)"
+      },
+      {
+        "type": "text",
+        "id": "social_pandora_link",
+        "label": "Pandora link"
+      },
+      {
+        "type": "text",
+        "id": "social_vimeo_link",
+        "label": "Vimeo link"
+      },
+      {
+        "type": "text",
+        "id": "social_email_link",
+        "label": "Email link"
+      },
+      {
+        "type": "header",
+        "content": "Extras"
+      },
+      {
+        "type": "html",
+        "id": "social_extra",
+        "label": "Social Extra",
+        "info": "Useful for FB messages, or spotify likes"
+      },
+      {
+        "type": "header",
+        "content": "Social Link Options"
+      },
+      {
+        "type": "select",
+        "id": "social_link_style",
+        "label": "Icon Link Style",
+        "default": "simple",
+        "options": [
+          {
+            "value": "simple",
+            "label": "Simple"
+          },
+          {
+            "value": "circle",
+            "label": "Circle"
+          },
+          {
+            "value": "circle-border",
+            "label": "Circle Border"
+          },
+          {
+            "value": "square",
+            "label": "Square"
+          },
+          {
+            "value": "square-border",
+            "label": "Square Border"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "id": "social_text_color",
+        "label": "Social Link Color"
+      },
+      {
+        "type": "color",
+        "id": "social_background_color",
+        "label": "Social Link Background Color",
+        "info": "Only works for non-simple styles"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_flip",
+        "label": "Flip color on hover?"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_notes_enable",
+        "label": "Enable cart notes",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_ajax_enable",
+        "label": "Enable Ajax Cart",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "cart_offscreen",
+        "label": "Cart Offscreen Direction",
+        "default": "right",
+        "options": [
+          {
+            "value": "right",
+            "label": "Right"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  },
+  {
+    "name": "Header/Footer Code",
+    "settings": [
+      {
+        "type": "html",
+        "label": "Header Code",
+        "id": "header_code"
+      },
+      {
+        "type": "html",
+        "label": "Footer Code",
+        "id": "footer_code"
+      }
+    ]
+  },
+  {
+    "name": "Account Pages",
+    "settings": [
+      {
+        "type": "richtext",
+        "label": "Account Note",
+        "id": "account_note"
+      }
+    ]
+  }
+]

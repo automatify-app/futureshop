@@ -1,0 +1,24 @@
+.featured-collection {
+  .collection-header {
+    margin: 12px auto 0 ;
+  }
+  .button-wrap {
+    margin: 30px auto;
+    @include media-query($small) {
+      margin: 20px auto;
+    }
+  }
+}
+
+.featured-collection-item {
+
+
+}
+
+.featured-collection__image {
+  min-width: 320px;
+}
+
+.featured-collection__title {
+  flex-basis: 100%;
+}

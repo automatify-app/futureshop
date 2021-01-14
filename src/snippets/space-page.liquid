@@ -1,0 +1,35 @@
+<div class="space-slide__inner image--bottom" id="page{{page}}">
+  <div class="space-slide__image lazyload" data-sizes="auto" data-bgset="{% include 'responsive-bg-image' with image: section.settings.image %}"></div>
+    <div class="space-slide__content columned">
+    <div class="main-column">
+        <h2 class="h2">{{section.settings.header}}</h2>
+        <div class="rte">{{section.settings.content}}</div>
+        <a class="button" data-location-id="59612cnk"><i class="fas fa-calendar"></i> Book Your Event</a>
+    </div>
+    {% if section.settings.side_content != blank %}
+      <div class="side-column">
+        <div class="rte small">{{section.settings.side_content}}</div>
+        <div class="capacity"><span class="label">{{section.settings.capacity_label}}</span><span class="value">{{section.settings.capacity_value}}</span></div>
+      </div>
+      {%endif%}
+    </div>
+  {% if section.blocks != empty %}
+    <div class="space-slide__full space-slide__gallery">
+      {% if section.settings.gallery_header  != blank %}
+        <div class="gallery-header">
+          <h2>{{section.settings.gallery_header}}</h2>
+          {% if section.settings.gallery_subheader != blank %}
+          <div class="rte">{{section.settings.gallery_subheader}}</div>
+          {%endif%}
+        </div>
+      {%endif%}
+      <div class="gallery-photos">
+        {% for block in section.blocks %}
+          <a class="gallery-image "  data-module="lightbox-image" data-fancybox="gallery" href="{{block.settings.image | img_url: 'master'}}">
+            <img class="lazyload" src="{{ block.settings.image | img_url: '600x' }}" alt="{{block.settings.image.alt}}">
+          </a>
+        {%endfor %}
+      </div>
+    </div>
+    {%endif%}
+  </div>

@@ -1,0 +1,135 @@
+@charset 'UTF-8';
+
+/**
+ * FutureShop | Built with Slate
+ */
+@import '~normalize.css/normalize';
+@import '~aos/dist/aos.css';
+@import '~swiper/swiper-bundle.min.css';
+@import '../scripts/components/magiczoom.css';
+
+// Settings
+@import './variables';
+
+// Tools
+@import './tools/mixins';
+@import './tools/functions';
+
+// Core
+@import './core/forms';
+@import './core/helpers';
+@import './core/layout';
+@import './core/media';
+@import './core/responsive-tables';
+@import './core/rte';
+@import './core/typography';
+
+// Components
+
+//Sitewide (in every store)
+
+@import './components/address-forms'; //Address forms column styling
+
+@import './components/alert-drawer'; //Alert drawer, could be moved
+@import './components/breadcrumbs'; //Breadcrumbs
+@import './components/buttons'; //Button resets (TODO: REMOVE)
+
+@import './components/common-header';
+@import './components/ctas';
+@import './components/dividers';
+@import './components/hero-banner';
+@import './components/icons';
+@import './components/menus';
+@import './components/mobile-images';
+@import './components/mobile-menu';
+@import './components/pagination';
+@import './components/placeholders';
+@import './components/popups';
+@import './components/product-images';
+@import './components/product-form';
+@import './components/product-isw';
+@import './components/quantity-select';
+@import './components/responsive-images';
+@import './components/search-drawer';
+@import './components/shop-drawer';
+// @import './components/show-popup'; //ONLY FOR EVENTS
+@import './components/signup-form';
+@import './components/slider'; //
+@import './components/slide-content';
+@import './components/socials';
+@import './components/swatches';
+@import './components/swiper';
+@import './components/vidbox';
+@import './components/visible-tags';
+@import './components/visible-quantity';
+@import './components/zoom'; // Product-specific
+
+
+//Cart stuff
+@import './components/ajax-cart'; //Cart drawer. Very important
+@import './components/cart-broadcast'; //Error for the top of the cart
+
+
+//General section rules
+@import './sections/general';
+
+//Header
+@import './sections/header-above';
+@import './sections/header';
+@import './sections/header-layouts';
+
+//Footer
+@import './sections/footer';
+
+//Core product sections - worth bundling:
+@import './sections/collection-list';
+@import './sections/featured-product';
+@import './sections/featured-collection';
+
+//Blog (worth if for sitewide)
+@import './sections/blog-posts';
+// Sections
+@import './sections/announcement';
+
+// @import './sections/collage'; // Moved to section
+@import './sections/contact';
+// @import './sections/content-columns';//Moved to section
+// @import './sections/faqs'; // Moved to section
+
+
+
+
+
+// @import './sections/link-images'; // Moved to section
+@import './sections/newsletter';
+@import './sections/related-products';
+@import './sections/rotating-background';
+
+// @import './sections/video-playlist'; //Moved to section
+
+
+// Templates
+@import './templates/accounts';
+@import './templates/gift_card';
+@import './templates/product';
+
+
+//Grids
+@import './grids/grid-item';
+@import './grids/grid-outer';
+
+// Layouts
+@import './layouts/cart';
+@import './layouts/collection';
+@import './layouts/collections-list';
+@import './layouts/page';
+@import './layouts/store-main';
+@import './layouts/search-results';
+@import './layouts/site';
+
+
+// @import './apps/recharge';
+@import './apps/cookies';
+@import './apps/globo';
+
+@import './utility-classes/index'

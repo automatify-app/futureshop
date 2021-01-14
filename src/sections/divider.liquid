@@ -1,0 +1,103 @@
+<div style="margin: calc({{section.settings.margin | times: 5 }}px + 0.2vw) auto;" class="custom-divider {% if section.settings.image != blank %}image-divider{%endif%} {% if section.settings.hide_mobile == true %} hide-mobile {%endif%} style--{{section.settings.type}} "id="divider--{{section.id}}">
+{% if section.settings.image != blank %}
+  {% capture image_width %}{{section.settings.image_max_width}}x{%endcapture %}
+  {% capture image_width_x %}{{section.settings.image_max_width | times: 2}}x{%endcapture %}
+  <img class="divider-img" aria-hidden="true" src="{{ section.settings.image | img_url: image_width }}" srcset="{{section.settings.image | img_url: image_width }} 1x, {{section.settings.image | img_url: image_width_x}} 2x">
+{%endif%}
+</div>
+{% if section.settings.color != empty and section.settings.image == empty %}
+<style>#divider--{{section.id}}  {
+  border-top-color: {{section.settings.color}}
+}</style>
+{%endif %}
+{%schema %}
+{
+  "name" : "Divider",
+  "class" :"divider-wrap",
+  "settings" : [
+    {
+      "type" : "paragraph",
+      "content" : "Use this block to space front-page sections"
+    },
+
+    {
+      "type": "range",
+      "id": "margin",
+      "min": 0,
+      "max": 12,
+      "step": 1,
+      "unit": "em",
+      "label": "Spacing",
+      "default": 3
+    },
+    {
+      "type" : "select",
+      "id" : "type",
+      "label" : "Style",
+      "options" : [
+        {
+          "value":  "transparent",
+          "label" : "Transparent"
+        },
+        {
+          "value":  "border-full",
+          "label" : "Border (Full Width)"
+        },
+        {
+          "value":  "border-half",
+          "label" : "Border (Half Width)"
+        }
+      ]
+    },
+    {
+      "type" : "image_picker",
+      "id" : "image",
+      "label" : "Custom Image",
+      "info" : "Insert a custom image divider"
+    },
+    {
+        "type": "range",
+        "id": "image_max_width",
+        "label": {
+            "de": "Logobreite",
+            "en": "Custom  width",
+            "es": "Ancho  personalizado",
+            "fr": "Largeur personnalisée ",
+            "it": "Larghezza  personalizzato",
+            "ja": "ロゴの幅をカスタムする",
+            "pt-BR": "Largura do  personalizado"
+        },
+        "min": 10,
+        "max": 900,
+        "step": 10,
+        "unit": {
+            "de": "px",
+            "en": "px",
+            "es": "px",
+            "fr": "px",
+            "it": "px",
+            "ja": "px",
+            "pt-BR": "px"
+        },
+        "default": 150
+    },
+    {
+      "type" : "color",
+      "id" : "color",
+      "label" : "Border Color",
+      "info": "If left blank, uses the theme default."
+    },
+    {
+      "type" : "checkbox",
+      "id" : "hide_mobile",
+      "label" : "Hide on mobile?"
+    }
+  ],
+  "presets" : [
+    {
+      "name" : "Divider",
+      "category" : "Layout"
+    }
+  ]
+}
+{%endschema%}

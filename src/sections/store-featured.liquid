@@ -1,0 +1,151 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available in the "Featured Collection" section in the theme editor.
+
+  Theme Store required settings
+  - Collection
+
+  Theme Store optional settings
+  - Heading: title of the featured collection section
+{%- endcomment -%}
+<section class="featured-collection">
+{% assign delay = 0 %}
+  <div class="collection-header section-header">
+    {% if section.settings.pre_title != blank %}
+      <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="section-header__pre-title">{{ section.settings.pre_title | escape }}</h4>
+    {% endif %}
+    {% if section.settings.title != blank %}
+      <h2 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="section-header__title">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+  </div>
+
+  {%- assign collection = collections[section.settings.collection] -%}
+  {% capture max %}{%if collection.products.size <= section.settings.limit%}{{collection.products.size}}{% elsif section.settings.limit == 0%}100{%else%}{{section.settings.limit}}{%endif%}{%endcapture%}
+  <div class="collection-grid product-grid size--{{section.settings.size}}" data-max="{{max}}" > 
+  
+  {% for product in collection.products limit: section.settings.limit %}
+    {% include 'grid-item' with secondary_image: {{section.settings.secondary_image}}, show_price: {{section.settings.show_price}}, simplify: {{section.settings.simplify}}, hover_details: {{section.settings.hoverer}} %}
+    {% assign delay = delay | plus: 50 %} 
+  {% else %}
+    {% for i in (1..6) %}
+      <a href="#" class="featured-collection-item">
+        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+        {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+
+        <p>{{ 'homepage.onboarding.product_title' | t }}</p>
+        <p>{{ 1999 | money }}</p>
+      </a>
+    {% endfor %}
+  {% endfor %}
+  </div>
+  {% if section.settings.button_text != blank %}
+  <div class="button-wrap center">
+    <a href="{{section.settings.button_url | default: collection.url}}" class="button big secondary">{{section.settings.button_text}}</a>
+  </div> 
+  {%endif%}
+</section>
+
+{% schema %}
+  {
+    "name": "Featured collection",
+   "class" : "standard-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Featured collection"
+      },
+      {
+        "type": "text",
+        "id": "pre_title",
+        "label": "Pre-Heading",
+        "default": "Shop Our"
+      },
+      {
+        "id": "collection",
+        "type": "collection",
+        "label": "Collection"
+      },
+      {
+        "type" : "header",
+        "content" : "Collection settings"
+      },
+      {
+        "type" : "select",
+        "id" : "size",
+        "label" : "Grid Size",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small"
+          },
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          }
+        ]
+      },
+       {
+        "type" : "range",
+        "id" : "limit",
+        "label" : "Limit",
+        "default" : 8,
+        "max": 30,
+        "min" : 0,
+        "step" : 1
+      },
+     
+
+      {
+        "type" : "text",
+        "id" : "button_text",
+        "label" : "All Button Text",
+        "info" : "Leave Blank for No Button"
+      },
+      {
+        "type" : "url",
+        "id" : "button_url",
+        "label" : "Button URL"
+      },
+      {
+        "type" : "header",
+        "content" : "Product Settings"
+      },
+       {
+        "type" : "checkbox",
+        "id" : "secondary_image",
+        "label" : "Second Image on Hover",
+        "info" : "No effect if no secondary image"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "show_price",
+        "label" : "Show Price?",
+        "default" : true
+      },
+      {
+        "type" : "checkbox",
+        "id" : "simplify",
+        "label" : "Simplify?",
+        "info" : "Hides everything other than photo!"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "hoverer",
+        "label" : "Details on hover?"
+      }
+
+    ],
+    "presets": [
+      {
+        "name": "Featured collection",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}

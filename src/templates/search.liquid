@@ -1,0 +1,80 @@
+<div class="page-basic">
+{% paginate search.results by 10 %}
+  <div class="search-template-header">
+    <h1>
+      {% if search.performed %}
+        <span class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}:</span>
+          {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+      {% else %}
+        {{ 'general.search.title' | t }}
+      {% endif %}
+    </h1>
+
+    <form action="/search" method="get" role="search" class="search-form__simple">
+      <label for="Search" class="label-hidden">
+        {{ 'general.search.placeholder' | t }}
+      </label>
+      <input type="search"
+            name="q"
+            id="Search"
+            value="{{ search.terms | escape }}"
+            placeholder="{{ 'general.search.placeholder' | t }}">
+      <button type="submit" class="button">
+        <i class="icon-search"></i>
+        <span class="{% unless settings.include_icon_text == true %}sr{%endunless%} icon-label">{{ 'general.search.submit' | t }}</span>
+      </button>
+    </form>
+
+  </div>
+
+  {% if search.performed %}
+    {% if search.results_count == 0 %}
+      <p>{{ 'general.search.no_results_html' | t: terms: search.terms }}</p>
+    {% else %}
+      <h2 class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}</h2>
+      <ul class="search-results">
+        {% for item in search.results %}
+          <li class="search-result__outer type--{{item.object_type}}" >
+            <a href="{{ item.url | within: collection }}" class="search-result type--{{item.object_type}}">
+            <div class="search-result__image">
+              {% assign featured_image = item.image | default: item.featured_image %}
+              {% if featured_image != blank %}
+                {{ featured_image | img_url: '240x240' | img_tag }}
+              {% endif %}
+            </div>
+            <div class="search-result__title">
+              <h3>{{ item.title }}</h3>
+              {% if item.object_type == 'product' %}
+                <span class="price-outer">
+                  {% if item.compare_at_price > item.price %}
+                      <s>{{item.compare_at_price | money}}</s>
+                      <span class="real-price">{{ item.price | money }}</span>
+                  {% else %}
+                    {% if item.price_varies %}
+                      {%- assign price = item.price | money -%}
+                      {{ 'products.product.from_text_html' | t: price: price }}
+                    {% else %}
+                      {{ item.price | money }}
+                    {% endif %}
+                  {% endif %}
+                </span>
+              {%endif%}
+            </div>
+            {% if item.object_type == 'product' %}
+            {% else %}
+              <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
+            {% endif %}
+            </a>
+
+          </li>
+        {% endfor %}
+      </ul>
+
+      {% if paginate.pages > 1 %}
+        {% include 'pagination' %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+{% endpaginate %}
+</div>

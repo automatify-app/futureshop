@@ -1,0 +1,17 @@
+{% if settings.signup_auto == true %}
+<div class="auto-signup" data-module="auto-signup" data-delay="{{settings.signup_time}}">
+  <div class="popup-content popup-signup" style="">
+    <div class="popup-inner auto-signup__popup">
+      <div class="popup-header">
+        <h2 >{{settings.signup_title | default: 'Join the list'}}</h2>
+        {% if settings.signup_subtitle != blank %}
+          <h4>{{settings.signup_subtitle | default: 'Get news, discounts + more when you sign up for the email list!'}}</h4>
+        {%endif%}
+      </div>
+      <div class="form-wrap">
+      {% include 'signup-form' %}
+      </div>
+    </div>
+  </div>
+</div>
+{%endif%}

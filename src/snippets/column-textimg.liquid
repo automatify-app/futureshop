@@ -1,0 +1,70 @@
+
+{%capture 'header_markup' %}
+{% if block.settings.pre_title != blank or block.settings.title != blank  %}
+    <div class="block-header section-header align--{{block.settings.align_text}}">
+      {% if block.settings.pre_title != blank %}
+        <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps block-header__pre-title">{{ block.settings.pre_title | escape }}</h4>
+      {% endif %}
+      {% if block.settings.title != blank %}
+        <h3 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h3 block-header__title">{{ block.settings.title | escape }}</h2>
+      {% endif %}
+      {% if block.settings.post_title != blank %}
+        <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps block-header__post-title">{{ block.settings.post_title | escape }}</h4>
+      {% endif %}
+    </div>
+{%endif%}
+{%endcapture %}
+{%capture 'button_markup' %}
+{%- if block.settings.text != blank -%}
+  <div class="rte align--{{block.settings.align_text}}">
+    {{ block.settings.text }}
+  </div>
+{%- endif -%}
+ {% if block.settings.button_text != blank and  block.settings.button_url != blank %}
+  <div class="button-wrap center">
+    <a href="{{block.settings.button_url}}" class="button">{{block.settings.button_text}}</a>
+  </div> 
+  {%endif%}
+{%endcapture %}
+
+
+{% capture 'image_markup' %}
+{% if block.settings.image != blank %}
+{% if block.settings.image_link != blank %}
+      <a href="{{block.settings.image_link}}" {% if block.settings.link_external == true %} target="_blank" rel="nofollow" {%endif%} class=" content-column__image "  data-rellax-speed="4">
+         {% if block.settings.image != blank %}
+          {% include 'responsive-image' with
+            image: block.settings.image,
+            max_width: 1000,
+            max_height: 1000
+          %}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </a>
+  {%else %}
+    <div class="content-column__image ">
+        {% if block.settings.image != blank %}
+          {% include 'responsive-image' with
+            image: block.settings.image,
+            max_width: 1000,
+            max_height: 1000
+          %}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+  </div>
+  {%endif%}
+  {%endif%}
+{% endcapture %}
+
+<div class="content-column type--{{block.type}} size--{{block.settings.size}} align--{{block.settings.align}}">
+  {% case block.settings.layout %}
+    {%when 'header-button-image' %}
+      {{header_markup}}{{button_markup}}{{image_markup}}
+    {% when 'header-image-button' %}
+      {{header_markup}}{{image_markup}}{{button_markup}}
+    {% when 'image-header-button' %}
+      {{image_markup}}{{header_markup}}{{button_markup}}
+  {%endcase%}
+</div>

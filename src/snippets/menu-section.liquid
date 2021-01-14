@@ -1,0 +1,31 @@
+{% unless section.settings.enable != true %}
+<script>
+(function() {
+
+var thisSection = document.getElementById("shopify-section-{{section.id}}");
+thisSection.classList.add('layout--{{section.settings.layout}}')
+
+{% if section.settings.full_width == true %}
+thisSection.classList.add('full-width')
+{%endif%}
+})();
+</script>
+<div class="menu-section__header">
+   <h4 class="menu-section__title">{{section.settings.title  | escape }}</h4>
+   {% if section.settings.subtitle != blank %}<h5 class="label">{{section.settings.subtitle | escape }}</h5>{%endif%}
+   {% if section.settings.common_price != blank %}<span class="common-price">{{section.settings.common_price | escape }}</span>{%endif%}
+</div>
+  <div class="menu-section__inner">
+    {% for block in section.blocks %}
+      <div class="menu-item menu-item--full">
+        <div class="menu-item__header">
+          <h5 class="menu-item__title label">{{block.settings.title | escape }}{% if block.settings.veg %}<span class="veg">(v)</span>{%endif%}{% if block.settings.local %}<span class="local">(l)</span>{%endif%}</h5>
+          {% if block.settings.price != blank %}<span class="menu-item__price">{{block.settings.price | escape }}</span>{%endif%}
+        </div>
+        {% if block.settings.description != blank %}
+        <div class="rte menu-item__description">{{block.settings.description}}</div>
+        {%endif%}
+      </div>
+    {%endfor %}
+</div>
+{%endunless%}

@@ -1,0 +1,34 @@
+{% if settings.cart_ajax_enable == true %}
+    {% include 'ajax-cart' %}
+  {%endif%}
+
+{% include 'alert-snippets' %}
+{% include 'bupdate' %}
+{% include 'auto-signup' %}
+{% comment %} {% include 'globo.formbuilder.scripts' %} {% endcomment %}
+
+{% if settings.footer_code != blank %}
+{{settings.footer_code}}
+{%endif%}
+
+<style>
+body {
+
+
+  {% if settings.heading_typekit != blank %}
+    --font-heading-real:  {{settings.heading_typekit}}, {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+  {% else %}
+    --font-heading-real:  {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+  {% endif%}
+  {% if settings.body_typekit != blank %}
+    --font-body-real: {{settings.body_typekit}} , {{ settings.font_body.fallback_families }};
+  {%else%}
+    --font-body-real: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
+  {% endif%}
+  {% if settings.extra_typekit != blank %}
+    --font-extra-real: {{settings.extra_typekit}}, {{ settings.font_extra.family }}, {{ settings.font_extra.fallback_families }};
+  {% else %}
+    --font-extra-real: {{ settings.font_extra.family }}, {{ settings.font_extra.fallback_families }};
+  {% endif %}
+}
+</style>

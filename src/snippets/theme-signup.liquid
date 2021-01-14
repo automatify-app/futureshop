@@ -1,0 +1,50 @@
+{% comment %} {% include 'theme-signup' with signup_style: 'minimal|standard|popup', include_gdpr: true %} {% endcomment %}
+
+{% if signup_style == 'popup' %}
+
+    <div class="lightbox-button button solid" data-lightbox-type="html" data-module="lightbox" data-lightbox-target="newsletter">{{settings.signup_cta_text | default: 'Sign Up'}}</div><br />
+    <div class="lightbox-content" data-lightbox-content="newsletter">
+      {% include 'newsletter-popup' %}
+      </div>
+{%elsif signup_style == 'minimal' %}
+<div class="minimal-signup-wrap" data-module="minimal-signup">
+    {% form 'customer' %}
+    <input type="hidden" name="contact[tags]" value="prospect">
+  <input  name="contact[email]" autocomplete="off" placeholder="{{settings.signup_minimal_text}}" class="minimal-signup--input" type="email" data-success-text="{{settings.signup_minimal_success}}" \>
+    {% endform %}
+</div>
+
+  {%else %}
+  {% form 'customer' %}
+
+        {{ form.errors | default_errors }}
+
+        {% if form.posted_successfully? %}
+          <ul class="form-success">
+            <li>{{ 'general.password_page.signup_form_success' | t }}</li>
+          </ul>
+        {% else %}
+          <input type="hidden" name="contact[tags]" value="prospect">
+
+        <div class="input-group">
+        <label for="email">
+            {{ 'general.password_page.signup_form_email_label' | t }}
+          </label>
+          <input type="email"
+            name="contact[email]"
+            id="Email"
+            spellcheck="false"
+            autocomplete="off"
+            autocapitalize="off"
+            placeholder="{{ 'general.password_page.signup_form_email_placeholder' | t }}">
+        </div>
+        <div class="input-group btn-group">
+          <button type="submit" name="commit" class="button solid">Sign Up </button>
+        </div>
+        <div id="accepts_marketing " class="clearfix large_form">
+          <input type="checkbox" name="customer[accepts_marketing]" value="true" id="marketing" />
+          <label for="marketing" style="font-weight:normal">{{settings.gdpr_text | default: "I want to receive deals & news from this store"}}</label>
+        </div>
+        {% endif %}
+      {% endform %}
+{%endif%}

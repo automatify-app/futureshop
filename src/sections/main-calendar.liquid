@@ -1,0 +1,91 @@
+{% include 'events-markup' %}
+  {% if section.settings.button_text != empty and section.settings.button_text != blank%}
+  <div class="button-wrap">
+  <a href="{{section.settings.button_url}}" class="button">{{section.settings.button_text}}</a>
+  </div>
+  {%endif%}
+{% schema %}
+  {
+    "name" : "Events",
+    "settings" : [
+      {
+        "type" : "header",
+        "content" : "settings"
+      },
+      {
+        "type" : "text",
+        "id" : "title",
+        "label" :"Title"
+      },
+      {
+        "type" : "range",
+        "id" : "limit",
+        "label" :"Limit",
+        "step" : 1,
+        "min" : 0,
+        "max" : 100,
+        "default" : 10
+      },
+      {
+        "type" : "text",
+        "id" : "label",
+        "label" : "Refine Label"
+      },
+      {
+        "type" : "text",
+        "id" : "label_view",
+        "label" : "View Label"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "show_all",
+        "label" : "Show all category?"
+      },
+      {
+        "type" : "text",
+        "id" : "all_text",
+        "label"  : "All category title",
+        "default" : "All"
+      },
+      {
+        "type": "select",
+        "id" : "layout",
+        "label" : "Layout",
+        "default" : "calendar",
+        "options" : [
+          {
+            "value" : "grid",
+            "label" : "Grid"
+          },
+          {
+            "value" : "list",
+            "label" : "List"
+          },
+          {
+            "value" : "calendar",
+            "label" : "Calendar"
+          }
+        ]
+      }
+    ],
+    "blocks" : [
+      {
+        "type" : "category",
+        "name" : "Category",
+        "settings" : [
+          {
+            "type" : "text",
+            "id" : "title",
+            "label" : "Title"
+          },
+          {
+           "type" : "html",
+            "label" : "Trigger words",
+            "id" : "trigger",
+            "info" : "Add trigger words or phrases, separated by commas. Be sparing, these add to load time!"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

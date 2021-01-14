@@ -1,0 +1,124 @@
+{% render 'section-starter' with params: section.settings %}
+{% if section.settings.url != blank %}
+  <a href="{{section.settings.url}}">
+{%endif%}
+
+{% if section.settings.mobile_image != blank %}
+{% render 'responsive-image' with wrapper_class: "mobile-image", image: section.settings.mobile_image, max_width: 1200, max_height: 1200 %}
+{%endif%}
+
+{% render 'responsive-image' with wrapper_class: "desktop-image", image: section.settings.image, max_width: 2400, max_height: 2400 %}
+
+{% if section.settings.url %}
+  </a>
+{%endif%}
+
+</section>
+
+{% schema %}
+  {
+    "name" : "Simple Image",
+    "class" : "simple-image",
+    "settings" : [
+       {
+        "type" : "header",
+        "content" : "Meta"
+      },
+      {
+        "type": "text",
+        "id" : "anchor_id",
+        "label" : "Section ID (for anchor links and specific styling)"
+      },
+       {
+        "type": "text",
+        "id" : "title",
+        "label" : "Nice Name",
+        "info" : "Just for keeping the back end organized! Enter a nice name here",
+        "default" : "Simple Image"
+      },
+
+    {
+        "type": "text",
+        "id" : "anchor_classes",
+        "label" : "Section classes (for  specific styling)"
+      },
+       {
+        "type" : "select",
+        "id" : "section_size",
+        "label" : "Section size",
+        "default" : "full-width",
+        "options" : [
+          {
+            "value" : "full-width",
+            "label" : "Full Width"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "section_spacing",
+        "label" : "Section Spacing",
+        "default" : "none",
+        "options" : [
+          {
+            "value" : "none",
+            "label" : "No Spacing"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          },
+          {
+            "value" : "medium",
+            "label" : "Medium"
+          }, {
+"value" : "full-height",
+"label" : "Full Height"
+},
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value": "huge",
+            "label" : "Huge"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "image"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile Image",
+        "info" : "If included, shows on smaller screens"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "URL"
+      }
+    ],
+    "presets" : [
+      {
+        "name" : "Simple Image",
+        "category" : "Image"
+      }
+    ]
+  }
+{% endschema %}

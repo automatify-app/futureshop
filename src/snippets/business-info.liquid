@@ -1,0 +1,17 @@
+{% if settings.address != blank %}
+    <div class="preheader__block preheader__address">
+    <i class="icon-location"></i><div class="address-wrap"><span class="preheader__content" itemprop="streetAddress">{{settings.address}}</span> <span class="preheader__content" itemprop="addressLocality">{{settings.city}}</span>, <span class="preheader__content" itemprop="addressRegion">{{settings.state}}</span> <span class="preheader__content" itemprop="postalCode">{{settings.zip}}</span></div>
+    </div>
+    {%endif%}
+    {% if settings.number != blank %}
+    <div class="preheader__block preheader__phone">
+      <a href="tel:{{settings.phone_schema}}"><i class="icon-phone"></i><span class="preheader__content" itemprop="telephone" content="{{settings.phone_schema}}">{{settings.number}}</span></a>
+    </div>
+    {%endif%}
+    {% if settings.hours != blank %}
+    <div class="preheader__block preheader__hours">
+      <i class="icon-clock"></i><span class="preheader__content">{{settings.hours}}
+      {{settings.hours_content}}
+      </span>
+    </div>
+{%endif%}

@@ -1,0 +1,24 @@
+
+  <div class="menu-header__inner">
+    <h2 class="menu-title">{{section.settings.title | default: 'Menu'}}</h2>
+    {% comment %} <div class="menu-image">{{ section.settings.logo | img_url: '500x' | img_tag}}</div> {% endcomment %}
+  </div>
+
+{% schema %}
+  {
+    "name": "Menu Header",
+    "class" : "menu-section menu-header",
+    "settings": [
+      {
+        "type" : "text",
+        "id" : "title",
+        "label" : "Menu Title"
+      },
+      {
+        "type" : "image_picker",
+        "id" : "logo",
+        "label" : "Logo"
+      }
+    ]
+  }
+{% endschema %}

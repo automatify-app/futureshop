@@ -1,0 +1,10 @@
+<div class="footer-col footer-{{block.type}} align--{{block.settings.text_align}}">
+          {% if block.settings.title != blank %}<h4 class="footer-header">{{block.settings.title}}</h4>{%endif%}
+          {% if linklists[block.settings.menu].links.size > 0 %}
+            <ul class="footer-menu"  >
+              {% for link in linklists[block.settings.menu].links %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>

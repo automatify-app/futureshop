@@ -1,0 +1,52 @@
+
+<script id="cart-template" type="text/x-handlebars-template">
+  <div class="cart-drawer-item__header">
+    <div class="item-image cart-drawer-item__image" data-label="{{ 'customer.order.product' | t }}">
+      <a href="{%raw%}{{itemUrl}}{%endraw%}">
+        <img src="{%raw%}{{itemImage}}{%endraw%}" alt="{%raw%}{{itemTitle}}{%endraw%}">
+      </a>
+    </div>
+    <div class="item-info">
+    <header class="item-info__header">
+      <a class="remove-item" data-remove-item href="/cart/change?line={%raw%}{{index}}{%endraw%}&amp;quantity=0" data-cart-button="true"
+        data-line-item="1" data-line-item-quantity="0">
+        <small><i class="icon-times" aria-label="{{ 'cart.general.remove' | t }}"></i> </small>
+      </a>
+      <a class="item-title" href="{%raw%}{{itemUrl}}{%endraw%}">
+        <h4 class="h4">{%raw%}{{itemTitle}}{%endraw%}</h4>
+      </a>
+      <div class="item-details">
+      {% raw %}
+      {{#if itemOptions}}
+        {{#each itemOptions}}
+        <div class="item-details__row">
+          <span class="item-details__label">{{name}}: </span><span class="item-info__value">{{value}}</span>
+        </div>
+        {{/each}}
+      {{else if variantTitle}}
+        <p>{{variantTitle}}</p>
+      {{/if}}
+      {% endraw %}
+      </div>
+    </header>
+      <div class="cart-drawer-item__details">
+
+        <div data-label="{{ 'cart.label.quantity' | t }}" class="item-edits">
+          <div class="quantity-select" data-async-module="quantity-selector">
+            <label for="Quantity">{{ 'cart.label.quantity' | t }}</label>
+            <div class="quantity-wrapper__inner">
+              <div class="quantity-adjust adjust-minus">-</div>
+              <input type="number" name="updates[]" id="updates_{%raw%}{{itemKey}}{%endraw%}" value="{%raw%}{{itemQuantity}}{%endraw%}" min="0" class="quantity"
+                data-quantity="" aria-label="{{ 'cart.general.item_quantity' | t }}">
+              <div class="quantity-adjust adjust-plus">+</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="item-total" data-label="{{ 'cart.label.total' | t }}">
+          <span class="total-price" data-price-total="">{%raw%}{{{itemTotal}}}{%endraw%}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>

@@ -1,0 +1,14 @@
+.mobile-image {
+  width: 100%;
+  height: auto;
+  display: none;
+    @include media-query($small) {
+      display: block;
+    }
+  &+.desktop-image {
+    @include media-query($small) {
+      display: none;
+    }
+  }
+}
+
