@@ -1,6 +1,5 @@
-<a data-aos="fade-up" %{ if delay %}data-aos-delay="{{delay}}" {%endif%} href="{{ product.url | within: collection }}" class="product-grid-item grid-item {% if simplify == true %} simplify {%endif%} {% if hover_details == true  %} detail-on-hover {%endif%} {% unless product.available %} sold-out {% endunless %} font--{{settings.product_font}}">
+<a data-aos="fade-up" {% if delay %}data-aos-delay="{{delay}}" {%endif%} href="{{ product.url | within: collection }}" class="product-grid-item grid-item {% if simplify == true %} simplify {%endif%} {% if hover_details == true  %} detail-on-hover {%endif%} {% unless product.available %} sold-out {% endunless %} font--{{settings.product_font}}">
   {% include 'grid-item-image' %}
-
   <div class="product-details grid-item__details">
   {% comment %} Visible tags -- above {% endcomment %}
   {% if settings.tag_location == 'above'%}
@@ -12,21 +11,10 @@
   {% if settings.collection_swatches != 'disabled' %}
     <div class="collection-swatches style--{{settings.collection_swatches}}">{% include 'grid-swatches' %}</div>
   {%endif%}
+
   {% comment %} Visible "3-pack" text, for instance {% endcomment %}
-  {% if product.options_with_values.size > 0 and settings.enable_visible_quantity == true %}
-    {% for option in product.options_with_values %}
-     {% if option.name  == 'quantity' or option.name == 'Quantity' %}
-     <div class="visible-quantity">
-      <span class="visible-quantity__before">{{settings.visible_quantity_text}}</span>
-      {% assign optionsize = option.values.size | minus: 2 %}
-      {% for value in option.values  %}
-      <span class="visible-quantity__quantity">{{value}}{% if settings.visible_quantity_add_s == true %}s{%endif%}</span>
-      {% if forloop.index0 < optionsize %} , {%elsif forloop.index0 == optionsize %} & {%endif%}
-      {%endfor %}
-     </div>
-     {%endif %}
-    {%endfor %}
-  {%endif%}
+  {% render 'visible-quantity' with product: product  %}
+
   {% comment %} Pricing   {% endcomment %}
   {% if show_price == true %}
     <span class="price-outer">
@@ -45,7 +33,7 @@
     </span>
   {%endif%}
   {% comment %} tags at bottom {% endcomment %}
-  {% if settings.tag_location == 'below'%}{% include 'visible-tags'%}{%endif%}
+  {% if settings.tag_location == 'below'%}{% include 'visible-tags'%} {%endif%}
 
   </div>{% comment %} end details  {% endcomment %}
 </a>

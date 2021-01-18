@@ -1,4 +1,3 @@
-
 <style>
 @font-face  {
   font-family: "fontello";
@@ -36,6 +35,7 @@
     --border-thickness-big: {{ settings.border_thickness | times: 2}}px;
     --border-radius-small: {{ settings.border_roundness | times: 0.5 }}px;
     --border-radius-big: {{ settings.border_roundness | times: 2 }}px;
+    --heading-spacing: {{settings.header_spacing | minus: 3 | times: 0.02 }}em;
 
 
     --color-accent: {{ settings.color_accent }};

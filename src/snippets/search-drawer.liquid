@@ -13,7 +13,7 @@
 
     <button data-search-button type="submit" class="simple">
       <i class="icon-search"></i>
-      <span class="{% unless settings.include_icon_text == true %}sr{%endunless%} icon-label">
+      <span class="{% unless show_text == true %}sr{%endunless%} icon-label">
       {{ 'general.search.submit' | t}}
       </span>
     </button>

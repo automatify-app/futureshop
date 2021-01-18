@@ -1,10 +1,6 @@
-<button class="mobile-nav-toggle menu-icon">
-<span class="opener menu-icon">
-  <i class="opener icon-menu" aria-label="open menu"></i >
-  {% if settings.include_icon_text == true %}<span>Menu </span>{%endif%}
-</span>
-<span class="closer">
-  <i class="closer icon-times"></i aria-label="open menu">
-  {% if settings.include_icon_text == true %}<span>Close </span>{%endif%}
-</span>
+<button class="mobile-nav-toggle mobile-icon menu-icon">
+  <span class="opener">
+    <i class="icon-menu" aria-label="open menu"></i >
+    {% if settings.mm_show_menu_text == true %}<span class="icon-label">Menu </span>{%endif%}
+  </span>
 </button>

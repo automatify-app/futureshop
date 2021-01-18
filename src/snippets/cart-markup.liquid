@@ -4,7 +4,7 @@
     {% if cart.item_count > 0 %}
     <div class="cart-items" data-cart-items-count>{{ cart.item_count }}</div>
     {%endif%}
-    <span class="{% unless settings.include_icon_text == true %}sr {%endunless%} icon-label">
+    <span class="{% unless show_text == true %}sr {%endunless%} icon-label">
     {{ 'cart.general.title' | t }}
     </span>
   </a>

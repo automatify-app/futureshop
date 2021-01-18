@@ -19,7 +19,7 @@
           {% include 'responsive-image' with image:slide.settings.logo, max_width: slide.settings.logo_max_width, max_height: 1200 %}
         </div>
         {% elsif slide.settings.heading != blank %}
-          <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="main-header common-header__heading">{{ slide.settings.heading | escape }}</h2>
+          <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="heading common-header__heading">{{ slide.settings.heading | escape }}</h2>
         {%endif%}
         {% if slide.settings.subtitle != blank %}
           <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__subtitle">{{ slide.settings.subtitle | escape }}</h4>

@@ -4,7 +4,7 @@
   right: 0;
   height: 100%;
   width: 0;
-overflow: visible;
+  overflow: visible;
   z-index: -9999;
   &[data-offscreen="left"] {
     left: 0;
@@ -38,6 +38,8 @@ overflow: visible;
     height: calc(var(--vh, 1vh) * 100);
     z-index: 10;
     top:0;
+
+
 
     &::before {
       @extend %psuedo;
@@ -73,3 +75,49 @@ overflow: visible;
     }
 
 }
+
+$headerPadding: 25px;
+ button.cart-drawer__closer {
+      flex: 0 0 auto;
+      appearance: none;
+      border: 0px solid transparent;
+      background: transparent;
+      position: relative;
+      width: $headerPadding*2;
+      height: $headerPadding*2 + 14px;
+      transition: transform 200ms $ease;
+      backface-visibility: hidden;
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      &::before, &::after {
+        @extend %psuedo;
+        content:'';
+        height: 14px;
+        width: 14px;
+        background: $color-drawer-text;
+        height: 2px;
+        top: 50%;
+        left: 50%;
+        margin: -1px 0 0 -7px;
+        transform-origin: 50% 50%;
+        transition: transform 200ms $ease;
+        backface-visibility: hidden;
+      }
+      &::before {
+        transform: rotate(-45deg)
+      }
+      &::after {
+        transform: rotate(45deg)
+      }
+      &:hover {
+        transform: translateY(-2px);
+        &::before {
+          transform: rotate(-47deg)
+        }
+        &::after {
+          transform: rotate(47deg)
+        }
+      }
+    }

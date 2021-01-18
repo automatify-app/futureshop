@@ -1,4 +1,15 @@
-<div style="background-color: {{slide.settings.background_color}}; color: {{slide.settings.text_color}}" class="slideshow-slide swiper-slide video-slide">
+<div  class="slideshow-slide slide--{{slide.id}} swiper-slide video-slide style--{{slide.settings.content_style}}">
+ <style>
+    .slide--{{slide.id}} {
+      background-color: {{slide.settings.background_color}}; color: {{slide.settings.text_color}}
+    }
+    {% if slide.settings.content_style == 'boxed' %}
+    .slide--{{slide.id}} .slide-content {
+      background-color: {{slide.settings.background_color}}; color: {{slide.settings.text_color}}
+    }
+
+    {%endif%}
+  </style>
   {% include 'vidbox' with video_url: slide.settings.url, fallback_gif: slide.settings.fallback_gif, fallback_image: slide.settings.image , overlay: slide.settings.overlay_op, start_time: slide.settings.start_time %}
   {% unless background == true %}
     {% include 'slide-content' %}

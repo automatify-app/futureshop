@@ -17,9 +17,14 @@ nav.breadcrumb {
   &+.product-grid  {
     margin-top: 0;
   }
+  span {
+    display: inline-block;
+    font-size: 0.9em;
+  }
   a {
     text-decoration: none;
     color: var(--color-body-text);
+    display: inline-block;
     font-weight: 700;
     text-transform: uppercase;
     @include transition(transform);

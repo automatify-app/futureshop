@@ -14,6 +14,7 @@
   <div class="collection-list__grid style--{{section.settings.layout}}" data-item-count="{{section.blocks.size}}">
 
   {% for block in section.blocks %}
+   {%- assign image_object = false -%}
     {%- assign collection = collections[block.settings.collection] -%}
 
     <a href="{{ block.settings.url | default: collection.url }}" class="collection-list-item collection-block" {{ block.shopify_attributes }}>
@@ -45,7 +46,7 @@
           {% if block.settings.pre_header != blank %}
           <h4 class="h5 label">{{block.settings.pre_header}}</h5>
         {%endif%}
-        <h3 class="h3 main-header font--extra">{{ collection.title | default: default_label }}</h3>
+        <h3 class="h3 heading font--extra">{{ collection.title | default: default_label }}</h3>
         {% if block.settings.description  != blank %}
           <h4 class="h5">{{block.settings.description}}</h5>
         {%endif%}

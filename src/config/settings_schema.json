@@ -7,7 +7,6 @@
     "theme_documentation_url": "https://github.com/Shopify/starter-theme",
     "theme_support_url": "https://github.com/Shopify/starter-theme/issues"
   },
-
   {
     "name": "Colors",
     "settings": [
@@ -524,6 +523,115 @@
         "id": "extra_typekit",
         "label": "Typekit/GF Extra Font Family",
         "info": "Usually all lowercase + hyphenated"
+      }
+    ]
+  },
+  {
+    "name" : "Mobile Menu",
+    "settings" : [
+      {
+        "type" : "select",
+        "id" : "mm_behavior",
+        "label" : "Mobile Menu Behavior",
+        "default" : "small",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small Screens"
+          },
+          {
+            "value" : "medium",
+            "label" : "Medium Screens"
+          },
+          {
+            "value" : "always",
+            "label" : "Always Mobile Menu"
+          },
+          {
+            "value" : "disabled",
+            "label" : "No Mobile Menu"
+          }
+        ]
+      },
+      {
+        "type" : "checkbox",
+        "id" : "mm_show_menu_text",
+        "default" : false,
+        "label" : "Show Menu Text"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "mm_show_icon_text",
+        "default" : false,
+        "label" : "Show Icon Text"
+      },
+      {
+        "type" : "select",
+        "id" : "mm_direction",
+        "label" : "Mobile Menu Offscreen Direction",
+        "default" : "right",
+        "options" : [
+          {
+            "value" : "left",
+            "label" : "Left"
+          },
+          {
+            "value" : "right",
+            "label" : "Right"
+          },
+          {
+            "value" : "top",
+            "label" : "Top"
+          },
+          {
+            "value" : "bottom",
+            "label" : "Bottom"
+          },
+          {
+            "value" : "fade",
+            "label" : "Fade In"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "mm_size",
+        "label" : "Mobile Menu Size",
+        "default" : "standard",
+        "options" : [
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "full",
+            "label" : "Full"
+          }
+        ]
+      },
+       {
+        "type" : "checkbox",
+        "id" : "mm_account",
+        "default" : true,
+        "label" : "Show Account"
+      },
+       {
+        "type" : "checkbox",
+        "id" : "mm_socials",
+        "default" : true,
+        "label" : "Show Socials"
+      },
+       {
+        "type" : "checkbox",
+        "id" : "mm_search",
+        "default" : true,
+        "label" : "Show search"
+      },
+       {
+        "type" : "checkbox",
+        "id" : "mm_cart",
+        "default" : true,
+        "label" : "Show cart"
       }
     ]
   },

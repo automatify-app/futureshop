@@ -1,0 +1,46 @@
+
+{% capture menu_extras %}
+  {% if settings.mm_search == true %}
+
+      <li class="menu-icon" >
+          {% render 'search-drawer' with show_text: settings.mm_show_icon_text %}
+      </li>
+    {%endif%}
+
+    {% if settings.mm_account == true %}
+    <li class="menu-icon">
+      {% render 'account-markup' with show_text: settings.mm_show_icon_text %}
+    </li>
+  {%endif%}
+
+  {% if settings.mm_socials == true  %}
+  <li class="menu-icon mobile-socials">
+      {% render 'social-icons' with show_text: settings.mm_show_icon_text %}
+    </li>
+    {%endif%}
+{% endcapture %}
+
+<div class="mobile-menu shop-drawer " data-mm-behavior="{{settings.mm_behavior}}" data-module="mobile-menu" data-mm-size="{{settings.mm_size}}" data-mm-direction="{{mm_direction}}">
+  <div class="shop-drawer__background" data-drawer-closer></div>
+  <div class="shop-drawer__content mobile-menu__content mm-width--{{settings.mobile_menu_width | default: 'normal'}}">
+  <button class="cart-drawer__closer" data-drawer-closer aria-label="Close Menu"></button>
+  <nav class="mobile-menu__inner weight--{{settings.font_weight_menu | default: 'bold'}} style--{{settings.font_style_menu}}">
+    <ul class="main-menu">
+    {% if settings.mm_cart == true %}
+      <li class="menu-icon cart-icon">
+        {% render 'cart-markup' with show_text: settings.mm_show_icon_text %}
+      </li>
+    {%endif%}
+        {% for link in menu.links %}
+          {% assign isbacklink = '' %}
+          {% if section.settings.back_to_site == 'first' and forloop.index <= 1%} {% assign isbacklink = 'back-link' %}{%endif%}
+          {% if section.settings.back_to_site == 'last' and forloop.index >= linklists[section.settings.menu].links.size %} {% assign isbacklink = 'back-link' %}{%endif%}
+          {% include 'menu-li'%}
+        {% endfor %}
+
+        {{menu_extras}}
+    </ul>
+
+  </nav>
+  </div>
+</div>

@@ -2,7 +2,7 @@
 
 // Configuration file for all things Slate.
 // For more information, visit https://github.com/Shopify/slate/wiki/Slate-Configuration
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const path = require('path');
 
@@ -18,9 +18,6 @@ module.exports = {
         chunks: 'async',
         minChunks: 2,
       },
-    },
-    plugins: [
-      new BundleAnalyzerPlugin()
-    ]
+    }
   },
 };

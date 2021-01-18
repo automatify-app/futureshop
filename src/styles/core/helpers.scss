@@ -27,6 +27,11 @@ body.hover-focus-hidden *:focus {
   outline: none;
 }
 
+body * {
+  transform-origin: 50% 50%;
+  backface-visibility: hidden;
+}
+
 // Only show when JS is not supported
 .no-js:not(html) {
   display: none;

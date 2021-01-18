@@ -16,7 +16,6 @@
 Starting variables
 {%- endcomment -%}
 {%- capture header_layout -%}{%- unless settings.header_layout -%}{%- if section.settings.layout_header != blank -%}{{section.settings.layout_header}}{%-endif-%}{%- else -%}{{settings.header_layout}}{%- endunless -%}{%- endcapture -%}
-
 {%- capture header_fixed -%}{% if section.settings.header_fixed != blank %}{{header_fixed}}{%endif%}{% if settings.header_fixed != blank %}{{settings.header_fixed}}{%endif%}{%- endcapture -%}
 
 {%- unless settings.overlay_header -%}{% if section.settings.overlay_header %}{% assign overlay_header = section.settings.overlay_header%}{%endif%}{% else %}{% assign overlay_header = settings.overlay_header %}{%-endunless-%}
@@ -31,7 +30,7 @@ Starting variables
 
 {% capture search_markup %}
   {% unless settings.search_layout == disabled  %}
-    {% render 'search-drawer' %}
+    {% render 'search-drawer' with show_text: settings.include_icon_text %}
   {%endunless %}
 {%endcapture %}
 
@@ -75,7 +74,10 @@ Starting variables
     {% else %}
       </div>
     {% endif %}
-    {% if settings.social_layout ==  'below-logo'%}{%include 'social-icons' %}{%endif%}
+
+    {% if settings.social_layout ==  'below-logo'%}
+      {%include 'social-icons' %}
+    {%endif%}
   </header>
 {%endcapture %}
 
@@ -85,40 +87,45 @@ Starting variables
   {% if settings.search_layout == 'after-menu' %}
     {% assign is_first_extra = false %}
       <li class="menu-icon first-extra" >
-        {{search_markup}}
+        {{search_markup }}
       </li>
     {%endif%}
 
     {% if section.settings.layout_account == 'after-menu' %}
       <li class="menu-icon {% if is_first_extra == true %} first-icon{% assign is_first_extra = false %}{%endif%}">
-        {% render 'account-markup' %}
+        {% render 'account-markup' with show_text: settings.include_icon_text%}
       </li>
   {%endif%}
   <li class="menu-icon {% if is_first_extra == true %} first-icon   {% assign is_first_extra = false %}{%endif%}">
-      {% render 'cart-markup' %}
+      {% render 'cart-markup' with show_text: settings.include_icon_text %}
     </li>
 {% endcapture %}
 
+
+  {% comment %} Sidebar header above {% endcomment %}
 {% if header_layout == 'sidebar-header' %}
-<section class="header-above">
-  {% render 'nav-toggle' %}
-  {% if settings.search_layout != 'disabled' %}
-    {{search_markup}}
-  {%endif%}
-  {{header_markup}}
-  {% if settings.accounts_layout != 'disabled' %}
-    {% render 'account-markup' %}
-  {%endif%}
-  {% if settings.cart_layout != 'disabled' %}
-  {% render 'cart-markup' %}
-  {%endif%}
-</section>
+  <section class="header-above">
+    {% render 'nav-toggle' with show_text: settings.include_icon_text %}
+    {% if settings.search_layout != 'disabled' %}
+      {{search_markup}}
+    {%endif%}
+    {{header_markup}}
+    {% if settings.accounts_layout != 'disabled' %}
+      {% render 'account-markup' with show_text: settings.include_icon_text %}
+    {%endif%}
+    {% if settings.cart_layout != 'disabled' %}
+    {% render 'cart-markup' with show_text: settings.include_icon_text%}
+    {%endif%}
+  </section>
 {%endif%}
+
+
+
+
 {% comment %} Laying out everything {% endcomment %}
 <section data-section-id="{{ section.id }}" class="site-header__wrap {% unless header_layout contains 'sidebar' %}fixed--{{header_fixed}}{%endunless%} {% if settings.overlay_shadow  == true%} box-shadow {%endif%} {% if section.settings.expand_logo  == true%} expand-logo {%endif%} {% if overlay_header  == true %} overlay-header {%endif%}" data-section-type="header" style="{% if section.settings.bg_color != blank and settings.texture_header != true %}background-color: {{section.settings.bg_color}}; {%endif%}{% if section.settings.text_color != blank%}color: {{section.settings.text_color}};{% endif %}">
-<div class="site-header__inner {% if section.settings.layout_header == 'above' %}force-wrap{%endif%} mobile--{{section.settings.layout_mobile}} {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%} socials--{{settings.social_layout}}">
+<div class="site-header__inner {% if section.settings.layout_header == 'above' %}force-wrap{%endif%} mobile--{{settings.mm_behavior}} socials--{{settings.social_layout}}">
   <div class="site-header__inner-wrap  layout--{{header_layout}} {% if header_layout == 'above' %} header-centered {%endif%}">
-
     {% if header_layout == 'stacked' %}
       <div class="header-fullwidth">
       { {header_markup}}
@@ -148,9 +155,10 @@ Starting variables
     <div class="nav-inner__background"></div>
     <div class="nav-inner__wrap {% if settings.social_layout == 'after-menu' %}  has-socials {%endif%} font--{{settings.font_family_menu | default: 'heading'}} weight--{{settings.font_weight_menu | default: 'bold'}} style--{{settings.font_style_menu | default: 'standard'}}" >
 
-    <ul class="main-menu">
 
     {% assign menu = linklists[section.settings.menu] %}
+  {% unless settings.mm_behavior == 'always' %}
+    <ul class="main-menu">
 
 
   {% if header_layout contains 'centered' %}
@@ -158,57 +166,56 @@ Starting variables
       {% assign center_style = "squished" %}
     {%endif%}
 
+    {% comment %} Halving the menu for split around the logo {% endcomment %}
     <div class="nav-halves style--{{center_style | default: 'spaced'}}">
-
+    {% comment %} Setup menu_count for halving {% endcomment %}
     {% assign menu_count = menu.links.size %}
     {% assign menu_break = menu_count | divided_by: 2 %}
+    {% comment %} Setting things {% endcomment %}
     {% if section.settings.header_nudge == 'less' or settings.header_nudge == 'less' %} {%assign menu_break = menu_break | minus: 1 %}{%elsif section.settings.header_nudge == 'more' or settings.header_nudge == 'more' %}{%assign menu_break = menu_break | plus: 1 %}{%endif%}
-
-    {% if section.settings.layout_search != 'menu'  or section.settings.layout_cart != 'menu' %}
-      {% assign menu_break = menu_break | plus : 1 %}  {%comment %} Want one less on the left if there are extras {%endcomment%}
-    {%endif%}
+    {% if section.settings.layout_search != 'menu'  or section.settings.layout_cart != 'menu' %}{% assign menu_break = menu_break | plus : 1 %}  {%comment %} Want one less on the left if there are extras {%endcomment%}{%endif%}
+    {% comment %} Index fix for the loop {% endcomment %}
     {% assign menu_count = menu_count | minus: 1 %} {%comment %} fix for the loop! {%endcomment%}
 
-    <div class="nav-half nav-half__first">
-      {% for i in (0 ..menu_break) %}
-      {% assign link = menu.links[i] %}
-        {% assign isbacklink = '' %}
-        {% if section.settings.back_to_site == 'first' and i == 0 %} {% assign isbacklink = 'back-link' %}{%endif%}
-        {% include 'menu-li'%}
-      {%endfor %}
-    </div>
-    <div class="nav-halves__logo">{{header_markup}}</div>
-    <div class="nav-half nav-half__last">
-    {% assign continue = menu_break | plus: 1 %}  {%comment %} Start after where we left off {%endcomment%}
-        {% for i in (continue .. menu_count) %}
-          {% assign link = menu.links[i] %}
+      {% comment %} First half {% endcomment %}
+      <div class="nav-half nav-half__first">
+        {% for i in (0 ..menu_break) %}
+        {% assign link = menu.links[i] %}
           {% assign isbacklink = '' %}
-          {% if section.settings.back_to_site == 'last' and i == menu_count%} {% assign isbacklink = 'back-link' %}{%endif%}
+          {% if section.settings.back_to_site == 'first' and i == 0 %} {% assign isbacklink = 'back-link' %}{%endif%}
           {% include 'menu-li'%}
-      {%endfor%}
-      {% if section.settings.layout_search == 'menu'  or section.settings.layout_cart == 'menu' %}
-        <div class="nav-half__extras">
-            {{menu_extras}}
-        </div><!-- end extras -->
-      {% endif%}
-
-
-    </div>
+        {%endfor %}
+      </div>
+      {% comment %} Logo {% endcomment %}
+      <div class="nav-halves__logo">{{header_markup}}</div>
+      {% comment %} Last half {% endcomment %}
+      <div class="nav-half nav-half__last">
+      {% assign continue = menu_break | plus: 1 %}  {%comment %} Start after where we left off {%endcomment%}
+          {% for i in (continue .. menu_count) %}
+            {% assign link = menu.links[i] %}
+            {% assign isbacklink = '' %}
+            {% if section.settings.back_to_site == 'last' and i == menu_count%} {% assign isbacklink = 'back-link' %}{%endif%}
+            {% include 'menu-li'%}
+        {%endfor%}
+        {% if section.settings.layout_search == 'menu'  or section.settings.layout_cart == 'menu' %}
+          <div class="nav-half__extras">
+              {{menu_extras}}
+          </div><!-- end extras -->
+        {% endif%}
+      </div>
     </div><!-- end nav-halves -->
+
     {%else %}{%comment%}If not menu-centered {%endcomment%}
-
-
-
         {% for link in menu.links %}
           {% assign isbacklink = '' %}
           {% if section.settings.back_to_site == 'first' and forloop.index <= 1%} {% assign isbacklink = 'back-link' %}{%endif%}
           {% if section.settings.back_to_site == 'last' and forloop.index >= linklists[section.settings.menu].links.size %} {% assign isbacklink = 'back-link' %}{%endif%}
           {% include 'menu-li'%}
-
         {% endfor %}
           {{menu_extras}}
         {%endif%} {%comment%}End menu-centered conditional {%endcomment%}
       </ul>
+    {%endunless %} {% comment %} End 'menu_behavior' conditional {% endcomment %}
 
 
       {% if section.settings.layout_header != 'menu-centered' and settings.social_layout == 'after-menu' %}  {%comment%}Disable if menu-centered {%endcomment%}
@@ -235,12 +242,11 @@ Starting variables
     {% if header_layout contains 'sidebar' %}
     <div class="mobile-icons">
     {%endif%}
-    <div class="mobile-cart menu-icon">
-      {% render 'cart-markup' %}
+    <div class="mobile-cart menu-icon mobile-icon">
+      {% render 'cart-markup' with show_text: settings.mm_show_icon_text %}
     </div>
     {% render 'nav-toggle' %}
         {% if header_layout contains 'sidebar' %}
-
     </div>
     {%endif%}
   </div>
@@ -253,7 +259,7 @@ Starting variables
 </div>
 </section>
 
-
+{% include 'mobile-menu' with menu: menu %}
 
 
 {% schema %}
@@ -347,8 +353,6 @@ Starting variables
         "id": "expand_logo",
         "label": "Expand logo?",
         "default": false
-
-
     }, {
         "type": "header",
         "content": "Menu"
@@ -390,16 +394,6 @@ Starting variables
     }, {
         "type": "header",
         "content": "Mobile"
-    }, {
-        "type": "checkbox",
-        "id": "enable_mobile_menu",
-        "label": "Enable Mobile Menu?",
-        "default": true
-    }, {
-        "type": "checkbox",
-        "id": "mobile_socials",
-        "label": "Mobile Menu Socials?",
-        "default": true
     }, {
         "type": "checkbox",
         "id": "mobile_text",

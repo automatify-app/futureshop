@@ -1,3 +1,14 @@
+.footer-header {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  opacity: 0.5;
+  margin: 0em auto 0.65em;
+  text-align: inherit;
+  display: block;
+  width: 100%;
+}
+
 #main-footer {
   // background: $color-drop;
   color: inherit;
@@ -127,12 +138,7 @@
     align-items: center;
     justify-content: center;
     .footer-header {
-      font-size: 1.1em;
-      font-weight: 700;
-      opacity: 0.5;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin: 0 8px 0;
+
     }
     ul.footer-menu {
       margin: 0;
@@ -171,11 +177,7 @@
       opacity: 1;
     }
   }
-  h4 {
-    opacity: 0.75;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-  }
+
   h5 {
     text-align: left;
     font-weight: normal;
@@ -200,12 +202,7 @@
     height: 2px;
     background: rgba(white, 0.5);
   }
-  h4 {
-    margin: 0em auto 0.65em;
-    opacity: 0.7;
-    font-size: 21px;
-    text-transform: none;
-  }
+
   p {
     margin: 0.6em 0;
     display: block;
@@ -364,7 +361,7 @@ ul.footer-menu {
 }
 .fs-link {
    svg {
-    max-width: 52px;
+    max-width: 45px;
     margin: 12px auto;
     width: 15vw;
     path, g {
@@ -598,3 +595,8 @@ form#footer-newsletter {
 }
 
 
+
+
+.footer-col .signup-form__inner {
+  min-height: 0;
+}

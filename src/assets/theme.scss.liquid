@@ -1,17 +1,5 @@
-/**
- * Insert your styles with Liquid below.
- *
- * Import additional stylesheets into this sheet using CSS imports:
- * @import url('./global/form.scss');
- */
-
-
  ///SWATCH COLORS
  //create object from liquid form
-
-
-
-
 {% assign swatch_object = settings.swatch-hexes | split: '\n' %}
 {% assign swatch_hexes = settings.swatch-hexes | strip | strip_html | newline_to_br | split: '<br />' %}
 {% for hex in swatch_hexes %}
@@ -57,27 +45,52 @@ body {
 }
 
 
-.main-header {
+.heading, .main-header {
   {% case settings.header_size %}
     {% when 'small' %}
       font-size: calc(2rem + 1vw);
       @media (min-width: 1200px) {
         font-size: 45px;
       }
+
+      &.mega {
+        font-size: calc(2.5rem + 2vw);
+         @media (min-width: 1200px) {
+        font-size: 55px;
+      }
+      }
     {% when 'standard' %}
       font-size: calc(2.5rem + 2vw);
       @media (min-width: 1200px) {
         font-size: 55px;
+      }
+      &.mega {
+        font-size: calc(3rem + 3vw);
+        @media (min-width: 1200px) {
+          font-size: 65px;
+        }
       }
     {% when 'large' %}
       font-size: calc(3rem + 3vw);
       @media (min-width: 1200px) {
         font-size: 65px;
       }
+      &.mega {
+         font-size: calc(4rem + 4vw);
+        @media (min-width: 1200px) {
+          font-size: 80px;
+        }
+      }
     {% when 'huge' %}
       font-size: calc(4rem + 4vw);
       @media (min-width: 1200px) {
         font-size: 80px;
+      }
+      &.mega {
+        font-size: calc(5rem + 5vw);
+        @media (min-width: 1200px) {
+          font-size: 90px;
+        }
       }
 
   {%endcase %}
@@ -120,7 +133,7 @@ body {
     font-weight: {{ settings.font_extra.weight }};
   {%endcase %}
 
-    {% case settings.label_size %}
+  {% case settings.label_size %}
       {% when 'xs' %}
        font-size: 14px;
       @media (min-width: 1100px) {
@@ -212,77 +225,3 @@ h6.visible-tag  {
   color: {{settings.tag_color}};
 }
 {%endif%}
-
-.stars, .twinkling, .clouds {
-	position:absolute;
-	display:block;
-	top:0; bottom:0;
-	left:0; right:0;
-  width:100%; height:100%;
-  background-repeat: repeat;
-}
-
-.space-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  &::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    content:'';
-    left: 0;
-    background: linear-gradient(to bottom right, blue, transparent 30%, transparent 60%, orange);
-    opacity: 0.2;
-    z-index: 2;
-  }
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    content:'';
-    left: 0;
-    background: radial-gradient(lightblue, transparent);
-    opacity: 0.2;
-    z-index: 2;
-  }
-}
-
-.stars {
-	z-index: 0;
-	background: #000 url({{'stars.png' | asset_url }}) repeat top center;
-}
-
-.twinkling{
-	z-index: 1;
-	background:transparent url({{'twinkling.png' | asset_url }}) repeat top center;
-  animation: move-twink-back 300s linear infinite;
-  width: calc(20000px + 100vw);
-  height: calc(10000px + 100vh);
-}
-
-.clouds{
-  z-index: 2;
-   width: calc(5000px + 100vw);
-  background:transparent url({{'clouds.png' | asset_url }}) repeat top center;
-  animation: move-clouds-back 200s linear infinite;
-}
-
-@keyframes move-twink-back {
-	from {transform: translate3d(0,0,0)}
-	to {transform: translate3d(-20000px, -10000px, 0)}
-}
-
-@keyframes move-clouds-back {
-	from {transform: translate3d(0,0,0)}
-	to {transform: translate3d(-5000px, 0, 0)}
-}

@@ -76,7 +76,7 @@
         </div>}
         {% elsif block.type == 'newsletter' and section.settings.email_above != true %}
           <div class="footer-col footer-{{block.type}} align--{{block.settings.text_align}}">
-          {% if block.settings.title != blank %}<h4 class="footer-header">{{block.settings.title}}</h4>{%endif%}
+          {% if block.settings.title != blank %}<h4 class="footer-header label">{{block.settings.title}}</h4>{%endif%}
         {% include 'signup-form'%}
         {% elsif block.type == 'menu' %}
           {% include 'footer-block-menu' %}

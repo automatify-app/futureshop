@@ -13,8 +13,9 @@ import queryString from 'query-string';
 import AlertDrawer from '../components/alert-drawer';
 
 import debounce from 'lodash.debounce';
+
 import '../../styles/theme.scss';
-import '../../styles/theme.scss.liquid';
+// import '../../styles/theme.scss.liquid';
 
 import { focusHash, bindInPageLinks } from '@shopify/theme-a11y';
 
@@ -54,10 +55,10 @@ class Theme {
   init() {
     AOS.init({
       once: true,
-      offset: 0,
+      offset: 10,
     });
 
-    this.mobileMenuInit();
+    // this.mobileMenuInit();
     this.initHeader();
     this.initRellaxImages();
     this.initModules();
@@ -101,20 +102,7 @@ class Theme {
     window.addEventListener('mouseover', removeFocus);
   }
 
-  mobileMenuInit() {
-    /// The only JS to work with the mobile menu
-    const menuToggler = document.querySelector('.mobile-nav-toggle');
-    const menuBg = document.querySelector('.nav-inner__background');
-    function toggleMenu() {
-      if (document.body.classList.contains('nav-open')) {
-        document.body.classList.remove('nav-open');
-      } else {
-        document.body.classList.add('nav-open');
-      }
-    }
-    menuToggler.addEventListener('click', toggleMenu);
-    menuBg.addEventListener('click', toggleMenu);
-  }
+
 
   checkForHero() {
     var allImages = this.main.querySelectorAll('.image-section');
@@ -199,12 +187,14 @@ class Theme {
     }
   }
   headroomHandleOffsets() {
+    this.offset = this.header.getBoundingClientRect().height;
     this.topBar = document.querySelector('.announcement-bar__inner');
     if (this.topBar) {
       this.offset = 0 + this.topBar.getBoundingClientRect().height;
     }
   }
   headroomInit() {
+    this.headroomHandleOffsets();
     var myHeadroom = new Headroom(this.header, {
       tolerance: {
         down: 22,
@@ -297,7 +287,7 @@ class Theme {
     }
     if (this.rellaxFloats) {
       if (this.rellaxFloats.length > 0) {
-        rellaxFloats.forEach((el) => {
+        this.rellaxFloats.forEach((el) => {
           let offset = el.parentElement.scrollTop;
           var float = new Rellax(el, {
             center: true,

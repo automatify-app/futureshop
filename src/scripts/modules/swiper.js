@@ -69,10 +69,11 @@ export default class MySwiper {
       };
       var delay = parseInt(el.getAttribute('data-swiper-speed'));
       if (delay >= 1) {
-        autoplayObj.delay = delay * 1000
+        autoplayObj.delay = delay * 500
       } else {
         autoplayObj = false;
       }
+      console.log(autoplayObj);
 
       var autoHt = true;
       if (el.getAttribute('data-auto-height') == 'false') {
@@ -97,7 +98,7 @@ export default class MySwiper {
       })
      setTimeout( () => {
         mySwiper.updateSize();
-      }, 400)
+      }, 600)
     }
   }
 }

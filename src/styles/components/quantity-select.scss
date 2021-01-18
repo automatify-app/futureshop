@@ -3,7 +3,7 @@ $productformHeight: 40px;
 .quantity-select {
   position: relative;
   margin: 0;
-  width: 120px;
+  // width: 90px;
 
   overflow: hidden;
   // max-height: 40px;
@@ -24,14 +24,20 @@ $productformHeight: 40px;
     display: flex;
     height: 100%;
     max-height: 40px;
-    width: 120px;
+    width: 90px;
+    @include media-query($tiny) {
+      width: 80px;
+    }
     position: relative;
     border-radius: $border-radius-small;
      border: 1px solid currentColor;
   }
   .quantity-adjust {
     // background: rgb(82, 82, 82);
-    flex:0 0 30px;
+    flex:0 0 20px;
+    @include media-query($tiny) {
+      flex: 0 0 15px;
+    }
 
     color: inherit;
     line-height: $productformHeight;
@@ -54,8 +60,11 @@ $productformHeight: 40px;
     appearance: none;
     -webkit-appearance: none;
     display: block;
-    flex: 0 1 95px;
-    min-width: 60px;
+    flex: 0 1 75px;
+    min-width: 35px;
+    @include media-query($tiny) {
+      flex: 0 0 45px;
+    }
     box-sizing: border-box;
     appearance: none;
     display: inline-block;

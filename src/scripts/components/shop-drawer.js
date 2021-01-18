@@ -13,13 +13,14 @@ class ShopDrawer {
     this.closers = this.drawer.querySelectorAll('[data-drawer-closer]');
     this.animator; //For timeouts
     this.vh = this.setVh.bind(this);
+
     this.init();
   }
 
   init() {
     this.setupListeners();
-    this.closeMyDrawer = this.closeDrawer.bind(this);
-    this.openMyDrawer = this.openDrawer.bind(this);
+    this.close = this.closeDrawer.bind(this);
+    this.open = this.openDrawer.bind(this);
   }
 
   setupListeners() {
@@ -27,7 +28,7 @@ class ShopDrawer {
     if (this.closers.length >= 0) {
       this.drawer.addEventListener('click', function(e) {
         if (e.target.closest('[data-drawer-closer]')) {
-          self.closeMyDrawer();
+          self.close();
           e.preventDefault();
         }
       });

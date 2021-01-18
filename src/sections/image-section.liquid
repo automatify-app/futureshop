@@ -1,5 +1,5 @@
 {%capture overlay_type %}{% if section.blocks.size == 1 %}{{section.blocks[0].type}}{%else%}slideshow{%endif%}{%endcapture%}
-<div class="overlay-section  style--{{section.settings.content_style}} type--{{overlay_type}} {% if section.settings.full_width == true %} full-width {%endif%} {{section.settings.anchor_classes}}" id="{{section.settings.anchor_id}}">
+<div class="overlay-section   type--{{overlay_type}} {% if section.settings.full_width == true %} full-width {%endif%} {{section.settings.anchor_classes}}" id="{{section.settings.anchor_id}}">
   {% if overlay_type == 'banner' %}
     {%assign slide = section.blocks[0] %}
     {% include 'slide-banner' %}
@@ -71,22 +71,7 @@
         "type" : "header",
         "content" : "Slideshow Settings"
       },
-      {
-        "type" : "select",
-        "id" : "content_style",
-        "label" : "Content Style",
-        "default"  :"centered",
-        "options" : [
-          {
-            "value" : "centered",
-            "label" : "Centered (no background)"
-          },
-          {
-            "value" : "boxed",
-            "label" : "Boxed (Bottom Left)"
-          }
-        ]
-      },
+
       {
         "type" : "checkbox",
         "id" : "full_width",
@@ -284,6 +269,22 @@
             "type" : "header",
             "content" : "content"
           },
+          {
+        "type" : "select",
+        "id" : "content_style",
+        "label" : "Content Style",
+        "default"  :"centered",
+        "options" : [
+          {
+            "value" : "centered",
+            "label" : "Centered (no background)"
+          },
+          {
+            "value" : "boxed",
+            "label" : "Boxed (Bottom Left)"
+          }
+        ]
+      },
           {
         "type" : "select",
         "id" : "text_align",
@@ -567,6 +568,22 @@
             "type" : "header",
             "content" : "Content"
           },
+          {
+        "type" : "select",
+        "id" : "content_style",
+        "label" : "Content Style",
+        "default"  :"centered",
+        "options" : [
+          {
+            "value" : "centered",
+            "label" : "Centered (no background)"
+          },
+          {
+            "value" : "boxed",
+            "label" : "Boxed (Bottom Left)"
+          }
+        ]
+      },
           {
         "type" : "select",
         "id" : "text_align",

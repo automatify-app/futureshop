@@ -55,17 +55,15 @@ ul.social-wrap {
     &>li>a {
       font-size: 18px;
       i {
-
-        margin: -8px;
-
+        margin: -10px -8px -7px;
       }
       display: flex;
       align-items: center;justify-content: center;
-    border-radius: 5em;
-    overflow: hidden;
-    width: 1.8em;
-    height: 1.8em;
-    padding: 0;
+      border-radius: 5em;
+      overflow: hidden;
+      width: 1.8em;
+      height: 1.8em;
+      padding: 0;
     }
   }
   &.style--circle-border {
@@ -86,7 +84,7 @@ ul.social-wrap {
   }
   &.flip-effect {
     &>li>a {
-      transition: color 400ms 20ms $ease, background-color 400ms 20ms $ease, transform 300ms $ease;
+      transition: color 400ms 20ms $ease, background-color 400ms 20ms $ease, transform 300ms $ease !important;
       &:hover {
         background: var(--text-color);
         color: var(--bg-color);

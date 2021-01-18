@@ -11,7 +11,7 @@ body {
   color: $color-body-text;
 }
 
-
+1
 h1,
 h2,
 h3,
@@ -105,72 +105,12 @@ a:focus {
 }
 
 
-body {
-
-  // &.heading-style--caps {
-  //   h1, .h1,
-  //   h2, .h2,
-  //   h3, .h3,
-  //   h4, .h4,
-  //   h5, .h5,
-  //   h6, .h6 {
-  //     text-transform: uppercase;
-  //     letter-spacing: 0.04em
-  //   }
-  // }
-}
-
-.main-header,
+.heading,
 %mainHeader {
   word-wrap: break-word;
-  letter-spacing: var(--header-spacing);
+  letter-spacing: $heading-spacing;
 }
 
 .label {
   margin: 0.3em auto;
-}
-
-
-body.header-spacing--0 {
-  --header-spacing: -0.08em;
-}
-
-body.header-spacing--1 {
-  --header-spacing: -0.04em;
-}
-
-body.header-spacing--2 {
-  --header-spacing: -0.013em;
-}
-
-body.header-spacing--3 {
-  --header-spacing: 0;
-}
-
-body.header-spacing--4 {
-  --header-spacing: 0.02em;
-}
-
-body.header-spacing--5{
-  --header-spacing: 0.039em;
-}
-
-body.header-spacing--6 {
-  --header-spacing: 0.059em
-}
-
-body.header-spacing--7 {
-  --header-spacing: 0.095em
-}
-
-body.header-spacing--8 {
-  --header-spacing: 0.12em;
-}
-
-body.header-spacing--9 {
-  --header-spacing: 0.15em;
-}
-
-body.header-spacing--10 {
-  --header-spacing: 0.175em;
 }

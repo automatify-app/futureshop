@@ -3,6 +3,10 @@
   text-decoration: none;
   padding: 6px;
 
+  h5.product-title {
+    margin: 0.35em auto;
+  }
+
   &.sold-out {
     .grid-item__details {
       opacity: 0.9;

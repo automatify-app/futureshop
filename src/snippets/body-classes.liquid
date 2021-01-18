@@ -1,7 +1,7 @@
 template-{{ template.name | handle }}
 {% if content_for_header contains "previewBarInjector.init();" %} is-preview{%endif%}{%if content_for_header contains "Shopify.designMode" %} is-customizer {%endif%}
 header-layout--{{settings.header_layout}}
-heading-style--{{settings.header_style}}  heading-alignment--{{settings.header_alignment}} header-spacing--{{settings.header_spacing}} preheader-style--{{settings.preheader_style}}
+heading-style--{{settings.header_style}}  heading-alignment--{{settings.header_alignment}} heading-spacing--{{settings.header_spacing}} preheader-style--{{settings.preheader_style}}
 button-font--{{settings.font_family_buttons}} heading-font--{{settings.font_family_heading}} menu-font--{{settings.font_family_menu}} product-font--{{settings.font_family_product}} label-font--{{settings.font_family_label}}
 button-style--{{settings.button_style}} {% if settings.capitalize_buttons == true %} button--caps {%endif%}
 label-style--{{settings.label_style}} label-size--{{settings.label_size | default: 'normal'}}

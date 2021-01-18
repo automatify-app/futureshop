@@ -26,7 +26,7 @@
           <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__introduction">{{ section.settings.introduction | escape }}</h4>
         {% endif %}
         {% if section.settings.heading != blank %}
-          <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="main-header font--{{settings.font_family_heading}} style--{{settings.header_style}} color--{{settings.header_color}} spacing--{{settings.header_spacing}} common-header__heading">{{ section.settings.heading | escape }}</h4>
+          <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="heading font--{{settings.font_family_heading}} style--{{settings.header_style}} color--{{settings.header_color}} spacing--{{settings.header_spacing}} common-header__heading">{{ section.settings.heading | escape }}</h4>
         {% endif %}
         {% if section.settings.subtitle != blank %}
           <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__subtitle">{{ section.settings.subtitle | escape }}</h4>

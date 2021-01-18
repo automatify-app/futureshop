@@ -1,0 +1,15 @@
+{% comment %} Visible "3-pack" text, for instance {% endcomment %}
+  {% if product.options_with_values.size > 0 and settings.enable_visible_quantity == true %}
+    {% for option in product.options_with_values %}
+     {% if option.name  == 'quantity' or option.name == 'Quantity' %}
+     <div class="visible-quantity">
+      <span class="visible-quantity__before">{{settings.visible_quantity_text}}</span>
+      {% assign optionsize = option.values.size | minus: 2 %}
+      {% for value in option.values  %}
+      <span class="visible-quantity__quantity">{{value}}{% if settings.visible_quantity_add_s == true %}s{%endif%}</span>
+      {% if forloop.index0 < optionsize %} , {%elsif forloop.index0 == optionsize %} & {%endif%}
+      {%endfor %}
+     </div>
+     {%endif %}
+    {%endfor %}
+  {%endif%}

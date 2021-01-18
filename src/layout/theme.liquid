@@ -31,8 +31,10 @@
   {%- endif -%}
   {% include 'social-meta-tags' %}
   {% include 'css-variables' %}
+  {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
   {% include 'theme-header' %}
   {% include 'style-tags', layout: 'theme' %}
+
   {% if settings.typekit_text %}{{settings.typekit_text}}{%endif%}
 {% if settings.header_code != blank %}
       {{settings.header_code}}

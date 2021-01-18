@@ -178,3 +178,9 @@ body.product-style--bordered {
     }
   }
 }
+
+body.product-title--caps {
+  .product-details__wrap > h1 {
+    text-transform: uppercase;
+  }
+}

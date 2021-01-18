@@ -244,7 +244,6 @@
   padding: calc(12px + 2vw) 2vw;
 }
 
-
 @mixin hide-visually($toggle: "hide") {
   @if not index("hide" "unhide", $toggle) {
     @error "`#{$toggle}` is not a valid value for the `$toggle` argument in " +
@@ -267,5 +266,17 @@
     position: static;
     white-space: inherit;
     width: auto;
+  }
+}
+
+@mixin noScrollbar() {
+   /* this will hide the scrollbar in mozilla based browsers */
+  overflow: -moz-scrollbars-none;
+  /* this will hide the scrollbar in internet explorers */
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    width: 0 !important;
+    display: none;
   }
 }

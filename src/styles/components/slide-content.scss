@@ -7,6 +7,7 @@
   top:0;
   display: flex;
   align-items: center;
+
   justify-content: center;
   z-index: 20;
   padding: 2.5vw;
@@ -59,7 +60,6 @@
 }
 
 
-
 body.header-overlay.overlay-shadow .image-section:first-child {
    &::before {
     @extend %psuedo;
@@ -104,7 +104,7 @@ body.preheader-style--caps {
 
 }
 
-.overlay-section.style--boxed {
+.swiper-slide.style--boxed {
    .slide-content-inner {
       display: grid;
       width: 100%;
@@ -130,17 +130,25 @@ body.preheader-style--caps {
     // background: rgba(black, 0.8);
     // color: white;
     width: auto;
-    max-width: 600px;
-    margin: auto auto 0 0 ;
-    padding: calc(12px + 2vw) !important;
-    @include media-query($widescreen) {
-      padding: 24px;
+    max-width: calc(400px + 5vw);
+    margin: 30vh auto -30px  ;
+    padding: calc(12px + 1.2vw) !important;
+
+    @include media-query($medium-up) {
+      margin: auto 5vw 0 auto;
     }
 
-    .button {
-      padding: 0.4em 0.8em;
-      margin: 0;
+    @include media-query($widescreen) {
+      padding: 15px 24px;
     }
+
+    .button-wrap {
+      margin: 1.6rem auto 0;
+      .button {
+        margin: 0;
+      }
+    }
+
 
   }
   .common-header {

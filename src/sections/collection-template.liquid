@@ -3,7 +3,7 @@
 {% paginate collection.products by section.settings.limit %}
 <div class="common-header">
   <header role="banner" class="collection-header">
-    <h1 class="main-header mega">{{ collection.title }}</h1>
+    <h1 class="heading mega">{{ collection.title }}</h1>
     {% if collection.description != blank %}
       <div class="rte">
         {{ collection.description }}

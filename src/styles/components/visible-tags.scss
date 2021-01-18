@@ -20,7 +20,10 @@
 
 .product-grid-item {
   .style--simple .visible-tag {
-    font-size: 15px;
+    font-size: 14px;
+  }
+  .style--backgrounded .visible-tag {
+    font-size: 13px;
   }
 }
 
@@ -31,14 +34,14 @@
     background: $color-accent;
     color: $color-accent-inverse;
     display: inline-block;
-    padding: 0.4em 0.6em 0.3em;
+    padding: 0.4em 0.9em 0.5em;
     box-shadow: 0 0 4px rgba(black, 0.1);
     line-height: 1;
     margin: 0 auto 0.55em;
   }
 }
 
-.product-grid-item  .style--simple .h5.visible-tag {
+.product-grid-item   .h5.visible-tag {
     font-size: 0.9em;
     opacity: 0.9;
 }
