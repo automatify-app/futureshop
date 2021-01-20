@@ -2,17 +2,19 @@
 
 <div class="overlay-section  style--{{section.settings.content_style}} type--{{overlay_type}} {% if section.settings.full_width == true %} full-width {%endif%}" id="{{section.settings.anchor_id}}">
 {% include 'common-header' %}
-    <ul class="collage__wrap layout--{{section.settings.layout}}">
+    <ul class="collage__wrap layout--{{section.settings.layout}}" >
       {%for block in section.blocks %}
-      {% capture image_ratio %}{% if block.settings.image.aspect_ratio > 1.1 %}ratio--horizontal{%elsif block.settings.aspect_ratio < 0.89 %}ratio--vertical{%else%}ratio--square{%endif%}{%endcapture%}
-        <li class="collage__item {{image_ratio}} lazyload" style="background-position: {{block.settings.center_x | default: 50 }}% {{block.settings.center_y | default: 50 }}%; background-image: url({{block.settings.image | img_url: '500x'}});" data-bgset="{%render 'responsive-bg-image' with image: block.settings.image %}">
+      {% capture image_ratio %}{% if block.settings.image.aspect_ratio > 1.1 %}ratio--horizontal{%elsif block.settings.image.aspect_ratio < 0.89 %}ratio--vertical{%else%}ratio--square{%endif%}{%endcapture%}
+        <li {% if section.settings.open_in_popup != false %} data-module="lightbox-image" data-src="{{block.settings.image | img_url: 'master'}}"  {%endif%} class="collage__item size--{{block.settings.size}} {{image_ratio}} lazyload" style="background-position: {{block.settings.center_x | default: 50 }}% {{block.settings.center_y | default: 50 }}%; background-image: url({{block.settings.image | img_url: '500x'}});" data-bgset="{%render 'responsive-bg-image' with image: block.settings.image %}">
         </li>
       {%endfor %}
     </ul>
 </div>
 </section>
 
-{% stylesheet 'scss' %}
+{% stylesheet  %}
+
+
   .collage__wrap {
     display: flex;
     flex-wrap: wrap;
@@ -21,28 +23,25 @@
     padding: 0;
     margin: 0;
 
-    @supports (display: grid) {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-auto-rows: calc(120px + 10vw);
-      grid-gap: calc(12px + 0.4vw);
-      &.layout--square {
-        .collage__item {
-          grid-column: span 3 !important;
-        }
-      }
-      @media only screen and (max-width: 520px) {
-        grid-template-columns: repeat(4, 1fr);
-        .collage__item.ratio--horizontal {
-          grid-column: span 4;
-        }
-        .collage__item.ratio--square,
-        .collage__item.ratio--vertical {
-          grid-column: span 2;
-        }
-      }
-    }
+
   }
+
+   @supports (display: grid) {
+     .collage__wrap {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+
+        grid-gap: calc(12px + 0.4vw);
+     }
+     .collage__wrap.layout--square .collage__item {
+       grid-column: span 3 !important;
+     }
+
+
+
+    }
+
+
 
   .collage__item {
     flex: 1 1 auto;
@@ -50,13 +49,74 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 0 0;
-    &.ratio--horizontal {
-      grid-column: span 6;
-    }
-    &.ratio--vertical {
-      grid-column: span 3;
-    }
+    height:calc(120px + 20vw);
+
   }
+
+  .collage__item[data-src] {
+    cursor: zoom-in;
+  }
+  .collage__item.ratio--horizontal {
+      grid-column: span 6;
+  }
+  .collage__item.ratio--vertical {
+      grid-column: span 4;
+  }
+
+
+
+   @media only screen and (min-width: 721px) {
+      .collage__item.ratio--vertical {
+        grid-column: span 4;
+      }
+      .collage__item.ratio--horizontal {
+        grid-column: span 6;
+      }
+    }
+
+  .collage__item.size--medium {
+    height: calc(80px + 6vw);
+     grid-column: span 3;
+  }
+  .collage__item.size--small {
+    height: calc(60px + 4vw);
+      grid-column: span 2;
+  }
+
+
+   @media only screen and (max-width: 720px) {
+      .collage__item.size--medium {
+        grid-column: span 6;
+      }
+      .collage__item.size--small {
+        grid-column: span 4;
+      }
+    }
+    @media only screen and (max-width: 520px) {
+      .collage__wrap {
+        grid-template-columns: repeat(6, 1fr);
+      }
+      .collage__item.ratio--vertical {
+        grid-column: span 3;
+      }
+      .collage__item.ratio--horizontal {
+        grid-column: span 6;
+      }
+      .collage__item.size--medium {
+        grid-column: span 3;
+      }
+      .collage__item.size--small {
+        grid-column: span 2;
+      }
+    }
+    @media only screen and (max-width: 400px) {
+      .collage__wrap {
+        grid-template-columns: repeat(6, 1fr);
+      }
+      .collage__item {
+        grid-column: span 6 !important;
+      }
+    }
 {% endstylesheet %}
 {% schema %}
   {
@@ -83,6 +143,32 @@
         "label" : "Nice Name",
         "info" : "Just for keeping the back end organized! Enter a nice name here",
         "default" : "Rotating background"
+      },
+       {
+        "type" : "header",
+        "content" : "Collage Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "open_in_popup",
+        "label": "Show Popup",
+        "default": false
+      },
+      {
+        "type" : "select",
+        "id" : "layout",
+        "label" : "Layout",
+        "default"  :"natural",
+        "options" : [
+          {
+            "value" : "natural",
+            "label" : "Natural Grid"
+          },
+          {
+            "value" : "squares",
+            "label" : "Squares"
+          }
+        ]
       },
       {
         "type" : "header",
@@ -288,26 +374,6 @@
             "label" : "Parallax"
           }
         ]
-      },
-      {
-        "type" : "header",
-        "content" : "Collage Settings"
-      },
-      {
-        "type" : "select",
-        "id" : "layout",
-        "label" : "Layout",
-        "default"  :"natural",
-        "options" : [
-          {
-            "value" : "natural",
-            "label" : "Natural Grid"
-          },
-          {
-            "value" : "squares",
-            "label" : "Squares"
-          }
-        ]
       }
     ],
     "blocks" : [
@@ -365,11 +431,32 @@
             "min" : 0,
             "step" : 10,
             "default" : 50
+          },
+          {
+            "type": "select",
+            "id": "size",
+            "label": "Small Size?",
+            "options" : [
+              {
+                "value" : "small",
+                "label" : "Small"
+              },
+              {
+                "value" : "medium",
+                "label" : "Medium"
+              },
+              {
+                "value" : "standard",
+                "label" : "Standard"
+              }
+            ],
+            "default": "standard",
+            "info": "Makes the image more of a small grid"
           }
         ]
       }
     ],
-    "max_blocks" : 10,
+    "max_blocks" : 24,
     "presets" : [
         {
           "name" : "Collage",

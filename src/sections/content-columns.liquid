@@ -1,5 +1,6 @@
 {% include 'section-starter' with section_class: 'content-columns--outer' %}
 <div class="section-inner columns-wrap {% if section.settings.expand == true %} expand {%endif%}">
+{% include 'common-header' with include_button: false %}
 {% assign delay = 0 %}
   {% for block in section.blocks %}
         {% case block.type %}
@@ -19,6 +20,9 @@
 .shopify-section.content-columns {
   overflow: hidden
 }
+.shopify-section.content-columns .common-header{
+  flex: 0 0 100%;
+}
 
 .section-inner.columns-wrap {
   display: flex;
@@ -34,7 +38,7 @@
     justify-content: space-between;
 
     .type--image {
-      padding: 0;
+    padding: 0;
       margin: 0;
       &.size--huge {
         flex: 1 1 100%;
@@ -58,9 +62,17 @@
 }
 
 .content-column {
+
+  margin:1%;
+  padding: calc(12px + 1vw);
+
   &.size--small {
     flex: 1 1 200px;
     max-width: 600px;
+    padding: calc(6px + 0.6vw);
+    h3.heading {
+      font-size: 25px;
+    }
   }
   &.size--medium {
     flex: 1 1 440px;
@@ -74,8 +86,6 @@
     flex: 1 1 900px;
     max-width: 100%;
   }
-  margin:1%;
-  padding: calc(12px + 1vw);
 
   .button-wrap {
     text-align: inherit;
@@ -178,6 +188,70 @@
         "type" : "checkbox",
         "id" :"expand",
         "label" : "Expand to edges"
+      },
+       {
+        "type" : "select",
+        "id" : "text_align",
+        "label" : "Text Alignment",
+        "default" :  "center",
+        "options" : [
+          {
+            "value" : "left",
+            "label" : "Left"
+          },
+          {
+            "value" : "center",
+            "label" : "Center"
+          },
+          {
+            "value" : "right",
+            "label" : "Right"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "text_size",
+        "label" : "Text Size",
+        "default" :  "standard",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small"
+          },
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "mega",
+            "label" : "Mega"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "introduction",
+        "label" : " Introduction"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type" : "text",
+        "id" : "subtitle",
+        "label" : "Subtitle"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
       },
        {
         "type" : "header",
@@ -682,7 +756,7 @@
         ]
       }
     ],
-    "max_blocks" : 3,
+    "max_blocks" : 6,
     "presets": [
       {
         "name": "Content Columns",

@@ -4,6 +4,8 @@
 
 .basicLightbox__placeholder {
   width: 100%;
+  height: auto;
+
   pointer-events: none;
 
   iframe {
@@ -116,4 +118,13 @@
     text-decoration: none;
     font-weight: bold;
   }
+}
+
+.lightbox-image {
+  width: 100%;
+  min-height: 80vh;
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+
 }

@@ -3,24 +3,31 @@
   {% assign delay = 0 %}
   <div class="music-image" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
     {% include 'responsive-image' with image: section.settings.image, wrapper_class: 'music-cover', max_width: 800, max_height: 800 %}
+    {% if section.settings.embed != blank%}
+    <div data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="embed-wrap" style="margin: 18px auto 0">
+      {{section.settings.embed}}
+    </div>
+    {%endif%}
   </div>
+
   <div class="music-content text-align--{{section.settings.text_align}}">
-      {% if section.settings.pre_title != blank or section.settings.title != blank  %}
+      {% if section.settings.introduction != blank or section.settings.title != blank  %}
     <div class="music-content-header section-header">
-      {% if section.settings.pre_title != blank %}
-        <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps section-header__pre_title">{{ section.settings.pre_title | escape }}</h4>
+    {% include 'common-header' %}
+      {% comment %} {% if section.settings.introduction != blank %}
+        <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label section-header__pre_title">{{ section.settings.introduction | escape }}</h4>
       {% endif %}
       {% if section.settings.title != blank %}
-        <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
+        <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 heading section-header__title">{{ section.settings.title | escape }}</h2>
       {% endif %}
-      {% if section.settings.post_title != blank %}
-        <h5 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps section-header__title">{{ section.settings.post_title | escape }}</h2>
+      {% if section.settings.subtitle != blank %}
+        <h5 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label section-header__title">{{ section.settings.subtitle | escape }}</h2>
       {% endif %}
       {% if section.settings.button_url != blank and section.settings.button_text != blank %}
         <div class="button-wrap">
           <a href="{{section.settings.button_url}}" class="button accent">{{section.settings.button_text}}</a>
         </div>
-      {%endif%}
+      {%endif%} {% endcomment %}
     </div>
     {%endif%}
     <div class="music-links">
@@ -32,7 +39,23 @@
 
   </div>
 </section>
-
+{% stylesheet %}
+.music-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.music-content {
+  padding: calc(18px + 1vw);
+  flex: 1 1 300px;
+}
+.music-image {
+  flex: 1 1 300px;
+  max-width: 550px;
+  margin: calc(5px + 0.5vw);
+}
+{% endstylesheet %}
 {% schema %}
   {
     "name": "Music Feature",
@@ -148,6 +171,11 @@
         "type" : "image_picker",
         "id" : "image",
         "label" : "Release Image"
+      },
+      {
+        "type": "html",
+        "id": "embed",
+        "label": "Embed"
       },
       {
         "type" : "header",

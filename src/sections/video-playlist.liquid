@@ -10,22 +10,27 @@
 {% include 'section-starter' with section_class: 'video-playlist' %}
 <div class="section-inner">
 {% assign delay = 0 %}
-   {% include 'common-header' %}
+   {% include 'common-header' with include_button: false, show_button: false %}
    <div class="video-wrapper video-slider  swiper-containe" data-module="swiper-videos" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
     <div class="swiper-wrapper">
      {%for block in section.blocks %}
-      <div class="swiper-slide video-slide"  data-module="lightbox-video" data-lightbox-type="video" data-lightbox-target="{{block.settings.id}}">
-        <div class="video-slide__bg {% if block.settings.image != blank %} lazyload" data-bgset="{% include 'responsive-bg-image',  image: slide.settings.image %} {%else%} load-img" data-youtube-id="{{block.settings.youtube_video.id}}{%endif%}">
+
+      {% capture default_image%}https://img.youtube.com/vi/{{block.settings.youtube_video.id}}/hqdefault.jpg'{%endcapture%}
+      <div class="swiper-slide video-slide"  data-module="lightbox-video" data-youtube-id="{{block.settings.youtube_video.id}}">
+        <div class="video-slide__bg {% if block.settings.image != blank %} lazyload" data-bgset="{% include 'responsive-bg-image',  image: block.settings.image %} {% else %}"  style="background-image: url('{{default_image}});" {%endif%}>
         </div>
         <div class="video-slide__content">
           <i class="icon-play"></i>
           {% if block.settings.title != blank or block.settings.subtitle != blank%}
           <div class="video-slide__text">
+          {% if block.settings.intro != blank %}
+            <h3 class="h4 label" data-intro>{{block.settings.intro}}</h3>
+            {%endif%}
           {% if block.settings.title != blank %}
-            <h3 class="h3" data-title>{{block.settings.title}}</h3>
+            <h3 class="h3 heading" data-title>{{block.settings.title}}</h3>
             {%endif%}
             {% if block.settings.subtitle != blank%}
-            <h4 class="h4 caps">{{block.settings.subtitle}}</h4>
+            <h4 class="h4 label caps">{{block.settings.subtitle}}</h4>
             {%endif%}
           </div>
           {%endif%}
@@ -35,86 +40,90 @@
     </div>
     </div>
     {% if section.settings.button_url != blank and section.settings.button_text != blank %}
-    <div class="button-wrap" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+    <div class="button-wrap center text--center" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
       <a href="{{section.settings.button_url}}" class="button" target="_blank" rel="nofollow"><i class="icon-youtube"></i> {{section.settings.button_text}}</a>
     </div>
       {%endif%}
   </div>
 </section>
 
-{% stylesheet 'scss' %}
+{% stylesheet %}
 
-$ease: cubic-bezier(0.77, 0, 0.175, 1);
+.video-playlist {
+  padding: 8vw 0;
+  width: 100%;
+}
 
-  .video-playlist {
-    padding: 8vw 0;
-    width: 100%;
-    .section-inner {
-      width: 100%;
-    }
-    &__header {
-      text-align: center;
-    }
-    .button-wrap {
-      text-align: center;
-      max-width: 800px;
-      margin: 24px auto 0;
-      i {
-        font-weight: normal;
-      }
-    }
-    .video-slide {
-      background: black;
-      overflow: hidden;
-      &:hover {
-        .video-slide__bg {
-          opacity: 0.85;
-          transform: scale(1.1);
-        }
-      }
-    }
-  }
 
-  .video-slider {
-    margin: 40px auto;
+.video-slide h3 {
+  margin: 0.2em auto;
+}
+.video-playlist__header {
+  text-align: center;
+}
 
-    .video-slide {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 5% 0;
-      min-height: 400px;
-    }
-  }
-  .video-slide__bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    z-index: 1;
-    opacity: 0.6;
-    transition: opacity 300ms $ease, transform 300ms $ease;;
+.video-playlist .section-inner {
+  width: 100%;
+}
 
-  }
+.video-playlist .button-wrap {
+  text-align: center;
+    max-width: 800px;
+    margin: 24px auto 0;
+}
 
-  .video-slide__content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-    i {
-      font-size: 40px;
-      margin-right: 22px;
-      opacity: 0.5;
-    }
-  }
+.video-playlist .button-wrap i {
+  font-weight: normal;
+}
 
-{% endstylesheet %}}
+.video-slide {
+  background: black;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5% 0;
+  min-height: 400px;
+}
+
+.video-slide::hover .video-slide__Bg {
+  opacity: 0.85;
+  transform: scale(1.1);
+}
+
+.video-slider {
+  margin: 40px auto;
+}
+
+.video-slide__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  z-index: 1;
+  opacity: 0.6;
+  transition: opacity 300ms cubic-bezier(0.77, 0, 0.175, 1), transform 300ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.video-slide__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.video-slide__content i {
+  font-size: 40px;
+  margin-right: 22px;
+  opacity: 0.5;
+}
+
+{% endstylesheet %}
 
 {% schema %}
   {
@@ -333,9 +342,15 @@ $ease: cubic-bezier(0.77, 0, 0.175, 1);
         "settings" : [
           {
             "type" :"text",
+            "id" : "intro",
+            "label" : "Intro"
+          },
+          {
+            "type" :"text",
             "id" : "title",
             "label" : "Title"
           },
+
           {
             "type" :"text",
             "id" : "subtitle",

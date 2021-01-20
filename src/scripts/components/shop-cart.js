@@ -515,7 +515,6 @@ class ShopCart {
       }
       console.log(filteredOptions);
     }
-    console.log(data);
 
     return this.template(data);
   }

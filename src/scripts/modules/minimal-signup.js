@@ -36,25 +36,25 @@ export default class MinimalSignup {
     this.wrapper = el;
     this.form = el.querySelector('form');
     this.input = this.form.querySelector('input[type=email]');
-    
+
     this.formSubmit= this.formSubmit.bind(this);
     this.finishForm= this.finishForm.bind(this);
     this.getFormResponse= this.getFormResponse.bind(this);
-    
-    var parsedURL = queryString.parse(location.search);    
-    
+
+    var parsedURL = queryString.parse(location.search);
+
     if (parsedURL.customer_posted == true || parsedURL.customer_posted == 'true') {
-      
+
       this.finishForm();
     } else{
       this.form.addEventListener('submit', this.formSubmit, true);
-      
+
       if (parsedURL.form_type == 'customer') {
         this.form.classList.add('error');
-        
+
       }
-    } 
-    
+    }
+
   }
   formSubmit(event) {
     var data = serialize(this.form);
@@ -63,7 +63,7 @@ export default class MinimalSignup {
       this.wrapper.classList.remove('processing');
       if (response.status == '200') {
         if (response.redirected == true) {
-          
+
           // window.location = response.url + '?' + data
         }
       }
@@ -80,7 +80,6 @@ export default class MinimalSignup {
   }
   async getFormResponse(data) {
     const url = '/contact#contact_form?'+ data;
-    console.log(data);
     const response = await fetch(url,
       {
         method: 'POST'
@@ -90,7 +89,7 @@ export default class MinimalSignup {
   }
   finishForm() {
     this.wrapper.classList.add('success');
-    const successText = this.input.getAttribute('data-success-text'); 
+    const successText = this.input.getAttribute('data-success-text');
     console.log(successText);
     this.input.setAttribute('disabled', 'disabled');
     this.input.value = successText;

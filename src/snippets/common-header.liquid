@@ -46,7 +46,7 @@
         <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__introduction {% if short_label %} short {%endif%} {% if  params.introduction.size <= 4  %} short {%elsif params.introduction.size <= 6 %} shortish {%endif%}">{{ params.introduction | escape }}</h4>
       {% endif %}
       {% if params.heading != blank %}
-        <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="main-header common-header__heading">{{ params.heading | escape }}</h4>
+        <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="heading common-header__heading">{{ params.heading | escape }}</h4>
       {% endif %}
       {% if params.subtitle != blank %}
         <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__subtitle">{{ params.subtitle | escape }}</h4>

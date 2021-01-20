@@ -6,10 +6,16 @@
   &.align--left {
     margin-left: 0;
     margin-right: auto;
+    .rte {
+      margin-left: 0;
+    }
   }
   &.align--right {
     margin-right: 0;
     margin-left: auto;
+    .rte {
+      margin-right: 0;
+    }
   }
   .common-header {
 
@@ -48,12 +54,10 @@
 
 .common-rte {
   max-width: 40em;
-  margin: auto;
+  margin: 0 auto 1em;
+
 }
 
 .block-header {
-  h3 {
-    @extend %mainHeader;
-    margin:0.2em auto 0.5em;
-  }
+  margin: 0.9rem auto 1.6rem;
 }

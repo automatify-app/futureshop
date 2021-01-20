@@ -131,7 +131,7 @@ body.preheader-style--caps {
     // color: white;
     width: auto;
     max-width: calc(400px + 5vw);
-    margin: 30vh auto -30px  ;
+    margin: 30vh auto -30px;
     padding: calc(12px + 1.2vw) !important;
 
     @include media-query($medium-up) {

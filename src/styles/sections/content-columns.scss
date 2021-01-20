@@ -43,6 +43,10 @@
   &.size--small {
     flex: 1 1 200px;
     max-width: 600px;
+
+    .heading {
+      font-size: 32px;
+    }
   }
   &.size--medium {
     flex: 1 1 440px;

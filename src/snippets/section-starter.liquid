@@ -4,10 +4,12 @@
 
 {% if block.settings.section_spacing != blank %}
 {%assign params = block.settings %}
+{% assign is_block = true %}
 {%endif%}
 
 
-<section class="{{section_class}} section-outer size--{{params.section_size}} spacing--{{params.section_spacing}}  " id="{{params.anchor_id}}" >
+
+<section class="block--{{block.id}} {{section_class}} section-outer size--{{params.section_size}} spacing--{{params.section_spacing}}  " id="{{params.anchor_id}}" >
 {% if params.background_image != blank%}<div class="section-bg lazyload {% if params.rellax == true %}  rellax-bg {%endif%}">
 <div class="section-bg__image lazyload style--{{params.background_style}}"  style="background-image: url({{params.background_image | img_url: '500x'}});"  data-bgset="{% include 'responsive-bg-image', image: params.background_image%}">
 </div>
@@ -15,7 +17,13 @@
 {% endif%}
 {% if params.background_color != blank or params.text_color != blank %}
   <style>
-    #shopify-section-{{section.id}} {
+  {% if is_block %}
+  {%capture tag %}.block--{{block.id}}{%endcapture %}
+  {%else %}
+  {%capture tag %}#shopify-section-{{section.id}}{%endcapture %}
+  {%endif%}
+
+    {{tag}} {
       {% if params.background_color != blank and params.background_color != 'rgba(0,0,0,0)' %}
       background-color:  {{params.background_color}};
       {%endif%}
@@ -28,8 +36,9 @@
       {%endif%}
     }
 
+
     {% if params.background_image != blank%}
-    #shopify-section-{{section.id}} .section-outer {
+    {{tag}} .section-outer {
       position: static;
     }
     {%endif%}

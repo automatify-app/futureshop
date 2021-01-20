@@ -4,13 +4,13 @@
 {% if block.settings.pre_title != blank or block.settings.title != blank  %}
     <div class="block-header section-header align--{{block.settings.align_text}}">
       {% if block.settings.pre_title != blank %}
-        <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps block-header__pre_title">{{ block.settings.pre_title | escape }}</h4>
+        <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label block-header__pre_title">{{ block.settings.pre_title | escape }}</h4>
       {% endif %}
       {% if block.settings.title != blank %}
-        <h3 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h3 block-header__title">{{ block.settings.title | escape }}</h2>
+        <h3 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h3 block-header__title heading">{{ block.settings.title | escape }}</h2>
       {% endif %}
       {% if block.settings.post_title != blank %}
-        <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps block-header__post-title">{{ block.settings.post_title | escape }}</h4>
+        <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label block-header__post-title">{{ block.settings.post_title | escape }}</h4>
       {% endif %}
     </div>
 {%endif%}

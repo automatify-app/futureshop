@@ -5,35 +5,30 @@ import Swiper,  {Navigation, Pagination, Autoplay, A11y } from 'swiper';
 Swiper.use([Navigation, Pagination, Autoplay, A11y]);
 
 
-function loadYoutubeImages() {
-  var toBeLoaded = document.querySelectorAll('.load-img');
-  toBeLoaded.forEach(el=>{
+// function loadYoutubeImages() {
+//   var toBeLoaded = document.querySelectorAll('.load-img');
+//   toBeLoaded.forEach(el=>{
 
-    if (el.classList.contains('youtubebg-loaded')) {
-      //Do nothing
-    } else {
-      let youtubeId = el.getAttribute('data-youtube-id');
-      el.style.backgroundImage = `url('https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg')`;
-      el.classList.add('youtubebg-loaded');
-    }
-  })
-}
+//     if (el.classList.contains('youtubebg-loaded')) {
+//       //Do nothing
+//     } else {
+//       let youtubeId = el.getAttribute('data-youtube-id');
+//       el.style.backgroundImage = `url('https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg')`;
+//       el.classList.add('youtubebg-loaded');
+//     }
+//   })
+// }
 
-window.addEventListener('load', loadYoutubeImages);
+// window.addEventListener('load', loadYoutubeImages);
 
-export default class TestModule {
+export default class VideoSwiper {
   constructor(el) {
-
-
-    this.el = el
-
-
-
+    this.el = el;
     ////// Swiper for slideshow
 
 
     var mySwiper = new Swiper(el, {
-      slidesPerView: 1.5,
+      slidesPerView: 1.8 ,
       centeredSlides: true,
       centerInsufficientSlides: true,
       spaceBetween: 30,
@@ -46,7 +41,7 @@ export default class TestModule {
           spaceBetween: 30
         },
         1300: {
-          slidesPerView: 1.5,
+          slidesPerView: 1.7,
           spaceBetween: 30
         }
       }

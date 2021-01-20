@@ -73,7 +73,6 @@ export default class MySwiper {
       } else {
         autoplayObj = false;
       }
-      console.log(autoplayObj);
 
       var autoHt = true;
       if (el.getAttribute('data-auto-height') == 'false') {
