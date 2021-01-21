@@ -1435,6 +1435,7 @@
         "label": "Facebook link",
         "default": "https://facebook.com"
       },
+
       {
         "type": "text",
         "id": "social_pinterest_link",
@@ -1450,6 +1451,11 @@
         "type": "text",
         "id": "social_snapchat_link",
         "label": "Snapchat link"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "Tiktok link"
       },
       {
         "type": "text",
