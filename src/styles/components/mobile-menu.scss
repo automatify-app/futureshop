@@ -113,6 +113,10 @@ nav.mobile-menu__inner {
     font-size: 1.1em;
 
   }
+  &.mobile-icon {
+    color: var(--header-text);
+  }
+
 }
 
 @mixin mobileNavStyle() {
