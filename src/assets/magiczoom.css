@@ -1,7 +1,7 @@
 /*
 
 
-   Magic Zoom Plus v5.3.5 
+   Magic Zoom Plus v5.3.5
    Copyright 2020 Magic Toolbox
    Buy a license: https://www.magictoolbox.com/magiczoomplus/
    License agreement: https://www.magictoolbox.com/license/

@@ -4,6 +4,7 @@
   .signup-form, .footer-signup {
     background-color: {{settings.signup_background_color}};
     color: {{settings.signup_text_color}};
+    text-align: center;
 
     --color-background:{{settings.signup_background_color}};
     --color-text: {{settings.signup_text_color}};
@@ -18,11 +19,11 @@
  {%else%}
   {%capture form_id%}signup--{{section.id}}{%endcapture%}
 
+  {% if settings.signup_title != empty or settings.signup_intro != empty or settings.signup_subtitle != empty %}
   <div class="common-header__outer signup-form__header type--newsletter align--{{settings.signup_alignment}} font--{{settings.signup_text_size}}">
-    {% if settings.signup_title != empty or settings.signup_introduction != empty or settings.signup_subtitle != empty %}
       <header class="common-header type--newsletter">
-        {% if settings.signup_introduction != empty %}
-          <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__introduction">{{ settings.signup_introduction | escape }}</h4>
+        {% if settings.signup_intro != empty %}
+          <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__intro">{{ settings.signup_intro | escape }}</h4>
         {% endif %}
         {% if settings.signup_title != empty %}
           <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="heading font--{{settings.font_family_heading}} style--{{settings.header_style}} color--{{settings.header_color}} spacing--{{settings.header_spacing}} common-header__heading">{{ settings.signup_title | escape }}</h4>

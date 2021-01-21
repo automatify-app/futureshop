@@ -137,9 +137,6 @@ $ease: cubic-bezier(0.77, 0, 0.175, 1);
       }
 }
 
-
-
-
 @mixin shadowBefore($startingScale: 0.95, $endingScale: 0.99, $shadowColor: rgba(0,0,0,0.14)) {
   &:before  {
     @extend %psuedo;

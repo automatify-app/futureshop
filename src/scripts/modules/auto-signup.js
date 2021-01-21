@@ -1,5 +1,4 @@
 import  * as basicLightbox from 'basiclightbox'
-import '../../../node_modules/basiclightbox/dist/basicLightbox.min.css';
 import Cookies from 'js-cookie';
 ////Video Lightbox
 //Element with "data-module" is el

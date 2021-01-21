@@ -244,13 +244,11 @@
   padding: calc(12px + 2vw) 2vw;
 }
 
-
 @mixin noScrollbar() {
    /* this will hide the scrollbar in mozilla based browsers */
   overflow: -moz-scrollbars-none;
   /* this will hide the scrollbar in internet explorers */
   -ms-overflow-style: none;
-
   &::-webkit-scrollbar {
     width: 0 !important;
     display: none;

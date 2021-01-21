@@ -1314,8 +1314,48 @@
     ]
   },
   {
-    "name": "Newsletter",
+    "name": "Newsletter Signup",
     "settings": [
+      {
+        "type": "header",
+        "content": "Default Newsletter settings"
+      },
+      {
+        "type" : "color",
+        "label" : "Signup Background Color",
+        "default" : "#1f1f1f",
+        "id" : "signup_background_color"
+      },
+      {
+        "type" : "color",
+        "label" : "Signup Text Color",
+        "default" : "#ffffff",
+        "id" : "signup_text_color"
+      },
+      {
+        "type" : "text",
+        "label" : "Signup Intro",
+        "default" : "Sign Up For The",
+        "id" : "signup_intro"
+      },
+      {
+        "type" : "text",
+        "label" : "Signup Title",
+        "default" : "Email List",
+        "id" : "signup_title"
+      },
+      {
+        "type" : "text",
+        "label" : "Signup Subtitle",
+        "default" : "and never miss an update!",
+        "id" : "signup_subtitle"
+      },
+      {
+        "type" : "richtext",
+        "label" : "Signup Content",
+        "default" : "<p>We send out periodical emails with news, sales, releases and more! We will never share your info, or spam you.</p>",
+        "id" : "signup_content"
+      },
       {
         "type": "header",
         "content": "Settings"

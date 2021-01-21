@@ -4,7 +4,7 @@ import Swiper,  {Navigation, Pagination, Thumbs, A11y } from 'swiper';
 Swiper.use([Navigation, Pagination, Thumbs, A11y]);
 
 
-import '../components/magiczoom.js';
+// import '../components/magiczoom.js';
 var mzOptions = {
   zoomPosition: 'inner'
 };
