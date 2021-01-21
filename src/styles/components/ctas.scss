@@ -342,4 +342,9 @@ body {
   &.align--right {
     text-align: right;
   }
+
+  .embed-wrap + & {
+    //Instagram section, mostly
+    margin-top: 1.5em;
+  }
 }
