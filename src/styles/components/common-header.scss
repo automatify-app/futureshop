@@ -6,14 +6,16 @@
   &.align--left {
     margin-left: 0;
     margin-right: auto;
-    .rte {
+    .rte, &+.rte {
+      text-align: left;
       margin-left: 0;
     }
   }
   &.align--right {
     margin-right: 0;
     margin-left: auto;
-    .rte {
+    .rte, &+.rte {
+      text-align: right;
       margin-right: 0;
     }
   }

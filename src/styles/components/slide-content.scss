@@ -25,7 +25,25 @@
   @include media-query($small) {
     width: 100%;
   }
+
+  //Margin/spacing
   margin: auto;
+  &.aligntext--left {
+    margin-left: 5%;
+    @include media-query($widescreen) {
+
+      margin-left: 10%;
+    }
+  }
+  &.aligntext--right {
+    margin-right: 5%;
+    @include media-query($widescreen) {
+
+      margin-right: 10%;
+    }
+  }
+
+
   .h1 {
     margin: 0.25em 0;
   }

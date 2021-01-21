@@ -32,8 +32,8 @@
   {% include 'social-meta-tags' %}
   {% include 'css-variables' %}
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
-  {% include 'theme-header' %}
   {% include 'style-tags', layout: 'theme' %}
+  {% render 'theme-header' %}
   <link rel="preload" href="{{ 'magiczoom.css' | asset_url}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <script src="{{ 'magiczoom.js' | asset_url }}" defer></script>
 

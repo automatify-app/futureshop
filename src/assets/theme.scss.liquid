@@ -16,7 +16,7 @@
 body {
   {% assign bg_style = settings.background_style %}
   {% if settings.main_background != blank and settings.enable_background == true %}
-    background-image: url("{{settings.main_background | img_url: '600x'}}");
+    background-image: url("{{settings.main_background | img_url: '800x'}}");
     background-repeat: repeat;
     background-size: auto;
     {% if settings.background_fix == true %}
@@ -26,16 +26,16 @@ body {
     background-repeat: no-repeat;
     background-size:  {{bg_style}};
     @media (min-width: 600px) {
-      background-image: url({{settings.main_background | img_url: '900x'}});
+      background-image: url({{settings.main_background | img_url: '1100x'}});
     }
     @media (min-width: 900px) {
-      background-image: url({{settings.main_background | img_url: '1200x'}});
+      background-image: url({{settings.main_background | img_url: '1500x'}});
     }
     @media (min-height: 1500px) {
-      background-image: url({{settings.main_background | img_url: '1200x'}});
+      background-image: url({{settings.main_background | img_url: '2000x'}});
     }
     @media (min-width: 1500px) {
-      background-image: url({{settings.main_background | img_url: '1500x'}});
+      background-image: url({{settings.main_background | img_url: 'master'}});
     }
     {%endif%}
     main#mainContent {

@@ -133,6 +133,7 @@
       }
       h2, h3 {
         margin:5px auto;
+        hyphens: auto;
         @include media-query($tiny) {
           word-break: break-all;
           font-size: 24px;
