@@ -122,4 +122,9 @@
 
 .embed-wrap {
   margin: calc(22px + 0.5vw) auto;
+
+  &+.button-wrap {
+    margin-top: 1.5em;
+  }
 }
+
