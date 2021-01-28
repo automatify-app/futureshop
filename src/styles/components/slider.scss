@@ -170,9 +170,6 @@
 .swiper-slide.video-slide, .swiper-slide.background-slide {
   padding: 8vmin 22px;
 
-   @include media-query($tiny) {
-     // min-height: 60vmin;
-    }
     @include media-query($tiny) {
       min-height: 250px;
       padding: 80px 22px;

@@ -1,0 +1,27 @@
+
+
+<div class="content-column type--{{block.type}} size--{{block.settings.size}} align--{{block.settings.align}}">
+{% if block.settings.pre_title != blank or block.settings.title != blank  %}
+    <div class="block-header section-header align--{{block.settings.align_text}}">
+      {% if block.settings.pre_title != blank %}
+        <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label block-header__pre_title">{{ block.settings.pre_title | escape }}</h4>
+      {% endif %}
+      {% if block.settings.title != blank %}
+        <h3 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h3 block-header__title heading">{{ block.settings.title | escape }}</h2>
+      {% endif %}
+      {% if block.settings.post_title != blank %}
+        <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label block-header__post-title">{{ block.settings.post_title | escape }}</h4>
+      {% endif %}
+    </div>
+{%endif%}
+{%- if block.settings.text != blank -%}
+  <div data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}"  class="rte align--{{block.settings.align_text}}">
+    {{ block.settings.text }}
+  </div>
+{%- endif -%}
+ {% if block.settings.button_text != blank and  block.settings.button_url != blank %}
+  <div data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}"  class="button-wrap center">
+    <a href="{{block.settings.button_url}}" class="button">{{block.settings.button_text}}</a>
+  </div>
+  {%endif%}
+</div>

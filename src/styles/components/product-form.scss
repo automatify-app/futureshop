@@ -12,7 +12,6 @@
   margin-bottom: 25px;
 
   @include media-query($tiny) {
-    justify-content: center;
 
     [data-price-wrapper] {
       font-size: 1.1em;
@@ -37,6 +36,9 @@
 
   button {
     margin: 0 0;
+    &:only-child {
+      margin: auto;
+    }
     &.button.solid {
       // background: $color-secondary;
     }

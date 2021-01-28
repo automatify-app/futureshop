@@ -161,13 +161,13 @@ body {
   }
 }
 
-.align--left {
+.align--left, .text--left {
   text-align: left;
 }
-.align--right {
+.align--right, .text--right {
   text-align: right;
 }
-.align--center {
+.align--center , .text--center {
   text-align: center;
 }
 

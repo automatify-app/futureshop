@@ -132,9 +132,9 @@ $ease: cubic-bezier(0.77, 0, 0.175, 1);
 
 %hover {
   transition: transform 300ms $ease;
-      &:hover {
-        transform: translateY(-2px)
-      }
+  &:hover {
+    transform: translateY(-2px)
+  }
 }
 
 @mixin shadowBefore($startingScale: 0.95, $endingScale: 0.99, $shadowColor: rgba(0,0,0,0.14)) {

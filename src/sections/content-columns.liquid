@@ -8,6 +8,8 @@
           {% include 'column-code'%}
         {% when 'text' %}
           {% include 'column-text' %}
+        {% when 'product' %}
+          {% include 'column-product' %}
         {% when 'image' %}
           {% include 'column-image' %}
         {% when 'textimg' %}
@@ -440,8 +442,63 @@
         ]
       },
       {
+        "type" :"product",
+        "name" : "Product",
+        "settings" : [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          },
+          {
+            "type": "image_picker",
+            "id": "product_image",
+            "label": "Replace Product Image"
+          },
+          {
+            "type": "header",
+            "content": "Content"
+          },
+
+          {
+            "type": "text",
+            "id": "pre_title",
+            "label": "Pre-Heading"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "",
+            "info": "Leave blank to use the product Title"
+          },
+           {
+            "type": "text",
+            "id": "post_title",
+            "label": "Post-Heading"
+          },
+          {
+            "type": "header",
+            "content": "Call To Action"
+          },
+          {
+            "type": "text",
+            "id": "button_title",
+            "label": "Button Title",
+            "default": "Shop Now"
+          },
+          {
+            "type": "checkbox",
+            "id": "use_form",
+            "label": "Use Product Form",
+            "default": false,
+            "info": "Will replace the content/button with the product form"
+          }
+        ]
+      }
+      {
         "type" : "code",
-        "name" : "Code",
+        "name" : "Code/Embed",
         "settings" : [
           {
             "type" : "header",

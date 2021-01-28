@@ -58,6 +58,12 @@ h2, .h2 {
   font-size: calc(2em + 1.8vw);
   &.long {
     font-size: calc(1.8em + 1.5vw);
+      @include media-query($widescreen) {
+        font-size: 2.5em;
+      }
+      @include media-query($small) {
+        font-size: 1.9em;
+      }
   }
   // @include font-extra;
 }

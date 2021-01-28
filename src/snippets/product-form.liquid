@@ -1,12 +1,10 @@
 <div class="form-wrap" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" >
   {% form 'product', product, data-product-form: '', data-productid: product.id, data-product-handle: product.handle, data-enable-history-state: 'true' %}
-      {% if product.has_only_default_variant != true %}
+    {% if product.has_only_default_variant != true %}
       {% for option in product.options_with_values %}
-        <div class="js">
-            {% if section.settings.swatches %}
-              {% include 'swatch' with option.name %}
-              {%endif %}
 
+        <div class="js">
+            {% include 'swatch' with option.name %}
             <div class="selector-wrapper">
               <label for="Option{{ option.position }}">
                 {{ option.name }}

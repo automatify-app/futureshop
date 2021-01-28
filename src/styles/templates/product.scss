@@ -87,7 +87,7 @@ flex: 1 2 300px;
   padding: calc(12px + 1vw) calc(10px + 2.2vw) ;
 
   @include media-query($small) {
-    padding: 0 10px;
+    padding: 0;
   }
 
   // margin-top:6vmin;
@@ -128,9 +128,9 @@ flex: 1 2 300px;
     word-wrap: break-word;
 
     &:nth-child(n-2) {
-      @include media-query($tiny) {
-        text-align: center;
-      }
+      // @include media-query($tiny) {
+      //   text-align: center;
+      // }
       margin-bottom: 0.1em;
     }
 

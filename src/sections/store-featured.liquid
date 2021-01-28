@@ -21,11 +21,11 @@
 
   {%- assign collection = collections[section.settings.collection] -%}
   {% capture max %}{%if collection.products.size <= section.settings.limit%}{{collection.products.size}}{% elsif section.settings.limit == 0%}100{%else%}{{section.settings.limit}}{%endif%}{%endcapture%}
-  <div class="collection-grid product-grid size--{{section.settings.size}}" data-max="{{max}}" > 
-  
+  <div class="collection-grid product-grid size--{{section.settings.size}}" data-max="{{max}}" >
+
   {% for product in collection.products limit: section.settings.limit %}
     {% include 'grid-item' with secondary_image: {{section.settings.secondary_image}}, show_price: {{section.settings.show_price}}, simplify: {{section.settings.simplify}}, hover_details: {{section.settings.hoverer}} %}
-    {% assign delay = delay | plus: 50 %} 
+    {% assign delay = delay | plus: 50 %}
   {% else %}
     {% for i in (1..6) %}
       <a href="#" class="featured-collection-item">
@@ -41,7 +41,7 @@
   {% if section.settings.button_text != blank %}
   <div class="button-wrap center">
     <a href="{{section.settings.button_url | default: collection.url}}" class="button big secondary">{{section.settings.button_text}}</a>
-  </div> 
+  </div>
   {%endif%}
 </section>
 
@@ -99,7 +99,7 @@
         "min" : 0,
         "step" : 1
       },
-     
+
 
       {
         "type" : "text",
@@ -140,12 +140,6 @@
         "label" : "Details on hover?"
       }
 
-    ],
-    "presets": [
-      {
-        "name": "Featured collection",
-        "category": "Collection"
-      }
     ]
   }
 {% endschema %}

@@ -100,6 +100,10 @@
         grid-template-columns: repeat(4, 1fr)
       }
 
+      @include media-query($tiny) {
+        display: block;
+      }
+
 
     }
      @include media-query($tiny) {
@@ -135,7 +139,7 @@
         margin:5px auto;
         hyphens: auto;
         @include media-query($tiny) {
-          word-break: break-all;
+          // word-break: break-all;
           font-size: 24px;
         }
         width: 100%
@@ -324,8 +328,8 @@ body.preheader-style--caps {
     text-transform: uppercase;
   }
 }
-
-.size--full-width {
-  .collection-list__grid.style--overlay .collection-list-item  {
-    margin: 0 !important;
-  }}
+// Remove margin on full-widthers:
+// .size--full-width {
+//   .collection-list__grid.style--overlay .collection-list-item  {
+//     margin: 0 !important;
+//   }}
