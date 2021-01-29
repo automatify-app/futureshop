@@ -152,7 +152,6 @@ Starting variables
 
   <nav role="navigation" class="main-nav {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%} mobile-align--{{section.settings.mobile_menu_text_align}} mobile-text--{{section.settings.mobile_text}} mobile-text-inner--{{section.settings.mobile_inner_text}} align--{{section.settings.menu_text_align}} {% if section.settings.layout_header == 'menu-centered' %} has-halves {%endif%} " id="site-nav" >
     <div class="nav-inner">
-    <div class="nav-inner__background"></div>
     <div class="nav-inner__wrap {% if settings.social_layout == 'after-menu' %}  has-socials {%endif%} font--{{settings.font_family_menu | default: 'heading'}} weight--{{settings.font_weight_menu | default: 'bold'}} style--{{settings.font_style_menu | default: 'standard'}}" >
 
 
@@ -560,7 +559,11 @@ Style + Script tags
 
     }
     header.site-header {
+    {% if section.settings.logo != blank %}
       flex-basis: {{section.settings.logo_max_width}}px;
+      {% else %}
+      flex-basis: auto;
+    {%endif%}
     }
     @media only screen and (max-width: 750px) {
       .site-header__inner img, .site-header__inner svg {

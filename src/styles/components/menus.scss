@@ -228,18 +228,6 @@ body.nav-open {
 }
 
 
-.nav-inner__background {
-  @extend %psuedoish;
-  background: rgba(0, 0, 0, 0.75);
-  opacity: 0;
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  pointer-events: none;
-  transition: opacity 400ms 300ms $ease;
-  display: none;
-}
-
 .menu-icon {
   line-height: 1;
 

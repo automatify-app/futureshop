@@ -252,6 +252,7 @@ body .image-section:first-child {
 {% if settings.tag_color != blank %}
 h6.visible-tag  {
   color: {{settings.tag_color}};
+  font-weight: {{settings.tag_font_weight | default: 700 }};
 }
 {%endif%}
 

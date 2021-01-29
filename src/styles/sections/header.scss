@@ -549,6 +549,12 @@ nav.main-nav.has-halves {
     grid-template-areas: "header nav socials";
   }
 }
+.site-header__inner-wrap.layout--standard-natural {
+  justify-content: center;
+  nav.main-nav {
+    flex: 0 1 auto;
+  }
+}
 .site-header__inner-wrap.layout--balanced_centered {
 
   @include media-query($large-up) {
