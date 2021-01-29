@@ -81,8 +81,7 @@
   </div>
   </div>
   {% if settings.newsletter_include_socials == true %}
-  <div data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+    {% comment %} delay is in social icons {% endcomment %}
     {% render 'social-icons' %}
-  </div>
   {% endif %}
 </div>

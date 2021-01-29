@@ -21,7 +21,8 @@
 
       {%endif%}
       {% if section.settings.include_all_icons == true %}
-      <div class="all-social-icons" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+      <div class="all-social-icons">
+			{% comment %} delay is in social icons {% endcomment %}
         {% include 'social-icons' %}
       </div>
     {%endif%}
