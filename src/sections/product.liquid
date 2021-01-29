@@ -11,7 +11,7 @@
       <h1 class="font--extra h2 {% if product.title.size >= 15 %}long{%endif%}" data-aos="fade-in" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ product.title }}</h1>
 
     {% render 'in-stock-warning' with product: product %}
-      {%include 'product-form' %}
+      {%include 'product-form' with enable_history: "true" %}
 
       {% comment %} tags below form {% endcomment %}
       {% if settings.tag_location == 'below'%}{% include 'visible-tags'%}{%endif%}

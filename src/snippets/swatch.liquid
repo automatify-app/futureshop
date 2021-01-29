@@ -1,7 +1,8 @@
 {% comment %}
+
   Set the extension of your color files below. Use 'png', 'jpeg', 'jpg' or 'gif'.
 {% endcomment %}
-<div class="swatches-all" data-module="swatch">
+<div class="swatches-all" data-module="swatch" >
 {% assign file_extension = 'jpg' %}
 
 {% if swatch == blank %}
@@ -48,9 +49,8 @@
     {% else %}
     <div class="swatch clearfix {% if forloop.index0 == 0 %} last-clicked{%endif%}" data-option-index="{{ option_index }}">
     {%capture current_value %}{% if option_index == 0%}{{current_variant.option1}}{%endif%}{% if option_index == 1%}{{current_variant.option2}}{%endif%}{% if option_index == 2%}{{current_variant.option3}}{%endif%}{%endcapture%}
-
       {% unless swatch == 'Title' or swatch == 'title' %}
-      <div class="header">{{ swatch }}: <span class="option-value--holder">{{current_value}}</span></div>
+        <div class="header">{{ swatch }}: <span class="option-value--holder">{{current_value}}</span></div>
       {% endunless %}
       {% assign values = '' %}
       {% for variant in product.variants %}

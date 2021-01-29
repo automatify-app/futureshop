@@ -55,13 +55,13 @@ body {
   position: static;
   z-index: 1;p
 
-  .button.outline, body.button-style--outline & .button {
-    color: inherit;
+  // .button.outline, body.button-style--outline & .button:not() {
+  //   color: inherit;
 
-    &:hover {
-      color: $color-accent-inverse
-    }
-  }
+  //   &:hover {
+  //     color: $color-accent-inverse
+  //   }
+  // }
 
   .section-inner {
     // @extend %maxwidth

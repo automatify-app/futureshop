@@ -33,7 +33,6 @@ const selectors = {
   thumbnailById: (id) => `[data-thumbnail-id='${id}']`,
   thumbnailActive: '[data-product-single-thumbnail][aria-current]',
 };
-
 register('product', {
   async onLoad() {
     const productFormElement = document.querySelector(selectors.productForm);
@@ -47,8 +46,9 @@ register('product', {
     }
 
     if (await this.variantInventory) {
-      this.iswVariantsActive = true;
+      this.isVariantsActive = true;
     }
+
     this.productForm = new ProductForm(productFormElement, this.product, {
       onOptionChange: this.onFormOptionChange.bind(this),
     });
@@ -82,11 +82,10 @@ register('product', {
   },
 
   async getVariantInventory() {
-
     const url = `/admin/api/2020-07/products/${this.product.id}/variants.json`
     const inventory = await fetch(url).then((response) => {
       return response.json();
-    }).catch(err=>{console.error(err); return this.iswVariantsActive = false;});
+    }).catch(err=>{console.error(err); return this.isVariantsActive = false;});
 
     if (await inventory) {
       var myInv = await inventory;
@@ -96,7 +95,6 @@ register('product', {
       })
       return invArray;
     }
-
   },
 
 
@@ -140,11 +138,11 @@ register('product', {
       this.product.options.forEach(option => {
         var optionString = 'option' + (i + 1);
 
-        if (option.values.length > 1 && swatches.length > 1) {
+        if (option.values.length > 1 && swatches.length > 1 && swatches[i]) {
             option.values.forEach(value => {
               var activeButton = swatches[i].querySelector('[value="' + value + '"]');
               var activeVariants = this.product.variants.filter((val, i) => { return (val[optionString] == value && val.available == true) });
-              if (activeVariants.length > 0) {
+              if (activeVariants.length > 0 && activeButton) {
                 activeButton.parentNode.classList.add('available')
                 activeButton.parentNode.classList.remove('soldout')
                 activeButton.removeAttribute('disabled');
@@ -249,6 +247,7 @@ register('product', {
   },
 
   renderSubmitButton(variant) {
+
     const submitButton = this.container.querySelector(selectors.submitButton);
     const submitButtonText = this.container.querySelector(
       selectors.submitButtonText,
@@ -259,6 +258,8 @@ register('product', {
       submitButtonText.innerText = theme.strings.unavailable;
     } else if (variant.available) {
       submitButton.disabled = false;
+      console.log("Should work:")
+      console.log(variant)
       submitButtonText.innerText = theme.strings.addToCart;
       this.container.querySelector('[name="id"]').value = variant.id;
     } else {
@@ -339,6 +340,9 @@ register('product', {
     const activeImage = this.container.querySelector(
       selectors.visibleImageWrapper,
     );
+    if (!activeImage) {
+      return false;
+    }
     const inactiveImage = this.container.querySelector(
       selectors.imageWrapperById(id),
     );

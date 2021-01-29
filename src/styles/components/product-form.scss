@@ -9,7 +9,10 @@
   align-items: center;
   justify-content: space-between;
   max-width: 55rem;
-  margin-bottom: 25px;
+  margin-bottom: calc(12px + 0.5vw);
+  .text--center & {
+    margin: 0 auto  calc(12px + 0.5vw);
+  }
 
   @include media-query($tiny) {
 

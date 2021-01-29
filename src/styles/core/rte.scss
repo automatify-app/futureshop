@@ -69,6 +69,7 @@ a {
 
 // This class is wrapped around YouTube/Vimeo embeds in the RTE
 // to make them responsive and prevent layout breaking
+.js-reframe,
 .rte__video-wrapper {
   position: relative;
   overflow: hidden;

@@ -1,27 +1,43 @@
 
-
-<div class="content-column type--{{block.type}} size--{{block.settings.size}} align--{{block.settings.align}}">
-{% if block.settings.pre_title != blank or block.settings.title != blank  %}
-    <div class="block-header section-header align--{{block.settings.align_text}}">
-      {% if block.settings.pre_title != blank %}
-        <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label block-header__pre_title">{{ block.settings.pre_title | escape }}</h4>
+{% assign product = all_products[params.product] %}
+<div {% if params.use_form == true %}  data-section-id="{{ id }}" data-section-type="product" {%endif%} class="content-column type--product size--{{params.size}} text--{{params.align | default: 'center'}}">
+{% if params.pre_title != blank or params.title != blank  %}
+    <div class="block-header section-header ">
+      {% if params.pre_title != blank %}
+        <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label block-header__pre_title ">{{ params.pre_title | escape }}</h4>
       {% endif %}
-      {% if block.settings.title != blank %}
-        <h3 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h3 block-header__title heading">{{ block.settings.title | escape }}</h2>
+      {% if params.title != blank %}
+        <h3 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h3 block-header__title heading">{{ params.title | escape }}</h2>
       {% endif %}
-      {% if block.settings.post_title != blank %}
-        <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label block-header__post-title">{{ block.settings.post_title | escape }}</h4>
+      {% if params.post_title != blank %}
+        <h5 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h5 label block-header__post-title">{{ params.post_title | escape }}</h5>
       {% endif %}
     </div>
 {%endif%}
-{%- if block.settings.text != blank -%}
-  <div data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}"  class="rte align--{{block.settings.align_text}}">
-    {{ block.settings.text }}
-  </div>
-{%- endif -%}
- {% if block.settings.button_text != blank and  block.settings.button_url != blank %}
+
+<div class="content-column__product">
+  {% comment %} Image {% endcomment %}
+  {% if params.image_replacement != blank %}
+  {% include 'responsive-image' with image: params.image_replacement, max_width: 800, max_height: 1000, wrapper_class:"column-product-image" %}
+  {%elsif product.featured_image != blank %}
+  {% include 'responsive-image' with image: product.featured_image, max_width: 800, max_height: 1000, wrapper_class:"column-product-image" %}
+  {%else%}
+    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+  {%endif%}
+
+  {% comment %} Content: Either form or text + button {% endcomment %}
+  {%- if params.use_form == false or params.text != blank -%}
+    <div data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}"  class="rte">
+      {{ params.text }}
+    </div>
+    <div class="button-wrap" data-aos="fade-up"  data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}"  ><a href="{{product.url}}" class="button">{{params.button_text | default: "Shop Now"}}</a></div>
+  {%else%}
+    {% render 'product-form' with product: product, current_variant: product.selected_or_first_available_variant, enable_history: "false" %}
+  {%- endif -%}
+ {% if params.button_text != blank and  params.button_url != blank %}
   <div data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}"  class="button-wrap center">
-    <a href="{{block.settings.button_url}}" class="button">{{block.settings.button_text}}</a>
+    <a href="{{params.button_url}}" class="button">{{params.button_text}}</a>
   </div>
   {%endif%}
+  </div>
 </div>

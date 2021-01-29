@@ -1,9 +1,9 @@
-<aside class="content-column type--{{block.type}} size--{{block.settings.size}} {% if block.settings.image2 != blank %}has--img2{%endif%} {% if block.settings.image3 != blank %}has--img3{%endif%}" data-aos-delay="200" data-aos="fade-in">
-    {% if block.settings.image_link != blank %}
-      <a  data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" data-aos="fade-in" href="{{block.settings.image_link}}" {% if block.settings.link_external == true %} target="_blank" rel="nofollow" {%endif%} class=" content-column__image {% if block.settings.parallax == true %} rellax-float {%endif%}"  data-rellax-speed="4">
-         {% if block.settings.image != blank %}
+<aside class="content-column type--image size--{{params.size}} {% if params.image2 != blank %}has--img2{%endif%} {% if params.image3 != blank %}has--img3{%endif%}" data-aos-delay="200" data-aos="fade-in">
+    {% if params.image_link != blank %}
+      <a  data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" data-aos="fade-in" href="{{params.image_link}}" {% if params.link_external == true %} target="_blank" rel="nofollow" {%endif%} class=" content-column__image {% if params.parallax == true %} rellax-float {%endif%}"  data-rellax-speed="4">
+         {% if params.image != blank %}
           {% render 'responsive-image' with
-            image: block.settings.image,
+            image: params.image,
             max_width: 1000,
             max_height: 1000
           %}
@@ -12,10 +12,10 @@
         {% endif %}
       </a>
   {%else %}
-    <div data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" data-aos="fade-in"  class="content-column__image {% if block.settings.parallax == true %} rellax-float"  data-rellax-speed="3" {% else %} " {% endif %}>
-        {% if block.settings.image != blank %}
+    <div data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" data-aos="fade-in"  class="content-column__image {% if params.parallax == true %} rellax-float"  data-rellax-speed="3" {% else %} " {% endif %}>
+        {% if params.image != blank %}
           {% render 'responsive-image' with
-            image: block.settings.image,
+            image: params.image,
             max_width: 1000,
             max_height: 1000
           %}
@@ -24,19 +24,19 @@
         {% endif %}
   </div>
 
-      {% if block.settings.image2 != blank %}
-        <div  data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" data-aos="fade-in" class=" content-column__image {% if block.settings.parallax == true %} rellax-float "  data-rellax-speed="1" {% else %} " {% endif %}>
+      {% if params.image2 != blank %}
+        <div  data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" data-aos="fade-in" class=" content-column__image {% if params.parallax == true %} rellax-float "  data-rellax-speed="1" {% else %} " {% endif %}>
                   {% render 'responsive-image' with
-                    image: block.settings.image2,
+                    image: params.image2,
                     max_width: 1000,
                     max_height: 1000
                   %}
           </div>
       {%endif%}
-      {% if block.settings.image3 != blank %}
-        <div  data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" data-aos="fade-in" class=" content-column__image {% if block.settings.parallax == true %} rellax-float" data-rellax-speed="5" {% else %} " {% endif %}>
+      {% if params.image3 != blank %}
+        <div  data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" data-aos="fade-in" class=" content-column__image {% if params.parallax == true %} rellax-float" data-rellax-speed="5" {% else %} " {% endif %}>
              {% render 'responsive-image' with
-          image: block.settings.image3,
+          image: params.image3,
           max_width: 1000,
           max_height: 1000
         %}

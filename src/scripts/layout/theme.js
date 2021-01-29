@@ -77,6 +77,7 @@ class Theme {
 
   reframe() {
     reframe('.rte iframe');
+    reframe('.type--code iframe');
   }
 
   utilities() {

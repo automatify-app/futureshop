@@ -513,7 +513,6 @@ class ShopCart {
       if (filteredOptions.length > 0) {
         data.itemOptions = filteredOptions;
       }
-      console.log(filteredOptions);
     }
 
     return this.template(data);
