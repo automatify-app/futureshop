@@ -21,7 +21,11 @@
 {% if include_button == false %}
   {% assign include_button = false %}
 {% endif %}
-{% assign delay = 0 %}
+
+{% unless delay  %}
+  {% assign delay = 0 %}
+{%endunless %}
+
 {%assign short_label = false %}
 {% assign label_length = params.introduction | size %}
 {% if label_length <= 5 %}
@@ -29,7 +33,7 @@
 {%endif%}
 
 {% if params.heading != blank or params.introduction != blank or params.text != blank or params.logo != blank%}
-<div class="common-header__outer type--{{type | default: 'section'}} align--{{params.text_align | default: settings.header_alignment }} font--{{params.text_size | default: 'standard'}}">
+<div class="common-header__outer type--{{type | default: 'section'}} text--{{params.text_align | default: 'center' }} font--{{params.text_size | default: 'standard'}}">
     {% if params.logo != blank %}
     <div data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="common-header__logo">
       {% include 'responsive-image' with image: params.logo, max_width: 1200, max_height: 900 %}

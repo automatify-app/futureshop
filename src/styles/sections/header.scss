@@ -326,6 +326,7 @@
   }
   img,
   svg {
+    padding: 1px; //clipping fix
     width: 100%;
     height: auto;
   }

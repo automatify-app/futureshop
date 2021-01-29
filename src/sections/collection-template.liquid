@@ -1,11 +1,13 @@
+{% assign delay = 0%}
+
 <div class="section-outer">
 <div class="section-inner">
 {% paginate collection.products by section.settings.limit %}
 <div class="common-header">
   <header role="banner" class="collection-header">
-    <h1 class="heading mega">{{ collection.title }}</h1>
+    <h1 class="heading mega" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ collection.title }}</h1>
     {% if collection.description != blank %}
-      <div class="rte">
+      <div class="rte" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
         {{ collection.description }}
       </div>
     {% endif %}
@@ -16,7 +18,7 @@
 
   {% capture max %}{%if collection.products.size <= section.settings.limit%}{{collection.products.size}}{% elsif section.settings.limit == 0%}100{%else%}{{section.settings.limit}}{%endif%}{%endcapture%}
   <div class="collection-grid product-grid size--{{section.settings.size}}" data-max="{{max}}" >
-{% assign delay = 0%}
+
   {% for product in collection.products limit: section.settings.limit %}
     {% include 'grid-item' with secondary_image: {{section.settings.secondary_image}}, show_price: {{section.settings.show_price}}, simplify: {{section.settings.simplify}}, hover_details: {{section.settings.hoverer}} %}
     {% assign delay = delay | plus: 50 %}

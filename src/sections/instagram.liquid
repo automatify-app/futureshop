@@ -11,7 +11,7 @@
 <div class="section-inner">
 {% assign delay = 0 %}
   {% include 'common-header' with include_button: false%}
-  <div class="embed-wrap">
+  <div data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="embed-wrap">
     {{section.settings.html}}
   </div>
   {% if section.settings.button_text != blank and section.settings.button_text != blank %}
@@ -21,7 +21,7 @@
 
       {%endif%}
       {% if section.settings.include_all_icons == true %}
-      <div class="all-social-icons">
+      <div class="all-social-icons" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
         {% include 'social-icons' %}
       </div>
     {%endif%}

@@ -1,20 +1,20 @@
 %button {
   display: inline-block;
-  font-size: 15px;
+  //THE FOLLOWING PROPERTIES ARE DETERMINED at the THEME.SCSS level
 
-  @include media-query($medium-up) {
-    font-size: 17px;
-  }
+  // font-size: 15px;
+  // @include media-query($medium-up) {
+  //   font-size: 17px;
+  // }
+  // padding: 0.7em 1.2em 0.75em;
+  // @include font-heading;
+  // line-height: 1;
 
-  padding: 0.7em 1.2em 0.75em;
-  line-height: 1;
   position: relative;
   z-index: 10;
-  // text-transform: uppercase;
   position: relative;
   margin: 0.6em 0 0.4em;
 
-  @include font-heading;
   border-radius: 0;
   letter-spacing: -0.03em;
   color: inherit;
@@ -127,12 +127,7 @@ body {
       font-weight: $font-extra-weight;
     }
   }
-  &.button--caps {
-    %button {
-      text-transform: uppercase;
-      letter-spacing: 0.09em
-    }
-  }
+
   &.button-style--solid {
     %button {
       background: $color-accent;

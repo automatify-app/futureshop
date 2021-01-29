@@ -86,48 +86,19 @@ body.header-overlay.overlay-shadow .image-section:first-child {
     z-index: 20;
   }
 }
-body .image-section:first-child {
 
-  .swiper-slide:not(.banner-slide) {
-    min-height: calc(350px + 18vw);
-    @include media-query($tiny) {
-      min-height: 310px;
-    }
+
+.swiper-slide.style--boxed,
+body .image-section:first-child .swiper-slide.style--boxed {
+  @include media-query($tiny) {
+  padding: 10vw 12px 20px;
   }
-  .slide-content {
-    padding-top: calc(30px + 2.5vw);
-    padding-bottom: calc(30px + 2.5vw);
-    @include media-query($small) {
-      padding: 45px 0;
-    }
-  }
-}
-
-
-body.preheader-style--simple {
-  .slide-content-inner h4 {
-    @include font-body();
-
-  }
-}
-
-body.preheader-style--caps {
-  .slide-content-inner h4 {
-    @include font-body();
-    letter-spacing: 0.18em;
-    font-size: calc(1.3rem + 0.2vw);
-    text-transform: uppercase;
-
-  }
-
-}
-
-.swiper-slide.style--boxed {
    .slide-content-inner {
       display: grid;
       width: 100%;
       text-align: left;
       grid-template-columns: auto 1fr;
+      margin: auto;
       grid-template-areas: "logo content" ;
     }
 
@@ -150,14 +121,30 @@ body.preheader-style--caps {
     width: auto;
     max-width: calc(400px + 5vw);
     margin: 30vh auto -30px;
-    padding: calc(12px + 1.2vw) !important;
+    padding: calc(20px + 2vw) calc(12px + 1.2vw);
+    .common-header {
+      margin-bottom: 0.5em;
+    }
+    h4 {
+      font-size: 15px;
+    }
+    p {
+      margin: 0;
+    }
 
     @include media-query($medium-up) {
       margin: auto 5vw 0 auto;
     }
 
     @include media-query($widescreen) {
-      padding: 15px 24px;
+      padding: 32px 24px;
+    }
+    @include media-query($small) {
+
+      font-size: 14px;
+       margin: 50vh auto -20px;
+      width: 100%;
+      max-width: 100%;
     }
 
     .button-wrap {

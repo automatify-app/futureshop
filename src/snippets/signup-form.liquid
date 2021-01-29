@@ -1,3 +1,5 @@
+{% assign delay = 0 %}
+
 
  <div class="form-wrap signup-form layout--{{settings.signup_layout}}">
   <style>
@@ -23,24 +25,24 @@
   <div class="common-header__outer signup-form__header type--newsletter align--{{settings.signup_alignment}} font--{{settings.signup_text_size}}">
       <header class="common-header type--newsletter">
         {% if settings.signup_intro != empty %}
-          <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__intro">{{ settings.signup_intro | escape }}</h4>
+          <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__intro">{{ settings.signup_intro | escape }}</h4>
         {% endif %}
         {% if settings.signup_title != empty %}
-          <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="heading font--{{settings.font_family_heading}} style--{{settings.header_style}} color--{{settings.header_color}} spacing--{{settings.header_spacing}} common-header__heading">{{ settings.signup_title | escape }}</h4>
+          <h2 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="heading font--{{settings.font_family_heading}} style--{{settings.header_style}} color--{{settings.header_color}} spacing--{{settings.header_spacing}} common-header__heading">{{ settings.signup_title | escape }}</h4>
         {% endif %}
         {% if settings.signup_subtitle != empty %}
-          <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label  common-header__subtitle">{{ settings.signup_subtitle | escape }}</h4>
+          <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label  common-header__subtitle">{{ settings.signup_subtitle | escape }}</h4>
         {% endif %}
       </header>
     {% endif %}
 
     {%- if settings.signup_content != blank -%}
-      <div class="rte common-rte">
+      <div class="rte common-rte" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
         {{ settings.signup_content }}
       </div>
     {%- endif -%}
   </div>
-  <div class="signup-form__form">
+  <div class="signup-form__form" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
     {% form 'customer' , id: form_id%}
 
       {{ form.errors | default_errors }}
@@ -65,7 +67,7 @@
           placeholder="{{ 'general.password_page.signup_form_email_placeholder' | t }}">
       </div>
       <div class="input-group btn-group">
-        <button type="submit" name="commit" class="button secondary">{{settings.signup_button_text | default: 'Sign Up'}}</button>
+        <button type="submit" name="commit" class="button">{{settings.signup_button_text | default: 'Sign Up'}}</button>
       </div>
       {% if settings.gdpr_text != blank %}
       <label class="clearfix large_form" style="font-weight:normal">
@@ -79,6 +81,8 @@
   </div>
   </div>
   {% if settings.newsletter_include_socials == true %}
-  {% render 'social-icons' %}
+  <div data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+    {% render 'social-icons' %}
+  </div>
   {% endif %}
 </div>

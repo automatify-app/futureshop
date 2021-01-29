@@ -212,12 +212,13 @@ nav.mobile-menu__inner {
   }
 }
 @include media-query($medium) {
-.mobile--disabled nav {
-  li {
-    display: inline-block !important;
+  .mobile--disabled nav {
+    li {
+      display: inline-block !important;
+    }
   }
 }
-
+@include media-query($medium-down) {
 .site-header__inner.mobile--medium {
   ul.main-menu {
     display: none;

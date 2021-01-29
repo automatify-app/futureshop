@@ -219,7 +219,7 @@
       {
         "type": "select",
         "id": "header_style",
-        "label": "Header Style",
+        "label": "Header Capitalization",
         "default": "standard",
         "options": [
           {
@@ -229,6 +229,10 @@
           {
             "value": "caps",
             "label": "All Caps"
+          },
+          {
+            "value": "lowercase",
+            "label": "Lowercase"
           }
         ]
       },
@@ -267,43 +271,32 @@
         "step": 1
       },
       {
-        "type": "select",
-        "id": "header_color",
-        "label": "Header Color",
-        "options": [
-          {
-            "value": "standard",
-            "label": "Standard"
-          },
-          {
-            "value": "accent",
-            "label": "Accent"
-          },
-          {
-            "value": "secondary",
-            "label": "Secondary"
-          }
-        ]
+        "type": "range",
+        "id": "header_margin_top",
+        "label": "Header Margin (top)",
+        "min": 0,
+        "default": 2,
+        "max": 10,
+        "step": 1
       },
       {
-        "type": "select",
-        "id": "header_alignment",
-        "label": "Default Header Alignment",
-        "default": "center",
-        "options": [
-          {
-            "value": "center",
-            "label": "Center"
-          },
-          {
-            "value": "left",
-            "label": "Left"
-          },
-          {
-            "value": "right",
-            "label": "Right"
-          }
-        ]
+        "type": "range",
+        "id": "header_margin_bottom",
+        "label": "Header Margin (Bottom)",
+        "min": 0,
+        "default": 2,
+        "max": 10,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "header_line_height",
+        "label": "Header Line Height",
+        "info": "Check that it looks good when wrapped on multiple lines (product titles on product pages)",
+        "min": 7,
+        "default": 10,
+        "max": 20,
+        "step": 1
       },
       {
         "type": "header",
@@ -373,30 +366,8 @@
           }
         ]
       },
-      {
-        "type": "header",
-        "content": "buttons"
-      },
-      {
-        "type": "select",
-        "id": "font_family_buttons",
-        "label": "Button Font Family",
-        "default": "heading",
-        "options": [
-          {
-            "value": "body",
-            "label": "Body"
-          },
-          {
-            "value": "heading",
-            "label": "Heading"
-          },
-          {
-            "value": "extra",
-            "label": "Extra"
-          }
-        ]
-      },
+
+
       {
         "type": "header",
         "content": "Products"
@@ -526,118 +497,44 @@
       }
     ]
   },
-  {
-    "name" : "Mobile Menu",
-    "settings" : [
-      {
-        "type" : "select",
-        "id" : "mm_behavior",
-        "label" : "Mobile Menu Behavior",
-        "default" : "small",
-        "options" : [
-          {
-            "value" : "small",
-            "label" : "Small Screens"
-          },
-          {
-            "value" : "medium",
-            "label" : "Medium Screens"
-          },
-          {
-            "value" : "always",
-            "label" : "Always Mobile Menu"
-          },
-          {
-            "value" : "disabled",
-            "label" : "No Mobile Menu"
-          }
-        ]
-      },
-      {
-        "type" : "checkbox",
-        "id" : "mm_show_menu_text",
-        "default" : false,
-        "label" : "Show Menu Text"
-      },
-      {
-        "type" : "checkbox",
-        "id" : "mm_show_icon_text",
-        "default" : false,
-        "label" : "Show Icon Text"
-      },
-      {
-        "type" : "select",
-        "id" : "mm_direction",
-        "label" : "Mobile Menu Offscreen Direction",
-        "default" : "right",
-        "options" : [
-          {
-            "value" : "left",
-            "label" : "Left"
-          },
-          {
-            "value" : "right",
-            "label" : "Right"
-          },
-          {
-            "value" : "top",
-            "label" : "Top"
-          },
-          {
-            "value" : "bottom",
-            "label" : "Bottom"
-          },
-          {
-            "value" : "fade",
-            "label" : "Fade In"
-          }
-        ]
-      },
-      {
-        "type" : "select",
-        "id" : "mm_size",
-        "label" : "Mobile Menu Size",
-        "default" : "standard",
-        "options" : [
-          {
-            "value" : "standard",
-            "label" : "Standard"
-          },
-          {
-            "value" : "full",
-            "label" : "Full"
-          }
-        ]
-      },
-       {
-        "type" : "checkbox",
-        "id" : "mm_account",
-        "default" : true,
-        "label" : "Show Account"
-      },
-       {
-        "type" : "checkbox",
-        "id" : "mm_socials",
-        "default" : true,
-        "label" : "Show Socials"
-      },
-       {
-        "type" : "checkbox",
-        "id" : "mm_search",
-        "default" : true,
-        "label" : "Show search"
-      },
-       {
-        "type" : "checkbox",
-        "id" : "mm_cart",
-        "default" : true,
-        "label" : "Show cart"
-      }
-    ]
-  },
+
   {
     "name" : "Site Header Settings",
     "settings" : [
+      {
+        "type" :"header",
+        "content" : "Hero",
+        "info" : "Sizing options for the top slider/image bannder"
+      },
+
+       {
+        "type" : "range",
+        "label" : "Hero Height",
+        "id" : "hero_height",
+        "default" : 400,
+        "step": 25,
+        "min" : 200,
+        "max": 600
+      },
+      {
+        "type" : "range",
+        "label" : "Hero Height (Small Screens)",
+        "id" : "hero_height_mobile",
+        "default" : 400,
+        "step": 25,
+        "min" : 200,
+        "max": 800
+      },
+       {
+        "type" : "range",
+        "label" : "Hero Height (Huge Screens)",
+        "id" : "hero_height_huge",
+        "default" : 550,
+        "step": 25,
+        "min" : 300,
+        "max": 800
+      },
+
       {
         "type" : "header",
         "content" : "Layout"
@@ -646,7 +543,15 @@
         "type" : "paragraph",
         "content" : "These are main layouts for the site header. These are major, and perhaps breaking, changes."
       },
-
+      {
+        "type" : "range",
+        "label" : "Vertical Padding",
+        "id" : "header_vertical_spacing",
+        "default" : 0,
+        "step": 1,
+        "min" : 0,
+        "max": 32
+      },
       {
         "type" : "select",
         "id" : "header_layout",
@@ -861,6 +766,115 @@
     ]
   },
   {
+    "name" : "Mobile Menu",
+    "settings" : [
+      {
+        "type" : "select",
+        "id" : "mm_behavior",
+        "label" : "Mobile Menu Behavior",
+        "default" : "small",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small Screens"
+          },
+          {
+            "value" : "medium",
+            "label" : "Medium Screens"
+          },
+          {
+            "value" : "always",
+            "label" : "Always Mobile Menu"
+          },
+          {
+            "value" : "disabled",
+            "label" : "No Mobile Menu"
+          }
+        ]
+      },
+      {
+        "type" : "checkbox",
+        "id" : "mm_show_menu_text",
+        "default" : false,
+        "label" : "Show Menu Text"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "mm_show_icon_text",
+        "default" : false,
+        "label" : "Show Icon Text"
+      },
+      {
+        "type" : "select",
+        "id" : "mm_direction",
+        "label" : "Mobile Menu Offscreen Direction",
+        "default" : "right",
+        "options" : [
+          {
+            "value" : "left",
+            "label" : "Left"
+          },
+          {
+            "value" : "right",
+            "label" : "Right"
+          },
+          {
+            "value" : "top",
+            "label" : "Top"
+          },
+          {
+            "value" : "bottom",
+            "label" : "Bottom"
+          },
+          {
+            "value" : "fade",
+            "label" : "Fade In"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "mm_size",
+        "label" : "Mobile Menu Size",
+        "default" : "standard",
+        "options" : [
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "full",
+            "label" : "Full"
+          }
+        ]
+      },
+       {
+        "type" : "checkbox",
+        "id" : "mm_account",
+        "default" : true,
+        "label" : "Show Account"
+      },
+       {
+        "type" : "checkbox",
+        "id" : "mm_socials",
+        "default" : true,
+        "label" : "Show Socials"
+      },
+       {
+        "type" : "checkbox",
+        "id" : "mm_search",
+        "default" : true,
+        "label" : "Show search"
+      },
+       {
+        "type" : "checkbox",
+        "id" : "mm_cart",
+        "default" : true,
+        "label" : "Show cart"
+      }
+    ]
+  },
+  {
     "name": "General Styles",
     "settings": [
       {
@@ -972,6 +986,17 @@
           }
         ]
       },
+
+      {
+        "type": "checkbox",
+        "id": "capitalize_product_titles",
+        "default": true,
+        "label": "Capitalize Product Titles?"
+      },
+      {
+        "type" : "header",
+        "content" : "Price Styles"
+      },
       {
         "type": "select",
         "id": "price_style",
@@ -993,10 +1018,68 @@
         ]
       },
       {
-        "type": "checkbox",
-        "id": "capitalize_product_titles",
-        "default": true,
-        "label": "Capitalize Product Titles?"
+        "type" : "range",
+        "id" : "price_font_fade",
+        "label" : "Price Font Intensity",
+        "default" : 7,
+        "info" : "Lower = Faded out",
+        "step" : 1,
+        "min" : 2,
+        "max" : 10
+      },
+      {
+        "type": "select",
+        "id": "price_font_weight",
+        "label": "Price Font Weight",
+        "info" : "Make sure you're loading the correct font weight",
+        "default": "400",
+        "options": [
+          {
+            "group" : "Light",
+            "value": "100",
+            "label" : "Thin"
+          },
+          {
+            "group" : "Light",
+            "value": "200",
+            "label" : "Extra-Light"
+          },
+          {
+            "group" : "Light",
+            "value": "300",
+            "label" : "Light"
+          },
+          {
+            "group" : "Normal",
+            "value": "400",
+            "label" : "Normal"
+          },
+          {
+            "group" : "Normal",
+            "value": "500",
+            "label" : "Medium"
+          },
+          {
+            "group" : "Bold",
+            "value": "600",
+            "label" : "Semi-Bold"
+          },
+          {
+            "group" : "Bold",
+            "value": "700",
+            "label" : "Bold"
+          },
+          {
+            "group" : "Black",
+            "value": "800",
+            "label" : "Semi-Black"
+          },
+          {
+            "group" : "Black",
+            "value": "900",
+            "label" : "Black"
+          }
+        ]
       },
       {
         "type": "checkbox",
@@ -1032,9 +1115,92 @@
     "name": "Button Styles",
     "settings": [
       {
-        "type": "header",
-        "content": "Buttons"
+        "type" : "header",
+        "content" : "Typography"
       },
+        {
+        "type": "select",
+        "id": "font_family_buttons",
+        "label": "Button Font Family",
+        "default": "heading",
+        "options": [
+          {
+            "value": "body",
+            "label": "Body"
+          },
+          {
+            "value": "heading",
+            "label": "Heading"
+          },
+          {
+            "value": "extra",
+            "label": "Extra"
+          }
+        ]
+      },
+
+
+      {
+        "type": "range",
+        "id": "button_font_size",
+        "label": "Button Font Size",
+        "min": 12,
+        "default": 17,
+        "max": 25,
+        "step": 1
+      },
+       {
+        "type": "range",
+        "id": "button_font_size_mobile",
+        "label": "Button Font Size (Mobile)",
+        "min": 10,
+        "default": 16,
+        "max": 23,
+        "step": 1
+      },
+       {
+        "type": "range",
+        "id": "button_line_height",
+        "label": "Button Line Height",
+        "min": 7,
+        "default": 10,
+        "max": 20,
+        "step": 1
+      },
+
+       {
+        "type": "range",
+        "id": "button_padding_top",
+        "label": "Button Padding Top",
+        "min": 0,
+        "default": 5,
+        "max": 15,
+        "step": 1
+      },
+       {
+        "type": "range",
+        "id": "button_padding_bottom",
+        "label": "Button Padding Bottom",
+        "min": 0,
+        "default": 5,
+        "max": 15,
+        "step": 1
+      },
+       {
+        "type": "range",
+        "id": "button_padding_horiz",
+        "label": "Button Padding Left/Right",
+        "min": 0,
+        "default": 12,
+        "max": 26,
+        "step": 1
+      },
+
+      {
+        "type": "header",
+        "content": "Style Choices"
+      },
+
       {
         "type": "select",
         "id": "button_style",
@@ -1067,28 +1233,91 @@
         "type": "select",
         "id": "button_text_style",
         "label": "Button Text Style",
-        "info": "Used in pre-headings and info across the site",
-        "default": "caps",
+        "default": "normal",
         "options": [
-          {
-            "value": "caps",
-            "label": "Caps"
-          },
           {
             "value": "italic",
             "label": "italic"
           },
           {
-            "value": "standard",
-            "label": "Standard"
+            "value": "normal",
+            "label": "Normal"
           }
         ]
       },
       {
-        "type": "checkbox",
-        "id": "capitalize_buttons",
-        "default": true,
-        "label": "Capitalize Buttons?"
+        "type": "select",
+        "id": "button_font_weight",
+        "label": "Button Font Weight",
+        "info" : "Make sure you're loading the correct font weight",
+        "default": "400",
+        "options": [
+          {
+            "group" : "Light",
+            "value": "100",
+            "label" : "Thin"
+          },
+          {
+            "group" : "Light",
+            "value": "200",
+            "label" : "Extra-Light"
+          },
+          {
+            "group" : "Light",
+            "value": "300",
+            "label" : "Light"
+          },
+          {
+            "group" : "Normal",
+            "value": "400",
+            "label" : "Normal"
+          },
+          {
+            "group" : "Normal",
+            "value": "500",
+            "label" : "Medium"
+          },
+          {
+            "group" : "Bold",
+            "value": "600",
+            "label" : "Semi-Bold"
+          },
+          {
+            "group" : "Bold",
+            "value": "700",
+            "label" : "Bold"
+          },
+          {
+            "group" : "Black",
+            "value": "800",
+            "label" : "Semi-Black"
+          },
+          {
+            "group" : "Black",
+            "value": "900",
+            "label" : "Black"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "button_capitalization",
+        "label": "Button Capitalization",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "Standard"
+          },
+          {
+            "value": "uppercase",
+            "label": "All Caps"
+          },
+          {
+            "value": "lowercase",
+            "label": "Lowercase"
+          }
+        ]
       }
     ]
   },

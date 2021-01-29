@@ -76,11 +76,8 @@ h3, .h3 {
 }
 h4, .h4 {
   font-size: calc(1em + 0.35vw);
-
-  &+h2 {
-    margin-top: 0.2em;
-  }
 }
+
 h5, .h5 {
   font-size: calc(0.8em + 0.35vw);
 
@@ -115,7 +112,6 @@ a:focus {
 %mainHeader {
   word-wrap: break-word;
   letter-spacing: $heading-spacing;
-  margin: 0.1em auto 0.2em;
 }
 
 .label {

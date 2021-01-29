@@ -23,4 +23,10 @@ body {
 {% if settings.general_css != blank %}
   {{settings.general_css}}
 {% endif%}
+
+.product-grid-item .price-outer {
+  font-weight: {{settings.price_font_weight | default: 700}}
+
+}
+
 </style>

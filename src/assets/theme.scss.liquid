@@ -45,6 +45,21 @@ body {
 }
 
 
+//HERO
+
+body .image-section:first-child {
+  .swiper-slide:not(.banner-slide) {
+    min-height: {{settings.hero_height}}px;
+    @media (max-width: 550px ){
+      min-height: {{settings.hero_height_mobile}}px;
+    }
+    @media (min-width: 1300px ){
+      min-height: {{settings.hero_height_huge}}px;
+    }
+  }
+}
+
+
 .heading, .main-header {
   {% case settings.header_size %}
     {% when 'small' %}
@@ -95,8 +110,18 @@ body {
 
   {%endcase %}
 
+
+  // Heading spacing adjustments
+
+  margin-top: {{settings.header_margin_top | divided_by: 10.0 }}em;
+  margin-bottom: {{settings.header_margin_bottom | divided_by: 10.0 }}em;
+  line-height: {{settings.header_line_height | divided_by: 10.0 }};
+
   {% if settings.header_style == 'caps' %}
     text-transform: uppercase;
+  {%endif%}
+  {% if settings.header_style == 'lowercase' %}
+    text-transform: lowercase;
   {%endif%}
 
    {% case settings.font_family_heading %}
@@ -140,9 +165,9 @@ body {
         font-size: 16.5px;
       }
     {% when 'small' %}
-       font-size: 16px;
+       font-size: 15px;
       @media (min-width: 1100px) {
-        font-size: 20px;
+        font-size: 19px;
       }
     {% when 'large' %}
        font-size: 21px;
@@ -177,7 +202,7 @@ body {
 }
 
   h4.label, .h4.label {
-     {% case settings.label_size %}
+    {% case settings.label_size %}
       {% when 'xs' %}
        font-size: 16px;
       @media (min-width: 1100px) {
@@ -196,7 +221,18 @@ body {
     {%endcase %}
 }
 
-.button, button {
+.button, button, .btn {
+  /* {{settings.button_capitalization}} */
+  line-height: {{settings.button_line_height | divided_by:10.0 }};
+  padding: {{settings.button_padding_top | divided_by: 10.0 }}em  {{settings.button_padding_horiz | divided_by: 10.0 }}em {{settings.button_padding_bottom | divided_by: 10.0 }}em ;
+  font-size: {{settings.button_font_size | default: '17'}}px;
+  text-transform: {{settings.button_capitalization | default: "none"}};
+  font-weight: {{settings.button_font_weight | default: "700"}};
+  font-style: {{settings.button_text_style | default : "Standard"}};
+  @media (max-width: 720px) {
+    font-size: {{settings.button_font_size_mobile | default: '16'}}px;
+  }
+
   {% case settings.font_family_button %}
   {%when 'body' %}
     font-family: var(--font-body-real);
@@ -225,3 +261,15 @@ h6.visible-tag  {
   color: {{settings.tag_color}};
 }
 {%endif%}
+
+
+//Product Styles
+.price-outer {
+  font-weight: {{settings.price_font_weight | default: '400'}};
+  opacity: {{settings.price_font_fade | times: 0.1 }};
+}
+
+//Site header
+.site-header__inner-wrap {
+  padding: {{settings.header_vertical_spacing | default: 0 }}px 0;
+}
