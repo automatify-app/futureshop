@@ -398,10 +398,10 @@ ul.footer-menu {
   }
   .payment-icons {
     margin: 12px auto;
-  display: block;
-  flex: 1 1 100%;
-
+    display: block;
+    flex: 1 1 100%;
   }
+
   p.fs-link {
     @include media-query($medium-up) {
       position: absolute;
@@ -597,8 +597,6 @@ form#footer-newsletter {
     @extend %signup-form;
   }
 }
-
-
 
 
 .footer-col .signup-form__inner {
