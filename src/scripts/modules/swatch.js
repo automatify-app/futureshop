@@ -56,8 +56,6 @@ export default class Swatch {
     radios.forEach((radio) => {
       radio.addEventListener('change', function() {
 
-        console.log("this is working")
-
         //REmove last-clicked from all parent swatches
         swatches.forEach((element) => {
           element.classList.remove('last-clicked');

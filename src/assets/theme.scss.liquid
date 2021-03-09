@@ -124,6 +124,8 @@ body .image-section:first-child {
     text-transform: lowercase;
   {%endif%}
 
+  font-style: {{settings.header_font_style}};
+
    {% case settings.font_family_heading %}
    {%when 'body' %}
     font-family: var(--font-body-real);
@@ -204,9 +206,9 @@ body .image-section:first-child {
   h4.label, .h4.label {
     {% case settings.label_size %}
       {% when 'xs' %}
-       font-size: 16px;
+       font-size: 15px;
       @media (min-width: 1100px) {
-        font-size: 18.5px;
+        font-size: 17px;
       }
     {% when 'small' %}
        font-size: 19px;
@@ -232,6 +234,8 @@ body .image-section:first-child {
   @media (max-width: 720px) {
     font-size: {{settings.button_font_size_mobile | default: '16'}}px;
   }
+
+  letter-spacing: {{settings.button_letter_spacing | default: 10 | divided_by: 10.0 | minus: 1.0 }}em;
 
   {% case settings.font_family_button %}
   {%when 'body' %}

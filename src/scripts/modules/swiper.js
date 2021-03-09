@@ -1,7 +1,7 @@
-import Swiper,  {Navigation, Pagination, Autoplay, A11y } from 'swiper';
+import Swiper,  {Navigation, Pagination, Autoplay, A11y, EffectFade } from 'swiper';
 
 // configure Swiper to use modules
-Swiper.use([Navigation, Pagination, Autoplay, A11y]);
+Swiper.use([Navigation, Pagination, Autoplay, A11y, EffectFade]);
 
 export default class MySwiper {
   constructor(el) {
@@ -45,7 +45,7 @@ export default class MySwiper {
 
       ////// Swiper for slideshow
 
-      var animType = el.getAttribute('data-swiper-animation');
+      var animType = this.el.getAttribute('data-swiper-animation');
       var animSpeed = 500;
       if (animType == 'fade') {
         animSpeed = 1000
@@ -90,6 +90,8 @@ export default class MySwiper {
         pagination: dots,
         navigation: navObject
       });
+
+      console.log(mySwiper);
 
 
       window.addEventListener('load', () => {

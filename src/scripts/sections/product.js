@@ -258,8 +258,6 @@ register('product', {
       submitButtonText.innerText = theme.strings.unavailable;
     } else if (variant.available) {
       submitButton.disabled = false;
-      console.log("Should work:")
-      console.log(variant)
       submitButtonText.innerText = theme.strings.addToCart;
       this.container.querySelector('[name="id"]').value = variant.id;
     } else {

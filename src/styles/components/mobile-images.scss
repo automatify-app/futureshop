@@ -12,3 +12,17 @@
   }
 }
 
+.wide-image {
+  width: 100%;
+  height: auto;
+  display: none;
+    @include media-query($widescreen) {
+      display: block;
+    }
+  &~.desktop-image {
+    @include media-query($widescreen) {
+      display: none;
+    }
+  }
+}
+

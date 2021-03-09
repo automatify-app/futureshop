@@ -238,6 +238,22 @@
       },
       {
         "type": "select",
+        "id": "header_font_style",
+        "label": "Header Style",
+        "default": "normal",
+        "options": [
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "italic",
+            "label": "Italic"
+          }
+        ]
+      },
+      {
+        "type": "select",
         "id": "header_size",
         "label": "Header Size",
         "default": "standard",
@@ -343,9 +359,14 @@
           {
             "value": "caps-big",
             "label": "All Caps (Big)"
+          },
+          {
+            "value": "italics",
+            "label": "Italics"
           }
         ]
       },
+
       {
         "type": "select",
         "id": "font_weight_menu",
@@ -367,31 +388,6 @@
         ]
       },
 
-
-      {
-        "type": "header",
-        "content": "Products"
-      },
-      {
-        "type": "select",
-        "id": "font_family_product",
-        "label": "Product Font Family",
-        "default": "heading",
-        "options": [
-          {
-            "value": "body",
-            "label": "Body"
-          },
-          {
-            "value": "heading",
-            "label": "Heading"
-          },
-          {
-            "value": "extra",
-            "label": "Extra"
-          }
-        ]
-      },
       {
         "type": "header",
         "content": "Labels"
@@ -969,6 +965,26 @@
     "settings": [
       {
         "type": "select",
+        "id": "font_family_product",
+        "label": "Product Font Family",
+        "default": "heading",
+        "options": [
+          {
+            "value": "body",
+            "label": "Body"
+          },
+          {
+            "value": "heading",
+            "label": "Heading"
+          },
+          {
+            "value": "extra",
+            "label": "Extra"
+          }
+        ]
+      },
+      {
+        "type": "select",
         "id": "product_style",
         "label": "Product style",
         "options": [
@@ -1156,6 +1172,15 @@
         "min": 10,
         "default": 16,
         "max": 23,
+        "step": 1
+      },
+       {
+        "type": "range",
+        "id": "button_letter_spacing",
+        "label": "Button Font Size (Mobile)",
+        "min": 0,
+        "default": 10,
+        "max": 30,
         "step": 1
       },
        {
