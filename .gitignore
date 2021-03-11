@@ -67,3 +67,4 @@ secrets.json
 .ruby-version
 .env*
 !.env.example
+src/styles/custom.scss
