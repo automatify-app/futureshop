@@ -37,6 +37,8 @@
           "1587746389051-0": {
             "type": "background",
             "settings": {
+              "title" : "Hero",
+              "section_size" : "full-width",
               "background_color": "#000000"
             }
           }

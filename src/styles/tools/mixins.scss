@@ -177,6 +177,17 @@
   }
 }
 
+%hoverEffectStandard {
+  transition:  transform 300ms $ease, opacity 300ms $ease;
+  opacity: 0.8;
+  backface-visibility: hidden;
+  // transform: translate3d(0, 0, 4px);
+
+  &:hover {
+    opacity: 1;
+    // transform: translate3d(0, -2px, 4px)
+  }
+}
 
 %tinyWidth {
   max-width: $grid-medium;

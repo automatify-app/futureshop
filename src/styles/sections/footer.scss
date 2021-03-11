@@ -41,7 +41,7 @@
 
 .footer-content {
  @extend %maxwidth;
-  margin: calc(10px + 1vw) auto;
+  margin: calc(10px + 1vw) auto 5px;
 
   // @include media-query($medium-up) {
     display: flex;
@@ -162,21 +162,15 @@
     flex-basis: auto;
     max-width: 240px;
   }
-  a.email-contact {
-    font-size: 18px;
-    display: inline-block;
-    margin: 5px 0;
-    opacity: 0.8;
+
+
+  .contact-info {
     text-decoration: none;
-    &:hover {
-      opacity: 1;
-    }
-  }
-  a.phone-contact {
-    font-size: 18px;
+    font-display: none;
+    font-size: 14px;
     display: inline-block;
-    text-decoration: none;
-    opacity: 0.8;
+    margin: 10px 0 4px;
+     opacity: 0.8;
     &:hover {
       opacity: 1;
     }
@@ -187,7 +181,9 @@
     font-weight: normal;
     font-size: 17px;
     margin: 18px 0 0;
+
   }
+
 
     @include media-query($small) {
       width: 100%;
@@ -365,7 +361,7 @@ ul.footer-menu {
 }
 .fs-link {
    svg {
-    max-width: 45px;
+    max-width: 35px;
     margin: 12px auto;
     width: 15vw;
     path, g {
@@ -424,7 +420,7 @@ ul.footer-menu {
     }
     .social-wrap {
       text-align: left;
-      margin: 12px auto 0;
+      margin: 4px auto 0;
       a {
         margin: 0.1em 0.3em
       }

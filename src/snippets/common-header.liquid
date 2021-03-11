@@ -32,8 +32,8 @@
   {% assign short_label = true %}
 {%endif%}
 
-{% if params.heading != blank or params.introduction != blank or params.text != blank or params.logo != blank%}
-<div class="common-header__outer type--{{type | default: 'section'}} text--{{params.text_align | default: 'center' }} font--{{params.text_size | default: 'standard'}}">
+{% if params.heading != blank or params.introduction != blank or params.text != blank or params.logo != blank or params.subtitle != blank %}
+<div class="common-header__outer type--{{type | default: 'section'}} text--{{params.text_align | default: 'center' }} font--{{params.text_size | default: 'standard'}} style--{{params.text_style | default: 'standard'}}">
     {% if params.logo != blank %}
     <div data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="common-header__logo">
       {% include 'responsive-image' with image: params.logo, max_width: 1200, max_height: 900 %}

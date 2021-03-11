@@ -1,0 +1,365 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available in the "Header" section in the theme editor.
+
+  Theme Store required settings
+  - Show announcement
+  - Text: message to announce
+  - Link: link of the announcement bar
+
+  Theme Store optional settings
+  - Home page only: only shows on the home page
+{%- endcomment -%}
+
+
+{%- comment -%}
+Starting variables
+{%- endcomment -%}
+{%- capture header_layout -%}{%- unless settings.header_layout -%}{%- if section.settings.layout_header != blank -%}{{section.settings.layout_header}}{%-endif-%}{%- else -%}{{settings.header_layout}}{%- endunless -%}{%- endcapture -%}
+{%- capture header_fixed -%}{% if section.settings.header_fixed != blank %}{{header_fixed}}{%endif%}{% if settings.header_fixed != blank %}{{settings.header_fixed}}{%endif%}{%- endcapture -%}
+
+{%- unless settings.overlay_header -%}{% if section.settings.overlay_header %}{% assign overlay_header = section.settings.overlay_header%}{%endif%}{% else %}{% assign overlay_header = settings.overlay_header %}{%-endunless-%}
+
+{% assign balanced_menu = false %}
+{% if settings.social_layout contains 'balanced' or  section.settings.layout_header contains 'balanced' or settings.header_balanced == true or settings.header_layout contains 'balanced' %}
+{% assign balanced_menu = true %}
+{%endif%}
+
+
+{% comment %} capturing markup vars  {% endcomment %}
+
+{% capture search_markup %}
+  {% unless settings.search_layout == disabled  %}
+    {% render 'search-drawer' with show_text: settings.include_icon_text %}
+  {%endunless %}
+{%endcapture %}
+
+
+{%capture header_markup %}
+  <header role="banner" data-aos="fade-up" data-aos-delay="100" class="site-header {% if settings.social_layout ==  'below-header'%} with-socials{%endif%}" >
+    {% if template.name == 'index' %}
+      <h1 class="{{section.settings.header_font_size }} {% if section.settings.logo == blank and section.settings.logo_overlay == blank%} fallback{%endif%}">
+    {% else %}
+      <div class="h1 {{section.settings.header_font_size }} {% if section.settings.logo == blank and section.settings.logo_overlay == blank%} fallback{%endif%}">
+    {% endif %}
+        <a href="/" class="site-header__logo ">
+                    {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
+              {% if template.name == "index" and overlay_header == true %}
+              {% render 'responsive-image' with image: section.settings.logo_overlay, min_width: 600, max_width: 900, max_height: 900, wrapper_class: "overlay-logo" %}
+
+              {%endif%}
+              {% if section.settings.logo != blank %}
+              {% render 'responsive-image' with image: section.settings.logo, max_width: 900, min_width: 600, max_height: 900 %}
+
+
+            {% else %}
+            <span class="title-text">
+              {{ shop.name }}
+            </span>
+            {% endif %}
+        </a>
+    {% if template.name == 'index' %}
+      </h1>
+    {% else %}
+      </div>
+    {% endif %}
+
+    {% if settings.social_layout ==  'below-logo'%}
+      {%render 'social-icons' %}
+    {%endif%}
+  </header>
+{%endcapture %}
+
+
+{% capture menu_extras %}
+<ul class="menu-extras">
+  {% assign is_first_extra = true %}
+  {% if settings.search_layout == 'after-menu' %}
+    {% assign is_first_extra = false %}
+      <li class="menu-icon first-extra" >
+        {{search_markup }}
+      </li>
+    {%endif%}
+
+    {% if section.settings.layout_account == 'after-menu' %}
+      <li class="menu-icon {% if is_first_extra == true %} first-icon{% assign is_first_extra = false %}{%endif%}">
+        {% render 'account-markup' with show_text: settings.include_icon_text%}
+      </li>
+  {%endif%}
+  <li class="menu-icon {% if is_first_extra == true %} first-icon   {% assign is_first_extra = false %}{%endif%}">
+      {% render 'cart-markup' with show_text: settings.include_icon_text %}
+    </li>
+    </ul>
+{% endcapture %}
+
+
+
+
+
+
+{% comment %} Laying out everything {% endcomment %}
+
+<div class="site-header__inner socials--{{settings.social_layout}}">
+  <div class="site-header__inner-wrap  layout--{{header_layout}}">
+
+    {% if settings.social_layout == 'before-logo'   %}
+      {% render 'social-icons' %}
+    {%endif%}
+
+    {% if header_layout contains "standard" or balanced_menu %}
+    {{header_markup}}
+    {%endif%}
+
+    {% if settings.social_layout == 'before-menu' or settings.social_layout == 'after-logo'  %}
+      {% render 'social-icons' %}
+    {%endif%}
+
+     {% if header_layout contains "centered" %}
+      {{header_markup}}
+    {%endif%}
+
+    {{menu_extras}}
+
+
+{% render 'nav-toggle' %}
+
+   {% if settings.social_layout == 'after-menu'   %}
+      {% render 'social-icons' %}
+    {%endif%}
+  </div>
+</div>
+
+
+
+{% render 'mobile-menu' with menu: menu , submenu: mobile_menu_2 %}
+
+{% schema %}
+  {
+    "name": "Branding Header",
+    "class" : "branding-header",
+    "settings": [{
+        "type": "header",
+        "content": "Logo"
+    }, {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+    }, {
+        "type": "image_picker",
+        "id": "logo_overlay",
+        "label": "Logo image (overlay)"
+    }, {
+        "type": "range",
+        "id": "logo_max_width",
+        "label": {
+            "de": "Logobreite",
+            "en": "Logo Width",
+            "es": "Ancho del logotipo personalizado",
+            "fr": "Largeur personnalisée du logo",
+            "it": "Larghezza logo personalizzato",
+            "ja": "ロゴの幅をカスタムする",
+            "pt-BR": "Largura do logotipo personalizado"
+        },
+        "min": 60,
+        "max": 900,
+        "step": 15,
+        "unit": {
+            "de": "px",
+            "en": "px",
+            "es": "px",
+            "fr": "px",
+            "it": "px",
+            "ja": "px",
+            "pt-BR": "px"
+        },
+        "default": 300
+    }, {
+        "type": "range",
+        "id": "logo_max_width_mobile",
+        "label": "Logo Width (Mobile)",
+        "min": 50,
+        "max": 300,
+        "step": 10,
+        "unit": "px",
+        "default": 230
+    }, {
+        "type": "checkbox",
+        "id": "expand_logo",
+        "label": "Expand logo?",
+        "default": false
+    },  {
+        "type": "header",
+        "content": "cart"
+    }, {
+        "type": "select",
+        "id": "layout_cart",
+        "label": "Cart Position",
+        "default": "menu",
+        "options": [{
+            "value": "menu",
+            "label": "In Menu"
+        }, {
+            "value": "top-bar",
+            "label": "In Top Bar"
+        }, {
+            "value": "disabled",
+            "label": "Disable Cart"
+        }]
+    }, {
+        "type": "select",
+        "id": "layout_mobile",
+        "label": "Mobile Cart Layout",
+        "default": "centered-cart",
+        "options": [{
+            "value": "centered-cart",
+            "label": "Logo Centered (w/cart)"
+        }, {
+            "value": "left-cart",
+            "label": "Logo Left (w/cart)"
+        }, {
+            "value": "left-nocart",
+            "label": "Logo Left (cart in menu)"
+        }]
+    }, {
+        "type": "checkbox",
+        "id": "show_cart_label",
+        "label": "Cart Text",
+        "info": "Leave Blank for just Icon!"
+    }, {
+        "type": "header",
+        "content": "Account"
+    }, {
+        "type": "select",
+        "id": "layout_account",
+        "label": "Account Position",
+        "default": "after-menu",
+        "options": [{
+            "value": "after-menu",
+            "label": "After Menu"
+
+        }, {
+            "value": "disabled",
+            "label": "Disable Account"
+        }]
+    }, {
+        "type": "header",
+        "content": "Search"
+    }, {
+        "type": "select",
+        "id": "layout_search",
+        "label": "Search Position",
+        "default": "menu",
+        "options": [{
+            "value": "disabled",
+            "label": "Disable Search"
+        }, {
+            "value": "menu",
+            "label": "In Menu"
+        }]
+    }, {
+        "type": "checkbox",
+        "id": "show_search_text",
+        "label": "Show Search Text",
+        "info": "Leave false for just Icon!"
+    }
+  ]
+}
+{% endschema %}
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "{{ shop.name }}",
+  {% if section.settings.logo %}
+    {% assign image_size = section.settings.logo.width | append:'x' %}
+    "logo": "https:{{ section.settings.logo | img_url: image_size }}",
+  {% endif %}
+  "sameAs": [
+    "{{ settings.social_twitter_link }}",
+    "{{ settings.social_facebook_link }}",
+    "{{ settings.social_pinterest_link }}",
+    "{{ settings.social_instagram_link }}",
+    "{{ settings.social_tumblr_link }}",
+    "{{ settings.social_snapchat_link }}",
+    "{{ settings.social_youtube_link }}",
+    "{{ settings.social_vimeo_link }}"
+  ],
+  "url": "{{ shop.url }}{{ page.url }}"
+}
+</script>
+
+{% if template.name == 'index' %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "{{ shop.name }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ shop.url }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "url": "{{ shop.url }}{{ page.url }}"
+    }
+  </script>
+{% endif %}
+
+
+{%- comment -%}
+Style + Script tags
+{%- endcomment -%}
+<style>
+  #shopify-section-header {
+    {% if section.settings.bg_color %}
+    --header-bg: {{section.settings.bg_color }};
+    --header-bg-dropdown: {{section.settings.bg_color }};
+    {%endif %}
+    {% if section.settings.text_color %}
+    --header-text: {{section.settings.text_color }};
+    {%endif %}
+    {% if section.settings.overlay_color != blank %}
+    --color-overlay: {{section.settings.overlay_color }};
+    {%endif %}
+  }
+    .site-header__inner img, .site-header__inner svg {
+      max-width: {{ section.settings.logo_max_width }}px;
+
+    }
+    header.site-header {
+    {% if section.settings.logo != blank %}
+      flex-basis: {{section.settings.logo_max_width}}px;
+      {% else %}
+      flex-basis: auto;
+    {%endif%}
+    }
+    @media only screen and (max-width: 750px) {
+      .site-header__inner img, .site-header__inner svg {
+        max-width: {{ section.settings.logo_max_width_mobile }}px;
+      }
+      header.site-header {
+        flex-basis: {{section.settings.logo_max_width_mobile}}px;
+      }
+    }
+
+</style>
+<script>
+{% unless header_layout contains 'sidebar' %}
+  {% if overlay_header == "true" %}
+      document.body.classList.add('header-overlay');
+
+  {%endif%}
+  {% if header_fixed == 'fixed' %}
+    document.getElementById('shopify-section-header').style.position = 'sticky';
+    document.getElementById('shopify-section-header').style.top = '0px';
+  {% elsif header_fixed == 'sticky-bottom' %}
+    document.getElementById('shopify-section-header').classList.add('sticky-bottom')
+  {%endif%}
+  {% if settings.overlay_shadow == true %}
+  document.body.classList.add('overlay-shadow');
+  {%endif%}
+{%endunless %}
+</script>

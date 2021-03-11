@@ -1,0 +1,34 @@
+
+<div class="product-images__wrap product-images-scroller" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" >
+  {% comment %} visible tags over image {% endcomment %}
+ {% if settings.tag_location == 'top' or settings.tag_location == 'bottom' %}{% include 'visible-tags'%}{%endif%}
+
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
+    {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+
+
+   <ul class="product-images data-main-image">
+
+          {% for image in product.images %}
+
+            {% capture wrapper_class %}{% unless featured_image == image %} hide {% endunless %} {% if settings.product_zoom == true %} MagicZoom{%endif%} {% endcapture %}
+
+            {% include 'responsive-image' with
+              image: image,
+              max_width: 700,
+              max_height: 800,
+              image_attributes: "data-product-featured-image",
+              wrapper_class: wrapper_class,
+              wrapper_attributes: "data-product-image-wrapper",
+              zoom: settings.product_zoom;
+            %}
+          {% endfor %}
+
+
+
+    </ul>
+{% comment %} thumbnails {% endcomment %}
+
+  </div>
+
+

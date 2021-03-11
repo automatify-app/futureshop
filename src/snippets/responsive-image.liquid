@@ -22,8 +22,6 @@
 
 {%- comment -%} Added incremental number to avoid conflict styling code when the same images are using this snippet {%- endcomment -%}
 {%- capture responsive_image_counter %}{% increment responsive_image_counter %}{% endcapture -%}
-
-
 {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
 
 {%- comment -%} Limit image widths to valid options based on image.width {%- endcomment -%}
@@ -31,7 +29,11 @@
 {%- capture image_widths -%}
   {%- for width in image_widths -%}
     {%- comment -%} Check if image width is less or equal to width {%- endcomment -%}
+
     {%- assign width_num = width | plus: 0 | round -%}
+    {%- if min_width >= width_num -%}
+      {% continue %}
+    {%-endif -%}
     {%- if image.width >= width_num -%}{{ width_num }},{%- endif -%}
   {%- endfor -%}
   {{ image.width }}

@@ -1,19 +1,10 @@
 
 {% assign product = all_products[params.product] %}
-<div {% if params.use_form == true %}  data-section-id="{{ id }}" data-section-type="product" {%endif%} class="content-column type--product size--{{params.size}} text--{{params.align | default: 'center'}}">
-{% if params.pre_title != blank or params.title != blank  %}
-    <div class="block-header section-header ">
-      {% if params.pre_title != blank %}
-        <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label block-header__pre_title ">{{ params.pre_title | escape }}</h4>
-      {% endif %}
-      {% if params.title != blank %}
-        <h3 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h3 block-header__title heading">{{ params.title | escape }}</h2>
-      {% endif %}
-      {% if params.post_title != blank %}
-        <h5 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h5 label block-header__post-title">{{ params.post_title | escape }}</h5>
-      {% endif %}
-    </div>
+<div {% if params.use_form == true %}  data-section-id="{{ id }}" data-section-type="product" >
 {%endif%}
+{%render 'column-starter' with params: params, type: type %}
+
+{% render 'column-header' with params: params %}
 
 <div class="content-column__product">
   {% comment %} Image {% endcomment %}
@@ -40,4 +31,5 @@
   </div>
   {%endif%}
   </div>
+</div>
 </div>

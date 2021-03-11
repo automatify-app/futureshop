@@ -39,6 +39,7 @@
 @import './components/hero-banner';
 @import './components/icons';
 @import './components/menus';
+@import './components/menu-extras';
 @import './components/mobile-images';
 @import './components/mobile-menu';
 @import './components/pagination';
@@ -75,6 +76,9 @@
 //Header
 @import './sections/header-above';
 @import './sections/header';
+@import './sections/header-branding';
+@import './sections/mega-menu';
+
 @import './sections/header-layouts';
 
 //Footer
@@ -116,6 +120,7 @@
 //Grids
 @import './grids/grid-item';
 @import './grids/grid-outer';
+@import './grids/huge-collection';
 
 // Layouts
 @import './layouts/cart';
@@ -133,5 +138,5 @@
 
 @import './utility-classes/index';
 
-
+@import 'custom'
 

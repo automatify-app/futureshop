@@ -1,0 +1,40 @@
+
+{% if params.pre_title != blank or params.title != blank  and params.header_size != "hidden" %}
+    <div class="block-header section-header common-header__outer align--{{params.align_text}} font--{{params.header_size}} style--{{params.text_style}}">
+    {% comment %} Pre-title {% endcomment %}
+       {% if params.pre_title != blank %}
+        <h5 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label block-header__pre_title ">{{ params.pre_title | escape }}</h5>
+      {% endif %}
+      {% comment %} Title {% endcomment %}
+      {% if params.title != blank %}
+        <h3 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h3 block-header__title heading">{{ params.title | escape }}</h2>
+      {% endif %}
+      {% comment %} Subtitle/post_title {% endcomment %}
+      {% if params.post_title != blank %}
+        <h5 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h5 label block-header__post-title">{{ params.post_title | escape }}</h5>
+      {% endif %}
+      {% if params.subtitle != blank %}
+        <h5 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h5 label block-header__post-title">{{ params.subtitle | escape }}</h5>
+      {% endif %}
+      {% comment %} Rich Text {% endcomment %}
+      {% if params.text %}
+      <div class="rte">{{params.text}}</div>
+      {%endif%}
+
+      {% comment %} Button Logic {% endcomment %}
+      {% if params.url != blank or params.button_url != blank  %}
+      {%if params.button_text != blank%}
+        {%- if is_link -%}
+        <div
+        {%-else -%}
+        <a href="{{params.button_url | default: params.url}}"
+        {%-endif-%}
+        class="button">{{params.button_text}}{%- if is_link -%}
+        </div>
+        {%-else -%}
+        </a>
+        {%-endif-%}
+      {% endif %}
+    {% endif %}
+    </div>
+{%endif%}

@@ -1,0 +1,27 @@
+
+
+  {% comment %} visible tags over image {% endcomment %}
+
+
+   <ul class="product-images-below">
+          {% for image in product.images %}
+                {% if forloop.index0 == 0 %}
+                {% continue %}
+                {% endif %}
+
+            <li class="image-below">
+
+                    {% include 'responsive-image' with
+                      image: image,
+                      max_width: 1200,
+                      max_height:1200,
+                      wrapper_class: 'product-image-below',
+                    %}
+            </li>
+          {% endfor %}
+
+    </ul>
+{% comment %} thumbnails {% endcomment %}
+
+
+

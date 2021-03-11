@@ -6,7 +6,7 @@
     {%- assign current_variant = product.selected_or_first_available_variant -%}
     {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
 
-  
+
    <ul class="product-images swiper-container  {% if settings.product_dots == true %}has-dots{%endif%}" data-main-image>
         <div class="swiper-wrapper">
           {% for image in product.images %}
@@ -25,13 +25,13 @@
           </div>
           {% endfor %}
         </div>
-      
+
       {% if settings.product_arrows == true %}
       <!-- If we need navigation buttons -->
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
       {% endif %}
-    
+
     </ul>
 {% comment %} thumbnails {% endcomment %}
     {% if product.images.size > 1 %}
@@ -54,5 +54,5 @@
     {% endif %}
     <div id="zoomPlaceholder"></div>
   </div>
-  
+
 

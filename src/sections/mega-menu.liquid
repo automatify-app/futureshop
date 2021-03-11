@@ -1,0 +1,343 @@
+
+<div class="mega-menu__inner-wrap" data-module="mega-menu">
+  <div class="fixed-logo hide--not-fixed">{% render 'responsive-image' with image: section.settings.logo, max_width: 1200, min_width: 600, max_height: 1200%} </div>
+  <nav class="mega-menu">
+    <ul class="mega-menu__inner">
+    {% for block in section.blocks %}
+      <li class="mega-menu__item">
+        <a href="{{block.settings.url}}"  class="mega-menu__parent">{{block.settings.title}}</a>
+        {% if block.type == 'mega-menu' %}
+        <div class="mega-menu__wrap">
+          <div class="mega-menu__menu">
+            <div class="mega-menu__content">
+              {% if block.settings.submenu_1 != blank %}
+                {% render 'mega-submenu' with menu: linklists[block.settings.submenu_1], title: block.settings.submenu_1_title %}
+              {% endif %}
+              {% if block.settings.submenu_2 != blank %}
+                {% render 'mega-submenu' with menu: linklists[block.settings.submenu_2], title: block.settings.submenu_2_title %}
+              {%endif%}
+              {% if block.settings.submenu_3 != blank %}
+                {% render 'mega-submenu' with menu: linklists[block.settings.submenu_3], title: block.settings.submenu_3_title %}
+              {%endif %}
+              {% if block.settings.submenu_4 != blank %}
+                {% render 'mega-submenu' with menu: linklists[block.settings.submenu_4], title: block.settings.submenu_4_title %}
+              {%endif %}
+              {% comment %} banners {% endcomment %}
+              {% if block.settings.banner_1_image != blank and block.settings.banner_1_url != blank %}
+                {% render 'mega-banner' with image : block.settings.banner_1_image, url: block.settings.banner_1_url, hide_mobile: block.settings.banner_1_hide_mobile, style: block.settings.banner_1_style,  title: block.settings.banner_1_title, subtitle: block.settings.banner_1_subtitle %}
+              {%endif%}
+              {% if block.settings.banner_2_image != blank and block.settings.banner_2_url != blank %}
+                {% render 'mega-banner' with image : block.settings.banner_2_image, url: block.settings.banner_2_url, hide_mobile: block.settings.banner_2_hide_mobile, style: block.settings.banner_2_style, title: block.settings.banner_2_title, subtitle: block.settings.banner_2_subtitle %}
+              {%endif%}
+            </div>
+          </div>
+        </div>
+        {%endif%}
+      </li>
+    {% endfor %}
+    </ul>
+  </nav>
+  <div class="menu-extras hide--not-fixed">
+  {% if section.settings.enable_search == true %}
+    {% unless settings.search_layout == disabled  %}
+      {% render 'search-drawer' with show_text: settings.include_icon_text %}
+    {%endunless %}
+  {%endif%}
+  {% if section.settings.enable_account == true%}
+  {% render 'account-markup' with show_text: settings.include_icon_text%}
+  {%endif%}
+
+  {% render 'cart-markup' with show_text: settings.include_icon_text %}
+  </div>
+</div>
+
+<style>
+.fixed-logo {
+  max-width: {{section.settings.logo_max_width}}px;
+}
+@media (max-width: 720px) {
+  .fixed-logo {
+    max-width: {{section.settings.logo_max_width_mobile}}px;
+  }
+}
+</style>
+
+
+{%stylesheet %}
+  @media (max-width: 720px) {
+.mega-menu {
+    display: none;
+  }
+}
+{%endstylesheet %}
+{% schema %}
+  {
+    "name" : "Mega Menu",
+    "class" : "mega-menu",
+    "settings" : [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo",
+          "info" : "For when fixed to the top after scroll"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_search",
+          "label": "Enable Search",
+          "default": false,
+          "info": "On fixed/scrolled menu"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_account",
+          "label": "Enable Account",
+          "default": false,
+          "info": "On fixed/scrolled menu"
+        },
+        {
+        "type": "range",
+        "id": "logo_max_width",
+        "label": {
+            "de": "Logobreite",
+            "en": "Logo Width",
+            "es": "Ancho del logotipo personalizado",
+            "fr": "Largeur personnalisée du logo",
+            "it": "Larghezza logo personalizzato",
+            "ja": "ロゴの幅をカスタムする",
+            "pt-BR": "Largura do logotipo personalizado"
+        },
+        "min": 60,
+        "max": 900,
+        "step": 15,
+        "unit": {
+            "de": "px",
+            "en": "px",
+            "es": "px",
+            "fr": "px",
+            "it": "px",
+            "ja": "px",
+            "pt-BR": "px"
+        },
+        "default": 300
+    }, {
+        "type": "range",
+        "id": "logo_max_width_mobile",
+        "label": "Logo Width (Mobile)",
+        "min": 50,
+        "max": 300,
+        "step": 10,
+        "unit": "px",
+        "default": 230
+      }
+    ],
+    "max_blocks" : 6,
+    "blocks" : [
+      {
+        "type" : "mega-menu",
+        "name" : "Mega Menu Item",
+        "settings" :[
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type" : "url",
+            "label" :"URL",
+            "id" : "url"
+          },
+          {
+            "type": "checkbox",
+            "id": "hide_on_medium",
+            "label": "Hide on medium screens",
+            "info" : "Useful if your menu is too large"
+          },
+          {
+            "type": "header",
+            "content": "Submenu 1"
+          },
+          {
+            "type" : "text",
+            "label" : "Submenu 1 Title",
+            "id" : "submenu_1_title"
+          },
+          {
+            "type" : "link_list",
+            "label" : "Submenu 1",
+            "id" : "submenu_1"
+          },
+          {
+            "type": "header",
+            "content": "Submenu 2"
+          },
+          {
+            "type" : "text",
+            "label" : "Submenu 2 Title",
+            "id" : "submenu_2_title"
+          },
+          {
+            "type" : "link_list",
+            "label" : "Submenu 2",
+            "id" : "submenu_2"
+          },
+          {
+            "type": "header",
+            "content": "Submenu 3"
+          },
+          {
+            "type" : "text",
+            "label" : "Submenu 3 Title",
+            "id" : "submenu_3_title"
+          },
+          {
+            "type" : "link_list",
+            "label" : "Submenu 3",
+            "id" : "submenu_3"
+          },
+          {
+            "type": "header",
+            "content": "Submenu 4"
+          },
+          {
+            "type" : "text",
+            "label" : "Submenu 4 Title",
+            "id" : "submenu_4_title"
+          },
+          {
+            "type" : "link_list",
+            "label" : "Submenu 4",
+            "id" : "submenu_4"
+          },
+          {
+            "type": "header",
+            "content": "Submenu Banner 1"
+          },
+          {
+            "type" : "image_picker",
+            "id" : "banner_1_image",
+            "label" : "Banner Image"
+          },
+          {
+            "type" : "select",
+            "label" : "Banner Style",
+            "id" : "banner_1_style",
+            "options" : [
+              {
+                "value" : "text-below",
+                "label" : "Text Below Image"
+              },
+              {
+                "value" : "text-over",
+                "label" : "Text Over Image"
+              }
+            ],
+            "default" : "text-below"
+          },
+
+          {
+            "type" : "text",
+            "label" : "Banner 1 Title",
+            "id" : "banner_1_title"
+          },
+          {
+            "type" : "text",
+            "label" : "Banner 1 Subtitle",
+            "id" : "banner_1_subtitle"
+          },
+          {
+            "type" : "url",
+            "label" : "Banner 1 URL",
+            "id" : "banner_1_url"
+          },
+          {
+            "type" : "checkbox",
+            "label" : "Banner 1 External Link?",
+            "id" : "banner_1_target"
+          },
+          {
+            "type" : "checkbox",
+            "label" : "Hide on mobile?",
+            "id" : "banner_1_hide_mobile",
+            "default" : true
+          },
+          {
+            "type": "header",
+            "content": "Submenu Banner 2"
+          },
+          {
+            "type" : "image_picker",
+            "id" : "banner_2_image",
+            "label" : "Banner Image 2"
+          },
+
+          {
+            "type" : "select",
+            "label" : "Banner 2 Style",
+            "id" : "banner_2_style",
+            "options" : [
+              {
+                "value" : "text-below",
+                "label" : "Text Below Image"
+              },
+              {
+                "value" : "text-over",
+                "label" : "Text Over Image"
+              }
+            ],
+            "default" : "text-below"
+          },
+
+          {
+            "type" : "text",
+            "label" : "Banner 2 Title",
+            "id" : "banner_2_title"
+          },
+          {
+            "type" : "text",
+            "label" : "Banner 2 Subtitle",
+            "id" : "banner_2_subtitle"
+          },
+          {
+            "type" : "url",
+            "label" : "Banner 2 URL",
+            "id" : "banner_2_url"
+          },
+          {
+            "type" : "checkbox",
+            "label" : "Banner 2 External Link?",
+            "id" : "banner_2_target"
+          },
+          {
+            "type" : "checkbox",
+            "label" : "Hide on mobile?",
+            "id" : "banner_2_hide_mobile",
+            "default" : true
+          }
+        ]
+      },
+      {
+        "type" : "simple-menu",
+        "name" : "Simple Menu Item",
+        "settings" :[
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type" : "url",
+            "label" :"URL",
+            "id" : "url"
+          },
+          {
+            "type": "checkbox",
+            "id": "hide_on_medium",
+            "label": "Hide on medium screens",
+            "info" : "Useful if your menu is too large"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

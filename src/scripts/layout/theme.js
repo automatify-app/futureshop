@@ -60,7 +60,7 @@ class Theme {
 
     // this.mobileMenuInit();
     this.initHeader();
-    this.initRellaxImages();
+
     this.initModules();
     this.reframe();
     this.smoothScroll = new SmoothScroll('a[href*="#"]', {
@@ -188,11 +188,16 @@ class Theme {
     }
   }
   headroomHandleOffsets() {
-    this.offset = this.header.getBoundingClientRect().height;
-    this.topBar = document.querySelector('.announcement-bar__inner');
-    if (this.topBar) {
-      this.offset = 0 + this.topBar.getBoundingClientRect().height;
+    if (this.header) {
+      this.offset = this.header.getBoundingClientRect().height;
+      this.topBar = document.querySelector('.announcement-bar__inner');
+      if (this.topBar) {
+        this.offset = 0 + this.topBar.getBoundingClientRect().height;
+      }
+    } else {
+      this.offset = 0;
     }
+
   }
   headroomInit() {
     this.headroomHandleOffsets();
@@ -224,11 +229,17 @@ class Theme {
     if (this.header) {
       document.body.style.setProperty('--header-offset', this.header.getBoundingClientRect().height + this.header.getBoundingClientRect().top + 'px');
       document.body.style.setProperty('--header-ht', this.header.getBoundingClientRect().height - 25 + 'px');
+      const brander = this.header.querySelector('.branding-header')
+      if (brander) {
+        document.body.style.setProperty('--brander-ht', 0 - brander.getBoundingClientRect().height + 'px');
+      }
     }
 
     if (this.hero) {
       document.body.style.setProperty('--hero-ht', this.hero.getBoundingClientRect().height + 'px');
     }
+
+
   }
 
   //Resize handling
@@ -241,11 +252,18 @@ class Theme {
   }
   allLoad() {
     this.handleURLParams();
+     this.initRellaxImages();
     setTimeout(() => {
       this.headroomCheckScroll();
       this.headerOffset();
       this.allScroll();
     }, 100);
+
+    setTimeout(() => {
+
+      //Cheat, but only once
+      window.dispatchEvent(new Event('resize'));
+    }, 2000);
   }
   allScroll() {
     if (window.scrollY > 0) {

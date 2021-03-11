@@ -58,7 +58,7 @@
   {%endif%}
 {% endcapture %}
 
-<div class="content-column type--textimg size--{{params.size}} align--{{params.align}}">
+<div class="content-column type--textimg colsize--{{params.size}} align--{{params.align}}">
   {% case params.layout %}
     {%when 'header-button-image' %}
       {{header_markup}}{{button_markup}}{{image_markup}}

@@ -10,14 +10,19 @@
       </a>
     {%endif%}
     {% if block.settings.email != blank %}
-      <a class="email-contact" href="mailto:{{block.settings.email}}">
+      <a class="email-contact contact-info" href="mailto:{{block.settings.email}}">
         <i  class="icon-mail"></i> {{block.settings.email}}
       </a>
     {%endif%}
     {% if block.settings.phone != blank %}
-      <a class="phone-contact" rel="tel" href="tel:{{block.settings.phone}}">
+      <a class="phone-contact contact-info" rel="tel" href="tel:{{block.settings.phone}}">
         <i  class="icon-phone"></i> {{block.settings.phone}}
       </a>
+    {%endif%}
+    {% if block.settings.address != blank %}
+      <div class="address contact-info">
+      {{block.settings.address}}
+      </div>
     {%endif%}
     {% if block.settings.socials == true %}
       <ul class="social-wrap style--{{settings.social_link_style}}"  >

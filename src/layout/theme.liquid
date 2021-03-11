@@ -37,6 +37,7 @@
   <link rel="preload" href="{{ 'magiczoom.css' | asset_url}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <script src="{{ 'magiczoom.js' | asset_url }}" defer></script>
 
+  <link rel="stylesheet" href="https://unpkg.com/beerslider/dist/BeerSlider.css">
 
 
   {% if settings.typekit_text %}{{settings.typekit_text}}{%endif%}
@@ -68,7 +69,33 @@
 
   {% section 'announcement' %}
   <div class="page">
+
+  {% comment %} Header Layout logic  {% endcomment %}
+  {% if settings.header_layout contains 'mega' %}
+
+    <section class="site-header__wrap  mobile--{{settings.mm_behavior}} mega-menu-wrapper {% if settings.overlay_shadow  == true%} box-shadow {%endif%} {% if settings.overlay_header  == true %} overlay-header {%endif%} fixed--{{settings.header_fixed}}">
+    {% section 'header-simple' %}
+    {% section 'mega-menu' %}
+    <script>
+      {% if settings.overlay_header == "true" %}
+          document.body.classList.add('header-overlay');
+
+      {%endif%}
+      {% if setting.header_fixed == 'fixed' %}
+        document.getElementById('shopify-section-header').style.position = 'sticky';
+        document.getElementById('shopify-section-header').style.top = '0px';
+      {% elsif settings.header_fixed == 'sticky-bottom' %}
+        document.getElementById('shopify-section-header').classList.add('sticky-bottom')
+      {%endif%}
+      {% if settings.overlay_shadow == true %}
+      document.body.classList.add('overlay-shadow');
+      {%endif%}
+    </script>
+
+  </section>
+  {%else %}
   {% section 'header' %}
+  {%endif%}
   <main role="main" id="MainContent">
     {{ content_for_layout }}
     {% section 'footer' %}

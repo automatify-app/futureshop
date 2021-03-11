@@ -1,13 +1,20 @@
-{% if section.settings.enable_breadcrumbs == true %}{% include 'breadcrumbs' %}{%endif%}
+{% if section.settings.breadcrumbs == "above_form" %}{% include 'breadcrumbs' %}{%endif%}
 <section data-section-id="{{ section.id }}" data-section-type="product" >
 {% assign delay = 0%}
 <div class="product-grid__wrap">
-  {% include 'product-images' %}
+{% if section.settings.thumbnail_style == "slider" %}
+    {% include 'product-images' %}
+    {%elsif section.settings.thumbnail_style == "scroller" %}
+    {% include 'product-images-scroller' %}
+    {%endif%}
     <div class="product-details__wrap">
 
  {% if settings.tag_location == 'above'%}{% include 'visible-tags'%}{%endif%}
 
       {% comment %} Product title {% endcomment %}
+
+      {% if section.settings.breadcrumbs == "above_title"%}{% include 'breadcrumbs' %}{%endif%}
+
       <h1 class="font--extra h2 {% if product.title.size >= 15 %}long{%endif%}" data-aos="fade-in" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ product.title }}</h1>
 
     {% render 'in-stock-warning' with product: product %}
@@ -25,6 +32,10 @@
 
     </div>  {% comment %} end product-details__wrap  {% endcomment %}
 </div>{% comment %} end product-grid__wrap  {% endcomment %}
+
+ {%if section.settings.thumbnail_style == "scroller" %}
+    {% include 'product-images-scroller-below' %}
+    {%endif%}
 </section>
 
 {% schema %}
@@ -44,10 +55,41 @@
         "default": true
       },
       {
-        "type": "checkbox",
-        "id": "enable_breadcrumbs",
-        "label": "Enable Breadcrumbs Menu?",
-        "default": true
+        "type" : "select",
+        "id" : "breadcrumbs",
+        "label" : "Breadcrumbs",
+        "default" : "above_form",
+        "options" : [
+          {
+            "value" : "disabled",
+            "label" : "Disabled"
+          },
+          {
+            "value" : "above_form",
+            "label" : "Above Form"
+          },
+          {
+            "value" : "above_title",
+            "label" : "Above Title"
+          }
+        ]
+      },
+
+      {
+        "type" : "select",
+        "id" : "thumbnail_style",
+        "label" : "Thumbnail Style",
+        "default" : "slider",
+        "options" : [
+          {
+            "value" : "slider",
+            "label" : "Slider"
+          },
+          {
+            "value" : "scroller",
+            "label" : "Scroller"
+          }
+        ]
       },
       {
         "type": "checkbox",

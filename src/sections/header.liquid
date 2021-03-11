@@ -16,7 +16,7 @@
 Starting variables
 {%- endcomment -%}
 {%- capture header_layout -%}{%- unless settings.header_layout -%}{%- if section.settings.layout_header != blank -%}{{section.settings.layout_header}}{%-endif-%}{%- else -%}{{settings.header_layout}}{%- endunless -%}{%- endcapture -%}
-{%- capture header_fixed -%}{% if section.settings.header_fixed != blank %}{{header_fixed}}{%endif%}{% if settings.header_fixed != blank %}{{settings.header_fixed}}{%endif%}{%- endcapture -%}
+{%- capture header_fixed -%}{% if section.settings.header_fixed != blank %}{{section.settings.header_fixed}}{%endif%}{% if settings.header_fixed != blank %}{{settings.header_fixed}}{%endif%}{%- endcapture -%}
 
 {%- unless settings.overlay_header -%}{% if section.settings.overlay_header %}{% assign overlay_header = section.settings.overlay_header%}{%endif%}{% else %}{% assign overlay_header = settings.overlay_header %}{%-endunless-%}
 
@@ -36,7 +36,7 @@ Starting variables
 
 
 {%capture header_markup %}
-  <header role="banner" class="site-header {% if settings.social_layout ==  'below-header'%} with-socials{%endif%}" >
+  <header role="banner" data-aos="fade-up" data-aos-delay="100" class="site-header {% if settings.social_layout ==  'below-header'%} with-socials{%endif%}" >
     {% if template.name == 'index' %}
       <h1 class="{{section.settings.header_font_size }} {% if section.settings.logo == blank and section.settings.logo_overlay == blank%} fallback{%endif%}">
     {% else %}
@@ -45,23 +45,12 @@ Starting variables
         <a href="/" class="site-header__logo ">
                     {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
               {% if template.name == "index" and overlay_header == true %}
-              <div class="overlay-logo">
-                 {% if section.settings.logo_overlay != blank %}
-                      <img src="{{ section.settings.logo_overlay | img_url: image_size }}"
-                    sizes="50vw"
-                    srcset="{{ section.settings.logo_overlay | img_url: '200x' }} 200w, {{ section.settings.logo_overlay | img_url: '450x' }} 450w, {{ section.settings.logo_overlay | img_url: '720x' }} 720w, {{ section.settings.logo_overlay | img_url: '900x' }}  "
-                    alt="{{ section.settings.logo_overlay.alt | default: shop.name }}">
-                  {% else %}
-                    <span class="title-text">{{ shop.name }}</span>
-                  {% endif %}
-                </div>
+              {% render 'responsive-image' with image: section.settings.logo_overlay,  min_width: 600, max_width: 900, max_height: 900, wrapper_class: overlay-logo %}
+
               {%endif%}
               {% if section.settings.logo != blank %}
+              {% render 'responsive-image' with image: section.settings.logo, max_width: 900, min_width: 600,  max_height: 900, wrapper_class: overlay-logo %}
 
-                   <img src="{{ section.settings.logo | img_url: image_size }}"
-                    sizes="50vw"
-                    srcset="{{ section.settings.logo | img_url: '200x' }} 200w, {{ section.settings.logo | img_url: '450x' }} 450w, {{ section.settings.logo | img_url: '720x' }} 720w, {{ section.settings.logo | img_url: '900x' }}  "
-                    alt="{{ section.settings.logo.alt | default: shop.name }}">
 
             {% else %}
             <span class="title-text">
@@ -76,7 +65,7 @@ Starting variables
     {% endif %}
 
     {% if settings.social_layout ==  'below-logo'%}
-      {%include 'social-icons' %}
+      {%render 'social-icons' %}
     {%endif%}
   </header>
 {%endcapture %}
@@ -318,7 +307,7 @@ Starting variables
         "id": "logo_max_width",
         "label": {
             "de": "Logobreite",
-            "en": "Custom logo width",
+            "en": "Logo Width",
             "es": "Ancho del logotipo personalizado",
             "fr": "Largeur personnalisée du logo",
             "it": "Larghezza logo personalizzato",
@@ -341,7 +330,7 @@ Starting variables
     }, {
         "type": "range",
         "id": "logo_max_width_mobile",
-        "label": "Custom logo width (mobile)",
+        "label": "Logo Width (Mobile)",
         "min": 50,
         "max": 300,
         "step": 10,

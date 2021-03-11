@@ -204,7 +204,7 @@ nav.mobile-menu__inner {
   }
 }
 
-.site-header__inner.mobile--small {
+.site-header__inner.mobile--small , .site-header__wrap.mobile--small{
   ul.main-menu {
     display: none;
   }

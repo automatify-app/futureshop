@@ -6,15 +6,17 @@
   {% for block in section.blocks %}
         {% case block.type %}
         {% when 'code' %}
-          {% render 'column-code' with params: block.settings %}
+          {% render 'column-code' with type: block.type, params: block.settings %}
         {% when 'text' %}
-          {% render 'column-text' with params: block.settings%}
+          {% render 'column-text' with type: block.type, params: block.settings%}
         {% when 'product' %}
-          {% include 'column-product' with id: section.id params: block.settings %}
+          {% include 'column-product' with id: section.id, type: block.type, params: block.settings %}
         {% when 'image' %}
-          {% render 'column-image' with params: block.settings %}
+          {% render 'column-image' with type: block.type, params: block.settings %}
         {% when 'textimg' %}
-          {% render 'column-textimg' with params: block.settings %}
+          {% render 'column-textimg' with type: block.type, params: block.settings %}
+        {% when 'before-after' %}
+          {% render 'column-before-after' with type: block.type, params: block.settings %}
       {%endcase%}
   {%endfor%}
 </div>
@@ -46,7 +48,7 @@
     .type--image {
       padding: 0;
       margin: 0;
-      &.size--huge {
+      &.colsize--huge {
         flex: 1 1 100%;
       }
     }
@@ -89,7 +91,7 @@
   margin:1%;
   padding: calc(12px + 1vw);
 
-  &.size--small {
+  &.colsize--small {
     flex: 1 1 200px;
     max-width: 600px;
     padding: calc(6px + 0.6vw);
@@ -103,7 +105,7 @@
     }
   }
 
-  &.size--medium {
+  &.colsize--medium {
     flex: 1 1 440px;
     max-width: 790px;
 
@@ -112,12 +114,12 @@
     }
   }
 
-  &.size--large {
+  &.colsize--large {
     flex: 1 1 600px;
     max-width: 100%;
   }
 
-  &.size--huge {
+  &.colsize--huge {
     flex: 1 1 900px;
     max-width: 100%;
   }
@@ -216,7 +218,7 @@
       {
         "type" : "checkbox",
         "id" :"expand",
-        "label" : "Expand to edges"
+        "label" : "Remove Padding"
       },
        {
         "type" : "select",
@@ -259,6 +261,28 @@
           {
             "value" : "mega",
             "label" : "Mega"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "text_style",
+        "label" : "Text Style",
+        "default" :  "standard",
+        "info" : "Used for advanced branding!",
+        "options" : [
+
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "special",
+            "label" : "Special"
+          },
+          {
+            "value" : "simple",
+            "label" : "Simple"
           }
         ]
       },
@@ -392,53 +416,11 @@
         "name" : "Rich Text",
         "settings" : [
           {
-            "type" : "header",
-            "content" : "Settings"
+            "type": "header",
+            "content": "Content"
           },
+
           {
-            "type" : "select",
-            "options" : [
-              {
-                "value" : "small",
-                "label" : "Small"
-              },
-              {
-                "value" : "medium",
-                "label" : "Medium"
-              },
-              {
-                "value" : "large",
-                "label" : "Large"
-              },
-              {
-                "value" : "huge",
-                "label" : "Huge"
-              }
-            ],
-            "id" : "size",
-            "label" :"Size"
-          },
-           {
-            "type" : "select",
-            "options" : [
-              {
-                "value" : "left",
-                "label" : "Left"
-              },
-              {
-                "value" : "center",
-                "label" : "Center"
-              },
-              {
-                "value" : "right",
-                "label" : "Right"
-              }
-            ],
-            "default" : "center",
-            "id" : "align",
-            "label" :"Text Alignment"
-          },
-            {
             "type": "text",
             "id": "pre_title",
             "label": "Pre-Heading",
@@ -465,16 +447,24 @@
             "type" : "url",
             "id" : "button_url",
             "label" : "Button URL"
-          }
-        ]
-      },
-      {
-        "type" :"product",
-        "name" : "Product",
-        "settings" : [
+          },
           {
             "type": "header",
-            "content": "Settings"
+            "content": "Colors/background"
+          },
+          {
+            "type" : "color",
+            "id" : "background_color",
+            "label" : "Background Color"
+          },
+          {
+            "type" : "color",
+            "id" : "text_color",
+            "label" : "Text Color"
+          },
+          {
+            "type" : "header",
+            "content" : "Spacing"
           },
           {
             "type" : "select",
@@ -497,24 +487,23 @@
               }
             ],
             "id" : "size",
-            "label" :"Size",
-            "default" : "medium"
+            "label" :"Size"
           },
           {
-            "type": "product",
-            "id": "product",
-            "label": "Product"
+            "type" : "checkbox",
+            "id" :"expand",
+            "label" : "Remove Padding"
           },
           {
-            "type": "image_picker",
-            "id": "product_image",
-            "label": "Replace Product Image"
+            "type" : "checkbox",
+            "id" :"full-width",
+            "label" : "Make full-width (section break)"
           },
           {
             "type": "header",
-            "content": "Content"
+            "content": "Text Settings"
           },
-          {
+           {
             "type" : "select",
             "options" : [
               {
@@ -534,6 +523,53 @@
             "id" : "align",
             "label" :"Text Alignment"
           },
+          {
+            "type" : "select",
+            "id" : "text_style",
+            "label" : "Text Style",
+            "default" :  "standard",
+            "info" : "Used for advanced branding!",
+            "options" : [
+
+              {
+                "value" : "standard",
+                "label" : "Standard"
+              },
+              {
+                "value" : "special",
+                "label" : "Special"
+              },
+              {
+                "value" : "simple",
+                "label" : "Simple"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" :"product",
+        "name" : "Product",
+        "settings" : [
+          {
+            "type": "header",
+            "content": "Content"
+          },
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          },
+          {
+            "type": "image_picker",
+            "id": "product_image",
+            "label": "Replace Product Image"
+          },
+          {
+            "type": "header",
+            "content": "Content"
+          },
+
           {
             "type": "text",
             "id": "pre_title",
@@ -565,22 +601,57 @@
             "label": "Button Title",
             "default": "Shop Now"
           },
+           {
+              "type" : "select",
+              "id" : "header_size",
+              "label" : "Header Style",
+              "options" : [
+                {
+                  "value" : "hidden",
+                  "label" : "Hidden"
+                },
+                {
+                  "value" : "small",
+                  "label" : "Small"
+                },
+                {
+                  "value" : "standard",
+                  "label" : "Standard"
+                },
+                {
+                  "value" : "large",
+                  "label" : "Large"
+                },
+                {
+                  "value" : "xl",
+                  "label" :"Extra Large"
+                }
+              ]
+          },
           {
             "type": "checkbox",
             "id": "use_form",
             "label": "Use Product Form",
             "default": false,
             "info": "Will replace the content/button with the product form"
-          }
-        ]
-      },
-      {
-        "type" : "code",
-        "name" : "Code/Embed",
-        "settings" : [
+          },
+           {
+            "type": "header",
+            "content": "Colors/background"
+          },
+          {
+            "type" : "color",
+            "id" : "background_color",
+            "label" : "Background Color"
+          },
+          {
+            "type" : "color",
+            "id" : "text_color",
+            "label" : "Text Color"
+          },
           {
             "type" : "header",
-            "content" : "Settings"
+            "content" : "Spacing"
           },
           {
             "type" : "select",
@@ -605,6 +676,20 @@
             "id" : "size",
             "label" :"Size"
           },
+          {
+            "type" : "checkbox",
+            "id" :"expand",
+            "label" : "Remove Padding"
+          },
+          {
+            "type" : "checkbox",
+            "id" :"full-width",
+            "label" : "Make full-width (section break)"
+          },
+          {
+            "type": "header",
+            "content": "Text Settings"
+          },
            {
             "type" : "select",
             "options" : [
@@ -625,7 +710,39 @@
             "id" : "align",
             "label" :"Text Alignment"
           },
-            {
+          {
+            "type" : "select",
+            "id" : "text_style",
+            "label" : "Text Style",
+            "default" :  "standard",
+            "info" : "Used for advanced branding!",
+            "options" : [
+
+              {
+                "value" : "standard",
+                "label" : "Standard"
+              },
+              {
+                "value" : "special",
+                "label" : "Special"
+              },
+              {
+                "value" : "simple",
+                "label" : "Simple"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "code",
+        "name" : "Code/Embed",
+        "settings" : [
+          {
+            "type": "header",
+            "content": "Content"
+          },
+          {
             "type": "text",
             "id": "pre_title",
             "label": "Pre-Heading",
@@ -645,7 +762,7 @@
           },
           {
               "type" : "select",
-              "id" : "header_style",
+              "id" : "header_size",
               "label" : "Header Style",
               "options" : [
                 {
@@ -692,16 +809,24 @@
             "type" : "url",
             "id" : "button_url",
             "label" : "Button URL"
-          }
-        ]
-      },
-      {
-        "type" : "image",
-        "name" : "Image",
-        "settings" : [
+          },
+           {
+            "type": "header",
+            "content": "Colors/background"
+          },
+          {
+            "type" : "color",
+            "id" : "background_color",
+            "label" : "Background Color"
+          },
+          {
+            "type" : "color",
+            "id" : "text_color",
+            "label" : "Text Color"
+          },
           {
             "type" : "header",
-            "content" : "Settings"
+            "content" : "Spacing"
           },
           {
             "type" : "select",
@@ -728,31 +853,74 @@
           },
           {
             "type" : "checkbox",
-            "id" : "parallax",
-            "label" : "Scroll effect?"
+            "id" :"expand",
+            "label" : "Remove Padding"
           },
           {
+            "type" : "checkbox",
+            "id" :"full-width",
+            "label" : "Make full-width (section break)"
+          },
+          {
+            "type": "header",
+            "content": "Text Settings"
+          },
+           {
+            "type" : "select",
+            "options" : [
+              {
+                "value" : "left",
+                "label" : "Left"
+              },
+              {
+                "value" : "center",
+                "label" : "Center"
+              },
+              {
+                "value" : "right",
+                "label" : "Right"
+              }
+            ],
+            "default" : "center",
+            "id" : "align",
+            "label" :"Text Alignment"
+          },
+          {
+            "type" : "select",
+            "id" : "text_style",
+            "label" : "Text Style",
+            "default" :  "standard",
+            "info" : "Used for advanced branding!",
+            "options" : [
+
+              {
+                "value" : "standard",
+                "label" : "Standard"
+              },
+              {
+                "value" : "special",
+                "label" : "Special"
+              },
+              {
+                "value" : "simple",
+                "label" : "Simple"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "image",
+        "name" : "Image",
+        "settings" : [
+          {
             "type" : "header",
-            "content" : "Images"
+            "content" : "Content"
           },
           {
             "type" : "image_picker",
-            "label" : "Image 1",
+            "label" : "Image",
             "id" : "image"
-          },
-          {
-            "type" : "image_picker",
-            "label" : "Image 2",
-            "id" : "image2"
-          },
-          {
-            "type" : "image_picker",
-            "label" : "Image 3",
-            "id" : "image3"
-          },
-          {
-            "type" : "header",
-            "content" : "Link"
           },
           {
             "type" : "url",
@@ -763,6 +931,549 @@
             "type" : "checkbox",
             "id" : "link_external",
             "label" : "External Link?"
+          },
+           {
+            "type": "header",
+            "content": "Colors/background"
+          },
+          {
+            "type" : "color",
+            "id" : "background_color",
+            "label" : "Background Color"
+          },
+          {
+            "type" : "color",
+            "id" : "text_color",
+            "label" : "Text Color"
+          },
+          {
+            "type" : "header",
+            "content" : "Spacing"
+          },
+          {
+            "type" : "select",
+            "options" : [
+              {
+                "value" : "small",
+                "label" : "Small"
+              },
+              {
+                "value" : "medium",
+                "label" : "Medium"
+              },
+              {
+                "value" : "large",
+                "label" : "Large"
+              },
+              {
+                "value" : "huge",
+                "label" : "Huge"
+              }
+            ],
+            "id" : "size",
+            "label" :"Size"
+          },
+          {
+            "type" : "checkbox",
+            "id" :"expand",
+            "label" : "Remove Padding"
+          },
+          {
+            "type" : "checkbox",
+            "id" :"full-width",
+            "label" : "Make full-width (section break)"
+          }
+        ]
+      },
+      {
+        "type" : "image_link",
+        "name" : "Image Link",
+        "settings" : [
+
+          {
+            "type" : "image_picker",
+            "id" : "image",
+            "label" : "Banner Image"
+          },
+          {
+            "type" : "image_picker",
+            "id" : "image_mobile",
+            "label" : "Mobile Image",
+            "info" : "Use if you prefer a different image on mobile! (squarer dimensions, usually, around 1000x1000!)"
+          },
+          {
+            "type" : "image_picker",
+            "id" : "image_wide",
+            "label" : "Wide Image",
+            "info" : "Use if you prefer a different image on wider screens! (shorter dimensions, usually, around 2000x800!)"
+          },
+          {
+            "type" : "range",
+            "id" : "overlay",
+            "label" : "Overlay",
+            "info" : "Set to 0 to disable overlay.",
+            "max" : 100,
+            "min" : 0,
+            "step" : 10,
+            "default" : 0
+          },
+          {
+            "type" : "range",
+            "id" : "overlay_mobile",
+            "label" : "Overlay",
+            "info" : "Set to 0 to disable overlay.",
+            "max" : 100,
+            "min" : 0,
+            "step" : 10,
+            "default" : 0
+          },
+          {
+            "type": "header",
+            "content": "Content"
+          },
+          {
+              "type": "text",
+              "id": "introduction",
+              "label": "Introduction"
+            },
+            {
+              "type": "text",
+              "id": "heading",
+              "label": "Heading"
+            },
+
+            {
+              "type" : "text",
+              "id" : "subtitle",
+              "label" : "Subtitle"
+            },
+            {
+              "type": "text",
+              "id": "button_text",
+              "label": "Button Text"
+            },
+             {
+            "type": "header",
+            "content": "Colors/background"
+          },
+          {
+            "type" : "color",
+            "id" : "background_color",
+            "label" : "Background Color"
+          },
+          {
+            "type" : "color",
+            "id" : "text_color",
+            "label" : "Text Color"
+          },
+          {
+            "type" : "header",
+            "content" : "Spacing"
+          },
+          {
+            "type" : "select",
+            "options" : [
+              {
+                "value" : "small",
+                "label" : "Small"
+              },
+              {
+                "value" : "medium",
+                "label" : "Medium"
+              },
+              {
+                "value" : "large",
+                "label" : "Large"
+              },
+              {
+                "value" : "huge",
+                "label" : "Huge"
+              }
+            ],
+            "id" : "size",
+            "label" :"Size"
+          },
+          {
+            "type" : "checkbox",
+            "id" :"expand",
+            "label" : "Remove Padding"
+          },
+          {
+            "type" : "checkbox",
+            "id" :"full-width",
+            "label" : "Make full-width (section break)"
+          },
+          {
+            "type": "header",
+            "content": "Text Settings"
+          },
+           {
+            "type" : "select",
+            "options" : [
+              {
+                "value" : "left",
+                "label" : "Left"
+              },
+              {
+                "value" : "center",
+                "label" : "Center"
+              },
+              {
+                "value" : "right",
+                "label" : "Right"
+              }
+            ],
+            "default" : "center",
+            "id" : "align",
+            "label" :"Text Alignment"
+          },
+          {
+            "type" : "select",
+            "id" : "text_style",
+            "label" : "Text Style",
+            "default" :  "standard",
+            "info" : "Used for advanced branding!",
+            "options" : [
+
+              {
+                "value" : "standard",
+                "label" : "Standard"
+              },
+              {
+                "value" : "special",
+                "label" : "Special"
+              },
+              {
+                "value" : "simple",
+                "label" : "Simple"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "video_link",
+        "name" : "Video Link",
+        "settings" : [
+
+          {
+            "type" : "image_picker",
+            "id" : "image",
+            "label" : "Fallback Image"
+          },
+          {
+            "type" : "url",
+            "id" : "webm",
+            "label" : "Webm",
+            "info" : "Use if you prefer a different image on mobile! (squarer dimensions, usually, around 1000x1000!)"
+          },
+          {
+            "type" : "url",
+            "id" : "mp4",
+            "label" : "MP4",
+            "info" : "Use if you prefer a different image on wider screens! (shorter dimensions, usually, around 2000x800!)"
+          },
+          {
+            "type" : "range",
+            "id" : "overlay",
+            "label" : "Overlay",
+            "info" : "Set to 0 to disable overlay.",
+            "max" : 100,
+            "min" : 0,
+            "step" : 10,
+            "default" : 0
+          },
+          {
+            "type" : "range",
+            "id" : "overlay_mobile",
+            "label" : "Overlay",
+            "info" : "Set to 0 to disable overlay.",
+            "max" : 100,
+            "min" : 0,
+            "step" : 10,
+            "default" : 0
+          },
+          {
+            "type": "header",
+            "content": "Content"
+          },
+          {
+              "type": "text",
+              "id": "introduction",
+              "label": "Introduction"
+            },
+            {
+              "type": "text",
+              "id": "heading",
+              "label": "Heading"
+            },
+
+            {
+              "type" : "text",
+              "id" : "subtitle",
+              "label" : "Subtitle"
+            },
+            {
+              "type": "text",
+              "id": "button_text",
+              "label": "Button Text"
+            },
+             {
+            "type": "header",
+            "content": "Colors/background"
+          },
+          {
+            "type" : "color",
+            "id" : "background_color",
+            "label" : "Background Color"
+          },
+          {
+            "type" : "color",
+            "id" : "text_color",
+            "label" : "Text Color"
+          },
+          {
+            "type" : "header",
+            "content" : "Spacing"
+          },
+          {
+            "type" : "select",
+            "options" : [
+              {
+                "value" : "small",
+                "label" : "Small"
+              },
+              {
+                "value" : "medium",
+                "label" : "Medium"
+              },
+              {
+                "value" : "large",
+                "label" : "Large"
+              },
+              {
+                "value" : "huge",
+                "label" : "Huge"
+              }
+            ],
+            "id" : "size",
+            "label" :"Size"
+          },
+          {
+            "type" : "checkbox",
+            "id" :"expand",
+            "label" : "Remove Padding"
+          },
+          {
+            "type" : "checkbox",
+            "id" :"full-width",
+            "label" : "Make full-width (section break)"
+          },
+          {
+            "type": "header",
+            "content": "Text Settings"
+          },
+           {
+            "type" : "select",
+            "options" : [
+              {
+                "value" : "left",
+                "label" : "Left"
+              },
+              {
+                "value" : "center",
+                "label" : "Center"
+              },
+              {
+                "value" : "right",
+                "label" : "Right"
+              }
+            ],
+            "default" : "center",
+            "id" : "align",
+            "label" :"Text Alignment"
+          },
+          {
+            "type" : "select",
+            "id" : "text_style",
+            "label" : "Text Style",
+            "default" :  "standard",
+            "info" : "Used for advanced branding!",
+            "options" : [
+
+              {
+                "value" : "standard",
+                "label" : "Standard"
+              },
+              {
+                "value" : "special",
+                "label" : "Special"
+              },
+              {
+                "value" : "simple",
+                "label" : "Simple"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "before-after",
+        "name" : "Before and After",
+        "settings" : [
+          {
+            "type" : "header",
+            "content" : "Content"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_before",
+            "label": "Image Before"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_after",
+            "label": "Image After"
+          },
+          {
+            "type": "text",
+            "id": "label_before",
+            "label": "Before Label",
+            "default": "Before"
+          },
+          {
+            "type": "text",
+            "id": "label_after",
+            "label": "After Label",
+            "default": "After"
+          },
+          {
+            "type": "range",
+            "id": "start",
+            "min": 10,
+            "max": 90,
+            "step": 5,
+            "unit": "%",
+            "label": "Start Point",
+            "default": 50
+          },
+           {
+              "type": "text",
+              "id": "introduction",
+              "label": "Introduction"
+            },
+            {
+              "type": "text",
+              "id": "heading",
+              "label": "Heading"
+            },
+
+            {
+              "type" : "text",
+              "id" : "subtitle",
+              "label" : "Subtitle"
+            },
+            {
+              "type": "text",
+              "id": "button_text",
+              "label": "Button Text"
+            },
+           {
+            "type": "header",
+            "content": "Colors/background"
+          },
+          {
+            "type" : "color",
+            "id" : "background_color",
+            "label" : "Background Color"
+          },
+          {
+            "type" : "color",
+            "id" : "text_color",
+            "label" : "Text Color"
+          },
+          {
+            "type" : "header",
+            "content" : "Spacing"
+          },
+          {
+            "type" : "select",
+            "options" : [
+              {
+                "value" : "small",
+                "label" : "Small"
+              },
+              {
+                "value" : "medium",
+                "label" : "Medium"
+              },
+              {
+                "value" : "large",
+                "label" : "Large"
+              },
+              {
+                "value" : "huge",
+                "label" : "Huge"
+              }
+            ],
+            "id" : "size",
+            "label" :"Size"
+          },
+          {
+            "type" : "checkbox",
+            "id" :"expand",
+            "label" : "Remove Padding"
+          },
+          {
+            "type" : "checkbox",
+            "id" :"full-width",
+            "label" : "Make full-width (section break)"
+          },
+          {
+            "type": "header",
+            "content": "Text Settings"
+          },
+           {
+            "type" : "select",
+            "options" : [
+              {
+                "value" : "left",
+                "label" : "Left"
+              },
+              {
+                "value" : "center",
+                "label" : "Center"
+              },
+              {
+                "value" : "right",
+                "label" : "Right"
+              }
+            ],
+            "default" : "center",
+            "id" : "align",
+            "label" :"Text Alignment"
+          },
+          {
+            "type" : "select",
+            "id" : "text_style",
+            "label" : "Text Style",
+            "default" :  "standard",
+            "info" : "Used for advanced branding!",
+            "options" : [
+
+              {
+                "value" : "standard",
+                "label" : "Standard"
+              },
+              {
+                "value" : "special",
+                "label" : "Special"
+              },
+              {
+                "value" : "simple",
+                "label" : "Simple"
+              }
+            ]
           }
         ]
       },
@@ -859,6 +1570,38 @@
             "default" : "center",
             "id" : "align",
             "label" :"Text Alignment"
+          },
+          {
+        "type" : "select",
+        "id" : "text_style",
+        "label" : "Text Style",
+        "default" :  "standard",
+        "info" : "Used for advanced branding!",
+        "options" : [
+
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "special",
+            "label" : "Special"
+          },
+          {
+            "value" : "simple",
+            "label" : "Simple"
+          }
+        ]
+      },
+          {
+            "type" : "checkbox",
+            "id" :"expand",
+            "label" : "Remove Padding"
+          },
+          {
+            "type" : "checkbox",
+            "id" :"full-width",
+            "label" : "Make full-width (section break)"
           },
             {
             "type": "text",

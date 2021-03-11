@@ -13,7 +13,7 @@
       }
     </style>
     {% if section.settings.button_url != blank and section.settings.button_text == blank %}
-    <a href="{{section.settings.button_url}}" class="announcement-bar" data-module="announcement">
+    <a href="{{section.settings.button_url}}" class="announcement-bar {% if section.settings.fixed == true %} fixed {%endif%}" data-module="announcement">
     {%else %}
     <div class="announcement-bar" data-module="announcement">
     {%endif%}
@@ -43,6 +43,10 @@
     {%- endif -%}
 {%- endif -%}
 
+{% if section.settings.fixed == true %}
+<script>
+document.body.classList.add('fixed-announcement');
+</script>{%endif%}
 {% schema %}
   {
     "name" : "Announcement",
@@ -74,6 +78,12 @@
         "type": "checkbox",
         "id": "announcement_bar_home_page_only",
         "label": "Show only on home page?",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "fixed",
+        "label": "Fixed announcement bar?",
         "default": true
       },
       {

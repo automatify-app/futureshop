@@ -84,7 +84,7 @@ body.product-style--simple {
 }
 
 body[class*=product-style] {
-  .product-grid {
+  .product-grid:not(.size--huge) {
     &[data-max="1"] {
       grid-template-columns: 1fr;
       max-width: 520px;

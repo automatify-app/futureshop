@@ -1,10 +1,5 @@
 
 .collection-template {
   margin-bottom: calc(12px + 1vw);
-  padding: 12px;
   @extend %maxwidth;
-}
-
-.collection-header {
-  margin: 3.5em auto 1.5em;
 }

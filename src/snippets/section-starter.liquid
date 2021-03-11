@@ -26,9 +26,11 @@
     {{tag}} {
       {% if params.background_color != blank and params.background_color != 'rgba(0,0,0,0)' %}
       background-color:  {{params.background_color}};
+      --section-bg: {{params.background_color}};
       {%endif%}
       {% if params.text_color != blank and params.text_color != "rgba(0,0,0,0)" %}
     color:  {{params.text_color}};
+    --section-text:  {{params.text_color}};
       {%endif%}
 
       {% if params.background_image != blank%}

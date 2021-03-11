@@ -1,17 +1,35 @@
-<div class="slideshow-slide swiper-slide background-slide style--{{slide.settings.content_style}} slide--{{slide.id}}">
+<div class="slideshow-slide {% if slide.settings.disable_cropping == true %} crop--disabled {% endif %} swiper-slide background-slide style--{{slide.settings.content_style}} position--{{slide.settings.content_position}} mobile-style--{{slide.settings.content_style_mobile}} slide--{{slide.id}}">
   <style>
     .slide--{{slide.id}} {
-      background-color: {{slide.settings.background_color}}; color: {{slide.settings.text_color}}
+      background-color: {{slide.settings.background_color}};
+      --section-bg: {{slide.settings.background_color}};
+      color: {{slide.settings.text_color}};
+      --section-text: {{slide.settings.text_color}};
     }
     {% if slide.settings.content_style == 'boxed' %}
     .slide--{{slide.id}} .slide-content {
-      background-color: {{slide.settings.background_color}}; color: {{slide.settings.text_color}}
+      background-color: {{slide.settings.background_color}};
+      color: {{slide.settings.text_color}}
     }
     {%endif%}
   </style>
 
  {% assign overlay_op = 100 | minus: slide.settings.overlay | times: 0.01 %}
-  <div class="slide-bg {% if slide.settings.parallax == true %}rellax-image{%endif%}" style="opacity:{{overlay_op}}" aria-label="{{section.settings.title}}">
+ {% assign overlay_op_mobile = 100 | minus: slide.settings.overlay_mobile | times: 0.01 %}
+  <div class="slide-bg bg--{{block.id}} {% if slide.settings.parallax == true %}rellax-image{%endif%}" style="" aria-label="{{section.settings.title}}">
+
+  <style>
+    .bg--{{block.id}} {
+      opacity: {{overlay_op}};
+    }
+
+    @media (max-width: 720px) {
+      .bg--{{block.id}} {
+        opacity: {{overlay_op_mobile}};
+      }
+    }
+  </style>
+
       {% if slide.settings.image_wide != blank %}
     <div class="wide-image">
         {% include 'responsive-image' with image: slide.settings.image_wide, max_width: 3000, max_height: 2000 %}

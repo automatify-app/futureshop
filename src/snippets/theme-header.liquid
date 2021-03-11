@@ -17,6 +17,9 @@ body {
   {% else %}
     --font-extra-real: {{ settings.font_extra.family }}, {{ settings.font_extra.fallback_families }};
   {% endif %}
+  {% if settings.script_typekit != blank %}
+    --font-script-real: {{settings.script_typekit}};
+  {% endif %}
 
   --color-border: {{settings.color_borders}};
 }
@@ -27,6 +30,19 @@ body {
 .product-grid-item .price-outer {
   font-weight: {{settings.price_font_weight | default: 700}}
 
+}
+
+.site-header__wrap {
+  {% if settings.color_header_background %}
+    --header-bg: {{settings.color_header_background | default: "transparent"}};
+    --header-bg-dropdown: {{settings.color_header_background | default: "transparent" }};
+    {%endif %}
+    {% if settings.color_header_text %}
+      --header-text: {{settings.color_header_text | default: "inherit" }};
+    {%endif %}
+      {% if settings.color_header_overlay_text != blank %}
+      --color-overlay: {{settings.color_header_overlay_text | default: "inherit" }};
+    {%endif %}
 }
 
 </style>

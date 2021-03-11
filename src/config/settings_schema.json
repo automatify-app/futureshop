@@ -213,6 +213,10 @@
           {
             "value": "extra",
             "label": "Extra"
+          },
+          {
+            "value" : "script",
+            "label" : "Script"
           }
         ]
       },
@@ -335,6 +339,10 @@
           {
             "value": "extra",
             "label": "Extra"
+          },
+          {
+            "value" : "script",
+            "label" : "Script"
           }
         ]
       },
@@ -410,6 +418,10 @@
           {
             "value": "extra",
             "label": "Extra"
+          },
+          {
+            "value" : "script",
+            "label" : "Script"
           }
         ]
       },
@@ -490,47 +502,38 @@
         "id": "extra_typekit",
         "label": "Typekit/GF Extra Font Family",
         "info": "Usually all lowercase + hyphenated"
+      },
+      {
+        "type": "text",
+        "id": "script_typekit",
+        "label": "Typekit/GF Script Font Family"
       }
     ]
   },
-
   {
-    "name" : "Site Header Settings",
+    "name" : "Site Header",
     "settings" : [
-      {
-        "type" :"header",
-        "content" : "Hero",
-        "info" : "Sizing options for the top slider/image bannder"
-      },
 
-       {
-        "type" : "range",
-        "label" : "Hero Height",
-        "id" : "hero_height",
-        "default" : 400,
-        "step": 25,
-        "min" : 200,
-        "max": 600
+
+      {
+        "type" : "header",
+        "content" : "Colors"
       },
       {
-        "type" : "range",
-        "label" : "Hero Height (Small Screens)",
-        "id" : "hero_height_mobile",
-        "default" : 400,
-        "step": 25,
-        "min" : 200,
-        "max": 800
+        "type" : "color",
+        "id" : "color_header_background",
+        "label" : "Header Background"
       },
-       {
-        "type" : "range",
-        "label" : "Hero Height (Huge Screens)",
-        "id" : "hero_height_huge",
-        "default" : 550,
-        "step": 25,
-        "min" : 300,
-        "max": 800
+      {
+        "type" : "color",
+        "id" : "color_header_text",
+        "label" : "Header Text"
       },
-
+      {
+        "type" : "color",
+        "id" : "color_header_overlay_text",
+        "label" : "Header Overlay Text"
+      },
       {
         "type" : "header",
         "content" : "Layout"
@@ -607,6 +610,21 @@
             "group" : "Sidebar",
             "value" : "sidebar-modern",
             "label" : "Sidebar (Logo above, OVER content)"
+          },
+          {
+            "group" : "Mega",
+            "value" : "mega-centered",
+            "label" : "Mega Menu - Centered Logo"
+          },
+          {
+            "group" : "Mega",
+            "value" : "mega-standard",
+            "label" : "Mega Menu - Left Logo"
+          },
+          {
+            "group" : "Mega",
+            "value" : "mega-balanced",
+            "label" : "Mega Menu - Balanced Layout"
           }
         ]
       },
@@ -682,6 +700,10 @@
           {
             "value" : "before-menu",
             "label" : "Before Menu"
+          },
+          {
+            "value" : "before-logo",
+            "label" : "Before Logo"
           },
           {
             "value" : "after-logo",
@@ -770,6 +792,17 @@
     "name" : "Mobile Menu",
     "settings" : [
       {
+        "type" : "link_list",
+        "id" : "mobile_menu_1",
+        "label" : "Mobile Menu 1"
+      },
+      {
+        "type" : "link_list",
+        "id" : "mobile_menu_2",
+        "label" : "Mobile Menu 2",
+        "info" : "Typically a de-emphasized menu"
+      },
+      {
         "type" : "select",
         "id" : "mm_behavior",
         "label" : "Mobile Menu Behavior",
@@ -805,6 +838,7 @@
         "default" : false,
         "label" : "Show Icon Text"
       },
+
       {
         "type" : "select",
         "id" : "mm_direction",
@@ -872,12 +906,86 @@
         "id" : "mm_cart",
         "default" : true,
         "label" : "Show cart"
+      },
+      {
+        "type" : "header",
+        "content" : "Banner",
+        "info" : "Include a banner link by filling the forms below"
+      },
+      {
+        "type" : "image_picker",
+        "id" : "mm_link_image",
+        "label" : "Banner Image"
+      },
+      {
+        "type" : "select",
+        "id" : "mm_link_layout",
+        "label" : "Banner Layout",
+        "default" : "disabled",
+        "options" : [
+          {
+            "value" : "disabled",
+            "label" : "Disabled"
+          },
+          {
+            "value" : "top",
+            "label" : "Top"
+          },
+          {
+            "value" : "bottom",
+            "label" : "Bottom"
+          }
+        ]
+      },
+      {
+        "type" : "url",
+        "id" : "mm_link_url",
+        "label" : "Banner URL"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "mm_link_target",
+        "label" : "Banner Link In New Window?"
       }
     ]
   },
+
   {
-    "name": "General Styles",
+    "name": "Sitewide Styles",
     "settings": [
+       {
+        "type" :"header",
+        "content" : "Hero",
+        "info" : "Sizing options for the top slider/image bannder"
+      },
+
+       {
+        "type" : "range",
+        "label" : "Hero Height",
+        "id" : "hero_height",
+        "default" : 400,
+        "step": 25,
+        "min" : 200,
+        "max": 600
+      },
+      {
+        "type" : "range",
+        "label" : "Hero Height (Small Screens)",
+        "id" : "hero_height_mobile",
+        "default" : 400,
+        "step": 25,
+        "min" : 200,
+        "max": 800
+      },
+       {
+        "type" : "range",
+        "label" : "Hero Height (Huge Screens)",
+        "id" : "hero_height_huge",
+        "default" : 550,
+        "step": 25,
+        "min" : 300,
+        "max": 800
+      },
       {
         "type": "header",
         "content": "general"
@@ -980,6 +1088,10 @@
           {
             "value": "extra",
             "label": "Extra"
+          },
+          {
+            "value" : "script",
+            "label" : "Script"
           }
         ]
       },
@@ -1151,6 +1263,10 @@
           {
             "value": "extra",
             "label": "Extra"
+          },
+          {
+            "value" : "script",
+            "label" : "Script"
           }
         ]
       },
@@ -1177,7 +1293,7 @@
        {
         "type": "range",
         "id": "button_letter_spacing",
-        "label": "Button Font Size (Mobile)",
+        "label": "Button Letter Spacing",
         "min": 0,
         "default": 10,
         "max": 30,

@@ -6,8 +6,8 @@
     <div class="secondary-featured-image">
       {% include 'responsive-image' with
       image: product.images[1],
-      max_width: 600,
-      max_height: 600
+      max_width: 800,
+      max_height: 800
     %}
     </div>
   {% endif %}
@@ -15,8 +15,8 @@
   {% comment %} Standard image. Can max out rather small given that it's in the grid{% endcomment %}
     {% include 'responsive-image' with
       image: product.featured_image,
-      max_width: 600,
-      max_height: 600
+      max_width: 800,
+      max_height: 800
     %}
 
     {% comment %} Visible tags (inside image div, to show over the image) {% endcomment %}

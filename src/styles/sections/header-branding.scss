@@ -1,0 +1,31 @@
+.site-header__inner-wrap.layout--mega-centered {
+
+  @include media-query($medium-up) {
+    padding-bottom: 0;
+  }
+
+  .site-header {
+    padding-bottom: 0;
+  }
+
+  .social-wrap, .menu-extras {
+    flex: 1 1 200px;
+    max-width: 300px;
+  }
+
+  .social-wrap {
+    justify-content: flex-start;
+    @include media-query($small) {
+      display: none;
+    }
+  }
+  .menu-extras {
+    justify-content: flex-end;
+  }
+
+  .icon-label {
+    @include media-query($small) {
+      @include visually-hidden;
+    }
+  }
+}

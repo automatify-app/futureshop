@@ -1,0 +1,143 @@
+
+#shopify-section-collection-template {
+  .common-header:first-child {
+    max-width: 720px;
+    margin: calc(12px + 5vw) auto calc(5px + 1.5vw) ;
+  }
+}
+.collection-header {
+  margin: 0 auto;
+}
+
+.common-header__outer.style--special {
+  border: 2px solid currentColor;
+  padding: 12px 20px 12px;
+  margin-bottom: 4px;
+  position: relative;
+  margin: 12px auto;
+
+  h4:first-child:not(:last-child) {
+    position: absolute;
+    top: 0;
+    line-height: 1;
+    left: 50%;
+    width: auto;
+    max-width: 80%;
+    transform: translate3d(-50%, -50%, 0) !important;
+    background: var(--section-text, #1f1f1f);
+    display: block;
+    padding:8px 14px;
+    line-height: 1;
+    font-size: 13px;
+    color: var(--section-bg, #ffffff);
+
+    &+h2 {
+      margin-top: 20px;
+    }
+
+    @include media-query($tiny) {
+      width: 80%;
+    }
+
+  }
+
+  h2 + h4.label {
+    margin-bottom: 10px;
+  }
+}
+
+.common-header__outer.style--simple {
+  h2, h3{
+    font-family: var(--font-heading-real);
+    text-transform: uppercase;
+  }
+}
+
+
+.background-slide .crop-disabled {
+  padding: 0;
+  .slide-bg {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+  .slide-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+
+.content-column.type--code + .content-column.type--product {
+    z-index: -1;
+    position: relative;
+}
+
+
+
+
+
+#shopify-section-related-products,
+.collection-list  {
+  .common-header__outer {
+    margin: 0 auto;
+  }
+  .common-header {
+    border: none;
+    margin: 0 auto 0;
+    h4 {
+      @extend .h3;
+      font-family: var(--font-heading-real);
+    }
+  }
+
+}
+
+div#shopify-section-collection-list-sitewide {
+    background: #efefef;
+    padding: 24px;
+    h4 {
+      margin: 0 0 24px;
+    }
+}
+
+div#shopify-section-product {
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+
+    button.addtocart {
+      background: white;
+      color: black;
+    }
+    .product-grid__wrap {
+      align-items: stretch;
+    }
+
+    .product-details__wrap {
+      margin: 0;
+      padding: calc(18px + 1vw) calc(15px + 1vw);
+      justify-content: center;
+      background: $color-accent;
+    }
+}
+
+nav.breadcrumb {
+  font-size: 12px;
+  a {
+    letter-spacing: 0.06em;
+    font-family: var(--font-heading-real);
+  }
+}
+
+.product-images-below {
+  background: #eaeaea;
+}
+
+.site-footer  {
+  h4.label {
+    font-family: var(--font-heading-real);
+  }
+}

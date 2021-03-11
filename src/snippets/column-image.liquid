@@ -1,4 +1,4 @@
-<aside class="content-column type--image size--{{params.size}} {% if params.image2 != blank %}has--img2{%endif%} {% if params.image3 != blank %}has--img3{%endif%}" data-aos-delay="200" data-aos="fade-in">
+<aside class="content-column type--image colsize--{{params.size}} {% if params.image2 != blank %}has--img2{%endif%} {% if params.image3 != blank %}has--img3{%endif%}" data-aos-delay="200" data-aos="fade-in">
     {% if params.image_link != blank %}
       <a  data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" data-aos="fade-in" href="{{params.image_link}}" {% if params.link_external == true %} target="_blank" rel="nofollow" {%endif%} class=" content-column__image {% if params.parallax == true %} rellax-float {%endif%}"  data-rellax-speed="4">
          {% if params.image != blank %}

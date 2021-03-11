@@ -1,24 +1,29 @@
 
 {% capture menu_extras %}
-  {% if settings.mm_search == true %}
+<ul class="menu-extras">
+  {%- if settings.mm_search == true -%}
 
       <li class="menu-icon" >
           {% render 'search-drawer' with show_text: settings.mm_show_icon_text %}
       </li>
-    {%endif%}
+    {%-endif-%}
 
-    {% if settings.mm_account == true %}
+    {%- if settings.mm_account == true -%}
     <li class="menu-icon">
       {% render 'account-markup' with show_text: settings.mm_show_icon_text %}
     </li>
-  {%endif%}
+  {%-endif-%}
 
-  {% if settings.mm_socials == true  %}
+  {%- if settings.mm_socials == true  -%}
   <li class="menu-icon mobile-socials">
       {% render 'social-icons' with show_text: settings.mm_show_icon_text %}
     </li>
-    {%endif%}
+    {%-endif-%}
+</ul>
 {% endcapture %}
+
+{% assign menu = linklists[settings.mobile_menu_1] %}
+{% assign submenu = linklists[settings.mobile_menu_2] %}
 
 <div class="mobile-menu shop-drawer " data-mm-behavior="{{settings.mm_behavior}}" data-module="mobile-menu" data-mm-size="{{settings.mm_size}}" data-mm-direction="{{mm_direction}}">
   <div class="shop-drawer__background" data-drawer-closer></div>
@@ -35,12 +40,19 @@
           {% assign isbacklink = '' %}
           {% if section.settings.back_to_site == 'first' and forloop.index <= 1%} {% assign isbacklink = 'back-link' %}{%endif%}
           {% if section.settings.back_to_site == 'last' and forloop.index >= linklists[section.settings.menu].links.size %} {% assign isbacklink = 'back-link' %}{%endif%}
-          {% include 'menu-li'%}
+          {% render 'menu-li' with link: link, isbacklink: false  %}
         {% endfor %}
-
-        {{menu_extras}}
     </ul>
 
+     {%if submenu.links %}
+          <ul class="sub-menu">
+          {% for link in menu.links %}
+          {% render 'menu-li' with link: link, isbacklink: false %}
+        {% endfor %}
+          </ul>
+        {%endif%}
+
+        {{menu_extras}}
   </nav>
   </div>
 </div>

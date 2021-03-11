@@ -1,0 +1,33 @@
+.size--full-width {
+  .section-inner.can-grid {
+    max-width: 100%;
+
+  }
+}
+
+.size--huge  {
+
+  .product-grid-item {
+    margin: 10px;
+    padding:0;
+  }
+  .grid-item__image {
+    background: #efefef;
+  }
+  .product-details.grid-item__details {
+    text-align: left;
+    align-items: flex-start;
+    padding: 14px 20px;
+  }
+
+  .grid-item__image .responsive-image__wrapper {
+    mix-blend-mode: darken;
+  }
+
+  .secondary-featured-image {
+    .responsive-image__wrapper, .responsive-image__image {
+      max-width: 100% !important;
+      object-fit: cover !important;
+    }
+  }
+}

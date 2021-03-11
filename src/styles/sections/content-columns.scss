@@ -18,7 +18,7 @@
     .type--image {
       padding: 0;
       margin: 0;
-      &.size--huge {
+      &.colsize--huge {
         flex: 1 1 100%;
       }
     }
@@ -40,7 +40,7 @@
 }
 
 .content-column {
-  &.size--small {
+  &.colsize--small {
     flex: 1 1 200px;
     max-width: 600px;
 
@@ -48,15 +48,15 @@
       font-size: 32px;
     }
   }
-  &.size--medium {
+  &.colsize--medium {
     flex: 1 1 440px;
     max-width: 790px;
   }
-  &.size--large {
+  &.colsize--large {
     flex: 1 1 600px;
     max-width: 100%;
   }
-  &.size--huge {
+  &.colsize--huge {
     flex: 1 1 900px;
     max-width: 100%;
   }
@@ -122,7 +122,5 @@
 
 .embed-wrap {
   margin: calc(22px + 0.5vw) auto;
-
- 
 }
 

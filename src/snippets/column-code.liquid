@@ -1,17 +1,6 @@
-<div class="content-column type--code size--{{params.size}} align--{{params.align}}">
-{% if params.pre_title != blank or params.title != blank  %}
-    <div class="block-header section-header align--{{params.align_text}} style--{{params.header_style}}">
-       {% if params.pre_title != blank %}
-        <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label block-header__pre_title ">{{ params.pre_title | escape }}</h4>
-      {% endif %}
-      {% if params.title != blank %}
-        <h3 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h3 block-header__title heading">{{ params.title | escape }}</h2>
-      {% endif %}
-      {% if params.post_title != blank %}
-        <h5 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h5 label block-header__post-title">{{ params.post_title | escape }}</h5>
-      {% endif %}
-    </div>
-{%endif%}
+
+{%render 'column-starter' with params: params, type: type %}
+{% render 'column-header' with params: params %}
 <div class="embed-wrap {% if params.shadow == true%} shadow--big {%endif%}">{{params.html}}</div>
 {% if params.button_text != blank and  params.button_url != blank %}
   <div class="button-wrap center">

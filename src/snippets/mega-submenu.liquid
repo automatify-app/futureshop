@@ -1,0 +1,21 @@
+{% comment %}
+
+Needs:
+menu
+title
+
+{% endcomment %}
+{% if menu %}
+<div class="mega-submenu">
+  {% if title != blank %}
+    <span class="mega-submenu__title">{{title}}</span>
+  {%endif%}
+  {% if menu.links.size > 0 %}
+  <ul class="mega-submenu__links">
+  {% for link in menu.links %}
+    <li class='submenu__link'><a href="{{link.url}}">{{link.title}}</a></li>
+  {%endfor%}
+  </ul>
+  {%endif%}
+</div>
+{%endif %}

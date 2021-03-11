@@ -1,0 +1,23 @@
+{% comment %}
+
+Needs:
+image*
+url*
+style*
+layout*
+target
+title
+subtitle
+
+{% endcomment %}
+{% if image %}
+  <a href="{{url}}" {% if target == 'true' %} target="_blank" rel="nofollow noopener norefferer"{%endif%} class="mega-banner style--{{style}} {% if hide_mobile %}mobile--hide{%endif%}" title="{{title}}">
+    {% render 'responsive-image' with image: image, max_width: 900, max_height: 900, wrapper_class:"mega-banner__image" %}
+    {% if title != blank or subtitle != blank %}
+      <div class="mega-banner__content">
+        <h4>{{title}}</h4>
+        <h5 class="subtitle">{{subtitle}}</h5>
+      </div>
+    {% endif%}
+  </a>
+{%endif%}

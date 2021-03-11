@@ -4,7 +4,6 @@
 .search-outer {
   button {
     background: transparent;
-    padding: 4px 7px;
     border:none;
     appearance: none;
     transition: all 300ms ease;
@@ -52,6 +51,12 @@
   left: 0;
   width: 100%;
   height: auto;
+  .icon-label {
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 12px;
+    display: none;
+  }
   // background: $color-border-darker;
   transition: transform 250ms $ease, opacity 250ms $ease;
   opacity: 0;

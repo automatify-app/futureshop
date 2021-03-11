@@ -1,5 +1,5 @@
 {%capture overlay_type %}{% if section.blocks.size == 1 %}{{section.blocks[0].type}}{%else%}slideshow{%endif%}{%endcapture%}
-<div class="overlay-section   type--{{overlay_type}} {% if section.settings.full_width == true %} full-width {%endif%} {{section.settings.anchor_classes}}" id="{{section.settings.anchor_id}}">
+<div class="section-outer overlay-section spacing--{{section.settings.spacing}}  type--{{overlay_type}} {% if section.settings.section_size == "full-width" %} full-width {%endif%} {{section.settings.anchor_classes}}" id="{{section.settings.anchor_id}}">
   {% if overlay_type == 'banner' %}
     {%assign slide = section.blocks[0] %}
     {% include 'slide-banner' %}
@@ -35,361 +35,274 @@
 </div>
 {% schema %}
   {
-    "name" : "Slider/Images",
-    "class" : "image-section",
-    "settings" : [
-       {
-        "type" : "header",
-        "content" : "Meta"
-      },
-      {
-        "type": "text",
-        "id" : "anchor_id",
-        "label" : "Section ID (for anchor links and specific styling)"
-      },
-  {
-        "type": "text",
-        "id" : "anchor_classes",
-        "label" : "Section classes (for  specific styling)"
-      },
-       {
-        "type": "text",
-        "id" : "title",
-        "label" : "Nice Name",
-        "info" : "Just for keeping the back end organized! Enter a nice name here",
-        "default" : "Slideshow"
-      },
-      {
-        "type" : "header",
-        "content" : "Image/Video/Slider Section"
-      },
-      {
-        "type" : "paragraph",
-        "content" : "Add a type of overlay or image content by adding a block below. Use JUST IMAGE for a classic image banner (with desktop and mobile sizing). Use IMAGE w/CONTENT for a background image with overlayed content. Use VIDEO for a background video with image fallback. You may add more than one block to create a slideshow."
-      },
-      {
-        "type" : "header",
-        "content" : "Slideshow Settings"
-      },
-
-      {
-        "type" : "checkbox",
-        "id" : "full_width",
-        "label" : "Full width?",
-        "default" : true
-      },
-      {
-        "type" : "range",
-        "id" : "speed",
-        "label" : "Autoplay Speed (S)",
-        "info" : "Set to 0 to disable autoplay.",
-        "max" : 20,
-        "min" : 0,
-        "step" : 1,
-        "default" : 12
-      },
-      {
-        "type" : "checkbox",
-        "id" : "dots",
-        "label" : "Enable Dots?"
-      },
-      {
-        "type" : "checkbox",
-        "id" : "arrows",
-        "label" : "Enable arrows?"
-      },
-      {
-        "type" : "select",
-        "id" : "type",
-        "label" : "Animation Type",
-        "options" : [
-          {
-            "value" : "slide",
-            "label" : "Slide"
-          },
-          {
-            "value" : "fade",
-            "label" : "fade"
-          }
-        ]
-      },
-      {
-        "type" : "header",
-        "content" : "Section Settings"
-      },
-      {
-        "type" : "paragraph",
-        "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
-      },
-      {
-        "type" : "color",
-        "id" : "background_color",
-        "label" : "Background Color"
-      },
-      {
-        "type" : "color",
-        "id" : "text_color",
-        "label" : "Text Color"
-      },
-      {
-        "type" : "select",
-        "id" : "section_size",
-        "label" : "Section size",
-        "default" : "large",
-        "options" : [
-          {
-            "value" : "full-width",
-            "label" : "Full Width"
-          },
-          {
-            "value" : "large",
-            "label" : "Large"
-          },
-          {
-            "value" : "small",
-            "label": "Small"
-          }
-        ]
-      },
-      {
-        "type" : "select",
-        "id" : "section_spacing",
-        "label" : "Section Spacing",
-        "default" : "medium",
-        "options" : [
-          {
-            "value" : "none",
-            "label" : "No Spacing"
-          },
-          {
-            "value" : "small",
-            "label": "Small"
-          },
-          {
-            "value" : "medium",
-            "label" : "Medium"
-          }, {
-"value" : "full-height",
-"label" : "Full Height"
-},
-          {
-            "value" : "large",
-            "label" : "Large"
-          },
-          {
-            "value": "huge",
-            "label" : "Huge"
-          }
-        ]
-      },
+  "name": "Slider/Images",
+  "class": "image-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Meta"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Section ID (for anchor links and specific styling)"
+    },
+    {
+      "type": "text",
+      "id": "anchor_classes",
+      "label": "Section classes (for  specific styling)"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Nice Name",
+      "info": "Just for keeping the back end organized! Enter a nice name here",
+      "default": "Slideshow"
+    },
+    {
+      "type": "header",
+      "content": "Image/Video/Slider Section"
+    },
+    {
+      "type": "paragraph",
+      "content": "Add a type of overlay or image content by adding a block below. Use JUST IMAGE for a classic image banner (with desktop and mobile sizing). Use IMAGE w/CONTENT for a background image with overlayed content. Use VIDEO for a background video with image fallback. You may add more than one block to create a slideshow."
+    },
+    {
+      "type": "header",
+      "content": "Slideshow Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width?",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Autoplay Speed (S)",
+      "info": "Set to 0 to disable autoplay.",
+      "max": 20,
+      "min": 0,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "dots",
+      "label": "Enable Dots?"
+    },
+    {
+      "type": "checkbox",
+      "id": "arrows",
+      "label": "Enable arrows?"
+    },
+    {
+      "type": "select",
+      "id": "type",
+      "label": "Animation Type",
+      "options": [
         {
-        "type" : "image_picker",
-        "id" : "background_image",
-        "label" : "Background Image",
-        "info": "Use with full-width sections, please!"
-      },
-      {
-        "type" : "select",
-        "id" : "background_style",
-        "label" : "Background Image Style",
-        "default" : "cover",
-        "options" : [
-          {
-            "value" : "cover",
-            "label" : "Cover"
-          },
-          {
-            "value" : "repeat-x",
-            "label" : "Horizontal Tile"
-          },
-          {
-            "value" : "repeat-y",
-            "label" : "Vertical Tile"
-          },
-          {
-            "value" : "repeat-all",
-            "label" : "Tile"
-          },
-          {
-            "value" : "rellax",
-            "label" : "Parallax"
-          }
-        ]
-      }
-    ],
-    "blocks" : [
-      {
-        "name" : "Image w/Content",
-        "type" : "background",
-        "settings" : [
-          {
-            "type" : "header",
-            "content" : "background"
-          },
-          {
-            "type" : "color",
-            "id" : "background_color",
-            "default"                                : "#000000",
-            "label" : "Background Color",
-            "info" : "Also the overlay color!"
-          },
-          {
-            "type" : "color",
-            "id" : "text_color",
-            "default" : "#ffffff",
-            "label" : "Text Color"
-          },
-          {
-            "type" : "image_picker",
-            "id" : "image",
-            "label" : "Background Image"
-          },
-          {
-            "type" : "image_picker",
-            "id" : "image_mobile",
-            "label" : "Mobile Image",
-            "info" : "Use if you prefer a different image on mobile! (squarer dimensions, usually, around 1000x1000!)"
-          },
-          {
-            "type" : "image_picker",
-            "id" : "image_wide",
-            "label" : "Wide Image",
-            "info" : "Use if you prefer a different image on wider screens! (shorter dimensions, usually, around 2000x800!)"
-          },
-          {
-            "type" : "range",
-            "id" : "overlay",
-            "label" : "Overlay",
-            "info" : "Set to 0 to disable overlay.",
-            "max" : 100,
-            "min" : 0,
-            "step" : 10,
-            "default" : 50
-          },
-          {
-            "type" : "checkbox",
-            "id" : "parallax",
-            "label" : "Enable Parallax Scrolling Effect"
-          },
-          {
-            "type" : "header",
-            "content" : "content"
-          },
-          {
-        "type" : "select",
-        "id" : "content_style",
-        "label" : "Content Style",
-        "default"  :"centered",
-        "options" : [
-          {
-            "value" : "centered",
-            "label" : "Centered (no background)"
-          },
-          {
-            "value" : "boxed",
-            "label" : "Boxed (Bottom Left)"
-          }
-        ]
-      },
-          {
-        "type" : "select",
-        "id" : "text_align",
-        "label" : "Text Alignment",
-        "default" :  "center",
-        "options" : [
-          {
-            "value" : "left",
-            "label" : "Left"
-          },
-          {
-            "value" : "center",
-            "label" : "Center"
-          },
-          {
-            "value" : "right",
-            "label" : "Right"
-          }
-        ]
-      },
-      {
-        "type" : "select",
-        "id" : "text_size",
-        "label" : "Text Size",
-        "default" :  "standard",
-        "options" : [
-          {
-            "value" : "small",
-            "label" : "Small"
-          },
-          {
-            "value" : "standard",
-            "label" : "Standard"
-          },
-          {
-            "value" : "large",
-            "label" : "Large"
-          },
-          {
-            "value" : "mega",
-            "label" : "Mega"
-          }
-        ]
-      },
-      {
-        "type": "header",
-        "content": "Content"
-      },
-      {
-        "type": "text",
-        "id": "introduction",
-        "label": "Introduction",
-        "default": "This is an"
-      },
-      {
-        "type": "text",
-        "id": "heading",
-        "label": "Heading",
-        "default": "Image Overlay Section"
-      },
-
-      {
-        "type" : "text",
-        "id" : "subtitle",
-        "label" : "Subtitle",
-        "default" : "And even more!"
-      },
-      {
-        "type": "richtext",
-        "id": "text",
-        "label": "Text",
-        "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
-      },
-      {
-        "type": "header",
-        "content": "Image Content",
-        "info": "Use an image as part of/all the content"
-      },
-      {
-        "type" : "image_picker",
-        "id" : "logo",
-        "label" : "Logo"
-      },
-      {
-        "type": "range",
-        "id": "logo_max_width",
-        "label": {
+          "value": "slide",
+          "label": "Slide"
+        },
+        {
+          "value": "fade",
+          "label": "fade"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "paragraph",
+      "content": "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color"
+    },
+    {
+      "type": "select",
+      "id": "section_size",
+      "label": "Section size",
+      "default": "full-width",
+      "options": [
+        {
+          "value": "full-width",
+          "label": "Full Width"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "section_spacing",
+      "label": "Section Spacing",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "No Spacing"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "full-height",
+          "label": "Full Height"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "huge",
+          "label": "Huge"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Image w/Content",
+      "type": "background",
+      "settings": [
+        {
+          "type": "header",
+          "content": "background"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "default": "#000000",
+          "label": "Background Color",
+          "info": "Also the overlay color!"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "default": "#ffffff",
+          "label": "Text Color"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "disable_cropping",
+          "label": "Disable Cropping",
+          "default": false,
+          "info" : "Use to make the image determine the slide size"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile Image",
+          "info": "Use if you prefer a different image on mobile! (squarer dimensions, usually, around 1000x1000!)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_wide",
+          "label": "Wide Image",
+          "info": "Use if you prefer a different image on wider screens! (shorter dimensions, usually, around 2000x800!)"
+        },
+        {
+          "type": "range",
+          "id": "overlay",
+          "label": "Overlay",
+          "info": "Set to 0 to disable overlay.",
+          "max": 100,
+          "min": 0,
+          "step": 10,
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "overlay_mobile",
+          "label": "Overlay (Mobile)",
+          "info": "Set to 0 to disable overlay.",
+          "max": 100,
+          "min": 0,
+          "step": 10,
+          "default": 50
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "introduction",
+          "label": "Introduction",
+          "default": "This is an"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Image Overlay Section"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "And even more!"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Image Content",
+          "info": "Use an image as part of/all the content"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "range",
+          "id": "logo_max_width",
+          "label": {
             "de": "Logobreite",
-            "en": "Custom logo width",
+            "en": "Logo Width",
             "es": "Ancho del logotipo personalizado",
             "fr": "Largeur personnalisée du logo",
             "it": "Larghezza logo personalizzato",
             "ja": "ロゴの幅をカスタムする",
             "pt-BR": "Largura do logotipo personalizado"
-        },
-        "min": 50,
-        "max": 900,
-        "step": 25,
-        "unit": {
+          },
+          "min": 50,
+          "max": 900,
+          "step": 25,
+          "unit": {
             "de": "px",
             "en": "px",
             "es": "px",
@@ -397,404 +310,679 @@
             "it": "px",
             "ja": "px",
             "pt-BR": "px"
+          },
+          "default": 350
         },
-        "default": 350
-      },
-      {
-        "type": "select",
-        "id": "logo_format",
-        "label": "Image Format",
-        "options": [
-          {
-          "value": "replace_header",
-          "label": "Replace Header"
-          },{
-          "value": "before_header",
-          "label": "Before All Content"
-          },
-          {
-          "value": "next_to_content",
-          "label": "Next To Content"
-          }
-        ],
-        "default" : "replace_header"
-
-      },
-      {
-        "type" : "header",
-        "content" : "Buttons"
-      },
-      {
-            "type" : "text",
-            "id" : "button_1_text",
-            "default" : "Collection Button",
-            "label" : "Button 1 Text"
-          },
-          {
-            "type" : "url",
-            "id" : "button_1_link",
-            "default" : "/collections/all",
-            "label" : "Button 1 Link"
-          },
-          {
-            "type" : "text",
-            "id" : "button_2_text",
-            "label" : "Button 2 Text"
-          },
-          {
-            "type" : "url",
-            "id" : "button_2_link",
-            "label" : "Button 2 Link"
-          }
-        ]
-      },
-      {
-        "name" : "Just Image",
-        "type" : "banner",
-        "settings" : [
-          {
-            "type" : "header",
-            "content" : "background"
-          },
-          {
-            "type" : "color",
-            "id" : "background_color",
-            "default" : "#000000",
-            "label" : "Background Color",
-            "info" : "Also the overlay color!"
-          },
-          {
-            "type" : "color",
-            "id" : "text_color",
-            "default" : "#ffffff",
-            "label" : "Text Color"
-          },
-          {
-            "type" : "image_picker",
-            "id" : "image",
-            "label" : "Banner Image"
-          },
-          {
-            "type" : "image_picker",
-            "id" : "image_mobile",
-            "label" : "Mobile Image",
-            "info" : "Use if you prefer a different image on mobile! (squarer dimensions, usually, around 1000x1000!)"
-          },
-          {
-            "type" : "image_picker",
-            "id" : "image_wide",
-            "label" : "Wide Image",
-            "info" : "Use if you prefer a different image on wider screens! (shorter dimensions, usually, around 2000x800!)"
-          },
-          {
-            "type" : "range",
-            "id" : "overlay",
-            "label" : "Overlay",
-            "info" : "Set to 0 to disable overlay.",
-            "max" : 100,
-            "min" : 0,
-            "step" : 10,
-            "default" : 0
-          },
-          {
-            "type" : "checkbox",
-            "id" : "parallax",
-            "label" : "Enable Parallax Scrolling Effect"
-          },
-           {
-            "type" : "text",
-            "id" : "title",
-            "label" : "Label for image (accessability)"
-          },
-          {
-            "type" : "url",
-            "id" : "url",
-            "label" : "Link"
-          }
-        ]
-      },
-      {
-        "name" : "Video w/ Content",
-        "type" : "video",
-        "settings" : [
-          {
-            "type" : "header",
-            "content" : "background"
-          },
-          {
-            "type" : "color",
-            "id" : "background_color",
-            "default" : "#000000",
-            "label" : "Background Color",
-            "info" : "Also the overlay color!"
-          },
-          {
-            "type" : "color",
-            "id" : "text_color",
-            "default" : "#ffffff",
-            "label" : "Text Color"
-          },
-          {
-            "type" : "image_picker",
-            "id" : "image",
-            "label" : "Background Image"
-          },
-          {
-            "type" : "image_picker",
-            "id" : "fallback_gif",
-            "label" : "Fallback Gif"
-          },
-          {
-            "type" : "text",
-            "id" : "url",
-            "default" : "https://www.youtube.com/watch?v=qtQgbdmIO30",
-            "label" : "Video URL",
-            "info" : "Youtube (important) video url!"
-          },
-          {
-            "type" : "range",
-            "id" : "start_time",
-            "label" : "Start Time",
-            "info" : "Set to 0 to not delay the start time.",
-            "max" : 160,
-            "min" : 0,
-            "step" : 2,
-            "default" : 0
-          },
-          {
-            "type" : "range",
-            "id" : "overlay_op",
-            "label" : "Overlay",
-            "info" : "Set to 0 to disable overlay.",
-            "max" : 100,
-            "min" : 0,
-            "step" : 10,
-            "default" : 50
-          },
-          {
-            "type" : "checkbox",
-            "id" : "parallax",
-            "label" : "Enable Parallax Scrolling Effect"
-          },
-          {
-            "type" : "header",
-            "content" : "Content"
-          },
-          {
-        "type" : "select",
-        "id" : "content_style",
-        "label" : "Content Style",
-        "default"  :"centered",
-        "options" : [
-          {
-            "value" : "centered",
-            "label" : "Centered (no background)"
-          },
-          {
-            "value" : "boxed",
-            "label" : "Boxed (Bottom Left)"
-          }
-        ]
-      },
-          {
-        "type" : "select",
-        "id" : "text_align",
-        "label" : "Text Alignment",
-        "default" :  "center",
-        "options" : [
-          {
-            "value" : "left",
-            "label" : "Left"
-          },
-          {
-            "value" : "center",
-            "label" : "Center"
-          },
-          {
-            "value" : "right",
-            "label" : "Right"
-          }
-        ]
-      },
-      {
-        "type" : "select",
-        "id" : "text_size",
-        "label" : "Text Size",
-        "default" :  "standard",
-        "options" : [
-          {
-            "value" : "small",
-            "label" : "Small"
-          },
-          {
-            "value" : "standard",
-            "label" : "Standard"
-          },
-          {
-            "value" : "large",
-            "label" : "Large"
-          },
-          {
-            "value" : "mega",
-            "label" : "Mega"
-          }
-        ]
-      },
-      {
-        "type": "header",
-        "content": "Content"
-      },
-      {
-        "type": "text",
-        "id": "introduction",
-        "label": "Introduction",
-        "default": "This is an"
-      },
-      {
-        "type": "text",
-        "id": "heading",
-        "label": "Heading",
-        "default": "Image Overlay Section"
-      },
-
-      {
-        "type" : "text",
-        "id" : "subtitle",
-        "label" : "Subtitle",
-        "default" : "And even more!"
-      },
-      {
-        "type": "richtext",
-        "id": "text",
-        "label": "Text",
-        "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
-      },
-      {
-        "type": "header",
-        "content": "Image Content",
-        "info": "Use an image as part of/all the content"
-      },
-      {
-        "type" : "image_picker",
-        "id" : "logo",
-        "label" : "Logo"
-      },
-      {
-        "type": "range",
-        "id": "logo_max_width",
-        "label": {
-            "de": "Logobreite",
-            "en": "Custom logo width",
-            "es": "Ancho del logotipo personalizado",
-            "fr": "Largeur personnalisée du logo",
-            "it": "Larghezza logo personalizzato",
-            "ja": "ロゴの幅をカスタムする",
-            "pt-BR": "Largura do logotipo personalizado"
-        },
-        "min": 50,
-        "max": 900,
-        "step": 25,
-        "unit": {
-            "de": "px",
-            "en": "px",
-            "es": "px",
-            "fr": "px",
-            "it": "px",
-            "ja": "px",
-            "pt-BR": "px"
-        },
-        "default": 350
-      },
-      {
-        "type": "select",
-        "id": "logo_format",
-        "label": "Image Format",
-        "options": [
-          {
-          "value": "replace_header",
-          "label": "Replace Header"
-          },{
-          "value": "before_header",
-          "label": "Before All Content"
-          },
-          {
-          "value": "next_to_content",
-          "label": "Next To Content"
-          }
-        ],
-        "default" : "replace_header"
-      },
-      {
-        "type" : "header",
-        "content" : "Buttons"
-      },
-      {
-            "type" : "text",
-            "id" : "button_1_text",
-            "default" : "Collection Button",
-            "label" : "Button 1 Text"
-          },
-          {
-            "type" : "url",
-            "id" : "button_1_link",
-            "default" : "/collections/all",
-            "label" : "Button 1 Link"
-          },
-          {
-            "type" : "text",
-            "id" : "button_2_text",
-            "label" : "Button 2 Text"
-          },
-          {
-            "type" : "url",
-            "id" : "button_2_link",
-            "label" : "Button 2 Link"
-          },
-          {
-            "type" : "checkbox",
-            "id" : "video_button",
-            "label" : "Show Video Button",
-            "default" : true
-          }
-        ]
-      }
-
-    ],
-    "max_blocks" : 10,
-    "presets" : [
         {
-          "name" : "Video Section",
-          "category" : "Video",
-          "blocks" : [{
-            "type" : "video",
-            "settings" : {
-              "text" : "<p>Use it to draw attention to lots of things</p>"
+          "type": "select",
+          "id": "logo_format",
+          "label": "Image Format",
+          "options": [
+            {
+              "value": "replace_header",
+              "label": "Replace Header"
+            },
+            {
+              "value": "before_header",
+              "label": "Before All Content"
+            },
+            {
+              "value": "next_to_content",
+              "label": "Next To Content"
             }
-          }]
+          ],
+          "default": "replace_header"
         },
         {
-          "name" : "Text Over Image Background",
-          "category" : "Image",
-          "blocks" : [{
-            "type" : "background"
-          }]
+          "type": "header",
+          "content": "Buttons"
+        },
+        {
+          "type": "text",
+          "id": "button_1_text",
+          "default": "Collection Button",
+          "label": "Button 1 Text"
+        },
+        {
+          "type": "url",
+          "id": "button_1_link",
+          "default": "/collections/all",
+          "label": "Button 1 Link"
+        },
+        {
+          "type": "text",
+          "id": "button_2_text",
+          "label": "Button 2 Text"
+        },
+        {
+          "type": "url",
+          "id": "button_2_link",
+          "label": "Button 2 Link"
         },
 
         {
-          "name" : "Slideshow",
-          "category" : "Slideshow",
-          "blocks" : [
+          "type": "header",
+          "content": "Style + Alignment"
+        },
+        {
+          "type": "select",
+          "id": "content_style",
+          "label": "Content Style",
+          "default": "centered",
+          "options": [
             {
-              "type" : "banner"
+              "value": "centered",
+              "label": "Centered (no background)"
             },
             {
-              "type" : "video"
+              "value": "boxed",
+              "label": "Boxed "
             },
             {
-              "type" : "background"
+              "value": "boxed-extra",
+              "label": "Boxed (W/extra)"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "content_location",
+          "label": "Content Location",
+          "default": "centered",
+          "options": [
+            {
+              "value": "centered",
+              "label": "Centered"
+            },
+            {
+              "value": "bottom-left",
+              "label": "Bottom Left"
+            },
+            {
+              "value": "bottom-right",
+              "label": "Bottom Right"
+            },
+            {
+              "value": "top-left",
+              "label": "Top Left"
+            },
+            {
+              "value": "top-right",
+              "label": "Top Right"
+            },
+            {
+              "value": "center-left",
+              "label": "Center Left"
+            },
+            {
+              "value": "center-right",
+              "label": "Center Right"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "content_style_mobile",
+          "label": "Content Style (Mobile)",
+          "default": "centered",
+          "options": [
+            {
+              "value": "centered",
+              "label": "Centered (no background)"
+            },
+            {
+              "value": "boxed",
+              "label": "Boxed "
+            },
+            {
+              "value": "boxed-extra",
+              "label": "Boxed (w/extra)"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Text Alignment",
+          "default": "center",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "text_size",
+          "label": "Text Size",
+          "default": "standard",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "standard",
+              "label": "Standard"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            },
+            {
+              "value": "mega",
+              "label": "Mega"
+            }
+          ]
+        },
+        {
+          "type" : "select",
+          "id" : "text_style",
+          "label" : "Text Style",
+          "default" :  "standard",
+          "info" : "Used for advanced branding!",
+          "options" : [
+
+            {
+              "value" : "standard",
+              "label" : "Standard"
+            },
+            {
+              "value" : "special",
+              "label" : "Special"
+            },
+            {
+              "value" : "simple",
+              "label" : "Simple"
             }
           ]
         }
-    ]
-  }
+      ]
+    },
+    {
+      "name": "Just Image",
+      "type": "banner",
+      "settings": [
+        {
+          "type": "header",
+          "content": "background"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "default": "#000000",
+          "label": "Background Color",
+          "info": "Also the overlay color!"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "default": "#ffffff",
+          "label": "Text Color"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Banner Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile Image",
+          "info": "Use if you prefer a different image on mobile! (squarer dimensions, usually, around 1000x1000!)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_wide",
+          "label": "Wide Image",
+          "info": "Use if you prefer a different image on wider screens! (shorter dimensions, usually, around 2000x800!)"
+        },
+        {
+          "type": "range",
+          "id": "overlay",
+          "label": "Overlay",
+          "info": "Set to 0 to disable overlay.",
+          "max": 100,
+          "min": 0,
+          "step": 10,
+          "default": 0
+        },
+        {
+          "type": "checkbox",
+          "id": "parallax",
+          "label": "Enable Parallax Scrolling Effect"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label for image (accessability)"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "name": "Video w/ Content",
+      "type": "video",
+      "settings": [
+        {
+          "type": "header",
+          "content": "background"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "default": "#000000",
+          "label": "Background Color",
+          "info": "Also the overlay color!"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "default": "#ffffff",
+          "label": "Text Color"
+        },
+        {
+          "type": "header",
+          "content": "video",
+          "info": "Video"
+        },
+        {
+          "type": "select",
+          "id": "video_type",
+          "label": "Video Type",
+          "options": [
+            {
+              "value": "youtube",
+              "label": "Youtube"
+            },
+            {
+              "value": "local",
+              "label": "Local"
+            }
+          ],
+          "default": "youtube"
+        },
+        {
+          "type": "url",
+          "id": "mp4_large",
+          "label": "Large mp4 video",
+          "info": "Upload to Setting->Files, and copy url"
+        },
+        {
+          "type": "url",
+          "id": "mp4_small",
+          "label": "Small mp4 video",
+          "info": "Upload to Setting->Files, and copy url"
+        },
+        {
+          "type": "url",
+          "id": "webm_large",
+          "label": "Large webm video",
+          "info": "Upload to Setting->Files, and copy url"
+        },
+        {
+          "type": "url",
+          "id": "webm_small",
+          "label": "Small webm video",
+          "info": "Upload to Setting->Files, and copy url"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "url",
+          "default": "https://www.youtube.com/watch?v=qtQgbdmIO30",
+          "label": "Video URL",
+          "info": "Youtube (important) video url!"
+        },
+        {
+          "type": "image_picker",
+          "id": "fallback_gif",
+          "label": "Fallback Gif"
+        },
+        {
+          "type": "range",
+          "id": "start_time",
+          "label": "Start Time",
+          "info": "Set to 0 to not delay the start time.",
+          "max": 160,
+          "min": 0,
+          "step": 2,
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "overlay",
+          "label": "Overlay",
+          "info": "Set to 0 to disable overlay.",
+          "max": 100,
+          "min": 0,
+          "step": 10,
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "overlay_mobile",
+          "label": "Overlay (Mobile)",
+          "info": "Set to 0 to disable overlay.",
+          "max": 100,
+          "min": 0,
+          "step": 10,
+          "default": 50
+        },
+        {
+          "type": "checkbox",
+          "id": "parallax",
+          "label": "Enable Parallax Scrolling Effect"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "introduction",
+          "label": "Introduction",
+          "default": "This is an"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Image Overlay Section"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "And even more!"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Image Content",
+          "info": "Use an image as part of/all the content"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "range",
+          "id": "logo_max_width",
+          "label": {
+            "de": "Logobreite",
+            "en": "Logo Width",
+            "es": "Ancho del logotipo personalizado",
+            "fr": "Largeur personnalisée du logo",
+            "it": "Larghezza logo personalizzato",
+            "ja": "ロゴの幅をカスタムする",
+            "pt-BR": "Largura do logotipo personalizado"
+          },
+          "min": 50,
+          "max": 900,
+          "step": 25,
+          "unit": {
+            "de": "px",
+            "en": "px",
+            "es": "px",
+            "fr": "px",
+            "it": "px",
+            "ja": "px",
+            "pt-BR": "px"
+          },
+          "default": 350
+        },
+        {
+          "type": "select",
+          "id": "logo_format",
+          "label": "Image Format",
+          "options": [
+            {
+              "value": "replace_header",
+              "label": "Replace Header"
+            },
+            {
+              "value": "before_header",
+              "label": "Before All Content"
+            },
+            {
+              "value": "next_to_content",
+              "label": "Next To Content"
+            }
+          ],
+          "default": "replace_header"
+        },
+        {
+          "type": "header",
+          "content": "Buttons"
+        },
+        {
+          "type": "text",
+          "id": "button_1_text",
+          "default": "Collection Button",
+          "label": "Button 1 Text"
+        },
+        {
+          "type": "url",
+          "id": "button_1_link",
+          "default": "/collections/all",
+          "label": "Button 1 Link"
+        },
+        {
+          "type": "text",
+          "id": "button_2_text",
+          "label": "Button 2 Text"
+        },
+        {
+          "type": "url",
+          "id": "button_2_link",
+          "label": "Button 2 Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "video_button",
+          "label": "Show Video Button",
+          "default": true
+        },{
+          "type": "header",
+          "content": "Style + Alignment"
+        },
+        {
+          "type": "select",
+          "id": "content_style",
+          "label": "Content Style",
+          "default": "centered",
+          "options": [
+            {
+              "value": "centered",
+              "label": "Centered (no background)"
+            },
+            {
+              "value": "boxed",
+              "label": "Boxed "
+            },
+            {
+              "value": "boxed-extra",
+              "label": "Boxed (W/extra)"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Content Location",
+          "default": "centered",
+          "options": [
+            {
+              "value": "centered",
+              "label": "Centered"
+            },
+            {
+              "value": "bottom-left",
+              "label": "Bottom Left"
+            },
+            {
+              "value": "bottom-right",
+              "label": "Bottom Right"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "content_style_mobile",
+          "label": "Content Style (mobile)",
+          "default": "centered",
+          "options": [
+            {
+              "value": "centered",
+              "label": "Centered (no background)"
+            },
+            {
+              "value": "boxed",
+              "label": "Boxed "
+            },
+            {
+              "value": "boxed-extra",
+              "label": "Boxed (w/extra)"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Text Alignment",
+          "default": "center",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "text_size",
+          "label": "Text Size",
+          "default": "standard",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "standard",
+              "label": "Standard"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            },
+            {
+              "value": "mega",
+              "label": "Mega"
+            }
+          ]
+        },
+        {
+          "type" : "select",
+          "id" : "text_style",
+          "label" : "Text Style",
+          "default" :  "standard",
+          "info" : "Used for advanced branding!",
+          "options" : [
+
+            {
+              "value" : "standard",
+              "label" : "Standard"
+            },
+            {
+              "value" : "special",
+              "label" : "Special"
+            },
+            {
+              "value" : "simple",
+              "label" : "Simple"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+      "max_blocks": 10,
+      "presets": [
+        {
+          "name": "Video Section",
+          "category": "Video",
+          "settings" : {
+            "title" : "Video Banner"
+          },
+          "blocks": [
+            {
+              "type": "video",
+              "settings": {
+                "text": "<p>Use it to draw attention to lots of things</p>"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Text Over Image Background",
+          "category": "Image",
+          "settings" : {
+            "title" : "Image Banner"
+          },
+          "blocks": [
+            {
+              "type": "background"
+            }
+          ]
+        },
+        {
+          "name": "Slideshow",
+          "category": "Slideshow",
+          "blocks": [
+            {
+              "type": "banner"
+            },
+            {
+              "type": "video"
+            },
+            {
+              "type": "background"
+            }
+          ]
+        }
+      ]
+    }
 {% endschema %}

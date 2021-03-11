@@ -1,7 +1,34 @@
+
+#shopify-section-announcement {
+  @extend %psuedoish;
+  height: 0;
+  overflow: visible;
+  position: relative;
+  z-index: 2000;
+  .fixed-announcement & {
+    overflow: hidden;
+    @include media-query($small) {
+      top: var(--header-ht);
+      position: absolute;
+      height: auto;
+      pointer-events: none;
+    }
+  }
+}
+
 body {
   //Difference between this and announcement keeps them from showing a gap between them
   transition: margin 340ms $ease;
 }
+
+body.announcement-active {
+  margin-top: var(--announcement-height);
+  &.fixed-announcement {
+    margin-top: 0;
+  }
+}
+
+
 .announcement-bar {
   padding:  calc(4px + 0.25vw);
   @include media-query($widescreen) {
@@ -18,6 +45,14 @@ body {
   margin-bottom: -2px;
   text-align: center;
   z-index: 1000;
+
+  &.fixed {
+    position: fixed;
+    top: 0 !important;
+    @include media-query($small) {
+      position: relative;
+    }
+  }
 
   &.announceActive {
     transform: translateY(0)

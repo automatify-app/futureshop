@@ -25,6 +25,8 @@ export default class Announcement {
     }
     return true;
   }
+
+
   init() {
 
     if (!this.active) {
@@ -51,18 +53,17 @@ export default class Announcement {
     }
   }
   disableBar() {
-    document.body.style.marginTop = '0px';
-    document.body.style.setProperty('--mt', '0px');
-    document.body.style.overflowY = 'auto';
+
+
+
     this.el.classList.remove('announceActive');
     sessionStorage.setItem('announcementDismissed', 'true');
   }
+
   resizeBar() {
     this.ht = this.el.getBoundingClientRect().height;
     if (this.el.classList.contains('announceActive')) {
       this.el.style.top = -this.ht + 'px';
-      document.body.style.marginTop = this.ht + 'px';
-      document.body.style.setProperty('--mt', this.ht + 'px');
     }
   }
 }

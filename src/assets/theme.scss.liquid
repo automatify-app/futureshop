@@ -124,18 +124,21 @@ body .image-section:first-child {
     text-transform: lowercase;
   {%endif%}
 
-  font-style: {{settings.header_font_style}};
+  font-style: {{settings.header_font_style | default: 'standard'}};
 
    {% case settings.font_family_heading %}
    {%when 'body' %}
     font-family: var(--font-body-real);
-    font-weight: {{ settings.font_body.weight }};
+    font-weight: {{ settings.font_body.weight | default: 700 }};
     {%when 'heading' %}
     font-family: var(--font-heading-real);
-    font-weight: {{ settings.font_heading.weight }};
+    font-weight: {{ settings.font_heading.weight | default: 700 }};
     {%when 'extra' %}
     font-family: var(--font-extra-real);
-    font-weight: {{ settings.font_extra.weight }};
+    font-weight: {{ settings.font_extra.weight | default: 700}};
+    {%when 'script' %}
+    font-family: var(--font-script-real);
+    font-weight: 400;
   {%endcase %}
 }
 
@@ -151,13 +154,16 @@ body .image-section:first-child {
     {% case settings.font_family_label %}
       {%when 'body' %}
     font-family: var(--font-body-real);
-    font-weight: {{ settings.font_body.weight }};
+    font-weight: {{ settings.font_body.weight | default: 400 }};
     {%when 'heading' %}
     font-family: var(--font-heading-real);
-    font-weight: {{ settings.font_heading.weight }};
+    font-weight: {{ settings.font_heading.weight | default: 400 }};
     {%when 'extra' %}
     font-family: var(--font-extra-real);
-    font-weight: {{ settings.font_extra.weight }};
+    font-weight: {{ settings.font_extra.weight | default: 400 }};
+    {%when 'script' %}
+    font-family: var(--font-script-real);
+    font-weight: 400;
   {%endcase %}
 
   {% case settings.label_size %}
@@ -223,19 +229,7 @@ body .image-section:first-child {
     {%endcase %}
 }
 
-.button, button, .btn {
-  /* {{settings.button_capitalization}} */
-  line-height: {{settings.button_line_height | divided_by:10.0 }};
-  padding: {{settings.button_padding_top | divided_by: 10.0 }}em  {{settings.button_padding_horiz | divided_by: 10.0 }}em {{settings.button_padding_bottom | divided_by: 10.0 }}em ;
-  font-size: {{settings.button_font_size | default: '17'}}px;
-  text-transform: {{settings.button_capitalization | default: "none"}};
-  font-weight: {{settings.button_font_weight | default: "700"}};
-  font-style: {{settings.button_text_style | default : "Standard"}};
-  @media (max-width: 720px) {
-    font-size: {{settings.button_font_size_mobile | default: '16'}}px;
-  }
-
-  letter-spacing: {{settings.button_letter_spacing | default: 10 | divided_by: 10.0 | minus: 1.0 }}em;
+.button, a.button, button, button.button, .btn, a.btn {
 
   {% case settings.font_family_button %}
   {%when 'body' %}
@@ -247,11 +241,24 @@ body .image-section:first-child {
     {%when 'extra' %}
     font-family: var(--font-extra-real);
     font-weight: {{ settings.font_extra.weight }};
+    {%when 'script' %}
+    font-family: var(--font-script-real);
+    font-weight: 400;
   {%endcase %}
 
+  /* {{settings.button_capitalization}} */
+  line-height: {{settings.button_line_height | divided_by:10.0 }};
+  padding: {{settings.button_padding_top | divided_by: 10.0 }}em  {{settings.button_padding_horiz | divided_by: 10.0 }}em {{settings.button_padding_bottom | divided_by: 10.0 }}em ;
+  text-transform: {{settings.button_capitalization | default: "none"}};
+  font-weight: {{settings.button_font_weight | default: "700"}};
+  letter-spacing: {{settings.button_letter_spacing | default: 10 | divided_by: 10.0 | minus: 1.0 }}em;
+  font-style: {{settings.button_text_style | default : "Standard"}};
+
+  font-size: {{settings.button_font_size | default: '17'}}px;
+  @media (max-width: 720px) {
+    font-size: {{settings.button_font_size_mobile | default: '16'}}px;
+  }
 }
-
-
 
 {% if settings.tag_color != blank %}
 h6.visible-tag  {

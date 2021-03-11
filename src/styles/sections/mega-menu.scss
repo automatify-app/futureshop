@@ -1,0 +1,235 @@
+.hide--not-fixed {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms $ease;
+}
+
+.headroom--pinned.headroom--not-top .hide--not-fixed {
+  opacity: 1;
+  visibility: visible;
+}
+
+.fixed-logo {
+  flex: 1 1 180px;
+  max-width: 250px;
+}
+
+.mega-menu {
+  flex: 1 1 400px;
+  @include media-query($small) {
+    display: none;
+  }
+    margin: auto auto 0;
+
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  ul {
+    list-style: none;
+  }
+  .menu-extras {
+    flex: 1 1 180px;
+    justify-content: flex-end;
+    max-width: 250px;
+    margin: -8px 0;
+  }
+
+  li:hover, li.focused {
+    .mega-menu__wrap {
+      pointer-events: all;
+    }
+    .mega-menu__menu {
+      pointer-events: all;
+      transform: translateY(0);
+      transition-delay: 0ms;
+    }
+  }
+}
+
+a.mega-menu__parent {
+  font-family: var(--font-heading-real);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 1.2em 0.8em;
+  font-weight: 700;
+  font-size: 13px;
+  display: inline-block;
+}
+
+ul.mega-menu__inner {
+  margin: 0;
+  width: 100%;
+  padding:0 9px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mega-menu__wrap {
+
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  z-index: 2;
+  height: auto;
+  pointer-events: none;
+  padding-bottom: 20px;
+  overflow: hidden;
+  min-height: 300px;
+}
+
+.mega-menu__inner-wrap {
+  min-height: 55px;
+  display: flex;
+  width: 95.5%;
+  max-width: $grid-max-width;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  z-index: 2;
+}
+
+.mega-menu__menu {
+  pointer-events: none;
+  transition: transform 300ms 200ms $ease;
+  transform: translateY(-105%);
+  min-height: 400px;
+  background: var(--header-bg);
+
+  padding: 24px 20px;
+  box-shadow: 0 0 20px rgba(black, 0.1);
+
+  &::before {
+    @extend %psuedo;
+    left: 0;
+
+    background: gray;
+    height: 1px;
+    opacity: 0.3;
+
+  }
+}
+
+.mega-menu__content {
+  display: grid;
+
+  max-width: calc(900px + 10vw);
+
+  margin: auto;
+  width: 90%;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 1fr;
+  grid-gap: 12px;
+  @include media-query($medium-up) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 12px;
+  }
+}
+
+.mega-submenu {
+  &__title {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    border-bottom: 1px solid gray;
+    display: inline-block;
+    font-family: var(--font-heading-real);
+    margin: 9px 0 5px;
+    padding: 0 0 4px;
+  }
+
+  &__links {
+    margin: 9px auto;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    display: inline-block;
+    padding: 2px;
+    margin: 3px 0;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: transform 300ms $ease, opacity 300ms $ease;
+    .focused &,
+    &:hover {
+      opacity: 1;
+      transform:  translateY(-1px);
+    }
+  }
+}
+
+.mega-banner {
+  grid-column: 4;
+  grid-row: 1 / span 2;
+  text-decoration: none;
+  text-align: center;
+  max-width: 240px;
+
+  &:hover {
+    .mega-banner__image img {
+      transform: scale3d(1.05, 1.05, 1);
+    }
+    h4, h5 {
+      opacity: 1;
+    }
+  }
+
+  &.style--text-over {
+    position: relative;
+    background: black;
+    align-self: start;
+    .mega-banner__image {
+      opacity: 0.5;
+      margin: 0;
+    }
+    .mega-banner__content {
+      position: absolute;
+      padding: 20px;
+      height: 100%;
+      left: 0;
+      width: 100%;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+    }
+
+    h4, h5  {
+      color: white;
+    }
+  }
+  h4 {
+    margin: 12px 4px 0;
+    text-transform: uppercase;
+    font-size: 15px;
+    display: inline-block;
+    letter-spacing: 0.05em;
+    text-align: center;
+    opacity: 0.8;
+  }
+  h5 {
+    font-size: 12px;
+    font-weight: 400;
+    margin: 5px 0 0;
+  }
+  &+.mega-banner {
+    grid-column: 3;
+  }
+
+  &__image img {
+    transition: transform 300ms ease;
+  }
+  @include media-query($small) {
+    grid-column: 2 ;
+    &+.mega-banner {
+      grid-column: 1;
+      grid-row: 2;
+    }
+  }
+}
