@@ -112,19 +112,6 @@ form button.simple {
 }
 
 body {
-  &.button-font--body {
-    %button {
-      @include font-body();
-      font-weight: $font-body-weight;
-    }
-  }
-  &.button-font--extra {
-    %button {
-      @include font-extra();
-      font-weight: $font-extra-weight;
-    }
-  }
-
   &.button-style--solid {
     %button {
       background: $color-accent;

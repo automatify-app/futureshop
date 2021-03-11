@@ -1,14 +1,32 @@
 {% comment %}
-
-{% include 'vidbox' with video_url: section.settings.url, fallback_gif: fallback_gif, fallback_image: fallback_image, overlay: section.settings.overlay_op, start_time: 0 %}
+type,
+id
+fallback_image
+video_url
 
 {% endcomment %}
-
-<div class="video-player__wrap video-wrap--{{section.id}} {% if video_url == blank%}use-gif{%endif%}" data-overlay="{{overlay}}" data-module="vidbox" data-video-url="{{video_url}}" data-start-time="{{start_time}}" data-aos="fade-in" data-aos-duration="800"><div class="youtube-player" id="player--{{section.id}}"></div>
-<div class="fallback-image"></div>
+<div class="video-player__wrap type--{{type}} video-wrap--{{id}} {% if video_url == blank%}use-gif{%endif%}" data-overlay="{{overlay}}" {% if type == false or type == 'youtube' and video_url != blank %} data-module="vidbox" data-video-url="{{video_url}}" data-start-time="{{start_time}}" data-aos="fade-in" data-aos-duration="800"><div class="youtube-player" id="player--{{id}}"></div> {%else %}>{%endif%}
+  {% if type == 'local' %}
+    <video class="lazyload video__background"
+    preload="none"
+    muted
+    loop
+    autoplay
+    {% comment %} autoplay {% endcomment %}
+    data-src="{{mp4_large}}"/>
+  {%endif%}
+  <div class="fallback-image"></div>
 
 </div>
 <style>
+.video__background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
 .fallback-image {
   position: absolute;
   height: auto;
@@ -19,7 +37,7 @@
   height: auto;
 }
   {% if fallback_image != blank %}
-      .video-wrap--{{section.id}} {
+      .video-wrap--{{id}} {
         background-image: url({{fallback_image | img_url: '1200x'}});
       }
       {%endif%}
@@ -28,45 +46,45 @@
       .fallback-image {
         display: none;
       }
-      .video-wrap--{{section.id}}.use-gif::before {
+      .video-wrap--{{id}}.use-gif::before {
         background-image: url({{fallback_gif | img_url: '12000x'}});
 
       }{%endif%}
       @media (max-width: 600px) {
       {% if fallback_image != blank %}
-          .video-wrap--{{section.id}} {
+          .video-wrap--{{id}} {
           background-image: url({{fallback_image | img_url: '900x'}});
 
         }
         {%endif%}
           {% if fallback_gif != blank %}
-          .video-wrap--{{section.id}}.use-gif::before {
+          .video-wrap--{{id}}.use-gif::before {
             background-image: url({{fallback_gif | img_url: '600x'}});
           }
         {%endif%}
       }
       @media (min-width: 900px) {
       {% if fallback_image != blank %}
-          .video-wrap--{{section.id}} {
+          .video-wrap--{{id}} {
           background-image: url({{fallback_image | img_url: '1500x'}});
 
         }
         {%endif%}
         {% if fallback_gif != blank %}
-        .video-wrap--{{section.id}}.use-gif::before {
+        .video-wrap--{{id}}.use-gif::before {
           background-image: url({{fallback_gif | img_url: '1200x'}});
         }
       {%endif%}
       }
       {% if fallback_image != blank %}
       @media (min-width: 1200px) {
-          .video-wrap--{{section.id}} {
+          .video-wrap--{{id}} {
           background-image: url({{fallback_image | img_url: '2000x'}});
 
         }
         {%endif%}
         {% if fallback_gif != blank %}
-        .video-wrap--{{section.id}}.use-gif::before {
+        .video-wrap--{{id}}.use-gif::before {
           background-image: url({{fallback_gif | img_url: '2000x'}});
         }
       {%endif%}

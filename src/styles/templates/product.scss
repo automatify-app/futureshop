@@ -99,7 +99,10 @@ flex: 1 2 300px;
   flex-direction: column;
   text-align: left;
   .rte {
-    margin: calc(12px + 1vw) 0 0;
+    margin: calc(8px + 0.5%) 0 0;
+    // @include media-query($widescreen) {
+    //   margin: 10px 0 0 ;
+    // }
     // padding-top: calc(12px + 1vw);
     // border-top: 2px solid $color-border;
     width: 100%;
@@ -145,7 +148,10 @@ flex: 1 2 300px;
 
 
 body.product-style--card {
-  section[data-section-type="product"] {
+  .featured-product__content {
+    margin-top: 0;
+  }
+  [data-section-type="product"] {
     padding:  calc(10px + 1vw);
     background: $color-card-bg;
     color: $color-card-text;
@@ -164,7 +170,7 @@ body.product-style--bordered {
     margin: 20px auto calc(20px + 1.7vw);
   }
 
-  section[data-section-type="product"] {
+  [data-section-type="product"] {
     padding:  calc(10px + 1vw);
     border: $border-thickness solid $color-body-text;
   }

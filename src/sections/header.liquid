@@ -17,9 +17,6 @@ Starting variables
 {%- endcomment -%}
 {%- capture header_layout -%}{%- unless settings.header_layout -%}{%- if section.settings.layout_header != blank -%}{{section.settings.layout_header}}{%-endif-%}{%- else -%}{{settings.header_layout}}{%- endunless -%}{%- endcapture -%}
 {%- capture header_fixed -%}{% if section.settings.header_fixed != blank %}{{section.settings.header_fixed}}{%endif%}{% if settings.header_fixed != blank %}{{settings.header_fixed}}{%endif%}{%- endcapture -%}
-
-{%- unless settings.overlay_header -%}{% if section.settings.overlay_header %}{% assign overlay_header = section.settings.overlay_header%}{%endif%}{% else %}{% assign overlay_header = settings.overlay_header %}{%-endunless-%}
-
 {% assign balanced_menu = false %}
 {% if settings.social_layout contains 'balanced' or  section.settings.layout_header contains 'balanced' or settings.header_balanced == true %}
 {% assign balanced_menu = true %}
@@ -44,12 +41,12 @@ Starting variables
     {% endif %}
         <a href="/" class="site-header__logo ">
                     {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
-              {% if template.name == "index" and overlay_header == true %}
-              {% render 'responsive-image' with image: section.settings.logo_overlay,  min_width: 600, max_width: 900, max_height: 900, wrapper_class: overlay-logo %}
+              {% if template.name == "index" and settings.overlay_header == true %}
+              {% render 'responsive-image' with image: section.settings.logo_overlay,  min_width: 600, max_width: 900, max_height: 900, wrapper_class:"overlay-logo" %}
 
               {%endif%}
               {% if section.settings.logo != blank %}
-              {% render 'responsive-image' with image: section.settings.logo, max_width: 900, min_width: 600,  max_height: 900, wrapper_class: overlay-logo %}
+              {% render 'responsive-image' with image: section.settings.logo, max_width: 900, min_width: 600,  max_height: 900 %}
 
 
             {% else %}
@@ -112,7 +109,7 @@ Starting variables
 
 
 {% comment %} Laying out everything {% endcomment %}
-<section data-section-id="{{ section.id }}" class="site-header__wrap {% unless header_layout contains 'sidebar' %}fixed--{{header_fixed}}{%endunless%} {% if settings.overlay_shadow  == true%} box-shadow {%endif%} {% if section.settings.expand_logo  == true%} expand-logo {%endif%} {% if overlay_header  == true %} overlay-header {%endif%}" data-section-type="header" style="{% if section.settings.bg_color != blank and settings.texture_header != true %}background-color: {{section.settings.bg_color}}; {%endif%}{% if section.settings.text_color != blank%}color: {{section.settings.text_color}};{% endif %}">
+<section data-section-id="{{ section.id }}" class="site-header__wrap {% unless header_layout contains 'sidebar' %}fixed--{{header_fixed}}{%endunless%} {% if settings.overlay_shadow  == true%} box-shadow {%endif%} {% if section.settings.expand_logo  == true%} expand-logo {%endif%} {% if settings.overlay_header  == true %} overlay-header {%endif%}" data-section-type="header">
 <div class="site-header__inner {% if section.settings.layout_header == 'above' %}force-wrap{%endif%} mobile--{{settings.mm_behavior}} socials--{{settings.social_layout}}">
   <div class="site-header__inner-wrap  layout--{{header_layout}} {% if header_layout == 'above' %} header-centered {%endif%}">
     {% if header_layout == 'stacked' %}
@@ -134,7 +131,6 @@ Starting variables
           {{header_markup}}
         </div>
     {%endif%}
-    {{settings.social-layout}}
     {% if settings.social_layout == 'before-menu' or settings.social_layout == 'after-logo'  %}
       {% include 'social-icons' %}
     {%endif%}
@@ -249,6 +245,88 @@ Starting variables
 
 {% include 'mobile-menu' with menu: menu %}
 
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "{{ shop.name }}",
+  {% if section.settings.logo %}
+    {% assign image_size = section.settings.logo.width | append:'x' %}
+    "logo": "https:{{ section.settings.logo | img_url: image_size }}",
+  {% endif %}
+  "sameAs": [
+    "{{ settings.social_twitter_link }}",
+    "{{ settings.social_facebook_link }}",
+    "{{ settings.social_pinterest_link }}",
+    "{{ settings.social_instagram_link }}",
+    "{{ settings.social_tumblr_link }}",
+    "{{ settings.social_snapchat_link }}",
+    "{{ settings.social_youtube_link }}",
+    "{{ settings.social_vimeo_link }}"
+  ],
+  "url": "{{ shop.url }}{{ page.url }}"
+}
+</script>
+
+{% if template.name == 'index' %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "{{ shop.name }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ shop.url }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "url": "{{ shop.url }}{{ page.url }}"
+    }
+  </script>
+{% endif %}
+
+
+{%- comment -%}
+Style + Script tags
+{%- endcomment -%}
+<style>
+    .site-header__inner img, .site-header__inner svg {
+      max-width: {{ section.settings.logo_max_width }}px;
+
+    }
+    header.site-header {
+    {% if section.settings.logo != blank %}
+      flex-basis: {{section.settings.logo_max_width}}px;
+      {% else %}
+      flex-basis: auto;
+    {%endif%}
+    }
+    @media only screen and (max-width: 750px) {
+      .site-header__inner img, .site-header__inner svg {
+        max-width: {{ section.settings.logo_max_width_mobile }}px;
+      }
+      header.site-header {
+        flex-basis: {{section.settings.logo_max_width_mobile}}px;
+      }
+    }
+</style>
+
+<script>
+
+{% unless header_layout contains 'sidebar' %}
+  {% if settings.overlay_header == true %}
+      document.body.classList.add('header-overlay');
+  {%endif%}
+  {% if header_fixed == 'fixed' %}
+    document.getElementById('shopify-section-header').style.position = 'sticky';
+    document.getElementById('shopify-section-header').style.top = '0px';
+  {% elsif header_fixed == 'sticky-bottom' %}
+    document.getElementById('shopify-section-header').classList.add('sticky-bottom')
+  {%endif%}
+  {% if settings.overlay_shadow == true %}
+  document.body.classList.add('overlay-shadow');
+  {%endif%}
+{%endunless %}
+</script>
 
 {% schema %}
   {
@@ -333,7 +411,7 @@ Starting variables
         "label": "Logo Width (Mobile)",
         "min": 50,
         "max": 300,
-        "step": 10,
+        "step": 5,
         "unit": "px",
         "default": 230
     }, {
@@ -393,191 +471,7 @@ Starting variables
         "label": "Mobile Inner Icons Text",
         "info": "Includes 'Search' and 'Cart' text next to icon",
         "default" : true
-    }, {
-        "type": "select",
-        "id": "mobile_menu_text_align",
-        "label": "Mobile Menu Text Align",
-        "default" : "left",
-        "options": [{
-            "value": "left",
-            "label": "Left"
-        }, {
-            "value": "center",
-            "label": "Center"
-        }, {
-            "value": "right",
-            "label": "Right"
-        }]
-    }, {
-        "type": "header",
-        "content": "cart"
-    }, {
-        "type": "select",
-        "id": "layout_cart",
-        "label": "Cart Position",
-        "default": "menu",
-        "options": [{
-            "value": "menu",
-            "label": "In Menu"
-        }, {
-            "value": "top-bar",
-            "label": "In Top Bar"
-        }, {
-            "value": "disabled",
-            "label": "Disable Cart"
-        }]
-    }, {
-        "type": "select",
-        "id": "layout_mobile",
-        "label": "Mobile Cart Layout",
-        "default": "centered-cart",
-        "options": [{
-            "value": "centered-cart",
-            "label": "Logo Centered (w/cart)"
-        }, {
-            "value": "left-cart",
-            "label": "Logo Left (w/cart)"
-        }, {
-            "value": "left-nocart",
-            "label": "Logo Left (cart in menu)"
-        }]
-    }, {
-        "type": "checkbox",
-        "id": "show_cart_label",
-        "label": "Cart Text",
-        "info": "Leave Blank for just Icon!"
-    }, {
-        "type": "header",
-        "content": "Account"
-    }, {
-        "type": "select",
-        "id": "layout_account",
-        "label": "Account Position",
-        "default": "after-menu",
-        "options": [{
-            "value": "after-menu",
-            "label": "After Menu"
-
-        }, {
-            "value": "disabled",
-            "label": "Disable Account"
-        }]
-    }, {
-        "type": "header",
-        "content": "Search"
-    }, {
-        "type": "select",
-        "id": "layout_search",
-        "label": "Search Position",
-        "default": "menu",
-        "options": [{
-            "value": "disabled",
-            "label": "Disable Search"
-        }, {
-            "value": "menu",
-            "label": "In Menu"
-        }]
-    }, {
-        "type": "checkbox",
-        "id": "show_search_text",
-        "label": "Show Search Text",
-        "info": "Leave false for just Icon!"
     }
   ]
 }
 {% endschema %}
-
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": "{{ shop.name }}",
-  {% if section.settings.logo %}
-    {% assign image_size = section.settings.logo.width | append:'x' %}
-    "logo": "https:{{ section.settings.logo | img_url: image_size }}",
-  {% endif %}
-  "sameAs": [
-    "{{ settings.social_twitter_link }}",
-    "{{ settings.social_facebook_link }}",
-    "{{ settings.social_pinterest_link }}",
-    "{{ settings.social_instagram_link }}",
-    "{{ settings.social_tumblr_link }}",
-    "{{ settings.social_snapchat_link }}",
-    "{{ settings.social_youtube_link }}",
-    "{{ settings.social_vimeo_link }}"
-  ],
-  "url": "{{ shop.url }}{{ page.url }}"
-}
-</script>
-
-{% if template.name == 'index' %}
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      "name": "{{ shop.name }}",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "{{ shop.url }}/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      },
-      "url": "{{ shop.url }}{{ page.url }}"
-    }
-  </script>
-{% endif %}
-
-
-{%- comment -%}
-Style + Script tags
-{%- endcomment -%}
-<style>
-  #shopify-section-header {
-    {% if section.settings.bg_color %}
-    --header-bg: {{section.settings.bg_color }};
-    --header-bg-dropdown: {{section.settings.bg_color }};
-    {%endif %}
-    {% if section.settings.text_color %}
-    --header-text: {{section.settings.text_color }};
-    {%endif %}
-    {% if section.settings.overlay_color != blank %}
-    --color-overlay: {{section.settings.overlay_color }};
-    {%endif %}
-  }
-    .site-header__inner img, .site-header__inner svg {
-      max-width: {{ section.settings.logo_max_width }}px;
-
-    }
-    header.site-header {
-    {% if section.settings.logo != blank %}
-      flex-basis: {{section.settings.logo_max_width}}px;
-      {% else %}
-      flex-basis: auto;
-    {%endif%}
-    }
-    @media only screen and (max-width: 750px) {
-      .site-header__inner img, .site-header__inner svg {
-        max-width: {{ section.settings.logo_max_width_mobile }}px;
-      }
-      header.site-header {
-        flex-basis: {{section.settings.logo_max_width_mobile}}px;
-      }
-    }
-
-</style>
-<script>
-{% unless header_layout contains 'sidebar' %}
-  {% if overlay_header == "true" %}
-      document.body.classList.add('header-overlay');
-
-  {%endif%}
-  {% if header_fixed == 'fixed' %}
-    document.getElementById('shopify-section-header').style.position = 'sticky';
-    document.getElementById('shopify-section-header').style.top = '0px';
-  {% elsif header_fixed == 'sticky-bottom' %}
-    document.getElementById('shopify-section-header').classList.add('sticky-bottom')
-  {%endif%}
-  {% if settings.overlay_shadow == true %}
-  document.body.classList.add('overlay-shadow');
-  {%endif%}
-{%endunless %}
-</script>

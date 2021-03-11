@@ -41,9 +41,6 @@ register('product', {
       productFormElement.dataset.productHandle,
     )
 
-    if (await this.product) {
-      this.variantInventory = await this.getVariantInventory();
-    }
 
     if (await this.variantInventory) {
       this.isVariantsActive = true;
@@ -55,12 +52,17 @@ register('product', {
 
     this.onThumbnailClick = this.onThumbnailClick.bind(this);
     this.onThumbnailKeyup = this.onThumbnailKeyup.bind(this);
-    this.checkAvailableVariants = this.checkAvailableVariants.bind(this);
-    this.initializeVariants = this.initializeVariants.bind(this);
-    this.getVariantInventory = this.getVariantInventory.bind(this);
 
-    this.initializeVariants();
-    this.initializeIsw();
+    //  if (await this.product) {
+    //    this.variantInventory = await this.getVariantInventory();
+    //  }
+
+    // this.checkAvailableVariants = this.checkAvailableVariants.bind(this);
+    // this.initializeVariants = this.initializeVariants.bind(this);
+    // this.getVariantInventory = this.getVariantInventory.bind(this);
+
+    // this.initializeVariants();
+    // this.initializeIsw();
 
 
     this.container.addEventListener('click', this.onThumbnailClick);

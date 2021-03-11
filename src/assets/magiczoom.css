@@ -114,6 +114,7 @@ figure.mz-figure {
     -webkit-mask-clip: content;
     cursor: none;
 }
+
 .mz-figure.mz-active .mz-zoom-window.mz-magnifier {
     pointer-events: auto !important;
     cursor: inherit !important;

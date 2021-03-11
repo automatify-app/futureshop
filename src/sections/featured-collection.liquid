@@ -9,6 +9,8 @@
   - Heading: title of the featured collection section
 {%- endcomment -%}
 
+
+
 {%include 'section-starter' with section_class: 'featured-collection' %}
 <div class="section-inner can-grid">
   {% include 'common-header' with include_button: false %}
@@ -37,7 +39,86 @@
     "name": "Featured collection",
    "class" : "standard-section",
     "settings": [
+
       {
+        "type" : "header",
+        "content" : "Collection settings"
+      },
+      {
+        "type" : "select",
+        "id" : "size",
+        "label" : "Grid Size",
+        "default" : "standard",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small"
+          },
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "huge",
+            "label" : "Huge"
+          }
+        ]
+      },
+       {
+        "type" : "range",
+        "id" : "limit",
+        "label" : "Limit",
+        "default" : 8,
+        "max": 30,
+        "min" : 0,
+        "step" : 1
+      },
+      {
+        "type" : "text",
+        "id" : "button_text",
+        "label" : "All Button Text",
+        "info" : "Leave Blank for No Button",
+        "default" : "Shop More"
+      },
+      {
+        "type" : "url",
+        "id" : "button_url",
+        "label" : "All Button url",
+        "info" : "Leave Blank to use collection link"
+      },
+      {
+        "type" : "header",
+        "content" : "Product Settings"
+      },
+       {
+        "type" : "checkbox",
+        "id" : "secondary_image",
+        "label" : "Second Image on Hover",
+        "info" : "No effect if no secondary image",
+        "default" : true
+      },
+      {
+        "type" : "checkbox",
+        "id" : "show_price",
+        "label" : "Show Price?",
+        "default" : true
+      },
+      {
+        "type" : "checkbox",
+        "id" : "simplify",
+        "label" : "Simplify?",
+        "info" : "Hides everything other than photo!"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "hoverer",
+        "label" : "Details on hover?"
+      },
+ {
         "type" : "header",
         "content" : "Meta"
       },
@@ -46,7 +127,7 @@
         "id" : "anchor_id",
         "label" : "Section ID (for anchor links and specific styling)"
       },
-  {
+      {
         "type": "text",
         "id" : "anchor_classes",
         "label" : "Section classes (for  specific styling)"
@@ -154,84 +235,6 @@
         "id": "collection",
         "type": "collection",
         "label": "Collection"
-      },
-      {
-        "type" : "header",
-        "content" : "Collection settings"
-      },
-      {
-        "type" : "select",
-        "id" : "size",
-        "label" : "Grid Size",
-        "default" : "standard",
-        "options" : [
-          {
-            "value" : "small",
-            "label" : "Small"
-          },
-          {
-            "value" : "standard",
-            "label" : "Standard"
-          },
-          {
-            "value" : "large",
-            "label" : "Large"
-          },
-          {
-            "value" : "huge",
-            "label" : "Huge"
-          }
-        ]
-      },
-       {
-        "type" : "range",
-        "id" : "limit",
-        "label" : "Limit",
-        "default" : 8,
-        "max": 30,
-        "min" : 0,
-        "step" : 1
-      },
-      {
-        "type" : "text",
-        "id" : "button_text",
-        "label" : "All Button Text",
-        "info" : "Leave Blank for No Button",
-        "default" : "Shop More"
-      },
-      {
-        "type" : "url",
-        "id" : "button_url",
-        "label" : "All Button url",
-        "info" : "Leave Blank to use collection link"
-      },
-      {
-        "type" : "header",
-        "content" : "Product Settings"
-      },
-       {
-        "type" : "checkbox",
-        "id" : "secondary_image",
-        "label" : "Second Image on Hover",
-        "info" : "No effect if no secondary image",
-        "default" : true
-      },
-      {
-        "type" : "checkbox",
-        "id" : "show_price",
-        "label" : "Show Price?",
-        "default" : true
-      },
-      {
-        "type" : "checkbox",
-        "id" : "simplify",
-        "label" : "Simplify?",
-        "info" : "Hides everything other than photo!"
-      },
-      {
-        "type" : "checkbox",
-        "id" : "hoverer",
-        "label" : "Details on hover?"
       },
       {
         "type" : "header",

@@ -15,8 +15,8 @@
 }
 
 .site-header__wrap {
-  background-color: var(--header-bg);
-  color: var(--header-text);
+  // background-color: var(--header-bg);
+  // color: var(--header-text);
 
   a {
     color: var(--header-text);
@@ -82,13 +82,13 @@
      &.mega-menu-wrapper {
       transform: translateY(var(--brander-ht));
     }
-    &::before {
-        opacity: 1;
-      }
     // animation-fill-mode: forwards;
 
     .site-header__inner {
       // padding: 9px 0;s
+      &::before {
+          opacity: 1;
+        }
       .overlay-logo {
         opacity: 0;
       }
@@ -252,7 +252,6 @@
     @extend %psuedo;
 
     background: var(--header-bg);
-    opacity: 0;
     transition: opacity 300ms $ease;
   }
 

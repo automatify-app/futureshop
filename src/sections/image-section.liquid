@@ -7,7 +7,7 @@
     {%assign slide = section.blocks[0] %}
     {% include 'slide-video' %}
   {%elsif overlay_type == 'background' %}
-    {%assign slide = section.blocks[0] %}
+  {%assign slide = section.blocks[0] %}
     {% include 'slide-background' %}
   {% else %}
     <div class="swiper-container" data-module="swiper" data-swiper-speed="{{section.settings.speed}}" data-swiper-dots="{{section.settings.dots}}" data-swiper-arrows="{{section.settings.arrows}}" data-swiper-animation="{{section.settings.type}}">
@@ -16,7 +16,7 @@
         {% if slide.type == 'banner' %}
             {% include 'slide-banner' %}
           {%elsif slide.type == 'video' %}
-            {% include 'slide-video' %}
+            {% render 'slide-video' with slide: slide %}
           {%elsif slide.type == 'background' %}
             {% include 'slide-background' %}
           {%endif%}
@@ -620,24 +620,6 @@
           "id": "mp4_large",
           "label": "Large mp4 video",
           "info": "REQUIRED: Upload to Setting->Files, and copy url"
-        },
-        {
-          "type": "url",
-          "id": "mp4_small",
-          "label": "Small mp4 video",
-          "info": "Upload to Setting->Files, and copy url"
-        },
-        {
-          "type": "url",
-          "id": "webm_large",
-          "label": "Large webm video",
-          "info": "Upload to Setting->Files, and copy url"
-        },
-        {
-          "type": "url",
-          "id": "webm_small",
-          "label": "Small webm video",
-          "info": "Upload to Setting->Files, and copy url"
         },
         {
           "type": "image_picker",

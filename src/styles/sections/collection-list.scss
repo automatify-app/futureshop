@@ -188,15 +188,16 @@
   &.style--big {
     // flex-wrap: wrap;
     // display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     max-width: 1200px;
     margin: auto;
     .collection-list-item {
       flex: 1 1 440px;
       overflow: hidden;
+      height: auto;
       min-width: 0;
-      margin: 1% !important;
+      margin: 2% !important;
       max-width: 500px;
       .collection-list-item__image {
         flex: 1 1 300px;

@@ -3,6 +3,7 @@ import 'babel-polyfill';
 import 'lazysizes';
 import 'lazysizes/plugins/object-fit/ls.object-fit';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+import 'lazysizes/plugins/unveilhooks/ls.unveilhooks';
 import 'lazysizes/plugins/rias/ls.rias';
 import 'lazysizes/plugins/bgset/ls.bgset';
 import 'lazysizes/plugins/respimg/ls.respimg';
@@ -16,9 +17,7 @@ import debounce from 'lodash.debounce';
 
 import '../../styles/theme.scss';
 // import '../../styles/theme.scss.liquid';
-
 import { focusHash, bindInPageLinks } from '@shopify/theme-a11y';
-
 import objectFitImages from 'object-fit-images';
 
 //// Fancy Scrolling effects
@@ -160,7 +159,6 @@ class Theme {
   }
 
   headroomCheckScroll() {
-
     if (window.scrollY <= this.scrollMark && this.heroActive) {
       this.header.classList.add('overlay-active');
     } else {
