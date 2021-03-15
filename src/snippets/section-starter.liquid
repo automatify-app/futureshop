@@ -9,7 +9,7 @@
 
 
 
-<section class="block--{{block.id}} {{params.anchor_classes}} {{section_class}} section-outer size--{{params.section_size}} spacing--{{params.section_spacing}}  " id="{{params.anchor_id}}" >
+<section class="{% if block.id %}block--{{block.id}}{%endif%} {{params.anchor_classes}} {{section_class}} section-outer size--{{params.section_size}} spacing--{{params.section_spacing}}  " id="{{params.anchor_id}}" >
 {% if params.background_image != blank%}<div class="section-bg lazyload {% if params.rellax == true %}  rellax-bg {%endif%}">
 <div class="section-bg__image lazyload style--{{params.background_style}}"  style="background-image: url({{params.background_image | img_url: '500x'}});"  data-bgset="{% include 'responsive-bg-image', image: params.background_image%}">
 </div>

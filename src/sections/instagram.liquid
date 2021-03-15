@@ -11,7 +11,7 @@
 <div class="section-inner">
 {% assign delay = 0 %}
   {% include 'common-header' with include_button: false%}
-  <div data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="embed-wrap">
+  <div class="embed-wrap">
     {{section.settings.html}}
   </div>
   {% if section.settings.button_text != blank and section.settings.button_text != blank %}

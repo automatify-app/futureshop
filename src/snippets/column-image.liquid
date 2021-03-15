@@ -1,4 +1,5 @@
-<aside class="content-column type--image colsize--{{params.size}} {% if params.image2 != blank %}has--img2{%endif%} {% if params.image3 != blank %}has--img3{%endif%}" data-aos-delay="200" data-aos="fade-in">
+{%render 'column-starter' with id: id, params: params, type: type %}
+
     {% if params.image_link != blank %}
       <a  data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" data-aos="fade-in" href="{{params.image_link}}" {% if params.link_external == true %} target="_blank" rel="nofollow" {%endif%} class=" content-column__image {% if params.parallax == true %} rellax-float {%endif%}"  data-rellax-speed="4">
          {% if params.image != blank %}
@@ -23,24 +24,5 @@
           {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
         {% endif %}
   </div>
-
-      {% if params.image2 != blank %}
-        <div  data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" data-aos="fade-in" class=" content-column__image {% if params.parallax == true %} rellax-float "  data-rellax-speed="1" {% else %} " {% endif %}>
-                  {% render 'responsive-image' with
-                    image: params.image2,
-                    max_width: 1000,
-                    max_height: 1000
-                  %}
-          </div>
-      {%endif%}
-      {% if params.image3 != blank %}
-        <div  data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" data-aos="fade-in" class=" content-column__image {% if params.parallax == true %} rellax-float" data-rellax-speed="5" {% else %} " {% endif %}>
-             {% render 'responsive-image' with
-          image: params.image3,
-          max_width: 1000,
-          max_height: 1000
-        %}
-        </div>
-      {%endif%}
-    {%endif%}
-</aside>
+  {%endif%}
+</div>

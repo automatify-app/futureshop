@@ -1,4 +1,32 @@
 
+
+
+.collection-header {
+  text-align: center;
+  display: block;
+  margin: auto;
+  max-width: 1200px;
+
+  ul {
+    padding: 0;
+    margin: 14px auto;
+    li {
+      display: inline-block;
+      &.active a {
+        color: $color-secondary
+      }
+    }
+    a {
+      @extend %button;
+      background: transparent;
+      color: $color-body-text;
+      text-decoration: none;
+      @extend %hover;
+
+    }
+  }
+}
+
 .collection-template {
   margin-bottom: calc(12px + 1vw);
   @extend %maxwidth;

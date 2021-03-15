@@ -1,3 +1,4 @@
+
  {% if link.links != blank %}
   <li class="has-children menu-link  {% if link.active%} active {%endif%}">
     <a href="{{ link.url }}" class=" {{isbacklink}} parent-link">
@@ -15,7 +16,7 @@
     </ul>
   </li>
 {% else %}
-  <li class="menu-link  {% if link.active%} active {%endif%}">
+  <li class="menu-link type--{{link.type}} {% if link.active%} active {%endif%}">
     <a href="{{ link.url }} " class="{{isbacklink}}  {% if link.active%} active {%endif%}">
       {{ link.title }}
     </a>

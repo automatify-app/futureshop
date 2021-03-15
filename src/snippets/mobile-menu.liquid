@@ -16,7 +16,7 @@
 
   {%- if settings.mm_socials == true  -%}
   <li class="menu-icon mobile-socials">
-      {% render 'social-icons' with show_text: settings.mm_show_icon_text %}
+      {% render 'social-icons' with show_text: settings.mm_show_icon_text , stop_animate: true%}
     </li>
     {%-endif-%}
 </ul>

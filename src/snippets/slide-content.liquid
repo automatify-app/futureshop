@@ -1,13 +1,12 @@
 <div class="slide-content">
     <div class="slide-content-inner
     aligntext--{{slide.settings.text_align}}
-    {% if slide.settings.mega_text == true%} mega-text {%endif%}
     {% if slide.settings.shadow_text == true%} shadow-text {%endif%}
     {% if section.settings.content_style == 'boxed' %}format--boxed{%endif%}
     {% if slide.settings.logo != blank %} has-img img--{{slide.settings.logo_format}}{%endif%}">
       {% if slide.settings.logo != blank and slide.settings.logo_format != 'replace_header' %}
       <div class="logo-wrap">
-        {% include 'responsive-image' with image:slide.settings.logo, max_width: slide.settings.logo_max_width, max_height: 1200 %}
+        {% render 'responsive-image' with image:slide.settings.logo, max_width: slide.settings.logo_max_width, max_height: 1200 %}
       </div>
       {%endif%}
       <div class="content-wrap">

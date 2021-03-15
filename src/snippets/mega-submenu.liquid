@@ -13,7 +13,7 @@ title
   {% if menu.links.size > 0 %}
   <ul class="mega-submenu__links">
   {% for link in menu.links %}
-    <li class='submenu__link'><a href="{{link.url}}">{{link.title}}</a></li>
+    <li class='submenu__link'><a {% if link.type == "http_link" %} target="_blank" rel="nofollow noreferrer noopener" {%endif%} data-type="{{link.type}}" href="{{link.url}}">{{link.title}}</a></li>
   {%endfor%}
   </ul>
   {%endif%}

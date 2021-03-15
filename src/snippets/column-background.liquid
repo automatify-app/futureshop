@@ -1,0 +1,43 @@
+{%render 'column-starter' with classes: "column_background" , id: block_id, params: params, type: type %}
+  <{% if params.url != blank%}a href="{{params.url}}"{% if params.url.type == 'http_link'%}target="_blank" rel="nofollow noreferrer noopener"{%endif%}{%else%}div{%endif%} class="column-background__wrap">
+    <div class="column-background__background">
+    {% if params.image != blank %}
+    <div class="column-background__image" >
+      {% if params.image_mobile != blank %}
+        {% render 'responsive-image' with image:params.image_mobile , max_width: 1000, max_height: 1000, wrapper_class: "mobile-image" %}
+      {%endif%}
+      {% if params.image_wide  != blank%}
+        {% render 'responsive-image' with image:params.image_wide , max_width: 3000, max_height: 2000, wrapper_class: "wide-image" %}
+      {%endif%}
+      {% if params.image  != blank%}
+        {% render 'responsive-image' with image:params.image , max_width: 2000, max_height: 1400, wrapper_class: "desktop-image" %}
+      {%endif%}
+    </div>
+  {%endif%}
+  {% if params.mp4 != blank %}
+    <video class="video-bg lazyload"  width="100%" autoplay data-src="{{params.mp4}}" muted playsinline loop {% if params.image %} poster="{{params.image | img_url: '600x'}}"  {%endif%}/>
+  {%endif%}
+
+  <style>
+    #block--{{block_id}} {
+      background-color: {{params.background_color |default: black}};
+      color: {{params.text_color |default: white}};
+      --section-bg: {{params.background_color |default: black}};
+      --section-text: {{params.text_color |default: white}};
+    }
+    #block--{{block_id}} .column-background__background {
+      opacity: {{params.opacity | minus: 100 | times: -.01 }}
+    }
+    @media (max-width: 720px) {
+     #block--{{block_id}} .column-background__background {
+      opacity: {{params.opacity_mobile | minus: 100 | times: -.01 }}
+    }
+    }
+  </style>
+
+    </div>
+    <div class="column-background__content">
+      {% render 'common-header' with params: params %}
+    </div>
+  </{%if params.url != blank %}a{%else %}div{%endif%}>
+</div>

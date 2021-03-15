@@ -14,13 +14,17 @@
 
 <script src="https://unpkg.com/beerslider/dist/BeerSlider.js"></script>
 <script>
+
+  setTimeout(function() {
+
   var beerSliders = document.querySelectorAll('.beer-slider');
   beerSliders.forEach(slider=> {
     var startPlace = 50;
     if (slider.getAttribute('data-start')) {
       startPlace = slider.getAttribute('data-start');
     }
-    console.log(slider);
     new BeerSlider(slider, {start: startPlace});
   })
+  }, 1000)
+
 </script>

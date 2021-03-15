@@ -1,0 +1,4 @@
+{%render 'column-starter' with id: id, params: params, type: type %}
+<video class="column-video lazyload"  width="100%" autoplay data-src="{{params.mp4}}" muted playsinline loop {% if params.image %} poster="{{params.image | img_url: '600x'}}"  {%endif%}/>
+
+</div>

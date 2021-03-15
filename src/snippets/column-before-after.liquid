@@ -1,12 +1,12 @@
 
-{%render 'column-starter' with params: params, type: type %}
+{%render 'column-starter' with id:id, params: params, type: type %}
 
 {% comment %} {% render 'column-header' with params: params %} {% endcomment %}
 <div class="beer-slider" data-beer-label="{{ params.label_before}}" data-beer-start="{{ params.start }}">
-<img class="lazyload" src="{{params.image_before | img_url: '450x' }}" data-src="{{params.image_before | img_url: 'master' }}" alt="{{params.image_before.alt}}" />
+<img class="" width="100%" src="{{params.image_before | img_url: 'master' }}" alt="{{params.image_before.alt}}" />
 
 <div class="beer-reveal" data-beer-label="{{ params.label_after }}" >
-<img class="lazyload" src="{{params.image_after | img_url: '450x' }}" data-src="{{params.image_after | img_url: 'master' }}" alt="{{params.image_after.alt}}" />
+<img class="" width="100%" src="{{params.image_after | img_url: 'master' }}" alt="{{params.image_after.alt}}" />
 
 </div>
 </div>

@@ -1,190 +1,32 @@
 {% assign delay = 0 %}
-{% include 'section-starter' with section_class: 'content-columns--outer' %}
+{% render 'section-starter' with section_class: 'content-columns--outer', section: section%}
 
 <div class="section-inner columns-wrap {% if section.settings.expand == true %} expand {%endif%}">
-  {% include 'common-header' with include_button: false %}
+
   {% for block in section.blocks %}
         {% case block.type %}
         {% when 'code' %}
-          {% render 'column-code' with type: block.type, params: block.settings %}
+          {% render 'column-code' with id: block.id, type: block.type, params: block.settings %}
         {% when 'text' %}
-          {% render 'column-text' with type: block.type, params: block.settings%}
+          {% render 'column-text' with id: block.id, type: block.type, params: block.settings%}
         {% when 'product' %}
-          {% include 'column-product' with id: section.id, type: block.type, params: block.settings %}
+          {% include 'column-product' with  id: block.id, type: block.type, params: block.settings %}
         {% when 'image' %}
-          {% render 'column-image' with type: block.type, params: block.settings %}
+          {% render 'column-image' with id: block.id, type: block.type, params: block.settings %}
+        {% when 'background' %}
+          {% render 'column-background' with block_id: block.id, type: "background", params: block.settings %}
         {% when 'textimg' %}
-          {% render 'column-textimg' with type: block.type, params: block.settings %}
+          {% render 'column-textimg' with id: block.id, type: block.type, params: block.settings %}
         {% when 'before-after' %}
-          {% render 'column-before-after' with type: block.type, params: block.settings %}
+          {% render 'column-before-after' with id: block.id, type: block.type, params: block.settings %}
+        {% when 'video' or 'video_link' %}
+          {% render 'column-video' with id: block.id , type: 'video', params: block.settings %}
+        {% when 'divider'  %}
+          {% render 'column-divider' with id: block.id , type: 'video', params: block.settings %}
       {%endcase%}
   {%endfor%}
 </div>
 </section>
-{% stylesheet 'scss' %}
-
-.shopify-section.content-columns {
-  overflow: hidden
-}
-
-.shopify-section.content-columns .common-header__outer {
-  flex: 0 0 100%;
-  max-width: 100%;
-  margin: 1.5em auto 0;
-}
-
-.section-inner.columns-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  &.expand {
-    margin: 0;
-    max-width: 100%;
-    width: 100%;
-    justify-content: space-between;
-
-    .type--image {
-      padding: 0;
-      margin: 0;
-      &.colsize--huge {
-        flex: 1 1 100%;
-      }
-    }
-
-
-    @media only screen and (min-width: 1081px) {
-      flex-wrap: nowrap;
-
-      .type--text {
-        padding: calc(12px + 1vw) calc(20px + 2vw)
-      }
-    }
-
-    @media only screen and  (min-width: 1700px) {
-      padding: 0 calc(50vw - 1000px);
-    }
-
-  }
-}
-
-.columns-inner .common-header__outer {
-  width: 100%;
-  max-width: 100%;
-}
-
-.column-product-image {
-  width: 90%;
-  margin: 3% auto;
-}
-
-.content-column__product .swatch .header {
-  display: none;
-}
-
-.content-column__product .swatch-element:only-child {
-  display: none;
-}
-
-.content-column {
-  margin:1%;
-  padding: calc(12px + 1vw);
-
-  &.colsize--small {
-    flex: 1 1 200px;
-    max-width: 600px;
-    padding: calc(6px + 0.6vw);
-
-    h4.label {
-      font-size: 15px;
-    }
-
-    h3.heading {
-      font-size: 25px;
-    }
-  }
-
-  &.colsize--medium {
-    flex: 1 1 440px;
-    max-width: 790px;
-
-    h4.label {
-      font-size: 17px;
-    }
-  }
-
-  &.colsize--large {
-    flex: 1 1 600px;
-    max-width: 100%;
-  }
-
-  &.colsize--huge {
-    flex: 1 1 900px;
-    max-width: 100%;
-  }
-
-  .button-wrap {
-    text-align: inherit;
-
-    .button {
-      margin: 0;
-    }
-  }
-
-  &.type--text {
-    position: relative;
-    z-index: 2  ;
-  }
-
-  &.type--image {
-    position: relative;
-    z-index: 1;
-    &.has--img2 {
-      .content-column__image:nth-child(1) {
-        width: 85%;
-      }
-      .content-column__image:nth-child(2) {
-        width: 60%;
-        margin: -52% -7% 20% auto;
-      }
-      &.has--img3 {
-         .content-column__image:nth-child(1) {
-          width: 65%;
-        }
-        .content-column__image:nth-child(2) {
-          width: 59%;
-          margin: -52% -5% -30% auto;
-        }
-        .content-column__image:nth-child(3) {
-          width: 75% ;
-          margin: -50% auto 0 -20%
-        }
-      }
-    }
-  }
-
-  &.type--textimg {
-    .content-column__image {
-      margin: calc(12px + 1vw) auto;
-    }
-  }
-
-  .rte b, .rte strong {
-    font-size: 1.43em;
-  }
-}
-
-.block-header .button-wrap {
-  margin: 1.5rem auto 0;
-}
-
-.embed-wrap {
-  margin: calc(22px + 0.5vw) auto;
-}
-{% endstylesheet %}
-
-
 {% schema %}
   {
     "name" : "Content Columns",
@@ -220,92 +62,7 @@
         "id" :"expand",
         "label" : "Remove Padding"
       },
-       {
-        "type" : "select",
-        "id" : "text_align",
-        "label" : "Text Alignment",
-        "default" :  "center",
-        "options" : [
-          {
-            "value" : "left",
-            "label" : "Left"
-          },
-          {
-            "value" : "center",
-            "label" : "Center"
-          },
-          {
-            "value" : "right",
-            "label" : "Right"
-          }
-        ]
-      },
-      {
-        "type" : "select",
-        "id" : "text_size",
-        "label" : "Text Size",
-        "default" :  "standard",
-        "options" : [
-          {
-            "value" : "small",
-            "label" : "Small"
-          },
-          {
-            "value" : "standard",
-            "label" : "Standard"
-          },
-          {
-            "value" : "large",
-            "label" : "Large"
-          },
-          {
-            "value" : "mega",
-            "label" : "Mega"
-          }
-        ]
-      },
-      {
-        "type" : "select",
-        "id" : "text_style",
-        "label" : "Text Style",
-        "default" :  "standard",
-        "info" : "Used for advanced branding!",
-        "options" : [
 
-          {
-            "value" : "standard",
-            "label" : "Standard"
-          },
-          {
-            "value" : "special",
-            "label" : "Special"
-          },
-          {
-            "value" : "simple",
-            "label" : "Simple"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "id": "introduction",
-        "label" : " Introduction"
-      },
-      {
-        "type": "text",
-        "id": "heading",
-        "label": "Heading"
-      },
-      {
-        "type" : "text",
-        "id" : "subtitle",
-        "label" : "Subtitle"
-      },
-      {
-        "type": "richtext",
-        "id": "text",
-        "label": "Text"
-      },
        {
         "type" : "header",
         "content" : "Section Settings"
@@ -522,6 +279,461 @@
             "default" : "center",
             "id" : "align",
             "label" :"Text Alignment"
+          },
+          {
+            "type" : "select",
+            "id" : "text_style",
+            "label" : "Text Style",
+            "default" :  "standard",
+            "info" : "Used for advanced branding!",
+            "options" : [
+
+              {
+                "value" : "standard",
+                "label" : "Standard"
+              },
+              {
+                "value" : "special",
+                "label" : "Special"
+              },
+              {
+                "value" : "simple",
+                "label" : "Simple"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "divider",
+        "name" : "Divider",
+        "settings" : [
+          {
+            "type" : "paragraph",
+            "content" : "Use this block to space front-page sections"
+          },
+          {
+            "type": "range",
+            "id": "margin",
+            "min": 0,
+            "max": 12,
+            "step": 1,
+            "unit": "em",
+            "label": "Spacing",
+            "default": 3
+          },
+          {
+            "type" : "select",
+            "id" : "type",
+            "label" : "Style",
+            "options" : [
+              {
+                "value":  "transparent",
+                "label" : "Transparent"
+              },
+              {
+                "value":  "border-full",
+                "label" : "Border (Full Width)"
+              },
+              {
+                "value":  "border-half",
+                "label" : "Border (Half Width)"
+              }
+            ]
+          },
+          {
+            "type" : "image_picker",
+            "id" : "image",
+            "label" : "Custom Image",
+            "info" : "Insert a custom image divider"
+          },
+          {
+              "type": "range",
+              "id": "image_max_width",
+              "label": {
+                  "de": "Logobreite",
+                  "en": "Custom  width",
+                  "es": "Ancho  personalizado",
+                  "fr": "Largeur personnalisée ",
+                  "it": "Larghezza  personalizzato",
+                  "ja": "ロゴの幅をカスタムする",
+                  "pt-BR": "Largura do  personalizado"
+              },
+              "min": 10,
+              "max": 900,
+              "step": 10,
+              "unit": {
+                  "de": "px",
+                  "en": "px",
+                  "es": "px",
+                  "fr": "px",
+                  "it": "px",
+                  "ja": "px",
+                  "pt-BR": "px"
+              },
+              "default": 150
+          },
+          {
+            "type" : "color",
+            "id" : "color",
+            "label" : "Border Color",
+            "info": "If left blank, uses the theme default."
+          },
+          {
+            "type" : "checkbox",
+            "id" : "hide_mobile",
+            "label" : "Hide on mobile?"
+          }
+        ]
+      },
+      {
+        "type" : "background",
+        "name" : "Background w/ Text",
+        "settings": [
+          {
+            "type": "header",
+            "content": "background"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "default": "#000000",
+            "label": "Background Color",
+            "info": "Also the overlay color!"
+          },
+          {
+            "type": "color",
+            "id": "text_color",
+            "default": "#ffffff",
+            "label": "Text Color"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Background Image"
+          },
+          {
+            "type": "checkbox",
+            "id": "disable_cropping",
+            "label": "Disable Cropping",
+            "default": false,
+            "info" : "Use to make the image determine the slide size"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_mobile",
+            "label": "Mobile Image",
+            "info": "Use if you prefer a different image on mobile! (squarer dimensions, usually, around 1000x1000!)"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_wide",
+            "label": "Wide Image",
+            "info": "Use if you prefer a different image on wider screens! (shorter dimensions, usually, around 2000x800!)"
+          },
+          {
+            "type" : "url",
+            "id" : "mp4",
+            "label" : "Video",
+            "info" : "Upload to Settings->Files. Leave blank to use photos."
+          },
+          {
+            "type": "range",
+            "id": "opacity",
+            "label": "Overlay",
+            "info": "Set to 0 to disable overlay.",
+            "max": 100,
+            "min": 0,
+            "step": 10,
+            "default": 50
+          },
+          {
+            "type": "range",
+            "id": "opacity_mobile",
+            "label": "Overlay (Mobile)",
+            "info": "Set to 0 to disable overlay.",
+            "max": 100,
+            "min": 0,
+            "step": 10,
+            "default": 50
+          },
+          {
+            "type": "header",
+            "content": "Content"
+          },
+          {
+            "type" : "url",
+            "label" : "URL",
+            "id" : "url",
+            "info" : "Leave blank to use buttons instead!"
+          },
+          {
+            "type": "text",
+            "id": "introduction",
+            "label": "Introduction",
+            "default": "This is an"
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Image Overlay Section"
+          },
+          {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle",
+            "default": "And even more!"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          },
+          {
+            "type": "header",
+            "content": "Image Content",
+            "info": "Use an image as part of/all the content"
+          },
+          {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Logo"
+          },
+          {
+            "type": "range",
+            "id": "logo_max_width",
+            "label": {
+              "de": "Logobreite",
+              "en": "Logo Width",
+              "es": "Ancho del logotipo personalizado",
+              "fr": "Largeur personnalisée du logo",
+              "it": "Larghezza logo personalizzato",
+              "ja": "ロゴの幅をカスタムする",
+              "pt-BR": "Largura do logotipo personalizado"
+            },
+            "min": 50,
+            "max": 900,
+            "step": 25,
+            "unit": {
+              "de": "px",
+              "en": "px",
+              "es": "px",
+              "fr": "px",
+              "it": "px",
+              "ja": "px",
+              "pt-BR": "px"
+            },
+            "default": 350
+          },
+          {
+            "type": "select",
+            "id": "logo_format",
+            "label": "Image Format",
+            "options": [
+              {
+                "value": "replace_header",
+                "label": "Replace Header"
+              },
+              {
+                "value": "before_header",
+                "label": "Before All Content"
+              },
+              {
+                "value": "next_to_content",
+                "label": "Next To Content"
+              }
+            ],
+            "default": "replace_header"
+          },
+          {
+            "type": "header",
+            "content": "Buttons"
+          },
+          {
+            "type": "text",
+            "id": "button_1_text",
+            "default": "Collection Button",
+            "label": "Button 1 Text"
+          },
+          {
+            "type": "url",
+            "id": "button_1_link",
+            "default": "/collections/all",
+            "label": "Button 1 Link"
+          },
+          {
+            "type": "text",
+            "id": "button_2_text",
+            "label": "Button 2 Text"
+          },
+          {
+            "type": "url",
+            "id": "button_2_link",
+            "label": "Button 2 Link"
+          },
+          {
+            "type" : "header",
+            "content" : "Spacing"
+          },
+          {
+            "type" : "select",
+            "options" : [
+              {
+                "value" : "small",
+                "label" : "Small"
+              },
+              {
+                "value" : "medium",
+                "label" : "Medium"
+              },
+              {
+                "value" : "large",
+                "label" : "Large"
+              },
+              {
+                "value" : "huge",
+                "label" : "Huge"
+              }
+            ],
+            "id" : "size",
+            "label" :"Size"
+          },
+          {
+            "type" : "checkbox",
+            "id" :"expand",
+            "label" : "Remove Padding"
+          },
+          {
+            "type" : "checkbox",
+            "id" :"full-width",
+            "label" : "Make full-width (section break)"
+          },
+          {
+            "type": "header",
+            "content": "Style + Alignment"
+          },
+          {
+            "type": "select",
+            "id": "content_style",
+            "label": "Content Style",
+            "default": "centered",
+            "options": [
+              {
+                "value": "centered",
+                "label": "Centered (no background)"
+              },
+              {
+                "value": "boxed",
+                "label": "Boxed "
+              },
+              {
+                "value": "boxed-extra",
+                "label": "Boxed (W/extra)"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "content_style_mobile",
+            "label": "Content Style (Mobile)",
+            "default": "centered",
+            "options": [
+              {
+                "value": "centered",
+                "label": "Centered (no background)"
+              },
+              {
+                "value": "boxed",
+                "label": "Boxed "
+              },
+              {
+                "value": "boxed-extra",
+                "label": "Boxed (w/extra)"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "content_location",
+            "label": "Content Location",
+            "default": "centered",
+            "options": [
+              {
+                "value": "centered",
+                "label": "Centered"
+              },
+              {
+                "value": "bottom-left",
+                "label": "Bottom Left"
+              },
+              {
+                "value": "bottom-right",
+                "label": "Bottom Right"
+              },
+              {
+                "value": "top-left",
+                "label": "Top Left"
+              },
+              {
+                "value": "top-right",
+                "label": "Top Right"
+              },
+              {
+                "value": "center-left",
+                "label": "Center Left"
+              },
+              {
+                "value": "center-right",
+                "label": "Center Right"
+              }
+            ]
+          },
+
+          {
+            "type": "select",
+            "id": "text_align",
+            "label": "Text Alignment",
+            "default": "center",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "text_size",
+            "label": "Text Size",
+            "default": "standard",
+            "options": [
+              {
+                "value": "small",
+                "label": "Small"
+              },
+              {
+                "value": "standard",
+                "label": "Standard"
+              },
+              {
+                "value": "large",
+                "label": "Large"
+              },
+              {
+                "value": "mega",
+                "label": "Mega"
+              }
+            ]
           },
           {
             "type" : "select",
@@ -985,175 +1197,10 @@
           }
         ]
       },
-      {
-        "type" : "image_link",
-        "name" : "Image Link",
-        "settings" : [
 
-          {
-            "type" : "image_picker",
-            "id" : "image",
-            "label" : "Banner Image"
-          },
-          {
-            "type" : "image_picker",
-            "id" : "image_mobile",
-            "label" : "Mobile Image",
-            "info" : "Use if you prefer a different image on mobile! (squarer dimensions, usually, around 1000x1000!)"
-          },
-          {
-            "type" : "image_picker",
-            "id" : "image_wide",
-            "label" : "Wide Image",
-            "info" : "Use if you prefer a different image on wider screens! (shorter dimensions, usually, around 2000x800!)"
-          },
-          {
-            "type" : "range",
-            "id" : "overlay",
-            "label" : "Overlay",
-            "info" : "Set to 0 to disable overlay.",
-            "max" : 100,
-            "min" : 0,
-            "step" : 10,
-            "default" : 0
-          },
-          {
-            "type" : "range",
-            "id" : "overlay_mobile",
-            "label" : "Overlay",
-            "info" : "Set to 0 to disable overlay.",
-            "max" : 100,
-            "min" : 0,
-            "step" : 10,
-            "default" : 0
-          },
-          {
-            "type": "header",
-            "content": "Content"
-          },
-          {
-              "type": "text",
-              "id": "introduction",
-              "label": "Introduction"
-            },
-            {
-              "type": "text",
-              "id": "heading",
-              "label": "Heading"
-            },
-
-            {
-              "type" : "text",
-              "id" : "subtitle",
-              "label" : "Subtitle"
-            },
-            {
-              "type": "text",
-              "id": "button_text",
-              "label": "Button Text"
-            },
-             {
-            "type": "header",
-            "content": "Colors/background"
-          },
-          {
-            "type" : "color",
-            "id" : "background_color",
-            "label" : "Background Color"
-          },
-          {
-            "type" : "color",
-            "id" : "text_color",
-            "label" : "Text Color"
-          },
-          {
-            "type" : "header",
-            "content" : "Spacing"
-          },
-          {
-            "type" : "select",
-            "options" : [
-              {
-                "value" : "small",
-                "label" : "Small"
-              },
-              {
-                "value" : "medium",
-                "label" : "Medium"
-              },
-              {
-                "value" : "large",
-                "label" : "Large"
-              },
-              {
-                "value" : "huge",
-                "label" : "Huge"
-              }
-            ],
-            "id" : "size",
-            "label" :"Size"
-          },
-          {
-            "type" : "checkbox",
-            "id" :"expand",
-            "label" : "Remove Padding"
-          },
-          {
-            "type" : "checkbox",
-            "id" :"full-width",
-            "label" : "Make full-width (section break)"
-          },
-          {
-            "type": "header",
-            "content": "Text Settings"
-          },
-           {
-            "type" : "select",
-            "options" : [
-              {
-                "value" : "left",
-                "label" : "Left"
-              },
-              {
-                "value" : "center",
-                "label" : "Center"
-              },
-              {
-                "value" : "right",
-                "label" : "Right"
-              }
-            ],
-            "default" : "center",
-            "id" : "align",
-            "label" :"Text Alignment"
-          },
-          {
-            "type" : "select",
-            "id" : "text_style",
-            "label" : "Text Style",
-            "default" :  "standard",
-            "info" : "Used for advanced branding!",
-            "options" : [
-
-              {
-                "value" : "standard",
-                "label" : "Standard"
-              },
-              {
-                "value" : "special",
-                "label" : "Special"
-              },
-              {
-                "value" : "simple",
-                "label" : "Simple"
-              }
-            ]
-          }
-        ]
-      },
       {
         "type" : "video_link",
-        "name" : "Video Link",
+        "name" : "Video",
         "settings" : [
 
           {
@@ -1161,77 +1208,18 @@
             "id" : "image",
             "label" : "Fallback Image"
           },
-          {
-            "type" : "url",
-            "id" : "webm",
-            "label" : "Webm",
-            "info" : "Use if you prefer a different image on mobile! (squarer dimensions, usually, around 1000x1000!)"
-          },
-          {
+         {
             "type" : "url",
             "id" : "mp4",
             "label" : "MP4",
-            "info" : "Use if you prefer a different image on wider screens! (shorter dimensions, usually, around 2000x800!)"
-          },
-          {
-            "type" : "range",
-            "id" : "overlay",
-            "label" : "Overlay",
-            "info" : "Set to 0 to disable overlay.",
-            "max" : 100,
-            "min" : 0,
-            "step" : 10,
-            "default" : 0
-          },
-          {
-            "type" : "range",
-            "id" : "overlay_mobile",
-            "label" : "Overlay",
-            "info" : "Set to 0 to disable overlay.",
-            "max" : 100,
-            "min" : 0,
-            "step" : 10,
-            "default" : 0
-          },
-          {
-            "type": "header",
-            "content": "Content"
-          },
-          {
-              "type": "text",
-              "id": "introduction",
-              "label": "Introduction"
-            },
-            {
-              "type": "text",
-              "id": "heading",
-              "label": "Heading"
-            },
-
-            {
-              "type" : "text",
-              "id" : "subtitle",
-              "label" : "Subtitle"
-            },
-            {
-              "type": "text",
-              "id": "button_text",
-              "label": "Button Text"
-            },
-             {
-            "type": "header",
-            "content": "Colors/background"
+            "info" : "Upload to settings->files and then copy the url here!"
           },
           {
             "type" : "color",
             "id" : "background_color",
             "label" : "Background Color"
           },
-          {
-            "type" : "color",
-            "id" : "text_color",
-            "label" : "Text Color"
-          },
+
           {
             "type" : "header",
             "content" : "Spacing"
@@ -1481,6 +1469,25 @@
         "type" : "textimg",
         "name" : "Image w/ Text",
         "settings" : [
+           {
+            "type" : "header",
+            "content" : "Images"
+          },
+          {
+            "type" : "image_picker",
+            "label" : "Image 1",
+            "id" : "image"
+          },
+          {
+            "type" : "url",
+            "label" : "Image Link",
+            "id" : "image_link"
+          },
+          {
+            "type" : "checkbox",
+            "id" : "link_external",
+            "label" : "External Link?"
+          },
           {
             "type" : "header",
             "content" : "Block Settings"
@@ -1528,25 +1535,7 @@
             "label" :"Size"
           },
 
-          {
-            "type" : "header",
-            "content" : "Images"
-          },
-          {
-            "type" : "image_picker",
-            "label" : "Image 1",
-            "id" : "image"
-          },
-          {
-            "type" : "url",
-            "label" : "Image Link",
-            "id" : "image_link"
-          },
-          {
-            "type" : "checkbox",
-            "id" : "link_external",
-            "label" : "External Link?"
-          },
+
          {
            "type" : "header",
            "content" : "Text"
@@ -1640,7 +1629,7 @@
         ]
       }
     ],
-    "max_blocks" : 6,
+    "max_blocks" : 20,
     "presets": [
       {
         "name": "Content Columns",

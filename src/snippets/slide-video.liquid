@@ -9,9 +9,8 @@
 
     {%endif%}
   </style>
-  {% render 'vidbox' with id: block.id, type: slide.settings.video_type, mp4_large: slide.settings.mp4_large,  video_url: slide.settings.url, fallback_gif: slide.settings.fallback_gif, fallback_image: slide.settings.image , overlay: slide.settings.overlay_op, start_time: slide.settings.start_time %}
-
+  {% render 'vidbox' with type: slide.settings.video_type, mp4_large: slide.settings.mp4_large, mp4_small: slide.setting.mp4_small, webm_large: slide.settings.webm_large, webm_small: slide.settings.webm_small, video_url: slide.settings.url, fallback_gif: slide.settings.fallback_gif, fallback_image: slide.settings.image , overlay: slide.settings.overlay_op, start_time: slide.settings.start_time %}
   {% unless background == true %}
-    {% include 'slide-content' %}
-{% endunless %}
+    {% render  'slide-content' with slide: slide %}
+  {% endunless %}
 </div>

@@ -1,8 +1,8 @@
+{%render 'column-starter' with params: params, type: type %}
 
 {% assign product = all_products[params.product] %}
 <div {% if params.use_form == true %}  data-section-id="{{ id }}" data-section-type="product" >
 {%endif%}
-{%render 'column-starter' with params: params, type: type %}
 
 {% render 'column-header' with params: params %}
 

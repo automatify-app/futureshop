@@ -1,0 +1,16 @@
+<div class="content-column type--divider fullwidth">
+<div class="divider-wrap">
+  <div style="margin: calc({{params.margin | times: 5 }}px + 0.2vw) auto;" class="custom-divider {% if params.image != blank %}image-divider{%endif%} {% if params.hide_mobile == true %} hide-mobile {%endif%} style--{{params.type}} "id="divider--{{section.id}}">
+{% if params.image != blank %}
+  {% capture image_width %}{{params.image_max_width}}x{%endcapture %}
+  {% capture image_width_x %}{{params.image_max_width | times: 2}}x{%endcapture %}
+  <img class="divider-img" aria-hidden="true" src="{{ params.image | img_url: image_width }}" srcset="{{params.image | img_url: image_width }} 1x, {{params.image | img_url: image_width_x}} 2x">
+{%endif%}
+</div>
+{% if params.color != empty and params.image == empty %}
+<style>#divider--{{section.id}}  {
+  border-top-color: {{params.color}}
+}</style>
+{%endif %}
+</div>
+</div>

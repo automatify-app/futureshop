@@ -1,0 +1,11 @@
+<form action="/search" method="get" role="search" class="search-form__simple">
+      <label for="Search" class="label-hidden">
+        {{ 'general.search.placeholder' | t }}
+      </label>
+      <input type="search"
+            name="q"
+            id="Search"
+            value="{{ search.terms | escape }}"
+            placeholder="Find your new favorite">
+    <button class="button">Search</button>
+    </form>

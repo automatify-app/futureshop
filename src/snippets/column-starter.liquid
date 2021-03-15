@@ -1,4 +1,5 @@
-<div id="block--{{block.id}}" class="content-column type--{{type}} colsize--{{params.size}} align--{{params.align}} {% if params.expand == true %} padding--collapse {%endif%}">
+<div id="block--{{id}}" class="content-column {{classes}} type--{{type}} colsize--{{params.size}} align--{{params.align}} {% if params.expand == true %} padding--collapse {%endif%} {% if params.full-width == true %} fullwidth {%endif%}">
+{% if id != blank %}
 <style>
 #block--{{block.id}} {
   {%if params.background_color != blank %}
@@ -10,3 +11,4 @@
   --block-text: {{params.text_color}};
   {%endif%}
 }</style>
+{%endif%}

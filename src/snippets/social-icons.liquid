@@ -6,59 +6,59 @@
 <ul class="social-wrap style--{{settings.social_link_style}} {% if settings.social_flip == true%} flip-effect{%endif%}">
 {%endunless %}
 {% if settings.social_facebook_link != blank %}
-<li data-aos="fade-up" data-aos-delay="{{ delay | times: 50 }}{%assign delay = delay | plus: 1%}">
+<li {% unless stop_animate %} data-aos="fade-up" data-aos-delay="{{ delay | times: 50 }}{%assign delay = delay | plus: 1%}" {%endunless %}>
 <a target="_blank" rel="nofollow" href="{{settings.social_facebook_link}}" aria-label="On facebook"><i class="icon-facebook"></i></a>
 </li>
 {%endif %}
 
 {% if settings.social_twitter_link != blank %}
-<li data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}"><a target="_blank" rel="nofollow" href="{{settings.social_twitter_link}}" aria-label="On twitter"><i class="icon-twitter"></i></a></li>
+<li {% unless stop_animate %}data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}{%endunless%}"><a target="_blank" rel="nofollow" href="{{settings.social_twitter_link}}" aria-label="On twitter"><i class="icon-twitter"></i></a></li>
 {%endif %}
 
 {% if settings.social_instagram_link != blank %}
-<li data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}"><a target="_blank" rel="nofollow" href="{{settings.social_instagram_link}}" aria-label="On instagram"><i class="icon-instagram"></i></a></li>
+<li {% unless stop_animate %}data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}{%endunless%}"><a target="_blank" rel="nofollow" href="{{settings.social_instagram_link}}" aria-label="On instagram"><i class="icon-instagram"></i></a></li>
 {%endif %}
 
 {% if settings.social_youtube_link != blank %}
-<li data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}"><a target="_blank" rel="nofollow" href="{{settings.social_youtube_link}}" aria-label="On youtube"><i class="icon-youtube"></i></a></li>
+<li {% unless stop_animate %}data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}{%endunless%}"><a target="_blank" rel="nofollow" href="{{settings.social_youtube_link}}" aria-label="On youtube"><i class="icon-youtube"></i></a></li>
 {%endif %}
 
 {% if settings.social_pinterest_link != blank %}
-<li data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}"><a target="_blank" rel="nofollow" href="{{settings.social_pinterest_link}}" aria-label="On pinterest"><i class="icon-pinterest"></i></a></li>
+<li {% unless stop_animate %}data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}{%endunless%}"><a target="_blank" rel="nofollow" href="{{settings.social_pinterest_link}}" aria-label="On pinterest"><i class="icon-pinterest"></i></a></li>
 {%endif %}
 
 {% if settings.social_tiktok_link != blank %}
-<li data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}"><a target="_blank" rel="nofollow" href="{{settings.social_tiktok_link}}" aria-label="On TikTok"><i class="icon-tiktok"></i></a></li>
+<li {% unless stop_animate %}data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}{%endunless%}"><a target="_blank" rel="nofollow" href="{{settings.social_tiktok_link}}" aria-label="On TikTok"><i class="icon-tiktok"></i></a></li>
 {%endif %}
 
 {% if settings.social_spotify_link != blank %}
-<li data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}"><a target="_blank" rel="nofollow" href="{{settings.social_spotify_link}}" aria-label="On Spotify"><i class="icon-spotify"></i></a></li>
+<li {% unless stop_animate %}data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}{%endunless%}"><a target="_blank" rel="nofollow" href="{{settings.social_spotify_link}}" aria-label="On Spotify"><i class="icon-spotify"></i></a></li>
 {%endif %}
 
 {% if settings.social_apple_link != blank %}
-<li data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}"><a target="_blank" rel="nofollow" href="{{settings.social_apple_link}}" aria-label="On Apple Music"><i class="icon-apple-music"></i></a></li>
+<li {% unless stop_animate %}data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}{%endunless%}"><a target="_blank" rel="nofollow" href="{{settings.social_apple_link}}" aria-label="On Apple Music"><i class="icon-apple-music"></i></a></li>
 {%endif %}
 
 {% if settings.social_amazon_link != blank %}
-<li data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}"><a target="_blank" rel="nofollow" href="{{settings.social_amazon_link}}" aria-label="On Amazon"><i class="icon-amazon"></i></a></li>
+<li {% unless stop_animate %}data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}{%endunless%}"><a target="_blank" rel="nofollow" href="{{settings.social_amazon_link}}" aria-label="On Amazon"><i class="icon-amazon"></i></a></li>
 {%endif %}
 
 {% if settings.social_amazon_music_link != blank %}
-<li data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}"><a target="_blank" rel="nofollow" href="{{settings.social_amazon_music_link}}" aria-label="On Amazon Music"><i class="icon-amazon-music"></i></a></li>
+<li {% unless stop_animate %}data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}{%endunless%}"><a target="_blank" rel="nofollow" href="{{settings.social_amazon_music_link}}" aria-label="On Amazon Music"><i class="icon-amazon-music"></i></a></li>
 {%endif %}
 {% if settings.social_pandora_link != blank %}
-<li data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}"><a target="_blank" rel="nofollow" href="{{settings.social_pandora_link}}" aria-label="On Pandora"><i class="icon-pandora"></i></a></li>
+<li {% unless stop_animate %}data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}{%endunless%}"><a target="_blank" rel="nofollow" href="{{settings.social_pandora_link}}" aria-label="On Pandora"><i class="icon-pandora"></i></a></li>
 {%endif %}
 
 {% if settings.social_snapchat_link != blank %}
-<li data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}"><a target="_blank" rel="nofollow" href="{{settings.social_snapchat_link}}" aria-label="On snapchat"><i class="icon-snapchat"></i></a></li>
+<li {% unless stop_animate %}data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}{%endunless%}"><a target="_blank" rel="nofollow" href="{{settings.social_snapchat_link}}" aria-label="On snapchat"><i class="icon-snapchat"></i></a></li>
 {%endif %}
 
 {% if settings.social_soundcloud_link != blank %}
-<li data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}"><a target="_blank" rel="nofollow" href="{{settings.social_soundcloud_link}}" aria-label="On soundcloud"><i class="icon-soundcloud"></i></a></li>
+<li {% unless stop_animate %}data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}{%endunless%}"><a target="_blank" rel="nofollow" href="{{settings.social_soundcloud_link}}" aria-label="On soundcloud"><i class="icon-soundcloud"></i></a></li>
 {%endif %}
 {% if settings.social_email_link != blank %}
-<li data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}"><a target="_blank" rel="nofollow" href="{{settings.social_email_link}}" aria-label="On email"><i class="icon-mail"></i></a></li>
+<li {% unless stop_animate %}data-aos="fade-up" data-aos-delay="{{ delay | times: 50}}{%assign delay = delay | plus: 1%}{%endunless%}"><a target="_blank" rel="nofollow" href="{{settings.social_email_link}}" aria-label="On email"><i class="icon-mail"></i></a></li>
 {%endif %}
   <style>
     .social-wrap {
