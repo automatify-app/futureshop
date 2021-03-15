@@ -43,6 +43,9 @@
   &.colsize--small {
     flex: 1 1 200px;
     max-width: 600px;
+    @include media-query($tiny) {
+      max-width: 100%;
+    }
 
     .heading {
       font-size: 32px;
@@ -51,15 +54,24 @@
   &.colsize--medium {
     flex: 1 1 440px;
     max-width: 790px;
+    @include media-query($small) {
+      max-width: 100%;
+    }
   }
   &.colsize--large {
     flex: 1 1 600px;
-    max-width: 100%;
+    max-width: 900px;
   }
   &.colsize--huge {
     flex: 1 1 900px;
     max-width: 100%;
   }
+
+  &.fullwidth {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+
   margin:1%;
   padding: calc(12px + 1vw);
 
@@ -82,6 +94,13 @@
     position: relative;
     z-index: 2  ;
   }
+
+  &.type--divider {
+    flex: 0 0 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
   &.type--image {
     position: relative;
     z-index: 1;
@@ -124,3 +143,49 @@
   margin: calc(22px + 0.5vw) auto;
 }
 
+
+.content-column.type--background {
+  padding: 0 !important;
+   .video-bg {
+    @extend %psuedo;
+    z-index: 2;
+    @include object-fit();
+  }
+}
+
+.column-background {
+  position: relative;
+  padding: 0 !important;
+  &__wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: hidden;
+    position: relative;
+    color: var(--section-text);
+    background: var(--section-bg);
+    text-decoration: none;
+
+    &:hover {
+      .column-background__wrap {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &__wrap {
+   transition: transform 300ms ease;
+  }
+  &__background, &__image, &__video {
+    @extend %psuedo;
+  }
+
+  &__content {
+    padding: calc(40px + 10%) 0;
+  }
+
+  .common-header__outer {
+    margin-bottom: 0 !important;
+  }
+}
