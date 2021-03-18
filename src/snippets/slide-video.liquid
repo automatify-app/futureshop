@@ -1,6 +1,14 @@
 <div class="slideshow-slide swiper-slide video-slide style--{{slide.settings.content_style}} position----{{slide.settings.content_position}} mobile-style--{{slide.settings.content_style_mobile}} slide--{{slide.id}}"> <style>
     .slide--{{slide.id}} {
-      background-color: {{slide.settings.background_color}}; color: {{slide.settings.text_color}}
+      --slide-overlay-opacity: {{slide.settings.overlay | times: 0.01 }};
+      background-color: {{slide.settings.background_color}};
+      color: {{slide.settings.text_color}}
+    }
+    @media (max-width: 720px) {
+    .slide--{{slide.id}} {
+      --slide-overlay-opacity: {{slide.settings.overlay_mobile | times: 0.01 }};
+    }
+
     }
     {% if slide.settings.content_style == 'boxed' %}
     .slide--{{slide.id}} .slide-content {

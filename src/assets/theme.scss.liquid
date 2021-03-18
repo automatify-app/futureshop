@@ -231,20 +231,20 @@ body .image-section:first-child {
 
 .button, a.button, button, button.button, .btn, a.btn {
 
-  {% case settings.font_family_button %}
-  {%when 'body' %}
-    font-family: var(--font-body-real);
-    font-weight: {{ settings.font_body.weight }};
-    {%when 'heading' %}
-    font-family: var(--font-heading-real);
-    font-weight: {{ settings.font_heading.weight }};
-    {%when 'extra' %}
-    font-family: var(--font-extra-real);
-    font-weight: {{ settings.font_extra.weight }};
-    {%when 'script' %}
-    font-family: var(--font-script-real);
-    font-weight: 400;
-  {%endcase %}
+  {% case settings.font_family_buttons %}
+    {%when 'body' %}
+      font-family: var(--font-body-real);
+      font-weight: {{ settings.font_body.weight }};
+      {%when 'heading' %}
+      font-family: var(--font-heading-real);
+      font-weight: {{ settings.font_heading.weight }};
+      {%when 'extra' %}
+      font-family: var(--font-extra-real);
+      font-weight: {{ settings.font_extra.weight }};
+      {%when 'script' %}
+      font-family: var(--font-script-real);
+      font-weight: 400;
+    {%endcase %}
 
   /* {{settings.button_capitalization}} */
   line-height: {{settings.button_line_height | divided_by:10.0 }};

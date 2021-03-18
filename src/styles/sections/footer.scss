@@ -577,15 +577,23 @@ form#footer-newsletter {
       text-align: center;
     }
   }
+  .simple-copy {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .simple-brand {
+    margin-left: 0;
+  }
   .simple-menu {
-    margin-right: auto;
+    margin: auto auto auto 0;
     flex: 0 0 auto;
     width: auto;
     max-width: auto;
+
   }
-  .simple-brand {
-    margin-left: auto;
-  }
+  // .simple-brand {
+  //   margin-left: auto;
+  // }
 }
 
 .signup-form {

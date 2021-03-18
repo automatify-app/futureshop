@@ -37,7 +37,23 @@ nav.breadcrumb {
   }
 }
 
+#hero {
+  .video-slide{
+    min-height: calc(320px + 17vw);
+  }
+  .video__background {
+    object-position: 50% 10;
+  }
+}
+
 
 section.section-outer.overlay-collection {
-  margin-top: calc(-8rem - 5vw);
+  margin-top: calc(-10rem - 9vw);
+  .common-header {
+    color: white;
+  }
+}
+
+.site-footer .simple-menu a {
+  text-decoration: underline;
 }
