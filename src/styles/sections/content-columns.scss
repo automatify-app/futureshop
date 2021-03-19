@@ -47,9 +47,7 @@
       max-width: 100%;
     }
 
-    .heading {
-      font-size: 32px;
-    }
+
   }
   &.colsize--medium {
     flex: 1 1 440px;
@@ -134,7 +132,8 @@
   }
 
   .rte b, .rte strong {
-    font-size: 1.43em;
+    font-size: 1.13em;
+
   }
 }
 

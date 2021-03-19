@@ -184,9 +184,15 @@ body {
 }
 .font--large {
   font-size: 2rem;
+  @include media-query($tiny) {
+    font-size: 1.85rem;
+  }
 }
 .font--mega {
   font-size: 2.6rem;
+  @include media-query($tiny) {
+    font-size: 2.1rem;
+  }
 }
 
 .font--body {

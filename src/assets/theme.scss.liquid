@@ -77,34 +77,34 @@ body .image-section:first-child {
     {% when 'standard' %}
       font-size: calc(2.5rem + 2vw);
       @media (min-width: 1200px) {
-        font-size: 55px;
+        font-size: 5.5rem;
       }
-      &.mega {
+      &.mega , .font--mega & {
         font-size: calc(3rem + 3vw);
         @media (min-width: 1200px) {
-          font-size: 65px;
+          font-size: 7.5rem;
         }
       }
     {% when 'large' %}
       font-size: calc(3rem + 3vw);
       @media (min-width: 1200px) {
-        font-size: 65px;
+        font-size: 6.5rem;
       }
-      &.mega {
+      &.mega, .font-mega &  {
          font-size: calc(4rem + 4vw);
         @media (min-width: 1200px) {
-          font-size: 80px;
+          font-size: 8rem;
         }
       }
     {% when 'huge' %}
       font-size: calc(4rem + 4vw);
       @media (min-width: 1200px) {
-        font-size: 80px;
+        font-size: 8rem;
       }
-      &.mega {
+      &.mega , .font--mega & {
         font-size: calc(5rem + 5vw);
         @media (min-width: 1200px) {
-          font-size: 90px;
+          font-size: 9rem;
         }
       }
 

@@ -20,7 +20,7 @@
     {% assign limit = section.settings.limit %}
     {% if  section.settings.limit == 0 %} {% assign limit = "" %}{%endif%}
     <div  data-module="tour-widget" data-limit="{{section.settings.limit}}" data-artist="{{section.settings.bit_artist}}"">
-      <h2 class="loader">{{section.settings.tour_loading}}</h2>
+      <h2 class="loader heading">{{section.settings.tour_loading}}</h2>
       <div class="button-wrap center">
         <a {% if section.settings.bit_button_url != blank %} href="{{section.settings.bit_button_url}}" {% endif%} class="button" data-expand-bit data-more-text="{{section.settings.more_button_text}}" data-less-text="{{section.settings.less_button_text}}" href="{{section.settings.bit_button_url}}">{{section.settings.more_button_text}}</a>
       </div>
@@ -37,6 +37,140 @@
     </div>{% comment %} end tour-main {% endcomment %}
   </div>{% comment %} end section inner {% endcomment %}
 </section>
+
+{%stylesheet 'scss' %}
+
+@keyframes loading {
+  from {
+    opacity: 0.6;
+    transform: translateY(5px)
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+
+h2.loader {
+  font-size: 24px;
+  animation: loading 400ms infinite-reverse ease;
+}
+
+[data-module=tour-widget] {
+	.hidden {
+		display: none;
+  }
+
+}
+
+ .bit-wrapper {
+    padding: 0;
+    width: 100%;
+    max-width: 690px;
+		margin: auto;
+		overflow: hidden;
+    &.bit-extra {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 500ms $ease;
+    }
+  }
+
+.bit-show {
+	text-align: left;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	justify-content: stretch;
+
+	margin:  auto;
+	padding: 12px;
+	&:nth-child(even) {
+		background: rgba(white, 0.2);
+	}
+	@media (max-width: 720px) {
+		margin: 20px auto
+	}
+
+}
+.bit-date {
+	padding:  12px;
+	flex: 0 1 80px;
+	text-align: center;
+
+	opacity: 0.6;
+	letter-spacing: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	@media (max-width: 450px) {
+	 flex: 1 1 100%;
+	 padding: 0;
+	 text-align: center;
+	}
+}
+
+.bit-links {
+	padding:  2px;
+	flex: 1 0 135px;
+	// min-width: 120px;
+	text-align: center;
+
+	// opacity: 0.6;
+	letter-spacing: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	margin-top: -1px;
+	a {
+		@include font-body;
+		line-height: 1;
+		padding: 0.85em 1.2em;
+		margin: 5px;
+	}
+	@media (max-width: 450px) {
+		flex: 1 1 100%
+	}
+}
+.bit-info {
+	flex: 20 1 210px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	padding:  16px;
+	margin-right: -1px;
+	@media (max-width: 450px) {
+		padding: 9px 9px;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		.bit-city, .bit-venue {
+			display: inline-block;
+			text-align: center;
+		}
+	}
+	.bit-city {
+		font-size: calc(22px + 0.3vw);
+		display: inline-block;
+		text-transform: uppercase;
+		line-height: 1.2;
+		margin-bottom: 0.15em;
+
+	}
+	.bit-venue {
+		display: inline-block;
+		text-transform: none;
+		line-height: 1.2;
+		font-weight: 300;
+		letter-spacing: -0.01em;
+		-webkit-font-smoothing: initial;
+	}
+}
+{%endstylesheet %}
 
 {% schema %}
   {

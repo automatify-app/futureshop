@@ -1,13 +1,15 @@
-
-{% if params.pre_title != blank or params.title != blank  and params.header_size != "hidden" %}
-    <div class="block-header section-header common-header__outer align--{{params.align_text}} font--{{params.header_size}} style--{{params.text_style}}">
+{% unless params.header_size == "hidden"%}
+{% if params.pre_title != blank or params.title != blank or  params.text != blank   %}
+    <div class="block-header section-header common-header__outer align--{{params.align_text}} font--{{params.text_size}} style--{{params.text_style}}">
     {% comment %} Pre-title {% endcomment %}
        {% if params.pre_title != blank %}
         <h5 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label block-header__pre_title ">{{ params.pre_title | escape }}</h5>
       {% endif %}
       {% comment %} Title {% endcomment %}
       {% if params.title != blank %}
-        <h3 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h3 block-header__title heading">{{ params.title | escape }}</h2>
+
+        <h3 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="{% if params.text_size == 'large' or params.text_size == "mega" %} h2 {%else%}h3{%endif%} block-header__title heading">{{ params.title | escape }}
+        </h3>
       {% endif %}
       {% comment %} Subtitle/post_title {% endcomment %}
       {% if params.post_title != blank %}
@@ -38,3 +40,4 @@
     {% endif %}
     </div>
 {%endif%}
+{% endunless %}

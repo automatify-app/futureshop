@@ -156,11 +156,9 @@ Starting variables
     {% assign menu_count = menu.links.size %}
     {% assign menu_break = menu_count | divided_by: 2 %}
     {% comment %} Setting things {% endcomment %}
-    {% if section.settings.header_nudge == 'less' or settings.header_nudge == 'less' %} {%assign menu_break = menu_break | minus: 1 %}{%elsif section.settings.header_nudge == 'more' or settings.header_nudge == 'more' %}{%assign menu_break = menu_break | plus: 1 %}{%endif%}
-    {% if section.settings.layout_search != 'menu'  or section.settings.layout_cart != 'menu' %}{% assign menu_break = menu_break | plus : 1 %}  {%comment %} Want one less on the left if there are extras {%endcomment%}{%endif%}
+    {% if settings.header_nudge == 'less' or settings.header_nudge == 'less' %} {%assign menu_break = menu_break | minus: 1 %}{%elsif settings.header_nudge == 'more' or settings.header_nudge == 'more' %}{%assign menu_break = menu_break | plus: 1 %}{%endif%}
     {% comment %} Index fix for the loop {% endcomment %}
     {% assign menu_count = menu_count | minus: 1 %} {%comment %} fix for the loop! {%endcomment%}
-
       {% comment %} First half {% endcomment %}
       <div class="nav-half nav-half__first">
         {% for i in (0 ..menu_break) %}
@@ -181,7 +179,7 @@ Starting variables
             {% if section.settings.back_to_site == 'last' and i == menu_count%} {% assign isbacklink = 'back-link' %}{%endif%}
             {% include 'menu-li'%}
         {%endfor%}
-        {% if section.settings.layout_search == 'menu'  or section.settings.layout_cart == 'menu' %}
+        {% if settings.search_layout == 'after-menu'  or settings.cart_layout == 'after-menu' %}
           <div class="nav-half__extras">
               {{menu_extras}}
           </div><!-- end extras -->
@@ -296,6 +294,7 @@ Style + Script tags
     header.site-header {
     {% if section.settings.logo != blank %}
       flex-basis: {{section.settings.logo_max_width}}px;
+      max-width: {{section.settings.logo_max_width}}px;
       {% else %}
       flex-basis: auto;
     {%endif%}

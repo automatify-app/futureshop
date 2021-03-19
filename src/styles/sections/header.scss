@@ -424,7 +424,7 @@ nav.main-nav.has-halves {
 
 
     .nav-halves__logo {
-      flex: 0 0 auto;
+      // flex: 0 0 auto;
       margin: auto 12px
     }
     .nav-half__last {
@@ -440,7 +440,7 @@ nav.main-nav.has-halves {
     text-align: center;
     .site-header__logo {
       display: inline-block;
-      width: auto;
+      width: 100%;
     }
   }
 }
