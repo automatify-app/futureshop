@@ -1,7 +1,7 @@
 {% assign delay = 0 %}
 {% render 'section-starter' with section_class: 'content-columns--outer', section: section%}
 
-<div class="section-inner columns-wrap {% if section.settings.expand == true %} expand {%endif%}">
+<div class="section-inner columns-wrap {% if section.settings.expand == true %} expand {%endif%} {% if section.settings.reverse == true %} reverse {%endif%}">
 
   {% for block in section.blocks %}
         {% case block.type %}
@@ -61,6 +61,11 @@
         "type" : "checkbox",
         "id" :"expand",
         "label" : "Remove Padding"
+      },
+      {
+        "type" : "checkbox",
+        "id" :"reverse",
+        "label" : "Reverse order?"
       },
 
        {

@@ -85,11 +85,10 @@ body.header-overlay.overlay-shadow .image-section:first-child {
     background: linear-gradient(to top, transparent, rgba(black, 0.26));
     z-index: 20;
   }
-} 
+}
 
 
-.swiper-slide.style--boxed,
-body .image-section:first-child .swiper-slide.style--boxed {
+.swiper-slide.style--boxed {
   @include media-query($tiny) {
   padding: 10vw 12px 20px;
   }
@@ -125,12 +124,7 @@ body .image-section:first-child .swiper-slide.style--boxed {
     .common-header {
       margin-bottom: 0.5em;
     }
-    h4 {
-      font-size: 15px;
-    }
-    p {
-      margin: 0;
-    }
+
 
     @include media-query($medium-up) {
       margin: auto 5vw 0 auto;
@@ -141,8 +135,7 @@ body .image-section:first-child .swiper-slide.style--boxed {
     }
     @include media-query($small) {
 
-      font-size: 14px;
-       margin: 50vh auto -20px;
+      margin: 50vh auto -20px;
       width: 100%;
       max-width: 100%;
     }
@@ -156,19 +149,6 @@ body .image-section:first-child .swiper-slide.style--boxed {
 
 
   }
-  .common-header {
 
-    @include media-query($medium-up) {
-      min-width: 300px;
-      padding-right: 24px;
-    }
-    h4{
-      margin-top: 0;
-      font-size: 18px;
-    }
-    h2 {
-      font-size: calc(1.3em + 0.8vw);
-    }
-  }
 }
 

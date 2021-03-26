@@ -33,7 +33,7 @@
 {% if params.image_link != blank %}
       <a href="{{params.image_link}}" {% if params.link_external == true %} target="_blank" rel="nofollow" {%endif%} class=" content-column__image "  data-rellax-speed="4">
          {% if params.image != blank %}
-          {% include 'responsive-image' with
+          {% render 'responsive-image' with
             image: params.image,
             max_width: 1000,
             max_height: 1000
@@ -45,7 +45,7 @@
   {%else %}
     <div class="content-column__image ">
         {% if params.image != blank %}
-          {% include 'responsive-image' with
+          {% render 'responsive-image' with
             image: params.image,
             max_width: 1000,
             max_height: 1000

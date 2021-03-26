@@ -12,6 +12,12 @@
   }
 {%endfor%}
 
+@font-face {
+  font-family: "KingSize";
+  font-style: normal;
+  src: url("{{'KingSize-Script.woff2' | asset_url}}") format('woff2'), url("{{'KingSize-Script.woff' | asset_url}}") format('woff');
+}
+
 //This is my custom background code
 body {
   {% assign bg_style = settings.background_style %}

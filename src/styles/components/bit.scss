@@ -1,6 +1,4 @@
-.bit-wrapper {
-	
-}
+
 
 @keyframes loading {
   from {
@@ -22,8 +20,52 @@ h2.loader {
 	.hidden {
 		display: none;
   }
-  
+	&.no-shows {
+		.tour-buttons {
+			display: none;
+		}
+		.loader {
+			display: none;
+		}
+	}
+
 }
+
+
+.tour-section__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.tour-header {
+  flex: 1 1 320px;
+  max-width: 550px;
+	padding-right: calc(10px + 5%);
+}
+
+.tour-main {
+  flex: 2 1 400px;
+  max-width: 800px;
+}
+
+h2.loader {
+  font-size: 24px;
+  animation: loading 400ms infinite-reverse ease;
+}
+
+[data-module=tour-widget] {
+	.hidden {
+		display: none;
+  }
+
+}
+
+
+.tour-dates .hidden {
+  display: none;
+}
+
 
  .bit-wrapper {
     padding: 0;
@@ -65,7 +107,7 @@ h2.loader {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	
+
 	@include media-query($tiny) {
 	 flex: 1 1 100%;
 	 padding: 0;

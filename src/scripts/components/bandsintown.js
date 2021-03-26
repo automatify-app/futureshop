@@ -24,7 +24,12 @@ export default class Bit {
       this.expandButton = this.el.querySelector('[data-expand-bit]')
       this.getShowData().then(response => {
         this.shows = response;
-        this.renderAllShows();
+        if (this.shows.length > 0) {
+
+          this.renderAllShows();
+        } else {
+          this.noShowsToRender();
+        }
         window.dispatchEvent(new Event('resize'));
       });
 
@@ -36,6 +41,7 @@ export default class Bit {
     async getShowData() {
       let cleanArtist = this.props.artist.replace(' ', '');
       let url = 'https://rest.bandsintown.com/artists/' + cleanArtist + '/events?app_id=' + this.props.appId;
+      console.log(url);
       try {
         const response = await fetch(url, {method : 'GET'});
         if (!response.ok) {
@@ -167,6 +173,10 @@ export default class Bit {
       }
 
       return linksEl;
+    }
+
+    noShowsToRender() {
+      this.el.classList.add('no-shows')
     }
 
     renderShow(show) {

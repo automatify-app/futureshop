@@ -45,6 +45,15 @@ src/assets/**.png
 *.sql
 *.sqlite
 
+# Logs and databases #
+######################
+*.woff
+*.woff2
+*.png
+!fontello.woff2
+!fontello.woff
+!soldout.png
+
 # OS generated files #
 ######################
 .DS_Store

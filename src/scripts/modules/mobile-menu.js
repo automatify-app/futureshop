@@ -9,21 +9,18 @@ export default class MobileMenu {
       this.directon = 'right';
     }
 
-    this.menuDrawer = new ShopDrawer(this.el, {direction: this.direction});
-
+    this.menuDrawer = new ShopDrawer(this.el, { direction: this.direction });
     this.setupWatchers();
-
-
-
   }
 
   setupWatchers() {
-
     this.toggles = document.querySelectorAll('.mobile-nav-toggle');
+    var self = this;
 
-    this.toggles.forEach(el=> {
-      el.addEventListener('click', this.menuDrawer.open)
-    })
+    this.toggles.forEach((el) => {
+      el.addEventListener('click', function() {
+        self.menuDrawer.openDrawer();
+      });
+    });
   }
-
 }
