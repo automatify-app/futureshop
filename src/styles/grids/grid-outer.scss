@@ -79,7 +79,7 @@ body.product-style--simple {
         @include media-query($small) {
           grid-template-columns: 1fr
         }
-    }`
+    }
   }
 }
 
