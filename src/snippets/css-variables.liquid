@@ -16,16 +16,16 @@
   {{ settings.font_heading | font_face }}
   {{ settings.font_extra | font_face }}
   {{ settings.font_body | font_face }}
+  {%- assign font_body_italic = font_body | font_modify: 'style', 'italic' -%}
 
   {%- assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder' -%}
   {%- assign font_heading_light= settings.font_heading | font_modify: 'weight', 'lighter' -%}
 
-  {%- assign font_body_bold_italic = font_body_bold | font_modify: 'style', 'italic' -%}
-  {%- assign font_body_italic = font_body | font_modify: 'style', 'italic' -%}
+  {% comment %} {%- assign font_body_bold_italic = font_body_bold | font_modify: 'style', 'italic' -%} {% endcomment %}
 
   {{ font_body_bold | font_face }}
   {{ font_heading_light | font_face }}
-  {{ font_body_bold_italic | font_face }}
+  {% comment %} {{ font_body_bold_italic | font_face }} {% endcomment %}
   {{ font_body_italic | font_face }}
 
   :root {

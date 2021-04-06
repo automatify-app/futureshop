@@ -1,3 +1,17 @@
+{% unless collection %}
+{% assign collection = collections[section.settings.backup_collection] %}
+
+{% if product.collections.size > 0 %}
+{% assign collection = product.collections.first %}
+{% endif %}
+{% endunless %}
+{%capture back_button %}
+<div class="product-back-link">
+  <a class="btn btn-primary" href="{{collection.url | default: '/collections'}}">{{section.settings.back_button_text | default: "GO BACK"}}</a>
+</div>
+{%endcapture%}
+
+
 {% if section.settings.show_related_products == true %}
 <div class="product-template__container page-width" itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="related-products" data-enable-history-state="true">
 
@@ -138,6 +152,20 @@
 {
   "name": "Related products",
   "settings": [
+    {
+      "type": "select",
+      "id": "behavior",
+      "label": "Behavior",
+      "options": [
+        {
+        "group": "",
+        "value": "",
+        "label": ""
+        }
+      ],
+      "default": "automatic",
+      "info": "'Automatic' uses shopify analytics to recommend products. Default uses simple code, and custom uses matches!"
+    },
     {
       "type": "checkbox",
       "id": "show_related_products",

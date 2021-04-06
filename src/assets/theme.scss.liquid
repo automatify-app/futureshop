@@ -291,3 +291,15 @@ h6.visible-tag  {
 .site-header__inner-wrap {
   padding: {{settings.header_vertical_spacing | default: 0 }}px 0;
 }
+
+
+#shopify-section-footer {
+  background: #121619 url("{{'cool-bg.jpg' | asset_img_url: '1200x'}}");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: calc(120px + 5vw);
+  background-position: 50% 50%;
+  .signup-form, .footer-signup, #main-footer {
+    background: transparent;
+  }
+}

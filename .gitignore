@@ -45,11 +45,12 @@ src/assets/**.png
 *.sql
 *.sqlite
 
-# Logs and databases #
+# Assets #
 ######################
 *.woff
 *.woff2
 *.png
+*.jpg
 !fontello.woff2
 !fontello.woff
 !soldout.png

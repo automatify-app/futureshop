@@ -1,55 +1,13 @@
-#news {
-  padding-top: 34%;
-  .section-bg__image {
-    background-position: 50% 0;
-  }
+#hero .position--bottom-right .slide-content {
+  position: absolute;
+  top: auto;
+  bottom: 5%;
+  right: 5%;
+  left: auto;
+  transform: translate3d(0,0,0);
+  height: auto;
+  box-shadow: 12px 12px 20px rgba(0,0,0,0.2);
 }
-
-
-
- #hero .swiper-slide:first-child {
-   min-height: 65vh;
- }
-
-.heading {
-    line-height: 0.8 !important;
-
-  }
-
-h2.heading, .h2.heading {
-    font-size: calc(100px + 3vw) !important;
-    line-height: 0.7 !important;
-}
-h3.heading, .h3.heading {
-  font-size: calc(60px + 2vw) !important;
-}
-h4.heading, .h4.heading {
-  font-size:calc(45px + 1vw) !important;
-}
-
-#listen {
-
-  .block-header__title {
-    margin: 0 auto;
-  }
-}
-#Image-502508355757-2 {
-  object-position: 100% 50% !important;
-}
-
-#about .columns-wrap {
-  align-items: flex-start;
-}
-#tour .tour-section__inner {
-  max-width: 1300px;
-  padding: 5vw;
-  margin: auto;
-}
-
-#tour .section-bg__image {
-  background-position: 50% 0;
-}
-
-section#about {
-    margin-bottom: calc(-30px - 3vw);
+.site-header__inner::before {
+  box-shadow: 0 0 12px rgba(0,0,0,0.0975);
 }

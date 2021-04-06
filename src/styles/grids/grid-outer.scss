@@ -79,7 +79,7 @@ body.product-style--simple {
         @include media-query($small) {
           grid-template-columns: 1fr
         }
-    }
+    }`
   }
 }
 
@@ -115,6 +115,9 @@ body[class*=product-style] {
       }
         margin-left: auto;
       margin-right: auto;
+      &.size--large {
+        max-width: $grid-max-width;
+      }
       &.size--small {
         max-width: 900px;
       }
