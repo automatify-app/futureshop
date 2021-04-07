@@ -465,7 +465,8 @@ ul.footer-menu {
   justify-content: center;
   flex-direction: column;
   &.footer-col {
-    padding: 0;
+    padding: 12px 12px 12px 0;
+
   }
   &+footer {
     margin-top: 0 !important;

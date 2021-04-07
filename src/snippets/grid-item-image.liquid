@@ -4,7 +4,7 @@
   {% comment %} Image shown on hover {% endcomment %}
   {% if secondary_image == true  and product.images.size > 1 %}
     <div class="secondary-featured-image">
-      {% include 'responsive-image' with
+      {% render 'responsive-image' with
       image: product.images[1],
       max_width: 800,
       max_height: 800
@@ -13,7 +13,7 @@
   {% endif %}
 
   {% comment %} Standard image. Can max out rather small given that it's in the grid{% endcomment %}
-    {% include 'responsive-image' with
+    {% render 'responsive-image' with
       image: product.featured_image,
       max_width: 800,
       max_height: 800
@@ -21,7 +21,7 @@
 
     {% comment %} Visible tags (inside image div, to show over the image) {% endcomment %}
     {% if settings.tag_location == 'top' or settings.tag_location == 'bottom' %}
-        {% include 'visible-tags'%}
+        {% render 'visible-tags' with product: product %}
     {%endif%}
 
   </div> {% comment %}  end image wrapper {% endcomment %}

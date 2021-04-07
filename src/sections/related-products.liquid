@@ -1,183 +1,82 @@
-{% unless collection %}
-{% assign collection = collections[section.settings.backup_collection] %}
 
-{% if product.collections.size > 0 %}
-{% assign collection = product.collections.first %}
-{% endif %}
-{% endunless %}
-{%capture back_button %}
-<div class="product-back-link">
-  <a class="btn btn-primary" href="{{collection.url | default: '/collections'}}">{{section.settings.back_button_text | default: "GO BACK"}}</a>
-</div>
-{%endcapture%}
-
-
-{% if section.settings.show_related_products == true %}
-<div class="product-template__container page-width" itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="related-products" data-enable-history-state="true">
-
-
-
-{% assign heading = section.settings.related_title %}
-
-{% comment %}
-  Set either or both to true, if you want
-  to limit yourself to items with same vendor, and/or type.
-{% endcomment %}
-
-{% assign same_vendor = false %}
-{% assign same_type = false %}
-
-{% comment %}
-  Collections to ignore.
-  Never pick related items from those.
-{% endcomment %}
-
-{% assign exclusions = 'frontpage,all' | split: ',' %}
-
-{% comment %}
-  Looking for a relevant collection.
-{% endcomment %}
-{% assign match_object = section.settings.match | split: '\n' %}
-{% assign matched_collection = false %}
-{% assign title_downcase = product.title | downcase %}
-{% assign slug_downcase = product.handle | downcase %}
-{% for line in  match_object %}
-  {% assign split_line = line | split: ' : ' %}
-  {%assign needle_downcase =  split_line[0]  | downcase %}
-  {% if title_downcase contains needle_downcase %}
-    {% assign matched_collection = collections[split_line[1]] %}
-  {% elsif slug_downcase contains needle_downcase %}
-    {% assign matched_collection = collections[split_line[1]] %}
-  {%elsif product.tags contains needle_downcase %}
-    {% assign matched_collection = collections[split_line[1]] %}
+{%include 'section-starter' with section_class: 'related-products' %}
+<div class="product-recommendations" data-base-url="{{ routes.product_recommendations_url }}" data-product-id="{{ product.id }}" data-limit="{{ section.settings.limit }}">
+  <div class="section-inner can-grid ">
+  {% if recommendations.performed %}
+  {%- if recommendations.products_count > 0  -%}
+  {% if section.settings.heading != blank or section.settings.introduction != blank %}
+    {% include 'common-header' with include_button: false %}
   {%endif%}
-{%endfor %}
+    <div class="collection-grid product-grid size--{{section.settings.size}}" data-max="{{section.settings.limit}}" >
+    {% for product in recommendations.products %}
+              {% render 'grid-item' with product: product, section: section %}
 
-{% unless matched_collection %}
-{% if product.metafields.c_f['Related Products'] %}
-  {% assign collection = collections[product.metafields.c_f['Related Products']] %}
-{% endif %}
-
-{% assign found_a_collection = false %}
-{% if collection and collection.all_products_count > 1 %}
-  {% unless exclusions contains collection.handle %}
-    {% assign found_a_collection = true %}
-  {% endunless %}
-{% endif %}
-{% unless found_a_collection %}
-  {% for c in product.collections %}
-    {% unless exclusions contains c.handle or c.all_products_count < 2 %}
-      {% assign found_a_collection = true %}
-      {% assign collection = c %}
-      {% break %}
-    {% endunless %}
-  {% endfor %}
-{% endunless %}
-{%else %}
-{% assign collection = matched_collection %}
-{% assign found_a_collection = true %}
-{%endunless %}
-{% comment %}
-  If we have a relevant collection.
-{% endcomment %}
-
-{%- capture default_collection -%}{{section.settings.backup_collection | default: 'featured'}}{%- endcapture -%}
-{% assign backup_collection = collections[default_collection] %}
-{% if found_a_collection %}
-
-  {% assign counter = 0 %}
-  {% assign break_at = section.settings.limit %}
-  {% assign current_product = product %}
-
-
-
-
-{% assign max = counter %}
-  {% capture related_items %}
-    {% for product in collection.products %}
-      {% unless product.handle == current_product.handle %}
-         {% unless same_vendor and current_product.vendor != product.vendor %}
-           {% unless same_type and current_product.type != product.type %}
-           {% include 'grid-item' with secondary_image: true, show_price: true, simplify: section.settings.simplify, hover_details: section.settings.hover_details %}
-             {% assign counter = counter | plus: 1 %}
-              {% assign max = counter %}
-             {% if counter == break_at %}
-               {% break %}
-             {% endif %}
-           {% endunless %}
-        {% endunless %}
-      {% endunless %}
-    {% endfor %}
-    {% if max < break_at and collection != backup_collection %}
-    {% for product in backup_collection.products %}
-        {% unless product.handle == current_product.handle %}
-          {% unless same_vendor and current_product.vendor != product.vendor %}
-            {% unless same_type and current_product.type != product.type %}
-            {% include 'grid-item' with secondary_image: true, show_price: true, simplify: section.settings.simplify, hover_details: section.settings.hover_details %}
-              {% assign counter = counter | plus: 1 %}
-                {% assign max = counter %}
-              {% if counter == break_at %}
-                {% break %}
-              {% endif %}
-            {% endunless %}
-          {% endunless %}
-        {% endunless %}
       {% endfor %}
-    {%endif%}
-  {% endcapture %}
-
-
-  {% assign related_items = related_items | trim %}
-
-  {% unless related_items == blank %}
-
-  <aside class=" related-products section-outer">
-      <div class="section-inner">
-        {% include 'common-header' %}
-          </div>
-      <div class="grid-uniform collection-grid product-grid size--{{section.settings.size}}" data-max="{{max}}">
-        {{ related_items }}
-      </div>
-      </div>
-  </aside>
-
-  {% endunless %}
-
-{% endif %}
-
+  </div>
+  {%endif%}
+  {% else %}
+  <div class="product-recommendations__loading-dots">
+          <div class="product-recommendations__loading-dot"></div>
+          <div class="product-recommendations__loading-dot"></div>
+          <div class="product-recommendations__loading-dot"></div>
+        </div>
+  {% endif%}
+  </div>
 </div>
-{% endif %}
+</section>
 
+
+
+{% stylesheet %}
+  @keyframes loadDots {
+    0% {
+      opacity: 0.3;
+      transform: translateY(0);
+    }
+    50% {
+      opacity: 0.6;
+      transform: translateY(-3px);
+    }
+    100% {
+      opacity: 0.3;
+      transform: translateY(0);
+    }
+  }
+
+.product-recommendations__loading-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+}
+  .product-recommendations__loading-dot {
+    opacity: 0.3;
+    width: 12px;
+    margin: 4px;
+    height: 12px;
+    border-radius:12px;
+    background: currentColor;
+    animation: 2s loadDots infinite ease;
+  }
+
+  .product-recommendations__loading-dot:nth-child(2) {
+    animation-delay: 0.66s;
+  }
+  .product-recommendations__loading-dot:nth-child(3) {
+    animation-delay: 1.33s;
+  }
+{% endstylesheet %}
 {% schema %}
 {
   "name": "Related products",
   "settings": [
-    {
-      "type": "select",
-      "id": "behavior",
-      "label": "Behavior",
-      "options": [
-        {
-        "group": "",
-        "value": "",
-        "label": ""
-        }
-      ],
-      "default": "automatic",
-      "info": "'Automatic' uses shopify analytics to recommend products. Default uses simple code, and custom uses matches!"
-    },
     {
       "type": "checkbox",
       "id": "show_related_products",
       "label": "Show related products",
       "default": true
     },
-    {
-      "type": "collection",
-      "id": "backup_collection",
-      "label": "Backup Collection",
-      "info": "For use when there aren't enough collections "
-    },
+
    {
         "type" : "select",
         "id" : "text_align",
@@ -248,24 +147,15 @@
         "type": "text",
         "id": "introduction",
         "label": "Introduction",
-        "default": "Check out more products"
+        "default": "More "
       },
       {
         "type": "text",
         "id": "heading",
         "label": "Heading",
-        "default": "You might like"
+        "default": "For You"
       },
-      {
-        "type" : "text",
-        "id" : "subtitle",
-        "label" : "Subtitle"
-      },
-      {
-        "type": "richtext",
-        "id": "text",
-        "label": "Text"
-      },
+
     {
       "type" : "range",
       "id" :"limit",
@@ -279,7 +169,7 @@
         "type" : "select",
         "id" : "size",
         "label" : "Grid Size",
-        "default" : "large",
+        "default" : "standard",
         "options" : [
           {
             "value" : "small",
@@ -292,27 +182,50 @@
           {
             "value" : "large",
             "label" : "Large"
+          },
+          {
+            "value" : "huge",
+            "label" : "Huge"
           }
         ]
-      },
-    {
-      "type" : "checkbox",
-      "id" : "simplify",
-      "default" : true,
-      "label" : "Simplify related products?"
-    },
-    {
-      "type" : "checkbox",
-      "id" : "hover_details",
-      "default" : true,
-      "label" : "Details on hover?"
-    },
-    {
-      "type" : "html",
-      "label" : "Match Words",
-      "id" : "match",
-      "info" : "Match a word in the slug/title of the product with a collection. Separate with ' : ', and make sure to use the exact collection handle!"
-    }
+      }
   ]
 }
 {% endschema %}
+{% javascript %}
+var loadProductRecommendationsIntoSection = function() {
+  // Look for an element with class 'product-recommendations'
+  var productRecommendationsSection = document.querySelector(".product-recommendations");
+  if (productRecommendationsSection === null) { return; }
+     // Read product id from data attribute
+     var productId = productRecommendationsSection.dataset.productId;
+     // Read base URL from data attribute
+     var baseUrl = productRecommendationsSection.dataset.baseUrl;
+     // Read limit from data attribute
+     var limit = productRecommendationsSection.dataset.limit;
+     // Build request URL
+     var requestUrl = baseUrl + "?section_id=related-products&product_id=" + productId + "&limit=" + limit;
+  // Create request and submit it using Ajax
+  var request = new XMLHttpRequest();
+  request.open("GET", requestUrl);
+  request.onload = function() {
+    if (request.status >= 200 && request.status < 300) {
+      var container = document.createElement("div");
+      container.innerHTML = request.response;
+      productRecommendationsSection.parentElement.innerHTML = container.querySelector(".product-recommendations").innerHTML;
+    }
+  };
+  request.send();
+};
+// If your section has theme settings, the theme editor
+// reloads the section as you edit those settings. When that happens, the
+// recommendations need to be fetched again.
+// See https://help.shopify.com/en/themes/development/sections/integration-with-theme-editor
+document.addEventListener("shopify:section:load", function(event) {
+  if (event.detail.sectionId === "related-products") {
+    loadProductRecommendationsIntoSection();
+  }
+});
+// Fetching the recommendations on page load
+loadProductRecommendationsIntoSection();
+{% endjavascript %}

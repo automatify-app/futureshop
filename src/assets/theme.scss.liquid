@@ -23,7 +23,7 @@ body {
   {% assign bg_style = settings.background_style %}
   {% if settings.main_background != blank and settings.enable_background == true %}
     background-image: url("{{settings.main_background | img_url: '800x'}}");
-    background-repeat: repeat;
+
     background-size: auto;
     {% if settings.background_fix == true %}
     background-attachment: fixed;
@@ -43,6 +43,18 @@ body {
     @media (min-width: 1500px) {
       background-image: url({{settings.main_background | img_url: 'master'}});
     }
+    background-repeat: no-repeat;
+    {% else %}
+    background-repeat: {{bg_style}};
+    {%endif%}
+    {% if bg_style == 'repeat-y' %}
+    background-size: 100% auto;
+    background-image: url({{settings.main_background | img_url: 'master'}});
+    {%endif%}
+    {% if bg_style == 'repeat-x' %}
+    background-size: auto 100%;
+    background-image: url({{settings.main_background | img_url: 'master'}});
+
     {%endif%}
     main#mainContent {
       background: transparent;
@@ -292,14 +304,3 @@ h6.visible-tag  {
   padding: {{settings.header_vertical_spacing | default: 0 }}px 0;
 }
 
-
-#shopify-section-footer {
-  background: #121619 url("{{'cool-bg.jpg' | asset_img_url: '1200x'}}");
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding-top: calc(120px + 5vw);
-  background-position: 50% 50%;
-  .signup-form, .footer-signup, #main-footer {
-    background: transparent;
-  }
-}

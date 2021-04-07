@@ -1,15 +1,15 @@
 <a data-aos="fade-up" {% if delay %}data-aos-delay="{{delay}}" {%endif%} href="{{ product.url | within: collection }}" class="product-grid-item grid-item {% if simplify == true %} simplify {%endif%} {% if hover_details == true  %} detail-on-hover {%endif%} {% unless product.available %} sold-out {% endunless %} font--{{settings.product_font}}">
-  {% include 'grid-item-image' %}
+  {% render 'grid-item-image' with product: product, secondary_image: secondary_image %}
   <div class="product-details grid-item__details">
   {% comment %} Visible tags -- above {% endcomment %}
   {% if settings.tag_location == 'above'%}
-    {% include 'visible-tags'%}
+    {% render 'visible-tags' with product: product %}
   {%endif%}
   {% comment %} Show the title {% endcomment %}
   <h5 class="product-title font--{{settings.font_family_product}}">{{ product.title | escape }}</h5>
   {% comment %} Collection Swatches for Coloring {% endcomment %}
   {% if settings.collection_swatches != 'disabled' %}
-    <div class="collection-swatches style--{{settings.collection_swatches}}">{% include 'grid-swatches' %}</div>
+    <div class="collection-swatches style--{{settings.collection_swatches}}">{% render 'grid-swatches' with product: product %}</div>
   {%endif%}
 
   {% comment %} Visible "3-pack" text, for instance {% endcomment %}

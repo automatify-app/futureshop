@@ -7,9 +7,19 @@
       --section-text: {{slide.settings.text_color}};
     }
     {% if slide.settings.content_style == 'boxed' %}
+    @media (min-width: 751px) {
     .slide--{{slide.id}} .slide-content {
       background-color: {{slide.settings.background_color}};
       color: {{slide.settings.text_color}}
+    }
+    }
+    {%endif%}
+    {% if slide.settings.content_style_mobile == 'boxed' %}
+    @media (max-width: 750px) {
+    .slide--{{slide.id}} .slide-content {
+      background-color: {{slide.settings.background_color}};
+      color: {{slide.settings.text_color}}
+    }
     }
     {%endif%}
   </style>

@@ -44,9 +44,9 @@
         {% endfor %}
     </ul>
 
-     {%if submenu.links %}
+     {%if submenu.links != empty %}
           <ul class="sub-menu">
-          {% for link in menu.links %}
+          {% for link in submenu.links %}
           {% render 'menu-li' with link: link, isbacklink: false %}
         {% endfor %}
           </ul>
