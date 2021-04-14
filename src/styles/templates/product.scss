@@ -156,7 +156,7 @@ body.product-style--card {
     background: $color-card-bg;
     color: $color-card-text;
     box-shadow: 0 0 25px rgba(0,0,0,0.1);
-    border-radius: $border-radius-big;
+    // border-radius: $border-radius-big;
   }
   .product-details__wrap {
     @include media-query($small) {

@@ -1,16 +1,51 @@
-{% if settings.signup_auto == true %}
-<div class="auto-signup" data-module="auto-signup" data-delay="{{settings.signup_time}}">
-  <div class="popup-content popup-signup" style="">
-    <div class="popup-inner auto-signup__popup">
-      <div class="popup-header">
-        <h2 >{{settings.signup_title | default: 'Join the list'}}</h2>
-        {% if settings.signup_subtitle != blank %}
-          <h4>{{settings.signup_subtitle | default: 'Get news, discounts + more when you sign up for the email list!'}}</h4>
+{% if settings.ap_enable == true %}
+<div class="auto-signup" data-module="auto-signup" data-ap-timeout="{{settings.ap_timer}}" data-ap-behavior="{{settings.ap_behavior}}" >
+  <style>
+    .auto-popup {
+      background: {{settings.ap_background | default: "#ffffff"}};
+      color: {{settings.ap_text | default: "#3f3f3f"}};
+      border-radius: {{settings.ap_timer | default: 0}}px;
+      --accent-color: {{settings.ap_border_radius | default: "#1f1f1f"}};
+    }
+
+    {{settings.ap_custom_style}}
+  </style>
+  <div class="popup-content auto-popup layout--{{ap_layout}}" data-popup-content>
+    <button class="icon-button" style="position: absolute; top: 0; right: 0; padding: 12px; border: none; color: black; appearance: none; background: transparent;" data-close-popup="auto-popup"><i class="icon-times"></i></button>
+    <div class="auto-signup__image">
+      {% if settings.ap_image_mobile != blank %}
+        {% render 'responsive-image' with image: settings.ap_image_mobile, wrapper_class: "mobile-image", max_width: 1000, max_height: 1000 %}
+      {% endif %}
+      {% if settings.ap_image != blank %}
+        {% render 'responsive-image' with image: settings.ap_image, wrapper_class: "desktop-image", max_width: 1000, max_height: 1000 %}
+      {% endif %}
+    </div>
+    <div class="auto-signup__content">
+    {% if settings.ap_intro != blank or settings.ap_heading != blank or settings.ap_subtitle != blank %}
+      <div class="popup-header common-header">
+        {% if settings.ap_intro != blank %}
+          <h4 class="label">{{settings.ap_intro }}</h4>
+        {%endif%}
+        {% if settings.ap_heading  != blank %}
+        <h2 class="heading">{{settings.ap_heading | default: 'Join the list'}}</h2>
+        {%endif%}
+        {% if settings.ap_subtitle != blank %}
+          <h4 class="label">{{settings.ap_subtitle }}</h4>
         {%endif%}
       </div>
-      <div class="form-wrap">
-      {% include 'signup-form' %}
-      </div>
+    {% endif %}
+      {% if settings.ap_content != blank %}
+        <div class="rte">{{settings.ap_content}}</div>
+      {%endif%}
+      {% if settings.ap_html %}
+        <div class="ap-html">{{settings.ap_html}}</div>
+      {%endif%}
+      {% if settings.ap_button_text != blank and settings.ap_button_link != blank%}
+        <div class="button-wrap">{% render 'button' with url: settings.ap_button_link, text: settings.ap_button_text, external: true %}</div>
+      {%endif%}
+      {% if settings.ap_disclaimer != blank %}
+        <div class="rte text--small">{{settings.ap_disclaimer}}</div>
+      {%endif%}
     </div>
   </div>
 </div>

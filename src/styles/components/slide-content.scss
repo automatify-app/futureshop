@@ -89,7 +89,10 @@ body.header-overlay.overlay-shadow .image-section:first-child {
 
 @mixin boxedStyle() {
 
-    padding: 20vw 5vw;
+    padding: 12vw 5vw;
+    @include media-query($large-up) {
+      padding: 7vw 5vw;
+    }
     @include media-query($tiny) {
     padding: 10vw 12px 20px;
     }

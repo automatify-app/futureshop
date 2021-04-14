@@ -1,31 +1,29 @@
 
-{%include 'section-starter' with section_class: 'related-products' %}
 <div class="product-recommendations" data-base-url="{{ routes.product_recommendations_url }}" data-product-id="{{ product.id }}" data-limit="{{ section.settings.limit }}">
-  <div class="section-inner can-grid ">
   {% if recommendations.performed %}
   {%- if recommendations.products_count > 0  -%}
+{%include 'section-starter' with section_class: 'related-products' %}
+  <div class="section-inner can-grid ">
   {% if section.settings.heading != blank or section.settings.introduction != blank %}
     {% include 'common-header' with include_button: false %}
   {%endif%}
     <div class="collection-grid product-grid size--{{section.settings.size}}" data-max="{{section.settings.limit}}" >
     {% for product in recommendations.products %}
-              {% render 'grid-item' with product: product, section: section %}
-
-      {% endfor %}
+      {% render 'grid-item' with product: product, section: section %}
+    {% endfor %}
   </div>
   {%endif%}
+  </div>
+  </section>
   {% else %}
   <div class="product-recommendations__loading-dots">
           <div class="product-recommendations__loading-dot"></div>
           <div class="product-recommendations__loading-dot"></div>
           <div class="product-recommendations__loading-dot"></div>
         </div>
+  </section>
   {% endif%}
   </div>
-</div>
-</section>
-
-
 
 {% stylesheet %}
   @keyframes loadDots {

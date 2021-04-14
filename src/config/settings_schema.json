@@ -155,7 +155,7 @@
     ]
   },
   {
-    "name": "Fonts",
+    "name": "Typography",
     "settings": [
       {
         "type": "font_picker",
@@ -679,7 +679,39 @@
             "label": "One More"
         }]
       },
+       {
+        "type" :"header",
+        "content" : "Hero",
+        "info" : "Sizing options for the top slider/image bannder"
+      },
 
+       {
+        "type" : "range",
+        "label" : "Hero Height",
+        "id" : "hero_height",
+        "default" : 400,
+        "step": 25,
+        "min" : 200,
+        "max": 600
+      },
+      {
+        "type" : "range",
+        "label" : "Hero Height (Small Screens)",
+        "id" : "hero_height_mobile",
+        "default" : 400,
+        "step": 25,
+        "min" : 200,
+        "max": 800
+      },
+       {
+        "type" : "range",
+        "label" : "Hero Height (Huge Screens)",
+        "id" : "hero_height_huge",
+        "default" : 550,
+        "step": 25,
+        "min" : 300,
+        "max": 800
+      },
       {
         "type" : "header",
         "content" : "Header Icons"
@@ -692,6 +724,7 @@
         "type" : "select",
         "id" : "social_layout",
         "label" : "Social Layout",
+        "default" : "after-logo",
         "options" : [
           {
             "value" : "after-menu",
@@ -949,43 +982,10 @@
       }
     ]
   },
-
   {
     "name": "Sitewide Styles",
     "settings": [
-       {
-        "type" :"header",
-        "content" : "Hero",
-        "info" : "Sizing options for the top slider/image bannder"
-      },
 
-       {
-        "type" : "range",
-        "label" : "Hero Height",
-        "id" : "hero_height",
-        "default" : 400,
-        "step": 25,
-        "min" : 200,
-        "max": 600
-      },
-      {
-        "type" : "range",
-        "label" : "Hero Height (Small Screens)",
-        "id" : "hero_height_mobile",
-        "default" : 400,
-        "step": 25,
-        "min" : 200,
-        "max": 800
-      },
-       {
-        "type" : "range",
-        "label" : "Hero Height (Huge Screens)",
-        "id" : "hero_height_huge",
-        "default" : 550,
-        "step": 25,
-        "min" : 300,
-        "max": 800
-      },
       {
         "type": "header",
         "content": "general"
@@ -1463,6 +1463,154 @@
     ]
   },
   {
+    "name" : "Auto Popup (Signup Form)",
+    "settings" : [
+      {
+        "type" : "header",
+        "content" : "Settings"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "ap_enable",
+        "label" : "Enable"
+      },
+      {
+        "type" : "select",
+        "id" : "ap_layout",
+        "label" : "Layout",
+        "options" : [
+          {
+            "value" : "image",
+            "label" : "Image"
+          },
+          {
+            "value" : "background",
+            "label" : "Background Image"
+          },
+          {
+            "value" : "columns",
+            "label" : "Side By Side"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "ap_behavior",
+        "label" : "Behavior",
+        "options" : [
+          {
+            "value" : "time",
+            "label" : "Time"
+          },
+          {
+            "value" : "exit-intent",
+            "label" : "Exit-Intent"
+          }
+        ]
+      },
+      {
+        "type"  :"range",
+        "label" : "Popup Timer",
+        "id" : "ap_timer",
+        "step" : 1,
+        "default" : 10,
+        "min" : 2,
+        "max" : 30
+      },
+      {
+        "type" : "header",
+        "content" : "Images"
+      },
+      {
+        "type" : "image_picker",
+        "label" : "Image",
+        "id" : "ap_image"
+      },
+      {
+        "type" : "image_picker",
+        "label" : "Image (Mobile)",
+        "id" : "ap_image_mobile"
+      },
+      {
+        "type" : "header",
+        "content" : "Content"
+      },
+      {
+        "type" : "text",
+        "id" : "ap_intro",
+        "label" : "Intro"
+      },
+      {
+        "type" : "text",
+        "id" : "ap_heading",
+        "label" : "Heading"
+      },
+      {
+        "type" : "text",
+        "id" : "ap_subtitle",
+        "label" : "Subtitle"
+      },
+      {
+        "type" : "richtext",
+        "id" : "ap_content",
+        "label" : "Content"
+      },
+      {
+        "type" : "html",
+        "label" : "HTML Content",
+        "id" : "ap_html"
+      },
+      {
+        "type" : "text",
+        "id" : "ap_button_text",
+        "label" : "Button Text"
+      },
+      {
+        "type" : "url",
+        "id" : "ap_button_link",
+        "label" : "Button Link"
+      },
+      {
+        "type" : "richtext",
+        "id" : "ap_disclaimer",
+        "label" : "Disclaimer"
+      },
+      {
+        "type" : "header",
+        "content" : "Styles"
+      },
+      {
+        "type" : "color",
+        "id" : "ap_background",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "ap_text",
+        "label" : "Text Color"
+      },
+      {
+        "type" : "color",
+        "id" : "ap_accent",
+        "label" : "Accent Color"
+      },
+       {
+        "type"  :"range",
+        "label" : "Border Radius",
+        "id" : "ap_border_radius",
+        "step" : 1,
+        "default" : 0,
+        "min" : 0,
+        "max" :40
+      },
+      {
+        "type" : "html",
+        "id" : "ap_custom_style" ,
+        "label" : "Custom Style"
+      }
+    ]
+  },
+  {
     "name" : "Visible Tags + Quantity",
     "settings" : [{
         "type": "header",
@@ -1747,13 +1895,11 @@
       {
         "type" : "color",
         "label" : "Signup Background Color",
-        "default" : "#1f1f1f",
         "id" : "signup_background_color"
       },
       {
         "type" : "color",
         "label" : "Signup Text Color",
-        "default" : "#ffffff",
         "id" : "signup_text_color"
       },
       {

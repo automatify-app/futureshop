@@ -66,7 +66,7 @@
 
   {% if include_button == true %}
     <div data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="button-wrap text--{{params.text_align}}">
-      {% if params.button_text != blank %}{% include 'button' %}{%endif%}
+      {% if params.button_text != blank %}{% render 'button' with url: params.button_url , text: params.button_text %}{%endif%}
       {% if params.button_1_text != blank %}{% include 'button' with classes: ' inherit ', url: params.button_1_url, text: params.button_1_text %}{%endif%}
       {% if params.button_2_text != blank %}{% include 'button' with classes: ' inherit ', url: params.button_2_url, text: params.button_2_text %}{%endif%}
     </div>

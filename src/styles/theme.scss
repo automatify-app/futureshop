@@ -28,7 +28,7 @@
 //Sitewide (in every store)
 
 @import './components/address-forms'; //Address forms column styling
-
+@import './components/auto-signup'; //Alert drawer, could be moved
 @import './components/alert-drawer'; //Alert drawer, could be moved
 @import './components/breadcrumbs'; //Breadcrumbs
 @import './components/buttons'; //Button resets (TODO: REMOVE)
@@ -38,6 +38,7 @@
 @import './components/dividers';
 @import './components/hero-banner';
 @import './components/icons';
+@import './components/instagram';
 @import './components/menus';
 @import './components/menu-extras';
 @import './components/mobile-images';

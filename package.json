@@ -44,6 +44,7 @@
     "classlist-polyfill": "^1.2.0",
     "clndr": "^1.5.1",
     "es6-promise": "^4.2.8",
+    "exit-intent-mobile-bugfix": "^1.2.8",
     "handlebars": "^4.7.6",
     "headroom.js": "^0.9.4",
     "jquery": "^3.5.1",

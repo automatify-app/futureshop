@@ -1,85 +1,39 @@
-.site-header__inner:before {
-  box-shadow: 0 0 16px rgba(0,0,0,0.1);
-}
-#hero .style--boxed .slide-content {
-  background: #efefef;
-  color: #3f3f3f;
-  box-shadow: 0 0 22px rgba(black, 0.1);
-}
-
-@include media-query($medium-up) {
-  #first-content {
-    margin-top: calc(-120px - 3vw);
-    color: white;
-    .common-header {
-      text-shadow: 0 0 20px rgba(black, 0.1);
-    }
-
-    &::before {
-      content:'';
-      position: absolute;
-      left: 0;
-      top: 0px;
-      height: 600px;
-      width: 100%;
-      background: linear-gradient(to bottom, rgba(black ,0) 0%, rgba(black, 0.12) 25%, rgba(black, 0) 100%);
-    }
-    .section-outer {
-      background: transparent;
-    }
+.instagram.section-outer {
+  padding:20px  15vw 20px 5vw;
+  .section-bg__image {
+      background-position: 76% 50%;
   }
 }
 
-.signup-form {
-  form.mlform {
-    .email {
-      flex: 1 1 140px;
+.first-content.featured-collection {
+    margin-top: calc(-120px - 6vw);
+    @include media-query($small) {
+      margin-top: -160px;
     }
-    .submit {
-      flex: 1 1 90px;
+    @include media-query($widescreen) {
+      margin-top: calc(-150px - 6vw);;
     }
-    input {
-      flex: 1 1 120px;
-      width: auto;
+    @include media-query($tiny) {
+      margin-top: -100px;
     }
-    input[data-type=email] {
-      border: none;
-      color: #efefef;
-      border-bottom: 2px solid #efefef;
-      min-width: 120px;
-      &::placeholder {
-        color: #efefef;
-      }
+    .common-header, .rte {
+      color: #fff;
+      text-shadow: 0 0 20px rgba(0, 0, 0, .1), 0 3px 10px rgba(0, 0, 0, .2), -1px -3px 10px rgba(0, 0, 0, .2)
     }
-    input[type=submit] {
-      color: $color-accent-inverse;
-      background: $color-accent;
-      border: none;
-      text-transform: uppercase;
-      font-family: var(--font-extra-real);
+}
+
+#listen {
+  .music-cover {
+box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  }
+  .music-content  {
+    background: rgba(black, 0.69);
+    max-width: 600px;;
+    .common-header__outer {
+      margin-bottom: 0;
+    }
+    .button-wrap {
+      margin: 0;
     }
   }
-}
-
-.footer-col .signup-form__inner {
-  margin: 10px 0;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-
-.related-products .collection-grid.product-grid {
-  width: 100%;
-  margin: 0 auto;
-}
-
-.site-header__wrap.headroom--top {
-  .site-header__inner:before {
-    opacity: 0 !important;
-  }
-}
-
-#shopify-section-related-products {
-  background: rgba(211, 208, 208, 0.82);
-  box-shadow: 0 0 34px rgba(0 ,0 ,0 ,0.1);
 }

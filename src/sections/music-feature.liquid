@@ -30,9 +30,9 @@
       {%endif%} {% endcomment %}
     </div>
     {%endif%}
-    <div class="music-links">
+    <div class="music-links button-wrap align--{{section.settings.text_align}}">
      {% for block in section.blocks %}
-        <a href="{{block.settings.url}}" data-aos="fade-up" data-aos-delay="{% increment delay | times: 50%}" class="button listen simple" title="{{block.settings.accessability_text}}"><i class="{{block.settings.classes}}" aria-hidden="true"></i> {{block.settings.button_text}}</a>
+        <a {% if section.settings.icon_color != blank %} style="color: {{section.settings.icon_color}}; " {%endif%} href="{{block.settings.url}}" data-aos="fade-up" data-aos-delay="{% increment delay | times: 50%}" class="button listen simple" title="{{block.settings.accessability_text}}"><i class="{{block.settings.classes}}" aria-hidden="true"></i> {{block.settings.button_text}}</a>
       {%endfor %}
     </div>
   </div>
@@ -61,30 +61,66 @@
     "name": "Music Feature",
     "class" : "standard-section",
     "settings": [
-      {
-        "type" : "header",
-        "content" : "Meta"
-      },
-      {
-        "type": "text",
-        "id" : "anchor_id",
-        "label" : "Section ID (for anchor links and specific styling)"
-      },
-  {
-        "type": "text",
-        "id" : "anchor_classes",
-        "label" : "Section classes (for  specific styling)"
-      },
-       {
-        "type": "text",
-        "id" : "title",
-        "label" : "Nice Name",
-        "info" : "Just for keeping the back end organized! Enter a nice name here",
-        "default" : "Music Feature"
-      },
+
       {
         "type" : "header",
         "content" : "Music Feature Content"
+      },
+      {
+        "type": "text",
+        "id": "introduction",
+        "label": "Introduction",
+        "default": "The newest"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Music"
+      },
+      {
+        "type" : "text",
+        "id" : "subtitle",
+        "label" : "Subtitle",
+        "default" : "Listen Now"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type" : "text",
+        "id" : "button_text",
+        "label" : "Button Text"
+      },
+      {
+        "type" : "url",
+        "label" : "Button URL",
+        "id" : "button_url"
+      },
+      {
+        "type" : "header",
+        "content" : "Music Settings"
+      },
+      {
+        "type" : "image_picker",
+        "id" : "image",
+        "label" : "Release Image"
+      },
+      {
+        "type": "html",
+        "id": "embed",
+        "label": "Embed"
+      },
+      {
+        "type": "color",
+        "id": "icon_color",
+        "label": "Icon Color"
+      },
+      {
+        "type": "header",
+        "content": "Styles"
       },
       {
         "type" : "select",
@@ -152,56 +188,31 @@
           }
         ]
       },
-      {
-        "type": "text",
-        "id": "introduction",
-        "label": "Introduction",
-        "default": "The newest"
-      },
-      {
-        "type": "text",
-        "id": "heading",
-        "label": "Heading",
-        "default": "Music"
-      },
-      {
-        "type" : "text",
-        "id" : "subtitle",
-        "label" : "Subtitle",
-        "default" : "Listen Now"
-      },
-      {
-        "type": "richtext",
-        "id": "text",
-        "label": "Text"
-      },
-      {
-        "type" : "text",
-        "id" : "button_text",
-        "label" : "Button Text"
-      },
-      {
-        "type" : "url",
-        "label" : "Button URL",
-        "id" : "button_url"
-      },
-      {
-        "type" : "header",
-        "content" : "Music Settings"
-      },
-      {
-        "type" : "image_picker",
-        "id" : "image",
-        "label" : "Release Image"
-      },
-      {
-        "type": "html",
-        "id": "embed",
-        "label": "Embed"
-      },
+
       {
         "type" : "header",
         "content" : "Section Settings"
+      },
+       {
+        "type" : "header",
+        "content" : "Meta"
+      },
+      {
+        "type": "text",
+        "id" : "anchor_id",
+        "label" : "Section ID (for anchor links and specific styling)"
+      },
+  {
+        "type": "text",
+        "id" : "anchor_classes",
+        "label" : "Section classes (for  specific styling)"
+      },
+       {
+        "type": "text",
+        "id" : "title",
+        "label" : "Nice Name",
+        "info" : "Just for keeping the back end organized! Enter a nice name here",
+        "default" : "Music Feature"
       },
       {
         "type" : "paragraph",

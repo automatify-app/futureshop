@@ -33,14 +33,10 @@
   {% include 'css-variables' %}
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
   {% include 'style-tags', layout: 'theme' %}
-  {%- render 'bold-common' -%}
+
   {% include 'theme-header' %}
 
-{% render 'digismoothie-candyrack' %}
-  {{ 'shopstorm-apps.scss.css' | asset_url | stylesheet_tag }}
-  {% include 'shopstorm-scripttags' %}
-{% include 'discount-combine' %}
-<script src="https://demandforapps
+
   <link rel="preload" href="{{ 'magiczoom.css' | asset_url}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <script src="{{ 'magiczoom.js' | asset_url }}" defer></script>
 

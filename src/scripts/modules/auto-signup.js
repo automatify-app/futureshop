@@ -1,45 +1,64 @@
-import  * as basicLightbox from 'basiclightbox'
+import * as basicLightbox from 'basiclightbox';
+import '../../../node_modules/basiclightbox/dist/basicLightbox.min.css';
+import exitIntent from 'exit-intent-mobile-bugfix';
 import Cookies from 'js-cookie';
-////Video Lightbox
-//Element with "data-module" is el
-
-
-
+import QueryString from 'query-string';
 
 export default class AutoSignup {
   constructor(el) {
-    this.el = el
-    this.popup;
-    this.init();
+    this.el = el;
 
-  }
-  init() {
+    const target = el.querySelector('[data-popup-content]');
+    const closeButton = el.querySelector('[data-close-popup="auto-popup"]');
+    this.timeout = this.el.getAttribute('data-ap-timeout')
+    this.behavior = this.el.getAttribute('data-ap-behavior')
 
-    this.target = this.el.querySelector('.popup-content');
-    this.popup = basicLightbox.create(this.target.innerHTML, {
+    this.instance = basicLightbox.create(target.outerHTML, {
       onClose: () => {
-        this.handleClose()
+        Cookies.set('auto-dismissed', 'true', { expires: 5 });
+      },
+    });
+
+    closeButton.addEventListener('click', function() {
+      if (this.instance) {
+        this.instance.close();
       }
     });
-    this.time = this.el.getAttribute('data-delay');
-    this.startTimer()
-  }
-  startTimer() {
-    if (this.time == 0) {;
-      this.showPopup();
-    } else {
+    this.isTest =
+      QueryString.parse(window.location.search).testPopup == 'true';
+    // const isTest = true;
+
+    if (this.behavior == 'time') {
       setTimeout(() => {
-        this.showPopup();
-      }, this.time * 1000);
-    }
-  }
-  showPopup() {
-    if (Cookies.get('newsletterDismissed') != 'true') {
-      this.popup.show();
+        this.tryToShow()
+      }, this.timeout* 1000);
+    } else if (this.behavior == 'exit-intent') {
+      let myExitSeconds = 30;
+      let myExitSecondsMobile = 12;
+      let myShowAgainSeconds = 20;
+
+      if (this.isTest) {
+        myExitSeconds = 5;
+        myExitSecondsMobile = 5;
+        myShowAgainSeconds = 1;
+      }
+      const self = this;
+      this.removeExitIntent = exitIntent({
+        maxDisplays: 1,
+        eventThrottle: 300,
+        threshold: 100,
+        debug: this.isTest,
+        showAfterInactiveSecondsDesktop: myExitSeconds,
+        showAfterInactiveSecondsMobile: myExitSecondsMobile,
+        onExitIntent: self.tryToShow.bind(self),
+      });
     }
   }
 
-  handleClose() {
-    Cookies.set('newsletterDismissed', 'true', {expires: 1});
+  tryToShow() {
+    if (Cookies.get('exit-dismissed') !== 'true' || this.isTest) {
+      this.instance.show();
+      this.removeExitIntent();
+    }
   }
 }
