@@ -121,8 +121,8 @@ body.header-overlay.overlay-shadow .image-section:first-child {
     .slide-content {
       // background: rgba(black, 0.8);
       // color: white;
-      width: auto;
-      max-width: calc(400px + 5vw);
+      // width: auto;
+      max-width: calc(350px + 4.5vw);
       margin: auto ;
       padding: calc(20px + 2vw) calc(12px + 1.2vw);
       .common-header {
@@ -168,10 +168,22 @@ body.header-overlay.overlay-shadow .image-section:first-child {
       .slide-content {
         margin-left: 0;
       }
+      @include media-query($small) {
+        margin-right: auto;
+      }
+      @include media-query($widescreen) {
+          margin-left: 5vw;
+        }
     }
     &[class*=right] {
       .slide-content {
-        margin-left: 0;
+        margin-right: 0;
+        @include media-query($small) {
+          margin-right: auto;
+        }
+        @include media-query($widescreen) {
+          margin-right: 5vw;
+        }
       }
     }
 

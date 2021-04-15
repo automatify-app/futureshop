@@ -1,39 +1,28 @@
-.instagram.section-outer {
-  padding:20px  15vw 20px 5vw;
-  .section-bg__image {
-      background-position: 76% 50%;
-  }
+#instagram .section-inner {
+  max-width: 100%;
+  width: 100%;
 }
 
-.first-content.featured-collection {
-    margin-top: calc(-120px - 6vw);
-    @include media-query($small) {
-      margin-top: -160px;
-    }
-    @include media-query($widescreen) {
-      margin-top: calc(-150px - 6vw);;
-    }
-    @include media-query($tiny) {
-      margin-top: -100px;
-    }
-    .common-header, .rte {
-      color: #fff;
-      text-shadow: 0 0 20px rgba(0, 0, 0, .1), 0 3px 10px rgba(0, 0, 0, .2), -1px -3px 10px rgba(0, 0, 0, .2)
-    }
+
+.site-header__wrap.headroom--pinned.headroom--not-top .site-header__inner .social-wrap {
+    max-height: 50px;
 }
 
-#listen {
-  .music-cover {
-box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+#shopify-section-collection-list-sitewide {
+  &::before {
+    content:'';
+    width: 80%;
+    max-width: 480px;
+    height: 50px;
+    background-size: contain;
+    background-position: 50% 50%;
+    margin: 22px auto;
+    display: block;
+    background-repeat: no-repeat
   }
-  .music-content  {
-    background: rgba(black, 0.69);
-    max-width: 600px;;
-    .common-header__outer {
-      margin-bottom: 0;
-    }
-    .button-wrap {
-      margin: 0;
-    }
-  }
+  margin-bottom: 40px;
+}
+
+nav.breadcrumb a {
+  text-decoration: underline;
 }
