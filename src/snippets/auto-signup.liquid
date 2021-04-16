@@ -1,17 +1,31 @@
 {% if settings.ap_enable == true %}
 <div class="auto-signup" data-module="auto-signup" data-ap-timeout="{{settings.ap_timer}}" data-ap-behavior="{{settings.ap_behavior}}" >
   <style>
-    .auto-popup {
+    .auto-signup__popup {
       background: {{settings.ap_background | default: "#ffffff"}};
       color: {{settings.ap_text | default: "#3f3f3f"}};
-      border-radius: {{settings.ap_timer | default: 0}}px;
-      --accent-color: {{settings.ap_border_radius | default: "#1f1f1f"}};
+      border-radius: {{settings.ap_border_radius | default: 0}}px;
+      --accent-color: {{settings.ap_accent | default: "#1f1f1f"}};
+      --bg-color: {{settings.ap_background | default: "#ffffff"}};
     }
-
+    @media (max-width: 750px) {
+      border-radius: {{settings.ap_border_radius | times: 0.75 | default: 0}}px;
+    }
     {{settings.ap_custom_style}}
   </style>
-  <div class="popup-content auto-popup layout--{{ap_layout}}" data-popup-content>
-    <button class="icon-button" style="position: absolute; top: 0; right: 0; padding: 12px; border: none; color: black; appearance: none; background: transparent;" data-close-popup="auto-popup"><i class="icon-times"></i></button>
+  <div class="popup-content auto-signup__popup layout--{{settings.ap_layout}}" data-popup-content>
+    <button class="icon-button" style="" data-close-popup="auto-popup"><i class="icon-times"></i></button>
+    {% if settings.ap_layout == "image" %}
+      <a href="{{settings.ap_button_url}}" target="_blank" rel="nofollow noreferrer noopener" class="auto-signup__image">
+        {% if settings.ap_image_mobile != blank %}
+          {% render 'responsive-image' with image: settings.ap_image_mobile, wrapper_class: "mobile-image", max_width: 1000, max_height: 1000 %}
+        {% endif %}
+        {% if settings.ap_image != blank %}
+          {% render 'responsive-image' with image: settings.ap_image, wrapper_class: "desktop-image", max_width: 1000, max_height: 1000 %}
+        {% endif %}
+      </a>
+      {%else%}
+
     <div class="auto-signup__image">
       {% if settings.ap_image_mobile != blank %}
         {% render 'responsive-image' with image: settings.ap_image_mobile, wrapper_class: "mobile-image", max_width: 1000, max_height: 1000 %}
@@ -27,7 +41,7 @@
           <h4 class="label">{{settings.ap_intro }}</h4>
         {%endif%}
         {% if settings.ap_heading  != blank %}
-        <h2 class="heading">{{settings.ap_heading | default: 'Join the list'}}</h2>
+        <h3 class="heading">{{settings.ap_heading | default: 'Join the list'}}</h3>
         {%endif%}
         {% if settings.ap_subtitle != blank %}
           <h4 class="label">{{settings.ap_subtitle }}</h4>
@@ -44,9 +58,13 @@
         <div class="button-wrap">{% render 'button' with url: settings.ap_button_link, text: settings.ap_button_text, external: true %}</div>
       {%endif%}
       {% if settings.ap_disclaimer != blank %}
-        <div class="rte text--small">{{settings.ap_disclaimer}}</div>
+        <small class="rte text--small">{{settings.ap_disclaimer}}</small>
       {%endif%}
     </div>
+    {%endif%}
+
+
+
   </div>
 </div>
 {%endif%}

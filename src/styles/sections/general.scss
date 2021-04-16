@@ -2,8 +2,11 @@ body {
   position: relative;
   height: auto;
 }
-
-
+body:not(.template-index) {
+  main {
+    padding-top: var(--header-ht, 120px);
+  }
+}
 .section-inner {
   position: relative;
   width: 100%;

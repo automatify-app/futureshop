@@ -11,7 +11,7 @@
       </div>
       {%endif%}
       <div class="content-wrap">
-        <header class="common-header type--{{slide.type}} align--{{slide.settings.text_align}} font--{{slide.settings.text_size}}">
+        <header class="common-header type--{{slide.type}} text--{{slide.settings.text_align}} font--{{slide.settings.text_size}}">
         {% if slide.settings.introduction != blank %}
           <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__introduction">{{ slide.settings.introduction | escape }}</h4>
         {% endif %}
@@ -30,7 +30,7 @@
       <div data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="rte common-rte">{{slide.settings.text}}</div>
       {%endif%}
           {% comment %} {% include 'common-header' %} {% endcomment %}
-          <div data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="button-wrap align--{{slide.settings.text_align}}">
+          <div data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="button-wrap text--{{slide.settings.text_align}}">
             {% if slide.settings.video_button == true %}<a href="{{slide.settings.url}}"data-module="lightbox" data-lightbox-type="video" data-lightbox-target="{{slide.settings.url}}" class="button inherit">Watch Video</a>{%endif%}
             {% if slide.settings.button_1_link != empty and slide.settings.button_1_text != empty %}<a href="{{slide.settings.button_1_link}}" {% if slide.settings.button_1_link contains "http" %}{% unless slide.settings.button_1_link contains request.host %} target="_blank" rel="nofollow noreferrer noopener" {%endunless %}{%endif%}  class="button inherit">{{slide.settings.button_1_text}}</a>{%endif%}
             {% if slide.settings.button_2_link != empty and slide.settings.button_2_text != empty %}<a href="{{slide.settings.button_2_link}}" {% if slide.settings.button_2_link contains "http" %}{% unless slide.settings.button_2_link contains request.host %} target="_blank" rel="nofollow noreferrer noopener" {%endunless %}{%endif%}  class="button inherit">{{slide.settings.button_2_text}}</a>{%endif%}

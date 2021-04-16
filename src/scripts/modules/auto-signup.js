@@ -10,8 +10,8 @@ export default class AutoSignup {
 
     const target = el.querySelector('[data-popup-content]');
     const closeButton = el.querySelector('[data-close-popup="auto-popup"]');
-    this.timeout = this.el.getAttribute('data-ap-timeout')
-    this.behavior = this.el.getAttribute('data-ap-behavior')
+    this.timeout = this.el.getAttribute('data-ap-timeout');
+    this.behavior = this.el.getAttribute('data-ap-behavior');
 
     this.instance = basicLightbox.create(target.outerHTML, {
       onClose: () => {
@@ -24,14 +24,17 @@ export default class AutoSignup {
         this.instance.close();
       }
     });
-    this.isTest =
-      QueryString.parse(window.location.search).testPopup == 'true';
+    this.isTest = QueryString.parse(window.location.search).testPopup == 'true';
     // const isTest = true;
 
     if (this.behavior == 'time') {
-      setTimeout(() => {
-        this.tryToShow()
-      }, this.timeout* 1000);
+      if (!this.isTest) {
+        setTimeout(() => {
+          this.tryToShow();
+        }, this.timeout * 1000);
+      } else {
+        this.tryToShow();
+      }
     } else if (this.behavior == 'exit-intent') {
       let myExitSeconds = 30;
       let myExitSecondsMobile = 12;

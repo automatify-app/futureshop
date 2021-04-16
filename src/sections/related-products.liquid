@@ -7,7 +7,7 @@
   {% if section.settings.heading != blank or section.settings.introduction != blank %}
     {% include 'common-header' with include_button: false %}
   {%endif%}
-    <div class="collection-grid product-grid size--{{section.settings.size}}" data-max="{{section.settings.limit}}" >
+    <div class="collection-grid related-grid product-grid size--{{section.settings.size}}" data-max="{{section.settings.limit}}" >
     {% for product in recommendations.products %}
       {% render 'grid-item' with product: product, section: section %}
     {% endfor %}
@@ -211,6 +211,12 @@ var loadProductRecommendationsIntoSection = function() {
       var container = document.createElement("div");
       container.innerHTML = request.response;
       productRecommendationsSection.parentElement.innerHTML = container.querySelector(".product-recommendations").innerHTML;
+
+      var finishedProducts = container.querySelectorAll('.product-grid-item');
+      var collectionGrid = document.querySelector('.related-grid');
+      if (finishedProducts && collectionGrid) {
+        collectionGrid.setAttribute('data-max', finishedProducts.length);
+      }
     }
   };
   request.send();

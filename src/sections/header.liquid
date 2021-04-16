@@ -290,8 +290,17 @@ Style + Script tags
 <style>
     .site-header__inner img, .site-header__inner svg {
       max-width: {{ section.settings.logo_max_width }}px;
-
     }
+
+    .nav-halves__logo {
+      flex-basis:{{ section.settings.logo_max_width_mobile }}px
+    }
+  @media (min-width: 751px) {
+
+    .nav-halves__logo {
+      flex-basis:{{ section.settings.logo_max_width }}px
+    }
+  }
     header.site-header {
     {% if section.settings.logo != blank %}
       flex-basis: {{section.settings.logo_max_width}}px;

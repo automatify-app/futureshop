@@ -1,12 +1,10 @@
 
 .slide-content {
   position: relative;
+  max-width: calc(450px + 7.5vw);
   width: 100%;
-  height: 100%;
-  left: 0;
-  top:0;
-  display: flex;
-  align-items: center;
+  margin: auto;
+
 
   justify-content: center;
   z-index: 20;
@@ -122,7 +120,6 @@ body.header-overlay.overlay-shadow .image-section:first-child {
       // background: rgba(black, 0.8);
       // color: white;
       // width: auto;
-      max-width: calc(350px + 4.5vw);
       margin: auto ;
       padding: calc(20px + 2vw) calc(12px + 1.2vw);
       .common-header {
@@ -148,52 +145,16 @@ body.header-overlay.overlay-shadow .image-section:first-child {
 
 
 
-    &[class*=position--bottom] {
-      .slide-content {
-        margin-bottom: 0;
-        @include media-query($small) {
-          margin-top: 40vw;
-        }
-      }
-    }
-    &[class*=position--top] {
-      .slide-content {
-        margin-top: 0;
-      }
-      @include media-query($small) {
-          margin-bottom: 40vw;
-        }
-    }
-    &[class*=left] {
-      .slide-content {
-        margin-left: 0;
-      }
-      @include media-query($small) {
-        margin-right: auto;
-      }
-      @include media-query($widescreen) {
-          margin-left: 5vw;
-        }
-    }
-    &[class*=right] {
-      .slide-content {
-        margin-right: 0;
-        @include media-query($small) {
-          margin-right: auto;
-        }
-        @include media-query($widescreen) {
-          margin-right: 5vw;
-        }
-      }
-    }
-
-
 
 
 }
 
 
 .swiper-slide.style--boxed {
+
+  .slide-content {
+      max-width: calc(350px + 4.5vw);
+  }
   @include media-query($medium-up) {
     @include boxedStyle();
 
@@ -257,14 +218,60 @@ body.header-overlay.overlay-shadow .image-section:first-child {
       }
   }
 }
+.swiper-slide {
+
+
+    &[class*=position--bottom] {
+      .slide-content {
+        margin-bottom: 0;
+        @include media-query($small) {
+          margin-top: 40vw;
+        }
+      }
+    }
+    &[class*=position--top] {
+      .slide-content {
+        margin-top: 0;
+      }
+      @include media-query($small) {
+          margin-bottom: 40vw;
+        }
+    }
+    &[class*=left] {
+      .slide-content {
+        margin-left: 0;
+        @include media-query($small) {
+          margin-right: auto;
+        }
+        @include media-query($widescreen) {
+            margin-left: 8vw;
+          }
+      }
+    }
+    &[class*=right] {
+      .slide-content {
+        margin-right: 0;
+        @include media-query($small) {
+          margin-right: auto;
+        }
+        @include media-query($widescreen) {
+          margin-right: 8vw;
+        }
+      }
+    }
+
+}
 
 .swiper-slide.mobile-style--centered {
-  text-align: center;
-  .slide-content, .common-header {
+  @include media-query($small) {
     text-align: center;
-  }
-  .button-wrap {
-    justify-content: center;
-    text-align: center;
+
+    .slide-content, .common-header {
+      text-align: center;
+    }
+    .button-wrap {
+      justify-content: center;
+      text-align: center;
+    }
   }
 }

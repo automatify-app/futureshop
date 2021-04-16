@@ -142,7 +142,7 @@ body[class*=product-style] {
     }
 
 
-    &[data-max="4"] {
+    &[data-max="4"] ,  &[data-max="8"] {
       grid-template-columns: repeat(4, 1fr);
 
     }

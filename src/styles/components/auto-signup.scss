@@ -1,0 +1,53 @@
+.auto-signup .popup-content {
+  display: none;
+}
+
+.auto-signup__popup {
+  position: relative;
+  overflow: hidden;
+  [data-close-popup] {
+    color: var(--bg-color);
+    z-index: 20;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-shadow: 0 0 4px rgba(black, 0.1);
+    padding: 12px;
+    border: none;
+    appearance: none;
+    background: transparent;
+  }
+  .auto-signup__content {
+    padding: calc(12px + 1vw);
+    a.button {
+      margin: 8px -1px;
+      background: var(--accent-color)
+    }
+  }
+
+
+
+  &.layout--columns {
+    @include media-query($medium-up) {
+
+      display: flex;
+      flex-direction:  row-reverse;
+      align-items: center;
+      justify-content: center;
+
+
+      .auto-signup__image {
+        flex: 0 0 50%;
+        height: auto;
+      }
+
+
+    }
+
+
+  }
+
+  &.layout--image {
+
+  }
+}

@@ -1,28 +1,25 @@
-#instagram .section-inner {
-  max-width: 100%;
-  width: 100%;
+img#Image-508234498231-0 {
+  object-position: 50% 20% ;
 }
 
-
-.site-header__wrap.headroom--pinned.headroom--not-top .site-header__inner .social-wrap {
-    max-height: 50px;
+body.button-style--solid .button-wrap .button + .button {
+  background: $color-secondary;
+  color: $color-secondary-inverse;
 }
 
-#shopify-section-collection-list-sitewide {
-  &::before {
-    content:'';
-    width: 80%;
-    max-width: 480px;
-    height: 50px;
-    background-size: contain;
-    background-position: 50% 50%;
-    margin: 22px auto;
-    display: block;
-    background-repeat: no-repeat
-  }
-  margin-bottom: 40px;
-}
-
-nav.breadcrumb a {
-  text-decoration: underline;
+.first-content.featured-collection {
+    margin-top: calc(-120px - 6vw);
+    @include media-query($small) {
+      margin-top: -160px;
+    }
+    @include media-query($widescreen) {
+      margin-top: calc(-150px - 6vw);;
+    }
+    @include media-query($tiny) {
+      margin-top: -100px;
+    }
+    .common-header, .rte {
+      color: #fff;
+      text-shadow: 0 0 20px rgba(0, 0, 0, .1), 0 3px 10px rgba(0, 0, 0, .2), -1px -3px 10px rgba(0, 0, 0, .2)
+    }
 }

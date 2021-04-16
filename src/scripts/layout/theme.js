@@ -213,7 +213,7 @@ class Theme {
     if (this.main && !this.bottomActive && (!this.hero || !this.heroActive)) {
 
 
-      this.main.style.paddingTop = this.header.getBoundingClientRect().height + this.header.getBoundingClientRect().top + 'px';
+      // this.main.style.paddingTop = this.header.getBoundingClientRect().height + this.header.getBoundingClientRect().top + 'px';
     }
     if (this.bottomActive && this.hero) {
       if (document.body.classList.contains('template-index')) {
@@ -226,7 +226,7 @@ class Theme {
 
     if (this.header) {
       document.body.style.setProperty('--header-offset', this.header.getBoundingClientRect().height + this.header.getBoundingClientRect().top + 'px');
-      document.body.style.setProperty('--header-ht', this.header.getBoundingClientRect().height - 25 + 'px');
+      document.body.style.setProperty('--header-ht', this.header.getBoundingClientRect().height  + 'px');
       const brander = this.header.querySelector('.branding-header')
       if (brander) {
         document.body.style.setProperty('--brander-ht', 0 - brander.getBoundingClientRect().height + 'px');
@@ -258,10 +258,8 @@ class Theme {
     }, 100);
 
     setTimeout(() => {
-
-      //Cheat, but only once
       window.dispatchEvent(new Event('resize'));
-    }, 2000);
+    }, 3000);
   }
   allScroll() {
     if (window.scrollY > 0) {

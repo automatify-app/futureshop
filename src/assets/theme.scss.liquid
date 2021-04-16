@@ -123,7 +123,61 @@ body .image-section:first-child {
 
   {%endcase %}
 
-  }
+}
+
+
+h3.heading {
+   {% case settings.header_size %}
+    {% when 'small' %}
+      font-size: calc(1.6rem + 1.2vw);
+      @media (min-width: 1200px) {
+        font-size: 40px;
+      }
+
+      &.mega {
+        font-size: calc(2.25rem + 1.5vw);
+         @media (min-width: 1200px) {
+        font-size: 45px;
+      }
+      }
+    {% when 'standard' %}
+
+      font-size: calc(1.35rem + 1vw);
+      @media (min-width: 1200px) {
+        font-size: 3.5rem;
+      }
+      &.mega , .font--mega & {
+        font-size: calc(2.3rem + 2.3vw);
+        @media (min-width: 1200px) {
+          font-size: 5.5rem;
+        }
+      }
+    {% when 'large' %}
+      font-size: calc(2.3rem + 1.8vw);
+      @media (min-width: 1200px) {
+        font-size: 5.5rem;
+      }
+      &.mega, .font-mega &  {
+         font-size: calc(3rem + 3vw);
+        @media (min-width: 1200px) {
+          font-size: 6.5rem;
+        }
+      }
+    {% when 'huge' %}
+      font-size: calc(3.4rem + 2vw);
+      @media (min-width: 1200px) {
+        font-size: 6.5rem;
+      }
+      &.mega , .font--mega & {
+        font-size: calc(4rem + 3vw);
+        @media (min-width: 1200px) {
+          font-size: 7.8rem;
+        }
+      }
+
+  {%endcase %}
+
+}
   // Heading spacing adjustments
 .font--heading, .heading, .main-header {
   margin-top: {{settings.header_margin_top | divided_by: 10.0 }}em;
