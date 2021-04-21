@@ -1,25 +1,33 @@
-img#Image-508234498231-0 {
-  object-position: 50% 20% ;
+#shopify-section-collection-template .common-header:first-child {
+    max-width: 720px;
+    margin: calc(12px + 5vw) auto calc(5px + 1.5vw)
 }
 
-body.button-style--solid .button-wrap .button + .button {
-  background: $color-secondary;
-  color: $color-secondary-inverse;
+.site-footer h4.label {
+    font-family: var(--font-heading-real)
 }
 
-.first-content.featured-collection {
-    margin-top: calc(-120px - 6vw);
+#hero .video-slide {
+    min-height: calc(320px + 17vw)
+}
+
+#hero .video__background {
+    -o-object-position: 50% 10;
+    object-position: 50% 10
+}
+
+section.section-outer.overlay-collection {
+    margin-top: calc(-10rem - 9vw);
     @include media-query($small) {
-      margin-top: -160px;
+      margin-top: -200px;
+      padding: 0 6px;
     }
-    @include media-query($widescreen) {
-      margin-top: calc(-150px - 6vw);;
-    }
-    @include media-query($tiny) {
-      margin-top: -100px;
-    }
-    .common-header, .rte {
-      color: #fff;
-      text-shadow: 0 0 20px rgba(0, 0, 0, .1), 0 3px 10px rgba(0, 0, 0, .2), -1px -3px 10px rgba(0, 0, 0, .2)
-    }
+}
+
+section.section-outer.overlay-collection .common-header {
+    color: #fff
+}
+
+.site-footer .simple-menu a {
+    text-decoration: underline
 }
