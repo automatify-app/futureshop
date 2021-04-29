@@ -314,7 +314,8 @@ Style + Script tags
         max-width: {{ section.settings.logo_max_width_mobile }}px;
       }
       header.site-header {
-        flex-basis: {{section.settings.logo_max_width_mobile}}px;
+        flex: 0 1 {{section.settings.logo_max_width_mobile}}px;
+        max-width: {{section.settings.logo_max_width_mobile}}px;
       }
     }
 </style>

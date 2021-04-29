@@ -1,22 +1,21 @@
-<div class="slideshow-slide swiper-slide video-slide style--{{slide.settings.content_style}} position----{{slide.settings.content_position}} mobile-style--{{slide.settings.content_style_mobile}} slide--{{slide.id}}"> <style>
-    .slide--{{slide.id}} {
-      --slide-overlay-opacity: {{slide.settings.overlay | times: 0.01 }};
+<div class="slideshow-slide swiper-slide video-slide style--{{slide.settings.content_style}} position----{{slide.settings.content_position}} mobile-style--{{slide.settings.content_style_mobile}} slide--{{slide.id}}">
+<style>
+        .slide--{{slide.id}} {
       background-color: {{slide.settings.background_color}};
-      color: {{slide.settings.text_color}}
-    }
-    @media (max-width: 720px) {
-    .slide--{{slide.id}} {
-      --slide-overlay-opacity: {{slide.settings.overlay_mobile | times: 0.01 }};
-    }
-
+      --section-bg: {{slide.settings.background_color}};
+      color: {{slide.settings.text_color}};
+      --section-text: {{slide.settings.text_color}};
     }
     {% if slide.settings.content_style == 'boxed' %}
     .slide--{{slide.id}} .slide-content {
-      background-color: {{slide.settings.background_color}}; color: {{slide.settings.text_color}}
+      {% assign bbg_opacity = slide.settings.box_background_opacity | times: 0.01 | default: 0.90 %}
+      background-color: {{slide.settings.background_color | color_modify: "alpha", bbg_opacity }};
+      background-color: {{slide.settings.box_color | color_modify: "alpha", bbg_opacity }};
+      color: {{slide.settings.text_color}}
     }
-
     {%endif%}
   </style>
+
   {% render 'vidbox' with type: slide.settings.video_type, mp4_large: slide.settings.mp4_large, mp4_small: slide.setting.mp4_small, webm_large: slide.settings.webm_large, webm_small: slide.settings.webm_small, video_url: slide.settings.url, fallback_gif: slide.settings.fallback_gif, fallback_image: slide.settings.image , overlay: slide.settings.overlay_op, start_time: slide.settings.start_time %}
   {% unless background == true %}
     {% render  'slide-content' with slide: slide %}

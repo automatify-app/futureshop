@@ -5,6 +5,9 @@
 .auto-signup__popup {
   position: relative;
   overflow: hidden;
+  &.layout--columns {
+    max-width: 850px;
+  }
   [data-close-popup] {
     color: var(--bg-color);
     z-index: 20;
@@ -19,35 +22,70 @@
   }
   .auto-signup__content {
     padding: calc(12px + 1vw);
+
+    p {
+      @include media-query($small) {
+        font-size: 14px;
+      }
+    }
     a.button {
       margin: 8px -1px;
       background: var(--accent-color)
     }
   }
 
-
-
   &.layout--columns {
     @include media-query($medium-up) {
 
       display: flex;
       flex-direction:  row-reverse;
-      align-items: center;
+      align-items: stretch;
       justify-content: center;
 
-
       .auto-signup__image {
+        background: var(--accent-color);
         flex: 0 0 50%;
         height: auto;
       }
-
-
     }
-
-
   }
 
-  &.layout--image {
 
+  #mc_embed_signup {
+    form {
+      padding: 0;
+    }
+    label {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+    }
+    .mc-field-group input {
+      height: auto;
+      line-height: 1;
+      font-weight: 400;
+      font-family: var(--font-body-real);
+    }
+    .mc-field-group  select {
+      line-height: 1;
+      font-size: 14px;
+      padding: 0.3em ;
+    }
+    input[type=submit].button {
+      @extend %button;
+      height: auto;
+      background: var(--color-accent);
+    }
+  }
+}
+
+.auto-signup__image .responsive-image__wrapper {
+  @include media-query($medium-up) {
+    height: 100%;
+
+    img {
+      object-fit: cover;
+    }
   }
 }

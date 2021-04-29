@@ -191,6 +191,7 @@ body {
   &.button-style--gradient {
     %button {
       background: linear-gradient( 175deg, $color-secondary, $color-accent);
+      color: $color-accent-inverse;
       &.secondary {
         background: linear-gradient( 175deg, $color-accent, $color-secondary-darker);
 
@@ -198,6 +199,7 @@ body {
     }
     .button.simple {
       background: transparent;
+      color: inherit;
     }
   }
   &.button-style--outline {

@@ -7,9 +7,8 @@ import QueryString from 'query-string';
 export default class AutoSignup {
   constructor(el) {
     this.el = el;
-
     const target = el.querySelector('[data-popup-content]');
-    const closeButton = el.querySelector('[data-close-popup="auto-popup"]');
+
     this.timeout = this.el.getAttribute('data-ap-timeout');
     this.behavior = this.el.getAttribute('data-ap-behavior');
 
@@ -19,11 +18,6 @@ export default class AutoSignup {
       },
     });
 
-    closeButton.addEventListener('click', function() {
-      if (this.instance) {
-        this.instance.close();
-      }
-    });
     this.isTest = QueryString.parse(window.location.search).testPopup == 'true';
     // const isTest = true;
 
@@ -61,7 +55,26 @@ export default class AutoSignup {
   tryToShow() {
     if (Cookies.get('exit-dismissed') !== 'true' || this.isTest) {
       this.instance.show();
-      this.removeExitIntent();
+      this.setupClose();
+      // this.removeExitIntent();
     }
+  }
+
+  setupClose() {
+    var closeButtons = document.querySelectorAll(
+      '[data-close-popup="auto-popup"]'
+    );
+
+    var self = this;
+    console.log(closeButtons);
+    console.log(self.instance);
+    closeButtons.forEach((button) => {
+      button.addEventListener('click', function() {
+        console.log('Clicked close button');
+        if (self.instance) {
+          self.instance.close();
+        }
+      });
+    });
   }
 }

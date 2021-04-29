@@ -61,7 +61,7 @@
 
   &.headroom--not-top {
     position: fixed !important;
-    transform: translateY(-101%);
+    transform: translateY(-107%);
     transition: transform 200ms ease;
     top: 0;
 
@@ -211,7 +211,7 @@
 
 @keyframes getitin {
   from {
-    transform: translateY(-100%);
+    transform: translateY(-107%);
   }
   to {
     transform: translateY(0);
@@ -223,7 +223,7 @@
     transform: translateY(0);
   }
   to {
-    transform: translateY(-100%);
+    transform: translateY(-107%);
   }
 }
 

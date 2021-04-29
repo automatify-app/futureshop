@@ -38,9 +38,14 @@
 
       {%include 'product-form' %}
 
-      {% if section.settings.show_description == true %}<div class="rte" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+      {% if section.settings.show_description == true %}
+      <div class="rte" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
         {{ product.description }}
       </div>
+      {% else %}
+        {% if product.description != empty %}
+          <a href="{{product.url}}" class="button simple inherit">Learn More</a>
+        {%endif%}
       {%endif%}
 
     </div>
