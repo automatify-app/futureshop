@@ -77,3 +77,4 @@ secrets.json
 .ruby-version
 .env*
 !.env.example
+/vendor/

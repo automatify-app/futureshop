@@ -28,7 +28,7 @@ const selectors = {
   visibleImageWrapper: `[data-product-image-wrapper]:not(.${classes.hide})`,
   imageWrapperById: (id) => `${selectors.imageWrapper}[data-image-id='${id}']`,
   productForm: '[data-product-form]',
-  productPrice: '[data-product-price]',
+  productPrice: '[data-product-price-wrapper]',
   thumbnail: '[data-product-single-thumbnail]',
   thumbnailById: (id) => `[data-thumbnail-id='${id}']`,
   thumbnailActive: '[data-product-single-thumbnail][aria-current]',
@@ -41,14 +41,14 @@ register('product', {
       productFormElement.dataset.productHandle,
     )
 
-
     if (await this.variantInventory) {
       this.isVariantsActive = true;
     }
+      this.productForm = new ProductForm(productFormElement, this.product, {
+        onOptionChange: this.onFormOptionChange.bind(this),
+      });
 
-    this.productForm = new ProductForm(productFormElement, this.product, {
-      onOptionChange: this.onFormOptionChange.bind(this),
-    });
+      console.log(this.productForm);
 
     this.onThumbnailClick = this.onThumbnailClick.bind(this);
     this.onThumbnailKeyup = this.onThumbnailKeyup.bind(this);
@@ -102,6 +102,7 @@ register('product', {
 
   onFormOptionChange(event) {
     const variant = event.dataset.variant;
+    console.log(variant);
     if (variant) {
       var form = document.querySelector(selectors.productForm);
       for (var i = 0; i < variant.options.length; i++) {
