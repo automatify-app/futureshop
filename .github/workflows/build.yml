@@ -19,7 +19,7 @@ jobs:
         yarn zip
 
     - name: Create Release
-      id: create-release
+      id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
@@ -34,7 +34,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
       with:
-        upload_url: ${{steps.create_release.outputs.upload_url}}
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: './futureshop.zip'
         asset_name: futureshop.zip
         asset_content_type: application/zip
