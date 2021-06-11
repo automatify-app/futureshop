@@ -28,7 +28,7 @@ const selectors = {
   visibleImageWrapper: `[data-product-image-wrapper]:not(.${classes.hide})`,
   imageWrapperById: (id) => `${selectors.imageWrapper}[data-image-id='${id}']`,
   productForm: '[data-product-form]',
-  productPrice: '[data-product-price-wrapper]',
+  productPrice: '[data-product-price]',
   thumbnail: '[data-product-single-thumbnail]',
   thumbnailById: (id) => `[data-thumbnail-id='${id}']`,
   thumbnailActive: '[data-product-single-thumbnail][aria-current]',

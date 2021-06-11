@@ -1,3 +1,5 @@
+
+@use "sass:math";
 $headerPadding: 25px;
 .flash {
   animation: pulse 600ms $ease 1;
@@ -159,7 +161,7 @@ $headerPadding: 25px;
       left: 0;
       margin: 0 0 -2px;
       border: none;
-      padding: $headerPadding/1.5 $headerPadding/1.5 ($headerPadding + 2) !important;
+      padding: math.div($headerPadding,1.5) math.div($headerPadding,1.5) ($headerPadding + 2) !important;
       background: $color-drawer-button-background;
       color: $color-drawer-button-text;
       border-radius: 0;

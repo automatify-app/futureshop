@@ -143,7 +143,9 @@ body[class*=product-style] {
 
 
     &[data-max="4"] ,  &[data-max="8"] {
-      grid-template-columns: repeat(4, 1fr);
+      @include media-query($medium-up) {
+        grid-template-columns: repeat(4, 1fr);
+      }
 
     }
       &[data-max="4"], &[data-max="2"] {
