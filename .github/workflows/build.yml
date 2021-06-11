@@ -3,3 +3,38 @@ on: [push]
 jobs:
   build-zip:
     runs-on: ubuntu-latest
+    steps:
+    - name: Checkout all repositories
+      uses: actions/checkout@v2
+
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+        check-latest: true
+
+    - name: Yarn create everything
+      run: |
+        yarn install
+        yarn zip
+
+    - name: Create Release
+      id: create-release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+      with:
+        tag_name: <to-fill>
+        release_name: <to-fill>
+        draft: true,
+        prerelease: false
+
+    - name: Save artifact for later
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+      with:
+        upload_url: ${{steps.create_release.outputs.upload_url}}
+        asset_path: './futureshop.zip'
+        asset_name: futureshop.zip
+        asset_content_type: application/zip
