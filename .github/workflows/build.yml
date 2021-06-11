@@ -1,0 +1,5 @@
+name: build-production
+on: [push]
+jobs:
+  build-zip:
+    runs-on: ubuntu-latest
