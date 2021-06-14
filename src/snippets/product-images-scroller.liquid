@@ -11,9 +11,9 @@
 
           {% for image in product.images %}
 
-            {% capture wrapper_class %}{% unless featured_image == image %} hide {% endunless %} {% if settings.product_zoom == true %} MagicZoom{%endif%} {% endcapture %}
+            {% capture wrapper_class %}{% unless featured_image == image %} hide {% endunless %}  {% endcapture %}
 
-            {% include 'responsive-image' with
+            {% render 'swiper-image' with
               image: image,
               max_width: 700,
               max_height: 800,

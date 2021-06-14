@@ -29,7 +29,7 @@ ul.product-thumbnails {
   margin: 0  auto calc(12px + 2vw);
 
   @include media-query($medium-up) {
-
+    width: 95%;
     padding: 30px 12px;
   }
 
@@ -89,8 +89,10 @@ ul.product-thumbnails {
 
   @include media-query($small) {
     min-height: 0;
-    padding: 0;
+    padding: 20px;
   }
+
+
 
   // margin-top:6vmin;
   margin: auto 0;
@@ -190,4 +192,14 @@ body.product-title--caps {
   .product-details__wrap > h1 {
     text-transform: uppercase;
   }
+}
+
+.zoom-pane {
+  position: absolute;
+  top: 0;left:0;
+  height: 100%;
+  max-height: 65vh;
+  width: 100%;
+  z-index: 100;
+  pointer-events: none;
 }

@@ -11,6 +11,7 @@ export default class GridSwatch {
     const swatches = [].slice.call(el.querySelectorAll('.swatch-element'));
     let linkWrap = getClosest(el, '.grid-item');
     var imgWrap = linkWrap.querySelector('.grid-item__image');
+    console.log(linkWrap)
     linkWrap.addEventListener('click', function(event) {
       var button = event.target.parentNode;
       if (swatches.includes(event.target) || swatches.includes(button)) {

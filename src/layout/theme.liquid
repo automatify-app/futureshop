@@ -37,11 +37,6 @@
   {% include 'theme-header' %}
 
 
-  <link rel="preload" href="{{ 'magiczoom.css' | asset_url}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <script src="{{ 'magiczoom.js' | asset_url }}" defer></script>
-
-  <link rel="stylesheet" href="https://unpkg.com/beerslider/dist/BeerSlider.css">
-
 
   {% if settings.typekit_text %}{{settings.typekit_text}}{%endif%}
 {% if settings.header_code != blank %}

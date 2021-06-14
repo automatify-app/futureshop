@@ -1,13 +1,8 @@
-import Swiper,  {Navigation, Pagination, Thumbs, A11y } from 'swiper';
-
+import Swiper,  {Navigation, Pagination, Thumbs, A11y , Lazy} from 'swiper';
+import Drift from "drift-zoom";
 // configure Swiper to use modules
-Swiper.use([Navigation, Pagination, Thumbs, A11y]);
+Swiper.use([Navigation, Pagination, Thumbs, A11y, Lazy]);
 
-
-// import '../components/magiczoom.js';
-var mzOptions = {
-  zoomPosition: 'inner'
-};
 
 export default class ProductImageWrap {
   constructor(el) {
@@ -19,7 +14,6 @@ export default class ProductImageWrap {
     this.init();
   }
   init() {
-
    if (this.imageSwiper) {
      if (this.images.length > 1) {
        this.initSwiper();
@@ -32,6 +26,19 @@ export default class ProductImageWrap {
     //REmove shopify hide class.
     this.images.forEach(image=> {
       image.classList.remove('hide');
+
+      if (image.hasAttribute('data-zoom')) {
+
+        let pane = image.closest('.product-images');
+        if (window.innerWidth > 720) {
+          const parent = image.closest('.product-grid__wrap')
+          pane = parent.querySelector('.zoom-pane')
+        }
+        const imgDrift = new Drift(image, {
+          paneContainer: pane,
+          zoomFactor: 2.5
+        });
+      }
     });
 
     //Thumb stuff first
@@ -99,7 +106,10 @@ export default class ProductImageWrap {
       navigation: bigNav,
       centerInsufficientSlides: true,
       pagination: bigPage,
-      thumbs: bigThumbs
+      thumbs: bigThumbs,
+      lazy: true,
+      watchSlidesVisibility: true,
+      preloadImages: false,
     })
 
     var classObserver = new MutationObserver(mutations => {

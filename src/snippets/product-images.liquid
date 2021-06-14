@@ -11,9 +11,9 @@
         <div class="swiper-wrapper">
           {% for image in product.images %}
           <div class="swiper-slide product-image ">
-            {% capture wrapper_class %}{% unless featured_image == image %} hide {% endunless %} never-hide{% if settings.product_zoom == true %} MagicZoom{%endif%} {% endcapture %}
+            {% capture wrapper_class %}{% unless featured_image == image %} hide {% endunless %} never-hide {% endcapture %}
 
-            {% include 'responsive-image' with
+            {% render 'swiper-image' with
               image: image,
               max_width: 700,
               max_height: 800,

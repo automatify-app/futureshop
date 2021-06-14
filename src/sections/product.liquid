@@ -7,7 +7,9 @@
     {%elsif section.settings.thumbnail_style == "scroller" %}
     {% include 'product-images-scroller' %}
     {%endif%}
+
     <div class="product-details__wrap">
+    <div class="zoom-pane"></div>
 
  {% if settings.tag_location == 'above'%}{% include 'visible-tags'%}{%endif%}
 

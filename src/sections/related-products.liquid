@@ -191,6 +191,49 @@
 }
 {% endschema %}
 {% javascript %}
+
+var getClosest = function (elem, selector) {
+  for (; elem && elem !== document; elem = elem.parentNode) {
+    if (elem.matches(selector)) return elem;
+  }
+  return null;
+};
+
+/// Grid-swatches
+class GridSwatch {
+  constructor(el) {
+    this.el = el
+    const swatches = [].slice.call(el.querySelectorAll('.swatch-element'));
+    let linkWrap = getClosest(el, '.grid-item');
+    var imgWrap = linkWrap.querySelector('.grid-item__image');
+    console.log(linkWrap)
+    linkWrap.addEventListener('click', function(event) {
+      console.log(event.target);
+      var button = event.target.parentNode;
+      if (swatches.includes(event.target) || swatches.includes(button)) {
+        if (button.classList.contains('selected')) {
+
+
+        } else {
+          event.preventDefault();
+          imgWrap.classList.remove('variant-image-active');
+          swatches.forEach(el=> {
+            el.classList.remove('selected')
+          })
+          setTimeout(() => {
+            button.classList.add('selected');
+          }, 25);
+          linkWrap.setAttribute('href', button.getAttribute('data-url'));
+          if (typeof button.getAttribute('data-image') == 'string' && button.getAttribute('data-image') != 'false') {
+            imgWrap.classList.add('variant-image-active');
+            imgWrap.style.backgroundImage = "url('" + button.getAttribute('data-image') + "')";
+          }
+        }
+      }
+    });
+  }
+}
+
 var loadProductRecommendationsIntoSection = function() {
   // Look for an element with class 'product-recommendations'
   var productRecommendationsSection = document.querySelector(".product-recommendations");
@@ -216,11 +259,25 @@ var loadProductRecommendationsIntoSection = function() {
       var collectionGrid = document.querySelector('.related-grid');
       if (finishedProducts && collectionGrid) {
         collectionGrid.setAttribute('data-max', finishedProducts.length);
+        loadSection();
       }
     }
   };
   request.send();
 };
+
+var  loadSection = function() {
+  var container = document.querySelector('.related-products');
+  var finishedProducts = container.querySelectorAll('.product-grid-item');
+  finishedProducts.forEach(el=> {
+    var gridSwatch = el.querySelector('[data-module="grid-swatch"]');
+    if (gridSwatch) {
+      new GridSwatch(gridSwatch);
+    }
+  })
+}
+
+
 // If your section has theme settings, the theme editor
 // reloads the section as you edit those settings. When that happens, the
 // recommendations need to be fetched again.
