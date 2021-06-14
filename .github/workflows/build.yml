@@ -22,5 +22,5 @@ jobs:
       id: create_release
       uses: ncipollo/release-action@v1
       with:
-        GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+        token: ${{ secrets.DEPLOY_TOKEN }}
         artifact: './futureshop.zip'
