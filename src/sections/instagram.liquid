@@ -16,7 +16,7 @@
   </div>
   {% if section.settings.button_text != blank and section.settings.button_text != blank %}
     <div class="button-wrap center" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
-      <a href="{{section.settings.button_url | default: settings.social_instagram_link }}" class="button accent" target="_blank" rel="nofollow"><i class="icon-instagram"></i> {{section.settings.button_text}}</a>
+      <a href="{{section.settings.button_url | default: settings.social_instagram_link }}" class="button accent" target="_blank" rel="nofollow">{% if section.settings.button_icon != "disabled" %}<i class="{{section.settings.button_icon | default: 'icon-instagram'}}"></i> {%endif%}{{section.settings.button_text}}</a>
     </div>
 
       {%endif%}
@@ -31,27 +31,97 @@
 
 {% schema %}
   {
-	"name": "Instagram",
+	"name": "Embedded Feed",
 	"class": "standard-section instagram-section",
-	"settings": [{
+	"settings": [
+		{
 			"type": "header",
-			"content": "Meta"
+			"content": "Content"
 		},
 		{
 			"type": "text",
-			"id": "anchor_id",
-			"label": "Section ID (for anchor links and specific styling)"
+			"id": "introduction",
+			"label": "Introduction"
 		},
 		{
 			"type": "text",
-			"id": "title",
-			"label": "Nice Name",
-			"info": "Just for keeping the back end organized! Enter a nice name here",
+			"id": "heading",
+			"label": "Heading",
 			"default": "Instagram"
 		},
 		{
+			"type": "text",
+			"id": "subtitle",
+			"label": "Subtitle"
+		},
+		{
+			"type": "richtext",
+			"id": "text",
+			"label": "Text"
+		},
+		{
+			"type": "text",
+			"id": "button_text",
+			"label": "Button Text",
+			"info": "Leave blank to hide!",
+			"default": "More Photos"
+		},
+		{
+			"type": "url",
+			"id": "button_url",
+			"label": "Button URL",
+			"info": "Leave blank to use default Instagram link"
+		},
+		{
+			"type" : "select",
+			"id" : "button_icon",
+			"label" : "Button Icon",
+			"options" : [
+				{
+					"value" : "icon-instagram",
+					"label" : "Instagram"
+				},
+				{
+					"value" : "icon-tiktok",
+					"label" : "TikTok"
+				},
+				{
+					"value" : "icon-youtube",
+					"label" : "Youtube"
+				},
+				{
+					"value" : "disabled",
+					"label" : "Disabled"
+				}
+			]
+		},
+		{
+			"type": "checkbox",
+			"id": "include_all_icons",
+			"label": "Include all social icons?",
+			"default": true
+		},
+		{
 			"type": "header",
-			"content": "Instagram Section Content"
+			"content": "Instagram Settings"
+		},
+		{
+			"type": "paragraph",
+			"content": "As of March 30, 2020, there is no way to embed Instagram without a Instagram for Business account, so we use [Elfsight](https://apps.elfsight.com) now! Please create a widget there and copy the embed code below!"
+		},
+		{
+			"type": "html",
+			"id": "html",
+			"label": "ElfSight Embed Code",
+			"default": "<script src=\"https://apps.elfsight.com/p/platform.js\" defer></script><div class=\"elfsight-app-8f6047fb-58b6-45c2-9bb1-b4fd052ae5bc\"></div>"
+		},
+		{
+			"type": "header",
+			"content": "Section Settings"
+		},
+		{
+			"type": "paragraph",
+			"content": "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
 		},
 		{
 			"type": "select",
@@ -116,68 +186,6 @@
 					"label" : "Simple"
 				}
 			]
-		},
-		{
-			"type": "text",
-			"id": "introduction",
-			"label": "Introduction"
-		},
-		{
-			"type": "text",
-			"id": "heading",
-			"label": "Heading",
-			"default": "Instagram"
-		},
-		{
-			"type": "text",
-			"id": "subtitle",
-			"label": "Subtitle"
-		},
-		{
-			"type": "richtext",
-			"id": "text",
-			"label": "Text"
-		},
-		{
-			"type": "text",
-			"id": "button_text",
-			"label": "Button Text",
-			"info": "Leave blank to hide!",
-			"default": "More Photos"
-		},
-		{
-			"type": "url",
-			"id": "button_url",
-			"label": "Button URL",
-			"info": "Leave blank to use default Instagram link"
-		},
-		{
-			"type": "checkbox",
-			"id": "include_all_icons",
-			"label": "Include all social icons?",
-			"default": true
-		},
-		{
-			"type": "header",
-			"content": "Instagram Settings"
-		},
-		{
-			"type": "paragraph",
-			"content": "As of March 30, 2020, there is no way to embed Instagram without a Instagram for Business account, so we use [Elfsight](https://apps.elfsight.com) now! Please create a widget there and copy the embed code below!"
-		},
-		{
-			"type": "html",
-			"id": "html",
-			"label": "ElfSight Embed Code",
-			"default": "<script src=\"https://apps.elfsight.com/p/platform.js\" defer></script><div class=\"elfsight-app-8f6047fb-58b6-45c2-9bb1-b4fd052ae5bc\"></div>"
-		},
-		{
-			"type": "header",
-			"content": "Section Settings"
-		},
-		{
-			"type": "paragraph",
-			"content": "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
 		},
 		{
 			"type": "color",
@@ -267,6 +275,23 @@
 					"label": "Parallax"
 				}
 			]
+		},
+		{
+			"type": "header",
+			"content": "Meta"
+		},
+		{
+			"type": "text",
+			"id": "anchor_id",
+			"label": "Section ID (for anchor links and specific styling)",
+			"default" : "embedded-feed"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Nice Name",
+			"info": "Just for keeping the back end organized! Enter a nice name here",
+			"default": "Instagram"
 		}
 	],
 	"presets": [{
