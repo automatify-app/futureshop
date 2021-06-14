@@ -26,9 +26,7 @@ export default class Announcement {
     return true;
   }
 
-
   init() {
-
     if (!this.active) {
       return false;
     }
@@ -45,6 +43,7 @@ export default class Announcement {
   enableBar() {
     if (this.active) {
       this.el.classList.add('announceActive');
+      document.body.classList.add('announcement-active');
       this.resize();
       document.body.style.overflowY = 'visible';
       if (this.closer) {
@@ -53,15 +52,15 @@ export default class Announcement {
     }
   }
   disableBar() {
-
-
-
     this.el.classList.remove('announceActive');
+    document.body.classList.remove('announcement-active');
     sessionStorage.setItem('announcementDismissed', 'true');
   }
 
   resizeBar() {
     this.ht = this.el.getBoundingClientRect().height;
+    document.body.style.setProperty('announcement-height', this.ht + 'px');
+
     if (this.el.classList.contains('announceActive')) {
       this.el.style.top = -this.ht + 'px';
     }

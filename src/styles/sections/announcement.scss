@@ -6,7 +6,9 @@
   position: relative;
   z-index: 2000;
   .fixed-announcement & {
-    overflow: hidden;
+    @include media-query($medium-up) {
+      overflow: hidden;
+    }
     @include media-query($small) {
       top: var(--header-ht);
       position: absolute;
@@ -25,6 +27,11 @@ body.announcement-active {
   margin-top: var(--announcement-height);
   &.fixed-announcement {
     margin-top: 0;
+    .site-header__inner {
+      @include media-query($medium-up) {
+        padding-top: var(--announcement-height);
+      }
+    }
   }
 }
 
@@ -46,7 +53,7 @@ body.announcement-active {
   text-align: center;
   z-index: 1000;
 
-  &.fixed {
+  .fixed-announcement & {
     position: fixed;
     top: 0 !important;
     @include media-query($small) {
