@@ -1,11 +1,20 @@
 name: build-production
-on: [push]
+on:
+  push:
+    tags:
+      - '*'
 jobs:
   build-zip:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout all repositories
       uses: actions/checkout@v2
+
+    - name: Cache for node_modules
+      uses: actions/cache@v2
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
     - name: Setup Node
       uses: actions/setup-node@v2
