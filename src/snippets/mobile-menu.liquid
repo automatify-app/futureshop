@@ -21,10 +21,12 @@
     {%-endif-%}
 </ul>
 {% endcapture %}
-
+{% if settings.mobile_menu_1 != blank %}
 {% assign menu = linklists[settings.mobile_menu_1] %}
+{%endif%}
+{% if settings.mobile_menu_2 != blank %}
 {% assign submenu = linklists[settings.mobile_menu_2] %}
-
+{%endif %}
 <div class="mobile-menu shop-drawer " data-mm-behavior="{{settings.mm_behavior}}" data-module="mobile-menu" data-mm-size="{{settings.mm_size}}" data-mm-direction="{{mm_direction}}">
   <div class="shop-drawer__background" data-drawer-closer></div>
   <div class="shop-drawer__content mobile-menu__content mm-width--{{settings.mobile_menu_width | default: 'normal'}}">

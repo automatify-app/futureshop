@@ -91,7 +91,7 @@ Starting variables
   {% comment %} Sidebar header above {% endcomment %}
 {% if header_layout == 'sidebar-header' %}
   <section class="header-above">
-    {% render 'nav-toggle' with show_text: settings.include_icon_text %}
+    {% render 'nav-toggle' with show_text: settings.mm_show_menu_text %}
     {% if settings.search_layout != 'disabled' %}
       {{search_markup}}
     {%endif%}
@@ -228,7 +228,7 @@ Starting variables
     <div class="mobile-cart menu-icon mobile-icon">
       {% render 'cart-markup' with show_text: settings.mm_show_icon_text %}
     </div>
-    {% render 'nav-toggle' %}
+    {% render 'nav-toggle' with show_text: settings.mm_show_menu_text %}
         {% if header_layout contains 'sidebar' %}
     </div>
     {%endif%}

@@ -40,21 +40,21 @@
         "id": "color_accent_inverse",
         "label": "Accent Inverse",
         "default": "#ffffff",
-        "info": "Inverse of accent for buttons, etc"
+        "info": "Inverse of accent for buttons. For example, button text color on an accent-color background"
       },
       {
         "type": "color",
         "id": "color_secondary",
         "label": "Secondary",
         "default": "#003F67",
-        "info": "Another Accent Color (buttons)"
+        "info": "Used for gradient ends and alternative buttons"
       },
       {
         "type": "color",
         "id": "color_secondary_inverse",
         "label": "Secondary Inverse",
         "default": "#D7EEFC",
-        "info": "Inverse of secondary for buttons, etc"
+        "info": "Inverse of secondary (for button text)."
       },
       {
         "type": "header",
@@ -79,32 +79,38 @@
       {
         "type": "color",
         "id": "color_drawer_background",
-        "label": "Cart Drawer Background"
+        "label": "Cart Drawer Background",
+        "default" : "#FFFFFF"
       },
       {
         "type": "color",
         "id": "color_drawer_text",
-        "label": "Cart Drawer Drawer Text"
+        "label": "Cart Drawer Drawer Text",
+        "default" : "#3f3f3f"
       },
       {
         "type": "color",
         "id": "color_drawer_button_text",
-        "label": "Cart Drawer Button Text"
+        "label": "Cart Drawer Button Text",
+        "default" : "#FFFFFF"
       },
       {
         "type": "color",
         "id": "color_drawer_button_background",
-        "label": "Cart Drawer Button Background"
+        "label": "Cart Drawer Button Background",
+        "default" : "#000000"
       },
       {
         "type": "color",
         "id": "color_menu_drawer_background",
-        "label": "Menu Drawer Background"
+        "label": "Menu Drawer Background",
+        "default" : "#fafafa"
       },
       {
         "type": "color",
         "id": "color_menu_drawer_text",
-        "label": "Menu Drawer Text"
+        "label": "Menu Drawer Text",
+        "default" : "#3f3f3f"
       },
       {
         "type": "color",
@@ -827,18 +833,19 @@
       {
         "type" : "link_list",
         "id" : "mobile_menu_1",
-        "label" : "Mobile Menu 1"
+        "label" : "Override main mobile menu"
       },
       {
         "type" : "link_list",
         "id" : "mobile_menu_2",
-        "label" : "Mobile Menu 2",
+        "label" : "Mobile Submenu",
         "info" : "Typically a de-emphasized menu"
       },
       {
         "type" : "select",
         "id" : "mm_behavior",
         "label" : "Mobile Menu Behavior",
+        "info" : "Determines which screen size the mobile/collapsed menu shows on!",
         "default" : "small",
         "options" : [
           {

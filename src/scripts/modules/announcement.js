@@ -59,7 +59,7 @@ export default class Announcement {
 
   resizeBar() {
     this.ht = this.el.getBoundingClientRect().height;
-    document.body.style.setProperty('announcement-height', this.ht + 'px');
+    document.body.style.setProperty('--announcement-height', this.ht + 'px');
 
     if (this.el.classList.contains('announceActive')) {
       this.el.style.top = -this.ht + 'px';
