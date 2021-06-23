@@ -330,15 +330,15 @@ h3.heading {
 
 {% if settings.tag_color != blank %}
 h6.visible-tag  {
-  color: {{settings.tag_color}};
+  color: {{settings.tag_color | default: settings.color_body_text}};
   font-weight: {{settings.tag_font_weight | default: 700 }};
 }
 {%endif%}
 
 {% if settings.tag_background != blank %}
 .visible-tag__outer.style--backgrounded h6.visible-tag {
-  background-color: {{settings.tag_background}};
-  color: {{settings.tag_color}};
+  background-color: {{settings.tag_background | default: settings.color_accent }};
+  color: {{settings.tag_color | default: settings.color_accent_inverse}};
 }
 {%endif%}
 

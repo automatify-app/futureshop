@@ -55,14 +55,17 @@ export default class Announcement {
     this.el.classList.remove('announceActive');
     document.body.classList.remove('announcement-active');
     sessionStorage.setItem('announcementDismissed', 'true');
+    this.resizeBar()
   }
 
   resizeBar() {
     this.ht = this.el.getBoundingClientRect().height;
-    document.body.style.setProperty('--announcement-height', this.ht + 'px');
-
     if (this.el.classList.contains('announceActive')) {
+      document.body.style.setProperty('--announcement-height', this.ht + 'px');
+
       this.el.style.top = -this.ht + 'px';
+    } else {
+      document.body.style.setProperty('--announcement-height', '0px');
     }
   }
 }
