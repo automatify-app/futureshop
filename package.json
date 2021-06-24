@@ -14,7 +14,7 @@
     "url": "https://bitbucket.org/FutureshirtsDev/futureshop"
   },
   "devDependencies": {
-    "@shopify/slate-tools": "https://github.com/evankford/simpleify/releases/download/v1.0.3/shopify-slate-tools-v1.0.3.tgz",
+    "@shopify/slate-tools": "https://github.com/evankford/simpleify/releases/download/v1.1.1/shopify-slate-tools-1.1.1.tgz",
     "babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
     "babel-plugin-transform-es2015-block-scoping": "^6.26.0",
     "babel-plugin-transform-es2015-parameters": "^6.24.1",
