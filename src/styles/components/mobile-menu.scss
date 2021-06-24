@@ -24,6 +24,7 @@
 
 .mobile-menu__inner {
   --header-text: var(--color-menu-drawer-text);
+  --header-text-hover: var(--color-menu-drawer-text);
   .mobile-socials, .cart-icon {
     opacity: 1;
   }

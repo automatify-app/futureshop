@@ -209,52 +209,52 @@ h3.heading {
   {%endcase %}
 }
 
-//Target all label styles
-.label, .zoom-helper {
-    // Label styles from settings
-    {% if settings.label_style == 'caps' %}
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    {%elsif settings.label_style == 'italic' %}
-      font-style: italic;
-    {%endif%}
+// //Target all label styles
+// .label, .zoom-helper {
+//     // Label styles from settings
+//     {% if settings.label_style == 'caps' %}
+//       text-transform: uppercase;
+//       letter-spacing: 0.1em;
+//     {%elsif settings.label_style == 'italic' %}
+//       font-style: italic;
+//     {%endif%}
 
-    {% case settings.font_family_label %}
-      {%when 'body' %}
-    font-family: var(--font-body-real);
-    font-weight: {{ settings.font_body.weight | default: 400 }};
-    {%when 'heading' %}
-    font-family: var(--font-heading-real);
-    font-weight: {{ settings.font_heading.weight | default: 400 }};
-    {%when 'extra' %}
-    font-family: var(--font-extra-real);
-    font-weight: {{ settings.font_extra.weight | default: 400 }};
-    {%when 'script' %}
-    font-family: var(--font-script-real);
-    font-weight: 400;
-  {%endcase %}
+//     {% case settings.font_family_label %}
+//       {%when 'body' %}
+//     font-family: var(--font-body-real);
+//     font-weight: {{ settings.font_body.weight | default: 400 }};
+//     {%when 'heading' %}
+//     font-family: var(--font-heading-real);
+//     font-weight: {{ settings.font_heading.weight | default: 400 }};
+//     {%when 'extra' %}
+//     font-family: var(--font-extra-real);
+//     font-weight: {{ settings.font_extra.weight | default: 400 }};
+//     {%when 'script' %}
+//     font-family: var(--font-script-real);
+//     font-weight: 400;
+//   {%endcase %}
 
-  {% case settings.label_size %}
-      {% when 'xs' %}
-       font-size: 14px;
-      @media (min-width: 1100px) {
-        font-size: 16.5px;
-      }
-    {% when 'small' %}
-       font-size: 15px;
-      @media (min-width: 1100px) {
-        font-size: 19px;
-      }
-    {% when 'large' %}
-       font-size: 21px;
-      @media (min-width: 1100px) {
-        font-size: 25px;
-      }
+//   {% case settings.label_size %}
+//       {% when 'xs' %}
+//        font-size: 14px;
+//       @media (min-width: 1100px) {
+//         font-size: 16.5px;
+//       }
+//     {% when 'small' %}
+//        font-size: 15px;
+//       @media (min-width: 1100px) {
+//         font-size: 19px;
+//       }
+//     {% when 'large' %}
+//        font-size: 21px;
+//       @media (min-width: 1100px) {
+//         font-size: 25px;
+//       }
 
-  {%endcase %}
+//   {%endcase %}
 
 
-  }
+//   }
 
   h5.label, .h5.label {
     {% case settings.label_size %}
@@ -352,4 +352,78 @@ h6.visible-tag  {
 //Site header
 .site-header__inner-wrap {
   padding: {{settings.header_vertical_spacing | default: 0 }}px 0;
+}
+
+
+.nav-inner__wrap {
+   {% case settings.font_family_menu %}
+    {%when 'body' %}
+      font-family: var(--font-body-real);
+      font-weight: {{ settings.font_body.weight }};
+      {%when 'heading' %}
+      font-family: var(--font-heading-real);
+      font-weight: {{ settings.font_heading.weight }};
+      {%when 'extra' %}
+      font-family: var(--font-extra-real);
+      font-weight: {{ settings.font_extra.weight }};
+      {%when 'script' %}
+      font-family: var(--font-script-real);
+      font-weight: 400;
+    {%endcase %}
+  a, button {
+    line-height: {{settings.menu_line_height | divided_by:10.0 }};
+    padding: {{settings.menu_padding_top | divided_by: 10.0 }}em  {{settings.menu_padding_horiz | divided_by: 10.0 }}em {{settings.menu_padding_bottom | divided_by: 10.0 }}em ;
+    text-transform: {{settings.menu_capitalization | default: "none"}};
+    font-weight: {{settings.menu_font_weight | default: "700"}};
+    letter-spacing: {{settings.menu_letter_spacing | default: 10 | divided_by: 20.0 | minus: 0.5 }}em;
+    font-style: {{settings.menu_text_style | default : "Standard"}};
+    font-size: {{settings.menu_font_size | default: '17'}}px;
+    @media (max-width: 720px) {
+      font-size: {{settings.menu_font_size_mobile | default: '16'}}px;
+    }
+  }
+
+}
+
+.label, .zoom-helper  {
+  {% case settings.font_family_label %}
+  {%when 'body' %}
+    font-family: var(--font-body-real);
+    font-weight: {{ settings.font_body.weight }};
+    {%when 'heading' %}
+    font-family: var(--font-heading-real);
+    font-weight: {{ settings.font_heading.weight }};
+    {%when 'extra' %}
+    font-family: var(--font-extra-real);
+    font-weight: {{ settings.font_extra.weight }};
+    {%when 'script' %}
+    font-family: var(--font-script-real);
+    font-weight: 400;
+  {%endcase %}
+
+  line-height: {{settings.label_line_height | divided_by:10.0 }};
+  margin: {{settings.label_margin_top | divided_by: 10.0 }}em  auto {{settings.label_margin_bottom | divided_by: 10.0 }}em ;
+  text-transform: {{settings.label_capitalization | default: "none"}};
+  font-weight: {{settings.label_font_weight | default: "700"}};
+  letter-spacing: {{settings.label_letter_spacing | default: 10 | divided_by: 40.0 | minus: 0.2 }}em;
+  font-style: {{settings.label_text_style | default : "Standard"}};
+  font-size: {{settings.label_font_size | default: '17'}}px;
+  @media (max-width: 720px) {
+    font-size: {{settings.label_font_size_mobile | default: '16'}}px;
+  }
+
+
+}
+
+h4.label {
+  font-size: {{settings.label_font_size | default: '17'}}px;
+  @media (max-width: 720px) {
+    font-size: {{settings.label_font_size_mobile | default: '16'}}px;
+  }
+}
+h5.label {
+  font-size: {{settings.label_font_size | times: 0.9 | default: '15.5'}}px;
+  @media (max-width: 720px) {
+    font-size: {{settings.label_font_size_mobile | times: 0.9 | default: '14'}}px;
+  }
 }

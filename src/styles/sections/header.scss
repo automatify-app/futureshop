@@ -18,8 +18,12 @@
   // background-color: var(--header-bg);
   // color: var(--header-text);
 
-  a {
+  a, button {
     color: var(--header-text);
+
+    &:hover {
+      color: var(--header-text-hover, var(--header-text))
+    }
   }
   width: 100%;
   height: auto;
@@ -345,6 +349,7 @@
     display: inline-block;
   }
 }
+
 .header-fullwidth {
   flex: 1 1 100%;
   text-align: center;

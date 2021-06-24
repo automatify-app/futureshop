@@ -135,7 +135,7 @@ Starting variables
       {% include 'social-icons' %}
     {%endif%}
 
-  <nav role="navigation" class="main-nav {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%} mobile-align--{{section.settings.mobile_menu_text_align}} mobile-text--{{section.settings.mobile_text}} mobile-text-inner--{{section.settings.mobile_inner_text}} align--{{section.settings.menu_text_align}} {% if section.settings.layout_header == 'menu-centered' %} has-halves {%endif%} " id="site-nav" >
+  <nav role="navigation" class="main-nav {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%} mobile-align--{{section.settings.mobile_menu_text_align}} mobile-text--{{section.settings.mobile_text}} mobile-text-inner--{{section.settings.mobile_inner_text}} align--{{settings.menu_text_align}} {% if section.settings.layout_header == 'menu-centered' %} has-halves {%endif%} " id="site-nav" >
     <div class="nav-inner">
     <div class="nav-inner__background"></div>
     <div class="nav-inner__wrap {% if settings.social_layout == 'after-menu' %}  has-socials {%endif%} font--{{settings.font_family_menu | default: 'heading'}} weight--{{settings.font_weight_menu | default: 'bold'}} style--{{settings.font_style_menu | default: 'standard'}}" >
@@ -165,7 +165,7 @@ Starting variables
         {% for i in (0 ..menu_break) %}
         {% assign link = menu.links[i] %}
           {% assign isbacklink = '' %}
-          {% if section.settings.back_to_site == 'first' and i == 0 %} {% assign isbacklink = 'back-link' %}{%endif%}
+          {% if settings.back_to_site == 'first' and i == 0 %} {% assign isbacklink = 'back-link' %}{%endif%}
           {% include 'menu-li'%}
         {%endfor %}
       </div>
@@ -177,7 +177,7 @@ Starting variables
           {% for i in (continue .. menu_count) %}
             {% assign link = menu.links[i] %}
             {% assign isbacklink = '' %}
-            {% if section.settings.back_to_site == 'last' and i == menu_count%} {% assign isbacklink = 'back-link' %}{%endif%}
+            {% if settings.back_to_site == 'last' and i == menu_count%} {% assign isbacklink = 'back-link' %}{%endif%}
             {% include 'menu-li'%}
         {%endfor%}
         {% if settings.search_layout == 'after-menu'  or settings.cart_layout == 'after-menu' %}
@@ -191,8 +191,8 @@ Starting variables
     {%else %}{%comment%}If not menu-centered {%endcomment%}
         {% for link in menu.links %}
           {% assign isbacklink = '' %}
-          {% if section.settings.back_to_site == 'first' and forloop.index <= 1%} {% assign isbacklink = 'back-link' %}{%endif%}
-          {% if section.settings.back_to_site == 'last' and forloop.index >= linklists[section.settings.menu].links.size %} {% assign isbacklink = 'back-link' %}{%endif%}
+          {% if settings.back_to_site == 'first' and forloop.index <= 1%} {% assign isbacklink = 'back-link' %}{%endif%}
+          {% if settings.back_to_site == 'last' and forloop.index >= linklists[section.settings.menu].links.size %} {% assign isbacklink = 'back-link' %}{%endif%}
           {% include 'menu-li'%}
         {% endfor %}
           {{menu_extras}}
@@ -403,37 +403,7 @@ Style + Script tags
         "id": "menu",
         "label": "Menu",
         "default": "main-menu"
-    }, {
-        "type": "select",
-        "id": "menu_text_align",
-        "label": "Menu Text Align",
-        "default" : "right",
-        "options": [{
-            "value": "left",
-            "label": "Left"
-        }, {
-            "value": "center",
-            "label": "Center"
-        }, {
-            "value": "right",
-            "label": "Right"
-        }]
-    }, {
-        "type": "select",
-        "id": "back_to_site",
-        "label": "Back To Site Link Position",
-        "default": "none",
-        "options": [{
-            "value": "none",
-            "label": "None"
-        }, {
-            "value": "last",
-            "label": "Last Link"
-        }, {
-            "value": "first",
-            "label": "First Link"
-        }]
-    }, {
+    },  {
         "type": "header",
         "content": "Mobile"
     }, {

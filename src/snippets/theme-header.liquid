@@ -40,6 +40,9 @@ body {
     {% if settings.color_header_text %}
       --header-text: {{settings.color_header_text | default: "inherit" }};
     {%endif %}
+    {% if settings.color_header_text_hover %}
+      --header-text-hover: {{settings.color_header_text_hover | default: "inherit" }};
+    {%endif %}
       {% if settings.color_header_overlay_text != blank %}
       --color-overlay: {{settings.color_header_overlay_text | default: "inherit" }};
     {%endif %}

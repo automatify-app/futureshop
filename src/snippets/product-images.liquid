@@ -1,5 +1,5 @@
 
-<div class="product-images__wrap {% if settings.product_zoom == true %} has-zoom {%endif%}"  data-zoom-enabled="{% if settings.product_zoom == true%}true{%else%}false{%endif%}" data-module="product-image-wrap"  data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" >
+<div class="product-images__wrap {% if settings.product_zoom == true %} has-zoom {%endif%}"  data-zoom-enabled="{% if settings.product_zoom == true%}true{%else%}false{%endif%}" data-module="product-image-wrap" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" >
   {% comment %} visible tags over image {% endcomment %}
  {% if settings.tag_location == 'top' or settings.tag_location == 'bottom' %}{% include 'visible-tags'%}{%endif%}
 
@@ -52,7 +52,6 @@
             {% endif %}
       </ul>
     {% endif %}
-    <div id="zoomPlaceholder"></div>
   </div>
 
 

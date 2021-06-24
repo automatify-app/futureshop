@@ -58,7 +58,7 @@ nav.main-nav {
   }
   .search-outer {
     button {
-      color: var(--header-text);
+
       margin-top: 0;
 
     }
@@ -92,12 +92,13 @@ nav.main-nav {
     }
   }
 
-  a {
-    color: var(--header-text);
-    &:visited {
-      color: var(--header-text);
-    }
-  }
+  // a {
+  //   color: var(--header-text);
+  //   &:visited {
+  //     color: var(--header-text);
+
+  //   }
+  // }
 
 
   @include media-query($small) {
@@ -181,21 +182,7 @@ body.nav-open {
     letter-spacing: inherit;
     font-weight: inherit;
   }
-  &.style--narrow {
-    letter-spacing: -0.045em;
-    font-size: 1.5rem;
-  }
 
-  &.style--caps {
-    font-size: 1.4rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-  &.style--caps-big {
-    font-size: 1.56rem;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
-  }
 
   &.has-socials {
     display: flex;
@@ -306,10 +293,12 @@ ul.main-menu {
     color: var(--header-text);
     font-family: inherit;
     font-weight: inherit;
-  }
-}
 
-ul.main-menu {
+    &:hover {
+      color: var(--header-text-hover);
+    }
+  }
+
   ul.child-menu {
     position: absolute;
     top: 100%;
@@ -362,8 +351,6 @@ ul.child-menu {
   display: block;
   padding: 0;
 
-
-
   li {
     display: block;
     position: relative;
@@ -373,13 +360,6 @@ ul.child-menu {
     padding: 0.4em 0;
     margin: 0.3em 0;
     transition: transform 500ms ease, opacity 500ms ease;
-
-
-    //Transition
-
-    //  border-bottom: 2px solid #3f424d;
-
-
 
 
     &:hover {

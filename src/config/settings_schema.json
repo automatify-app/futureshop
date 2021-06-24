@@ -324,83 +324,7 @@
         "max": 20,
         "step": 1
       },
-      {
-        "type": "header",
-        "content": "menu"
-      },
-      {
-        "type": "select",
-        "id": "font_family_menu",
-        "label": "Menu Font Family",
-        "default": "body",
-        "options": [
-          {
-            "value": "body",
-            "label": "Body"
-          },
-          {
-            "value": "heading",
-            "label": "Heading"
-          },
-          {
-            "value": "extra",
-            "label": "Extra"
-          },
-          {
-            "value" : "script",
-            "label" : "Script"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "font_style_menu",
-        "label": "Menu Font Style",
-        "default": "narrow",
-        "options": [
-          {
-            "value": "standard",
-            "label": "Standard"
-          },
-          {
-            "value": "narrow",
-            "label": "Modern (Narrow)"
-          },
-          {
-            "value": "caps",
-            "label": "Small Caps"
-          },
-          {
-            "value": "caps-big",
-            "label": "All Caps (Big)"
-          },
-          {
-            "value": "italics",
-            "label": "Italics"
-          }
-        ]
-      },
 
-      {
-        "type": "select",
-        "id": "font_weight_menu",
-        "label": "Menu Font Weight",
-        "default": "bold",
-        "options": [
-          {
-            "value": "bold",
-            "label": "Bold"
-          },
-          {
-            "value": "normal",
-            "label": "Normal"
-          },
-          {
-            "value": "light",
-            "label": "Light"
-          }
-        ]
-      },
 
       {
         "type": "header",
@@ -410,8 +334,7 @@
         "type": "select",
         "id": "font_family_label",
         "label": "Label Font Family",
-        "info": "Used in pre-headings and info across the site",
-        "default": "body",
+        "default": "heading",
         "options": [
           {
             "value": "body",
@@ -426,54 +349,153 @@
             "label": "Extra"
           },
           {
-            "value" : "script",
-            "label" : "Script"
+            "value": "script",
+            "label": "Script"
           }
         ]
       },
       {
-        "type": "select",
-        "id": "label_style",
-        "label": "Label Style",
-        "info": "Used in pre-headings and info across the site",
-        "default": "caps",
-        "options": [
-          {
-            "value": "caps",
-            "label": "Caps"
-          },
-          {
-            "value": "italic",
-            "label": "Italic"
-          },
-          {
-            "value": "standard",
-            "label": "Standard"
-          }
-        ]
+        "type": "range",
+        "id": "label_font_size",
+        "label": "Label Font Size",
+        "min": 12,
+        "default": 17,
+        "max": 25,
+        "step": 1
       },
       {
+        "type": "range",
+        "id": "label_font_size_mobile",
+        "label": "Label Font Size (Mobile)",
+        "min": 10,
+        "default": 16,
+        "max": 23,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "label_letter_spacing",
+        "label": "Label Letter Spacing",
+        "min": 0,
+        "default": 10,
+        "max": 30,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "label_line_height",
+        "label": "Label Line Height",
+        "min": 7,
+        "default": 10,
+        "max": 20,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "label_margin_top",
+        "label": "Label margin Top",
+        "min": 0,
+        "default": 5,
+        "max": 15,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "label_margin_bottom",
+        "label": "Label margin Bottom",
+        "min": 0,
+        "default": 5,
+        "max": 15,
+        "step": 1
+      },
+
+      {
         "type": "select",
-        "id": "label_size",
-        "label": "Label Size",
-        "info": "Used in pre-headings and info across the site",
+        "id": "label_text_style",
+        "label": "Label Text Style",
         "default": "normal",
         "options": [
           {
-            "value": "xs",
-            "label": "Extra-Small"
-          },
-          {
-            "value": "small",
-            "label": "Small"
+            "value": "italic",
+            "label": "italic"
           },
           {
             "value": "normal",
             "label": "Normal"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "label_font_weight",
+        "label": "Label Font Weight",
+        "info": "Make sure you're loading the correct font weight",
+        "default": "400",
+        "options": [
+          {
+            "group": "Light",
+            "value": "100",
+            "label": "Thin"
           },
           {
-            "value": "large",
-            "label": "Large"
+            "group": "Light",
+            "value": "200",
+            "label": "Extra-Light"
+          },
+          {
+            "group": "Light",
+            "value": "300",
+            "label": "Light"
+          },
+          {
+            "group": "Normal",
+            "value": "400",
+            "label": "Normal"
+          },
+          {
+            "group": "Normal",
+            "value": "500",
+            "label": "Medium"
+          },
+          {
+            "group": "Bold",
+            "value": "600",
+            "label": "Semi-Bold"
+          },
+          {
+            "group": "Bold",
+            "value": "700",
+            "label": "Bold"
+          },
+          {
+            "group": "Black",
+            "value": "800",
+            "label": "Semi-Black"
+          },
+          {
+            "group": "Black",
+            "value": "900",
+            "label": "Black"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "label_capitalization",
+        "label": "Label Capitalization",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "Standard"
+          },
+          {
+            "value": "uppercase",
+            "label": "All Caps"
+          },
+          {
+            "value": "lowercase",
+            "label": "Lowercase"
           }
         ]
       },
@@ -517,313 +539,430 @@
     ]
   },
   {
-    "name" : "Site Header",
+    "name" : "Main Menu",
     "settings" : [
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "color_header_background",
+          "label": "Header Background"
+        },
+        {
+          "type": "color",
+          "id": "color_header_text",
+          "label": "Header Text"
+        },
+        {
+          "type": "color",
+          "id": "color_header_text_hover",
+          "label": "Header Text (Hover)",
+          "info": "Note: doesn't work when overlay is active"
+        },
+        {
+          "type": "color",
+          "id": "color_header_overlay_text",
+          "label": "Header Overlay Text"
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "paragraph",
+          "content": "These are main layouts for the site header. These are major, and perhaps breaking, changes."
+        },
+        {
+          "type": "range",
+          "label": "Vertical Padding",
+          "id": "header_vertical_spacing",
+          "default": 0,
+          "step": 1,
+          "min": 0,
+          "max": 32
+        },
+        {
+          "type": "select",
+          "id": "header_layout",
+          "label": "Header Layout",
+          "options": [
+            {
+              "group": "Standard",
+              "value": "standard",
+              "label": "Standard (Logo -> Menu)"
+            },
+            {
+              "group": "Standard",
+              "value": "standard-natural",
+              "label": "Standard Natural (Logo -> Menu Centered)"
+            },
+            {
+              "group": "Standard",
+              "value": "stacked",
+              "label": "Stacked (Logo // Menu)"
+            },
+            {
+              "group": "Standard",
+              "value": "standard-reverse",
+              "label": "Standard Reverse (Menu -> Logo)"
+            },
+            {
+              "group": "Standard",
+              "value": "stacked-reverse",
+              "label": "Stacked Reverse (Menu // Logo)"
+            },
+            {
+              "group": "Centered",
+              "value": "centered",
+              "label": "Centered (half of menu -> Logo -> rest of menu)"
+            },
+            {
+              "group": "Centered",
+              "value": "centered-spaced",
+              "label": "Centered w/ Space (half of menu -> Logo -> rest of menu)"
+            },
+            {
+              "group": "Sidebar",
+              "value": "sidebar",
+              "label": "Sidebar (Logo in sidebar)"
+            },
+            {
+              "group": "Sidebar",
+              "value": "sidebar-header",
+              "label": "Sidebar (Logo / icons abovecentered above)"
+            },
+            {
+              "group": "Sidebar",
+              "value": "sidebar-collapseable",
+              "label": "Sidebar (Collapsable)"
+            },
+            {
+              "group": "Sidebar",
+              "value": "sidebar-modern",
+              "label": "Sidebar (Logo above, OVER content)"
+            },
+            {
+              "group": "Mega",
+              "value": "mega-centered",
+              "label": "Mega Menu - Centered Logo"
+            },
+            {
+              "group": "Mega",
+              "value": "mega-standard",
+              "label": "Mega Menu - Left Logo"
+            },
+            {
+              "group": "Mega",
+              "value": "mega-balanced",
+              "label": "Mega Menu - Balanced Layout"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "header_fixed",
+          "label": "Header Fixed Behavior",
+          "default": "sticky",
+          "options": [
+            {
+              "group": "sticky",
+              "value": "sticky",
+              "label": "Sticky (at top until scroll)"
+            },
+            {
+              "group": "sticky",
+              "value": "sticky-bottom",
+              "label": "Sticky Bottom (at bottom until scroll)"
+            },
+            {
+              "group": "fixed",
+              "value": "fixed",
+              "label": "Fixed (always at top)"
+            },
+            {
+              "group": "standard",
+              "value": "standard",
+              "label": "Standard "
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "header_balanced",
+          "label": "Balance Header, Menu + Social Spacing.",
+          "info": "Only really works on 'standard' header layouts"
+        },
 
-
-      {
-        "type" : "header",
-        "content" : "Colors"
+        {
+          "type": "header",
+          "content": "Header Icons"
+        },
+        {
+          "type": "paragraph",
+          "content": "Customize where the cart/search/header icons show up on the site!"
+        },
+        {
+          "type": "select",
+          "id": "social_layout",
+          "label": "Social Layout",
+          "default": "after-logo",
+          "options": [
+            {
+              "value": "after-menu",
+              "label": "After Menu"
+            },
+            {
+              "value": "before-menu",
+              "label": "Before Menu"
+            },
+            {
+              "value": "before-logo",
+              "label": "Before Logo"
+            },
+            {
+              "value": "after-logo",
+              "label": "After Logo"
+            },
+            {
+              "value": "below-logo",
+              "label": "Below Logo"
+            },
+            {
+              "value": "disabled",
+              "label": "Disabled"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "search_layout",
+          "label": "Search Layout",
+          "options": [
+            {
+              "value": "after-menu",
+              "label": "After Menu"
+            },
+            {
+              "value": "disabled",
+              "label": "Disabled"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "accounts_layout",
+          "label": "Accounts Layout",
+          "options": [
+            {
+              "value": "after-menu",
+              "label": "After Menu"
+            },
+            {
+              "value": "disabled",
+              "label": "Disabled"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "cart_layout",
+          "label": "Cart Layout",
+          "options": [
+            {
+              "value": "after-menu",
+              "label": "After Menu"
+            },
+            {
+              "value": "disabled",
+              "label": "Disabled"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "include_icon_text",
+          "label": "Include Icon Text on Cart, search, and account?"
+        },
+        {
+          "type" : "header",
+          "content" : "Menu Typography"
+        }, {
+        "type": "header",
+        "content": "menu"
       },
       {
-        "type" : "color",
-        "id" : "color_header_background",
-        "label" : "Header Background"
-      },
-      {
-        "type" : "color",
-        "id" : "color_header_text",
-        "label" : "Header Text"
-      },
-      {
-        "type" : "color",
-        "id" : "color_header_overlay_text",
-        "label" : "Header Overlay Text"
-      },
-      {
-        "type" : "header",
-        "content" : "Layout"
-      },
-      {
-        "type" : "paragraph",
-        "content" : "These are main layouts for the site header. These are major, and perhaps breaking, changes."
-      },
-      {
-        "type" : "range",
-        "label" : "Vertical Padding",
-        "id" : "header_vertical_spacing",
-        "default" : 0,
-        "step": 1,
-        "min" : 0,
-        "max": 32
-      },
-      {
-        "type" : "select",
-        "id" : "header_layout",
-        "label" : "Header Layout",
-        "options" : [
+        "type": "select",
+        "id": "font_family_menu",
+        "label": "Menu Font Family",
+        "default": "body",
+        "options": [
           {
-            "group" : "Standard",
-            "value" : "standard",
-            "label" : "Standard (Logo -> Menu)"
+            "value": "body",
+            "label": "Body"
           },
           {
-            "group" : "Standard",
-            "value" : "standard-natural",
-            "label" : "Standard Natural (Logo -> Menu Centered)"
+            "value": "heading",
+            "label": "Heading"
           },
           {
-            "group" : "Standard",
-            "value" : "stacked",
-            "label" : "Stacked (Logo // Menu)"
+            "value": "extra",
+            "label": "Extra"
           },
           {
-            "group" : "Standard",
-            "value" : "standard-reverse",
-            "label" : "Standard Reverse (Menu -> Logo)"
-          },
-          {
-            "group" : "Standard",
-            "value" : "stacked-reverse",
-            "label" : "Stacked Reverse (Menu // Logo)"
-          },
-          {
-            "group" : "Centered",
-            "value" : "centered",
-            "label" : "Centered (half of menu -> Logo -> rest of menu)"
-          },
-          {
-            "group" : "Centered",
-            "value" : "centered-spaced",
-            "label" : "Centered w/ Space (half of menu -> Logo -> rest of menu)"
-          },
-          {
-            "group" : "Sidebar",
-            "value" : "sidebar",
-            "label" : "Sidebar (Logo in sidebar)"
-          },
-          {
-            "group" : "Sidebar",
-            "value" : "sidebar-header",
-            "label" : "Sidebar (Logo / icons abovecentered above)"
-          },
-          {
-            "group" : "Sidebar",
-            "value" : "sidebar-collapseable",
-            "label" : "Sidebar (Collapsable)"
-          },
-          {
-            "group" : "Sidebar",
-            "value" : "sidebar-modern",
-            "label" : "Sidebar (Logo above, OVER content)"
-          },
-          {
-            "group" : "Mega",
-            "value" : "mega-centered",
-            "label" : "Mega Menu - Centered Logo"
-          },
-          {
-            "group" : "Mega",
-            "value" : "mega-standard",
-            "label" : "Mega Menu - Left Logo"
-          },
-          {
-            "group" : "Mega",
-            "value" : "mega-balanced",
-            "label" : "Mega Menu - Balanced Layout"
+            "value" : "script",
+            "label" : "Script"
           }
         ]
       },
       {
-        "type" : "select",
-        "id" : "header_fixed",
-        "label" : "Header Fixed Behavior",
-        "default" : "sticky",
-        "options" : [
+        "type": "range",
+        "id": "menu_link_font_size",
+        "label": "Link Font Size",
+        "min": 12,
+        "default": 17,
+        "max": 25,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "menu_link_font_size_mobile",
+        "label": "Link Font Size (Mobile)",
+        "min": 10,
+        "default": 16,
+        "max": 23,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "menu_link_letter_spacing",
+        "label": "Link Letter Spacing",
+        "min": 0,
+        "default": 10,
+        "max": 30,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "menu_link_line_height",
+        "label": "Link Line Height",
+        "min": 7,
+        "default": 10,
+        "max": 20,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "menu_link_padding_top",
+        "label": "Link Padding Top",
+        "min": 0,
+        "default": 5,
+        "max": 15,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "menu_link_padding_bottom",
+        "label": "Link Padding Bottom",
+        "min": 0,
+        "default": 5,
+        "max": 15,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "menu_link_padding_horiz",
+        "label": "Link Padding Left/Right",
+        "min": 0,
+        "default": 12,
+        "max": 26,
+        "step": 1
+      },
+      {
+        "type": "select",
+        "id": "menu_text_align",
+        "label": "Menu Text Align",
+        "default": "right",
+        "options": [
           {
-            "group" : "sticky",
-            "value" : "sticky",
-            "label" : "Sticky (at top until scroll)"
-          },
-           {
-            "group" : "sticky",
-            "value" : "sticky-bottom",
-            "label" : "Sticky Bottom (at bottom until scroll)"
+            "value": "left",
+            "label": "Left"
           },
           {
-            "group" : "fixed",
-            "value" : "fixed",
-            "label" : "Fixed (always at top)"
+            "value": "center",
+            "label": "Center"
           },
           {
-            "group" : "standard",
-            "value" : "standard",
-            "label" : "Standard "
+            "value": "right",
+            "label": "Right"
           }
         ]
       },
       {
-        "type" : "checkbox",
-        "id" : "header_balanced",
-        "label" : "Balance Header, Menu + Social Spacing.",
-        "info" : "Only really works on 'standard' header layouts"
+        "type": "select",
+        "id": "font_weight_menu",
+        "label": "Menu Font Weight",
+        "default": "bold",
+        "options": [
+          {
+            "value": "bold",
+            "label": "Bold"
+          },
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "light",
+            "label": "Light"
+          }
+        ]
+      },
+      {
+        "type" : "header",
+        "content" : "Advanced Settings"
+      },
+      {
+        "type": "select",
+        "id": "back_to_site",
+        "label": "Back To Site Link Position",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "last",
+            "label": "Last Link"
+          },
+          {
+            "value": "first",
+            "label": "First Link"
+          }
+        ]
       },
       {
         "type": "select",
         "id": "header_nudge",
         "label": "Centered Logo Nudge?",
         "default": "none",
-        "info" : "This is to adjust the position of the header/menu items when the header logo is centered!",
-        "options": [{
+        "info": "This is to adjust the position of the header/menu items when the header logo is centered!",
+        "options": [
+          {
             "value": "less",
             "label": "One Less"
-        }, {
+          },
+          {
             "value": "none",
             "label": "None"
-        }, {
+          },
+          {
             "value": "more",
             "label": "One More"
-        }]
-      },
-       {
-        "type" :"header",
-        "content" : "Hero",
-        "info" : "Sizing options for the top slider/image bannder"
-      },
-
-       {
-        "type" : "range",
-        "label" : "Hero Height",
-        "id" : "hero_height",
-        "default" : 400,
-        "step": 25,
-        "min" : 200,
-        "max": 600
-      },
-      {
-        "type" : "range",
-        "label" : "Hero Height (Small Screens)",
-        "id" : "hero_height_mobile",
-        "default" : 400,
-        "step": 25,
-        "min" : 200,
-        "max": 800
-      },
-       {
-        "type" : "range",
-        "label" : "Hero Height (Huge Screens)",
-        "id" : "hero_height_huge",
-        "default" : 550,
-        "step": 25,
-        "min" : 300,
-        "max": 800
-      },
-      {
-        "type" : "header",
-        "content" : "Header Icons"
-      },
-      {
-        "type" : "paragraph",
-        "content" : "Customize where the cart/search/header icons show up on the site!"
-      },
-      {
-        "type" : "select",
-        "id" : "social_layout",
-        "label" : "Social Layout",
-        "default" : "after-logo",
-        "options" : [
-          {
-            "value" : "after-menu",
-            "label" : "After Menu"
-          },
-          {
-            "value" : "before-menu",
-            "label" : "Before Menu"
-          },
-          {
-            "value" : "before-logo",
-            "label" : "Before Logo"
-          },
-          {
-            "value" : "after-logo",
-            "label" : "After Logo"
-          },
-          {
-            "value" : "below-logo",
-            "label" : "Below Logo"
-          },
-          {
-            "value" : "disabled",
-            "label" : "Disabled"
           }
         ]
-      },
-      {
-        "type" : "select",
-        "id" : "search_layout",
-        "label" : "Search Layout",
-        "options" : [
-          {
-            "value" : "after-menu",
-            "label" : "After Menu"
-          },
-
-          {
-            "value" : "disabled",
-            "label" : "Disabled"
-          }
-        ]
-      },
-      {
-        "type" : "select",
-        "id" : "accounts_layout",
-        "label" : "Accounts Layout",
-        "options" : [
-          {
-            "value" : "after-menu",
-            "label" : "After Menu"
-          },
-
-          {
-            "value" : "disabled",
-            "label" : "Disabled"
-          }
-        ]
-      },
-      {
-        "type" : "select",
-        "id" : "cart_layout",
-        "label" : "Cart Layout",
-        "options" : [
-          {
-            "value" : "after-menu",
-            "label" : "After Menu"
-          },
-          {
-            "value" : "disabled",
-            "label" : "Disabled"
-          }
-        ]
-      },
-      {
-        "type" : "checkbox",
-        "id" : "include_icon_text",
-        "label" : "Include Icon Text on Cart, search, and account?"
-      },
-      {
-        "type" : "header",
-        "content" : "Overlay"
-      },
-      {
-        "type" : "checkbox",
-        "id" : "overlay_header",
-        "label" : "Enable Header Overlay?",
-        "info" : "This creates a transparent header over hero images!"
-      },
-      {
-        "type": "checkbox",
-        "id": "overlay_shadow",
-        "label": "Overlay Shadow on Hero Image?"
       }
     ]
   },
@@ -986,6 +1125,58 @@
         "type" : "checkbox",
         "id" : "mm_link_target",
         "label" : "Banner Link In New Window?"
+      }
+    ]
+  },
+  {
+    "name": "Hero Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Hero",
+        "info": "Sizing options for the top slider/image bannder"
+      },
+      {
+        "type": "range",
+        "label": "Hero Height",
+        "id": "hero_height",
+        "default": 400,
+        "step": 25,
+        "min": 200,
+        "max": 600
+      },
+      {
+        "type": "range",
+        "label": "Hero Height (Small Screens)",
+        "id": "hero_height_mobile",
+        "default": 400,
+        "step": 25,
+        "min": 200,
+        "max": 800
+      },
+      {
+        "type": "range",
+        "label": "Hero Height (Huge Screens)",
+        "id": "hero_height_huge",
+        "default": 550,
+        "step": 25,
+        "min": 300,
+        "max": 800
+      },
+      {
+        "type": "header",
+        "content": "Overlay"
+      },
+      {
+        "type": "checkbox",
+        "id": "overlay_header",
+        "label": "Enable Header Overlay?",
+        "info": "This creates a transparent header over hero images!"
+      },
+      {
+        "type": "checkbox",
+        "id": "overlay_shadow",
+        "label": "Overlay Shadow on Hero Image?"
       }
     ]
   },
