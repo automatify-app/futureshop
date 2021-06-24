@@ -1,8 +1,7 @@
-import Swiper,  {Navigation, Pagination, Thumbs, A11y , Lazy} from 'swiper';
 import Drift from "drift-zoom";
+import Swiper,  {Navigation, Pagination, Thumbs, A11y, Lazy} from 'swiper';
 // configure Swiper to use modules
-Swiper.use([Navigation, Pagination, Thumbs, A11y, Lazy]);
-
+Swiper.use([Lazy, Navigation, Pagination, Thumbs, A11y]);
 
 export default class ProductImageWrap {
   constructor(el) {
@@ -15,7 +14,7 @@ export default class ProductImageWrap {
   }
   init() {
    if (this.imageSwiper) {
-     if (this.images.length > 1) {
+     if (this.images.length > 0) {
        this.initSwiper();
      }
    }
@@ -99,6 +98,7 @@ export default class ProductImageWrap {
         swiper: thumbSwipe
       }
     }
+
     this.mainSwiper = new Swiper(this.imageSwiper, {
       slidesPerView:1,
       loop: false,
@@ -107,9 +107,15 @@ export default class ProductImageWrap {
       centerInsufficientSlides: true,
       pagination: bigPage,
       thumbs: bigThumbs,
-      lazy: true,
-      watchSlidesVisibility: true,
       preloadImages: false,
+      lazy: {
+        loadPrevNext: true,
+
+        checkInView: true
+      },
+      a11y: true,
+      watchSlidesVisibility: true,
+
     })
 
     var classObserver = new MutationObserver(mutations => {
@@ -119,11 +125,14 @@ export default class ProductImageWrap {
         }
       })
     });
-    this.thumbSwiper.querySelectorAll('[data-product-single-thumbnail]').forEach(thumb => {
-      classObserver.observe(thumb, {
-        attributes: true
-      });
-    })
+
+    if (this.thumbSwiper) {
+      this.thumbSwiper.querySelectorAll('[data-product-single-thumbnail]').forEach(thumb => {
+        classObserver.observe(thumb, {
+          attributes: true
+        });
+      })
+    }
 
     var self = this;
 
@@ -135,9 +144,12 @@ export default class ProductImageWrap {
     this.slideToActive();
   }
   slideToActive() {
-    var activeThumbIndex = this.thumbSwiper.querySelector('[aria-current="true"]').parentNode.getAttribute('data-index');
-    if (activeThumbIndex) {
-      this.mainSwiper.slideTo(activeThumbIndex);
+    if (this.thumbSwiper) {
+
+      var activeThumbIndex = this.thumbSwiper.querySelector('[aria-current="true"]').parentNode.getAttribute('data-index');
+      if (activeThumbIndex) {
+        this.mainSwiper.slideTo(activeThumbIndex);
+      }
     }
   }
 }

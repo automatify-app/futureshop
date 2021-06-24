@@ -26,7 +26,7 @@
 {%- comment -%} Limit image widths to valid options based on image.width {%- endcomment -%}
 {%- assign image_widths = '180,360,540,720,900,1080,1296,1512,1728,1944,2160,2376,2592,2808,3024' | split: ',' -%}
 {% assign srcset = ""%}
-{%- capture srcset  %}
+{%- capture srcset  -%}
    {%- for width in image_widths -%}
     {%- comment -%} Check if image width is less or equal to width {%- endcomment -%}
     {%- assign width_num = width | plus: 0 | round -%}
@@ -52,19 +52,21 @@
 {%- assign image_widths = image_widths | strip -%}
 <div
  id="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }}" data-image-id="{{ image.id }}" class="responsive-image__wrapper {{ wrapper_class }}" {{ wrapper_attributes }}>
-  <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
   <img id="Image-{{ image.id }}-{{ responsive_image_counter }}"
     class="responsive-image__image  swiper-lazy {{ image_class }}"
     src="{{ image | img_url: '300x' }}"
     data-src="{{ image | img_url: '720x' }}"
     data-srcset="{{ srcset }}"
-    data-widths="[{{ image_widths }}]"
+    {% comment %} data-widths="[{{ image_widths }}]" {% endcomment %}
     data-aspectratio="{{ image.aspect_ratio }}"
     data-sizes="auto"
     alt="{{ image.alt | escape }}"
     {{ image_attributes }}
+    data-max-width="{{image.width}}"
     {% if zoom and image.width >= 1000 %} data-zoom="{{image | img_url: '2000x'}}" {%endif%}
   >
+    <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+
   {% if zoom and image.width >= 1000 %}<div class="zoom-helper"><i class="icon-zoom-in" aria-label="zoom"></i> <span data-hover-text="Hover to Zoom" data-touch-text="Touch To Zoom"></span></div> {%endif%}
 <noscript>
   <img class="{{ image_class }}" src="{{ image | img_url: '2048x2048' }}" alt="{{ image.alt | escape }}">
