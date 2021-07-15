@@ -1,7 +1,8 @@
 nav.breadcrumb {
-  padding: 1em;
   @extend %maxwidth;
-  margin: calc(5px + 0.5vw) auto calc(5px + 1vw);
+  font-size: 0.9em;
+  padding: 0.5em;
+  // margin: calc(5px + 0.5vw) auto calc(5px + 1vw);
   color: var(--color-border-darker);
   text-align: center;
   @include media-query($small) {
@@ -22,14 +23,21 @@ nav.breadcrumb {
     font-size: 0.9em;
   }
   a {
-    text-decoration: none;
+    // text-decoration: none;
     color: var(--color-body-text);
     display: inline-block;
     font-weight: 700;
-    text-transform: uppercase;
+
     @include transition(transform);
     &:hover {
       transform: translateY(-2px)
     }
   }
+}
+
+.product-details__wrap nav.breadcrumb {
+  padding: 0;
+  margin: 0.4em 0 0;
+  text-align: left;
+  width: 100%;
 }

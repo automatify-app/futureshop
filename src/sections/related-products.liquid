@@ -9,7 +9,7 @@
   {%endif%}
     <div class="collection-grid related-grid product-grid size--{{section.settings.size}}" data-max="{{section.settings.limit}}" >
     {% for product in recommendations.products %}
-      {% render 'grid-item' with product: product, section: section %}
+      {% render 'grid-item' with product: product, section: section, simplify: section.settings.simplify_related_products %}
     {% endfor %}
   </div>
   {%endif%}
@@ -74,8 +74,64 @@
       "label": "Show related products",
       "default": true
     },
+    {
+      "type": "checkbox",
+      "id": "simplify_related_products",
+      "label": "Simplify Products?",
+      "default": false
+    },
 
-   {
+      {
+        "type": "text",
+        "id": "introduction",
+        "label": "Introduction",
+        "default": "More "
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "For You"
+      },
+
+    {
+      "type" : "range",
+      "id" :"limit",
+      "label" : "Limit",
+      "default" : 4,
+      "step": 1,
+      "min": 2,
+      "max": 12
+    },
+     {
+        "type" : "select",
+        "id" : "size",
+        "label" : "Grid Size",
+        "default" : "standard",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small"
+          },
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "huge",
+            "label" : "Huge"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "text settings",
+      },
+       {
         "type" : "select",
         "id" : "text_align",
         "label" : "Text Alignment",
@@ -138,52 +194,6 @@
           {
             "value" : "simple",
             "label" : "Simple"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "id": "introduction",
-        "label": "Introduction",
-        "default": "More "
-      },
-      {
-        "type": "text",
-        "id": "heading",
-        "label": "Heading",
-        "default": "For You"
-      },
-
-    {
-      "type" : "range",
-      "id" :"limit",
-      "label" : "Limit",
-      "default" : 4,
-      "step": 1,
-      "min": 2,
-      "max": 12
-    },
-     {
-        "type" : "select",
-        "id" : "size",
-        "label" : "Grid Size",
-        "default" : "standard",
-        "options" : [
-          {
-            "value" : "small",
-            "label" : "Small"
-          },
-          {
-            "value" : "standard",
-            "label" : "Standard"
-          },
-          {
-            "value" : "large",
-            "label" : "Large"
-          },
-          {
-            "value" : "huge",
-            "label" : "Huge"
           }
         ]
       }

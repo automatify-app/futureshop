@@ -239,10 +239,9 @@ ul.main-menu {
    list-style: none;
     padding: 0 0;
 
-    a, button {
+  .menu-link a, .menu-icon a, button {
     display: inline-block;
     position: relative;
-    padding: 0.48em 0.6em;
     text-decoration: none;
     font-family: inherit;
     font-weight: inherit;

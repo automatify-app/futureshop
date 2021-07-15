@@ -899,26 +899,60 @@
           }
         ]
       },
-      {
-        "type": "select",
-        "id": "font_weight_menu",
-        "label": "Menu Font Weight",
-        "default": "bold",
-        "options": [
-          {
-            "value": "bold",
-            "label": "Bold"
-          },
-          {
-            "value": "normal",
-            "label": "Normal"
-          },
-          {
-            "value": "light",
-            "label": "Light"
-          }
-        ]
-      },
+     {
+      "type": "select",
+      "id": "menu_link_font_weight",
+      "label": "Font Weight",
+      "info": "Make sure you're loading the correct font weight",
+      "default": "400",
+      "options": [
+        {
+          "group": "Light",
+          "value": "100",
+          "label": "Thin"
+        },
+        {
+          "group": "Light",
+          "value": "200",
+          "label": "Extra-Light"
+        },
+        {
+          "group": "Light",
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "group": "Normal",
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "group": "Normal",
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "group": "Bold",
+          "value": "600",
+          "label": "Semi-Bold"
+        },
+        {
+          "group": "Bold",
+          "value": "700",
+          "label": "Bold"
+        },
+        {
+          "group": "Black",
+          "value": "800",
+          "label": "Semi-Black"
+        },
+        {
+          "group": "Black",
+          "value": "900",
+          "label": "Black"
+        }
+      ]
+    },
       {
         "type" : "header",
         "content" : "Advanced Settings"

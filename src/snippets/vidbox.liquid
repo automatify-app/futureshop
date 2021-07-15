@@ -7,13 +7,26 @@ video_url
 {% endcomment %}
 <div class="video-player__wrap type--{{type}} video-wrap--{{id}} {% if video_url == blank%}use-gif{%endif%}" data-overlay="{{overlay}}" {% if type == false or type == 'youtube' and video_url != blank %} data-module="vidbox" data-video-url="{{video_url}}" data-start-time="{{start_time}}" data-aos="fade-in" data-aos-duration="800"><div class="youtube-player" id="player--{{id}}"></div> {%else %}>{%endif%}
   {% if type == 'local' %}
-    <video class="lazyload video__background"
+  {% if mp4_small != blank %}
+   <video class="lazyload hide--desktop video__background"
     preload="none"
     muted
     loop
     autoplay
     {% comment %} autoplay {% endcomment %}
-    data-src="{{mp4_large}}"/>
+    data-autoplay=""
+    data-poster="{{fallback_image | img_url: '900x'}}"
+    src="{{mp4_small}}"/>
+  {%endif%}
+    <video class="lazyload {% if mp4_small != blank %}hide--mobile {% endif %} video__background"
+    preload="none"
+    muted
+    loop
+    autoplay
+    {% comment %} autoplay {% endcomment %}
+    data-autoplay=""
+    data-poster="{{fallback_image | img_url: '1200x'}}"
+    src="{{mp4_large}}"/>
   {%endif%}
   <div class="fallback-image"></div>
 

@@ -12,10 +12,9 @@ $swatchheight: 30px;
 /* Label */
 .swatch .header {
   margin: 0.5em 0;
-  @include font-heading();
   // text-transform: uppercase;
-  font-weight: 600;
-  font-size: 1.05em;
+  // font-weight: 600;
+  // font-size: 1.05em;
   &:after {
     // content:':';
   }
@@ -45,12 +44,12 @@ $swatchheight: 30px;
   font-size: 0.9em;
   letter-spacing: 0.05em;
   text-align: center;
-  font-weight: 400;
+  // font-weight: 400;
   line-height: $swatchheight;
   white-space: nowrap;
   // text-transform:uppercase;
   letter-spacing: -0.03em;
-  @include font-heading();
+  // @include font-heading();
   border: 1px solid currentColor;
   opacity: 0.8;
   transition: opacity 200ms $ease;

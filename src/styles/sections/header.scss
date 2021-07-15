@@ -18,7 +18,7 @@
   // background-color: var(--header-bg);
   // color: var(--header-text);
 
-  a, button {
+  .menu-link a, .menu-icon a, button {
     color: var(--header-text);
 
     &:hover {
@@ -200,7 +200,7 @@
           max-height: 0;
         }
         .site-header__logo {
-          transform: scale(0.925);
+          transform: scale(0.9);
         }
       }
     }

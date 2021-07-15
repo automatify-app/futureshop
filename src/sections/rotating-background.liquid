@@ -1,6 +1,6 @@
 {% include 'section-starter' %}
 
-<div class="overlay-section  style--{{section.settings.content_style}} type--{{overlay_type}} {% if section.settings.full_width == true %} full-width {%endif%}" id="{{section.settings.anchor_id}}">
+<div class="overlay-section rotating-background__content style--{{section.settings.content_style}} type--{{overlay_type}} {% if section.settings.full_width == true %} full-width {%endif%}" id="{{section.settings.anchor_id}}">
 {% include 'common-header' %}
     <div class="swiper-container" data-module="swiper" data-swiper-speed="{{section.settings.speed}}" data-swiper-dots="{{section.settings.dots}}" data-swiper-arrows="{{section.settings.arrows}}" data-swiper-animation="{{section.settings.type}}" data-auto-height="false">
       <div class="swiper-wrapper">
@@ -94,72 +94,6 @@
         "content" : "Slideshow Content"
       },
       {
-        "type" : "select",
-        "id" : "text_align",
-        "label" : "Text Alignment",
-        "default" :  "center",
-        "options" : [
-          {
-            "value" : "left",
-            "label" : "Left"
-          },
-          {
-            "value" : "center",
-            "label" : "Center"
-          },
-          {
-            "value" : "right",
-            "label" : "Right"
-          }
-        ]
-      },
-      {
-        "type" : "select",
-        "id" : "text_size",
-        "label" : "Text Size",
-        "default" :  "standard",
-        "options" : [
-          {
-            "value" : "small",
-            "label" : "Small"
-          },
-          {
-            "value" : "standard",
-            "label" : "Standard"
-          },
-          {
-            "value" : "large",
-            "label" : "Large"
-          },
-          {
-            "value" : "mega",
-            "label" : "Mega"
-          }
-        ]
-      },
-      {
-        "type" : "select",
-        "id" : "text_style",
-        "label" : "Text Style",
-        "default" :  "standard",
-        "info" : "Used for advanced branding!",
-        "options" : [
-
-          {
-            "value" : "standard",
-            "label" : "Standard"
-          },
-          {
-            "value" : "special",
-            "label" : "Special"
-          },
-          {
-            "value" : "simple",
-            "label" : "Simple"
-          }
-        ]
-      },
-      {
         "type" : "image_picker",
         "id" : "logo",
         "label" : "Logo"
@@ -238,6 +172,45 @@
         "label" :"Button 2 URL"
       },
       {
+        "type": "header",
+        "content": "Slider settings"
+      },
+      {
+        "type" : "range",
+        "id" : "speed",
+        "label" : "Autoplay Speed (S)",
+        "info" : "Set to 0 to disable autoplay.",
+        "max" : 20,
+        "min" : 0,
+        "step" : 1,
+        "default" : 12
+      },
+      {
+        "type" : "checkbox",
+        "id" : "dots",
+        "label" : "Enable Dots?"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "arrows",
+        "label" : "Enable arrows?"
+      },
+      {
+        "type" : "select",
+        "id" : "type",
+        "label" : "Animation Type",
+        "options" : [
+          {
+            "value" : "slide",
+            "label" : "Slide"
+          },
+          {
+            "value" : "fade",
+            "label" : "fade"
+          }
+        ]
+      },
+      {
         "type" : "header",
         "content" : "Section Settings"
       },
@@ -279,7 +252,7 @@
         "type" : "select",
         "id" : "section_spacing",
         "label" : "Section Spacing",
-        "default" : "medium",
+        "default" : "none",
         "options" : [
           {
             "value" : "none",
@@ -306,100 +279,158 @@
           }
         ]
       },
+     {
+          "type": "header",
+          "content": "Style + Alignment"
+        },
         {
-        "type" : "image_picker",
-        "id" : "background_image",
-        "label" : "Background Image",
-        "info": "Use with full-width sections, please!"
-      },
-      {
-        "type" : "select",
-        "id" : "background_style",
-        "label" : "Background Image Style",
-        "default" : "cover",
-        "options" : [
-          {
-            "value" : "cover",
-            "label" : "Cover"
-          },
-          {
-            "value" : "repeat-x",
-            "label" : "Horizontal Tile"
-          },
-          {
-            "value" : "repeat-y",
-            "label" : "Vertical Tile"
-          },
-          {
-            "value" : "repeat-all",
-            "label" : "Tile"
-          },
-          {
-            "value" : "rellax",
-            "label" : "Parallax"
-          }
-        ]
-      },
-      {
-        "type" : "header",
-        "content" : "Slideshow Settings"
-      },
-      {
-        "type" : "select",
-        "id" : "content_style",
-        "label" : "Content Style",
-        "default"  :"centered",
-        "options" : [
-          {
-            "value" : "centered",
-            "label" : "Centered (no background)"
-          },
-          {
-            "value" : "boxed",
-            "label" : "Boxed (Bottom Left)"
-          }
-        ]
-      },
+          "type": "select",
+          "id": "content_style",
+          "label": "Content Style",
+          "default": "centered",
+          "options": [
+            {
+              "value": "centered",
+              "label": "Centered (no background)"
+            },
+            {
+              "value": "boxed",
+              "label": "Boxed "
+            },
+            {
+              "value": "boxed-extra",
+              "label": "Boxed (W/extra)"
+            }
+          ]
+        },
+         {
+          "type": "select",
+          "id": "content_style_mobile",
+          "label": "Content Style (Mobile)",
+          "default": "centered",
+          "options": [
+            {
+              "value": "centered",
+              "label": "Centered (no background)"
+            },
+            {
+              "value": "boxed",
+              "label": "Boxed "
+            },
+            {
+              "value": "boxed-extra",
+              "label": "Boxed (w/extra)"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "content_location",
+          "label": "Content Location",
+          "default": "centered",
+          "options": [
+            {
+              "value": "centered",
+              "label": "Centered"
+            },
+            {
+              "value": "bottom-left",
+              "label": "Bottom Left"
+            },
+            {
+              "value": "bottom-right",
+              "label": "Bottom Right"
+            },
+            {
+              "value": "top-left",
+              "label": "Top Left"
+            },
+            {
+              "value": "top-right",
+              "label": "Top Right"
+            },
+            {
+              "value": "center-left",
+              "label": "Center Left"
+            },
+            {
+              "value": "center-right",
+              "label": "Center Right"
+            }
+          ]
+        },
+
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Text Alignment",
+          "default": "center",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "text_size",
+          "label": "Text Size",
+          "default": "standard",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "standard",
+              "label": "Standard"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            },
+            {
+              "value": "mega",
+              "label": "Mega"
+            }
+          ]
+        },
+        {
+          "type" : "select",
+          "id" : "text_style",
+          "label" : "Text Style",
+          "default" :  "standard",
+          "info" : "Used for advanced branding!",
+          "options" : [
+
+            {
+              "value" : "standard",
+              "label" : "Standard"
+            },
+            {
+              "value" : "special",
+              "label" : "Special"
+            },
+            {
+              "value" : "simple",
+              "label" : "Simple"
+            }
+          ]
+        },
       {
         "type" : "checkbox",
         "id" : "full_width",
         "label" : "Full width?",
         "default" : true
-      },
-      {
-        "type" : "range",
-        "id" : "speed",
-        "label" : "Autoplay Speed (S)",
-        "info" : "Set to 0 to disable autoplay.",
-        "max" : 20,
-        "min" : 0,
-        "step" : 1,
-        "default" : 12
-      },
-      {
-        "type" : "checkbox",
-        "id" : "dots",
-        "label" : "Enable Dots?"
-      },
-      {
-        "type" : "checkbox",
-        "id" : "arrows",
-        "label" : "Enable arrows?"
-      },
-      {
-        "type" : "select",
-        "id" : "type",
-        "label" : "Animation Type",
-        "options" : [
-          {
-            "value" : "slide",
-            "label" : "Slide"
-          },
-          {
-            "value" : "fade",
-            "label" : "fade"
-          }
-        ]
       }
     ],
     "blocks" : [
@@ -485,6 +516,42 @@
             "type" : "image_picker",
             "id" : "fallback_gif",
             "label" : "Fallback Gif"
+          },
+          {
+            "type": "select",
+            "id": "video_type",
+            "label": "Video Type",
+            "options": [
+              {
+              "value": "local",
+              "label": "Local"
+              },
+              {
+                "value" : "youtube",
+                "label" : "Youtube"
+              }
+            ],
+            "default": "youtube"
+          },
+          {
+            "type": "header",
+            "content": "Local Video"
+          },
+          {
+            "type": "url",
+            "id": "mp4_large",
+            "label": "Video URL",
+            "info" : "Upload your video to Settings->Files, then copy the url here. MUST BE MP4"
+          },
+          {
+            "type": "url",
+            "id": "mp4_small",
+            "label": "Video URL (Smaller Size)",
+            "info" : "Upload your video to Settings->Files, then copy the url here. MUST BE MP4"
+          },
+          {
+            "type" :"header",
+            "content" : "Youtube"
           },
           {
             "type" : "text",
