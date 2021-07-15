@@ -2,7 +2,7 @@ body {
   position: relative;
   height: auto;
 }
-body:not(.overlay-header) {
+body:not(.overlay-header--active) {
   main {
     padding-top: var(--header-ht, 120px);
   }

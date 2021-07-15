@@ -117,6 +117,9 @@ class Theme {
     }
     if (this.header && this.hero) {
       this.heroActive = this.header.classList.contains('overlay-header');
+      if (this.heroActive) {
+        document.body.classList.add('overlay-header--active')
+      }
     }
   }
   //Headroom stuff

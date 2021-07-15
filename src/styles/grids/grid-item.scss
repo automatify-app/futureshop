@@ -1,11 +1,13 @@
+.grid-item__title {
+  margin: 0.35em auto;
+}
+
 .product-grid-item {
   color: inherit;
   text-decoration: none;
   padding: 6px;
 
-  h5.product-title {
-    margin: 0.35em auto;
-  }
+
 
   &.sold-out {
     .grid-item__details {
@@ -197,7 +199,7 @@
 
       &::before {
         @extend %psuedo;
-        background: $color-card-bg;
+        background: var(--section-bg, --color-card-bg);
         opacity: 0.9;
         z-index: -1;
       }
@@ -251,11 +253,10 @@
 
 body {
   &.product-title--caps {
-    .grid-item__details {
-      h5 {
+    .grid-item__title {
+
         text-transform: uppercase;
         letter-spacing: 0.05em;
-      }
     }
   }
    &.product-style--bordered {

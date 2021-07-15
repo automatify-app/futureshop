@@ -9,7 +9,7 @@
   {%endif%}
     <div class="collection-grid related-grid product-grid size--{{section.settings.size}}" data-max="{{section.settings.limit}}" >
     {% for product in recommendations.products %}
-      {% render 'grid-item' with product: product, section: section, simplify: section.settings.simplify_related_products %}
+      {% render 'grid-item' with product: product, section: section, hover_details: section.settings.simplify_related_products %}
     {% endfor %}
   </div>
   {%endif%}
@@ -80,7 +80,6 @@
       "label": "Simplify Products?",
       "default": false
     },
-
       {
         "type": "text",
         "id": "introduction",
@@ -129,7 +128,7 @@
       },
       {
         "type": "header",
-        "content": "text settings",
+        "content": "text settings"
       },
        {
         "type" : "select",
@@ -194,6 +193,109 @@
           {
             "value" : "simple",
             "label" : "Simple"
+          }
+        ]
+      },
+       {
+        "type" : "header",
+        "content" : "Section Settings"
+      },
+      {
+        "type" : "paragraph",
+        "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
+      },
+      {
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
+      },
+      {
+        "type" : "select",
+        "id" : "section_size",
+        "label" : "Section size",
+        "default" : "large",
+        "options" : [
+          {
+            "value" : "full-width",
+            "label" : "Full Width"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "section_spacing",
+        "label" : "Section Spacing",
+        "default" : "medium",
+        "options" : [
+          {
+            "value" : "none",
+            "label" : "No Spacing"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          },
+          {
+            "value" : "medium",
+            "label" : "Medium"
+          }, {
+"value" : "full-height",
+"label" : "Full Height"
+},
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value": "huge",
+            "label" : "Huge"
+          }
+        ]
+      },
+        {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
+      {
+        "type" : "select",
+        "id" : "background_style",
+        "label" : "Background Image Style",
+        "default" : "cover",
+        "options" : [
+          {
+            "value" : "cover",
+            "label" : "Cover"
+          },
+          {
+            "value" : "repeat-x",
+            "label" : "Horizontal Tile"
+          },
+          {
+            "value" : "repeat-y",
+            "label" : "Vertical Tile"
+          },
+          {
+            "value" : "repeat-all",
+            "label" : "Tile"
+          },
+          {
+            "value" : "rellax",
+            "label" : "Parallax"
           }
         ]
       }
