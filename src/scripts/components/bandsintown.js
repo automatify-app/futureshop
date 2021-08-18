@@ -18,7 +18,7 @@ export default class Bit {
       showYear: false
     };
 
-    this.props = Object.assign({}, defaults, args);
+      this.props = Object.assign({}, defaults, args);
       this.el = el;
       this.shows = [];
       this.expandButton = this.el.querySelector('[data-expand-bit]')
@@ -32,7 +32,6 @@ export default class Bit {
         }
         window.dispatchEvent(new Event('resize'));
       });
-
 
       this.addClickListeners();
     }
@@ -195,10 +194,14 @@ export default class Bit {
     renderAllShows() {
       //CreateWrapper
       let wrapper = document.createElement('div');
-      let extras = document.createElement('div');
       wrapper.classList.add('bit-wrapper');
-      extras.classList.add('bit-wrapper');
-      extras.classList.add('bit-extra');
+      let extras = false;
+      if (this.shows.length > this.props.limit) {
+        extras = document.createElement('div');
+
+        extras.classList.add('bit-extra');
+        extras.classList.add('bit-wrapper');
+      }
 
 
 
@@ -211,7 +214,7 @@ export default class Bit {
         if (counter <= this.props.limit) {
           wrapper.append(showItem);
 
-        } else {
+        } else if (extras) {
           extras.append(showItem)
         };
       })
@@ -221,32 +224,42 @@ export default class Bit {
       } else {
         this.expandButton.classList.remove('hidden');
       }
+      if (extras) {
 
-      this.el.prepend(wrapper, extras);
+        this.el.prepend(wrapper, extras);
+        this.extraWrapper = this.el.querySelector('.bit-extra');
+      } else {
+        this.expandButton.remove();
+        this.el.prepend(wrapper);
+      }
       this.el.querySelector('.loader').classList.add('hidden');
 
     }
 
     toggleExpand() {
-      let extraWrapper = this.el.querySelector('.bit-extra');
-      if (this.expandButton.getAttribute('data-expand-bit') == 'expanded') {
-        //collapse
-        this.expandButton.innerHTML = this.expandButton.getAttribute('data-more-text');
-        this.expandButton.setAttribute('data-expand-bit' , '');
-        extraWrapper.style.maxHeight = 0 + 'px';
-      } else  {
-        this.expandButton.setAttribute('data-expand-bit' , 'expanded');
-        let extraShows = extraWrapper.querySelectorAll('.bit-show')
-        let heightTarget = extraShows[0].getBoundingClientRect().height*(extraShows.length*1.75);
-        extraWrapper.style.maxHeight = heightTarget + 50 + 'px';
-        this.expandButton.innerHTML = this.expandButton.getAttribute('data-less-text');
+
+      if (this.extraWrapper) {
+        if (this.expandButton.getAttribute('data-expand-bit') == 'expanded') {
+          //collapse
+          this.expandButton.innerHTML = this.expandButton.getAttribute('data-more-text');
+          this.expandButton.setAttribute('data-expand-bit' , '');
+          this.extraWrapper.style.maxHeight = 0 + 'px';
+        } else  {
+          this.expandButton.setAttribute('data-expand-bit' , 'expanded');
+          let extraShows = this.extraWrapper.querySelectorAll('.bit-show')
+          let heightTarget = extraShows[0].getBoundingClientRect().height*(extraShows.length*1.75);
+          this.extraWrapper.style.maxHeight = heightTarget + 50 + 'px';
+          this.expandButton.innerHTML = this.expandButton.getAttribute('data-less-text');
+        }
+        window.dispatchEvent(new Event('resize'));
       }
-      window.dispatchEvent(new Event('resize'));
     }
     clickListener (event) {
       if (event.target == this.expandButton) {
-        event.preventDefault();
-        this.toggleExpand();
+        if (this.extraWrapper) {
+          event.preventDefault();
+          this.toggleExpand();
+        }
       }
     };
 

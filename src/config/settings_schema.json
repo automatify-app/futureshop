@@ -953,6 +953,26 @@
         }
       ]
     },
+     {
+        "type": "select",
+        "id": "menu_link_capitalization",
+        "label": " Capitalization",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "Standard"
+          },
+          {
+            "value": "uppercase",
+            "label": "All Caps"
+          },
+          {
+            "value": "lowercase",
+            "label": "Lowercase"
+          }
+        ]
+      },
       {
         "type" : "header",
         "content" : "Advanced Settings"
