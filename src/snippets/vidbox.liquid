@@ -3,25 +3,119 @@ type,
 id
 fallback_image
 video_url
-
+audio_controls
+mp4_small
+mp4_large
 {% endcomment %}
-<div class="video-player__wrap type--{{type}} video-wrap--{{id}} {% if video_url == blank%}use-gif{%endif%}" data-overlay="{{overlay}}" {% if type == false or type == 'youtube' and video_url != blank %} data-module="vidbox" data-video-url="{{video_url}}" data-start-time="{{start_time}}" data-aos="fade-in" data-aos-duration="800"><div class="youtube-player" id="player--{{id}}"></div> {%else %}>{%endif%}
+
+<div  class="video-player__wrap type--{{type}} video-wrap--{{id}} {% if video_url == blank%}use-gif{%endif%}" data-overlay="{{overlay}}" {% if type == false or type == 'youtube' and video_url != blank %} data-module="vidbox" data-video-url="{{video_url}}" data-start-time="{{start_time}}" data-aos="fade-in" data-aos-duration="800"><div class="youtube-player" id="player--{{id}}"></div> {%else %} {%if audio_controls == true %} data-audio-controls {% endif %}>{%endif%}
   {% if type == 'local' %}
-  {% if mp4_small != blank %}
-   <video class="lazyload hide--desktop video__background"
-    preload="none"
-    muted
-    loop
-    autoplay
-    {% comment %} autoplay {% endcomment %}
-    data-autoplay=""
-    data-poster="{{fallback_image | img_url: '900x'}}"
-    src="{{mp4_small}}"/>
-  {%endif%}
+  {% if audio_controls == true %}
+    <style>
+    .video-player__wrap {
+      color: white;
+    }
+    .not-displayed {
+      display: none !important;
+    }
+      button[data-bga-button] {
+        pointer-events: all;
+        position: absolute;
+        bottom: 12px;
+        left: 12px;
+        margin: auto;
+        display: block;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: 1px solid white;
+        color: white;
+        z-index: 1000;
+        appearance: none;
+        padding: 0;
+        background: transparent;
+        transition: all 300ms ease;
+        opacity: 0.6;
+      }
+
+      @media (min-width: 1000px) {
+        button[data-bga-button] {
+          left: 20px;
+          bottom: 20px;
+          width: 38px;
+          height: 38px;
+        }
+      }
+      button[data-bga-button] svg {
+        width: 55%;
+        display: inline-block;
+        height: 55%;
+        transition: transform 300ms ease;
+        transform-origin: center center;
+
+      }
+
+      button[data-bga-button]:hover {
+        background: white;
+        color: black;
+        opacity: 1;
+
+      }
+      button[data-bga-button]:hover svg{
+        transform: scale(0.9);
+
+      }
+    </style>
+
+    <button data-bga-button  style="display: none" aria-label="Play Audio">
+      <svg version="1.1" data-bga-mute class="not-displayed"
+          viewBox="0 0 124.625 124.625" style="enable-background:new 0 0 124.625 124.625;">
+        <g>
+          <path fill="currentColor" d="M6,92.404h23.1l25.6,19.3c4,3,9.601,0.2,9.601-4.8v-89.2c0-4.9-5.701-7.8-9.601-4.8l-25.6,19.3H6c-3.3,0-6,2.7-6,6v48.301
+            C0,89.704,2.7,92.404,6,92.404z"/>
+          <path  fill="currentColor"d="M122.4,40.604c-2.7-2.7-7.2-2.7-9.9,0l-11.8,11.8l-11.8-11.8c-2.7-2.7-7.2-2.7-9.9,0c-2.699,2.7-2.699,7.2,0,9.9
+            l11.801,11.8L79,74.104c-2.699,2.7-2.699,7.2,0,9.9c1.4,1.399,3.2,2.1,5,2.1c1.801,0,3.6-0.7,5-2.1l11.801-11.801L112.6,84.004
+            c1.4,1.399,3.201,2.1,5,2.1c1.801,0,3.601-0.7,5-2.1c2.701-2.7,2.701-7.2,0-9.9l-12-11.8l11.801-11.8
+            C125.1,47.804,125.1,43.304,122.4,40.604z"/>
+        </g>
+
+      </svg>
+      <svg version="1.1" data-bga-play x="0px" y="0px"
+          viewBox="0 0 115.3 115.3" style="enable-background:new 0 0 115.3 115.3;">
+        <g>
+          <path fill="currentColor" d="M47.9,14.306L26,30.706H6c-3.3,0-6,2.7-6,6v41.8c0,3.301,2.7,6,6,6h20l21.9,16.4c4,3,9.6,0.2,9.6-4.8v-77
+            C57.5,14.106,51.8,11.306,47.9,14.306z"/>
+          <path fill="currentColor" d="M77.3,24.106c-2.7-2.7-7.2-2.7-9.899,0c-2.7,2.7-2.7,7.2,0,9.9c13,13,13,34.101,0,47.101c-2.7,2.7-2.7,7.2,0,9.899
+            c1.399,1.4,3.199,2,4.899,2s3.601-0.699,4.9-2.1C95.8,72.606,95.8,42.606,77.3,24.106z"/>
+          <path fill="currentColor" d="M85.1,8.406c-2.699,2.7-2.699,7.2,0,9.9c10.5,10.5,16.301,24.4,16.301,39.3s-5.801,28.8-16.301,39.3
+            c-2.699,2.7-2.699,7.2,0,9.9c1.4,1.399,3.2,2.1,4.9,2.1c1.8,0,3.6-0.7,4.9-2c13.1-13.1,20.399-30.6,20.399-49.2
+            c0-18.6-7.2-36-20.399-49.2C92.3,5.706,87.9,5.706,85.1,8.406z"/>
+        </g>
+      </svg>
+
+
+    </button>
+  {%endif %}
+    {% if mp4_small != blank %}
+      <video class="lazyload hide--desktop video__background"
+        preload="none"
+        muted
+        loop
+        autoplay
+        playsinline
+        {% comment %} autoplay {% endcomment %}
+        data-autoplay=""
+        data-poster="{{fallback_image | img_url: '900x'}}"
+        src="{{mp4_small}}"/>
+    {%endif%}
     <video class="lazyload {% if mp4_small != blank %}hide--mobile {% endif %} video__background"
     preload="none"
     muted
     loop
+    playsinline
     autoplay
     {% comment %} autoplay {% endcomment %}
     data-autoplay=""
@@ -103,3 +197,85 @@ video_url
       {%endif%}
       }
     </style>
+
+  {% if type == 'local' and audio_controls == true %}
+    <script>
+    class VidAudio {
+      constructor(el) {
+        this.el = el;
+        this.videos = this.el.querySelector('video');
+        this.button = this.el.querySelector('[data-bga-button]');
+        this.muteLogo = this.el.querySelector('[data-bga-mute]')
+        this.playLogo = this.el.querySelector('[data-bga-play]')
+        this.supportsAudio = typeof window.Audio !== "undefined";
+
+        if (this.supportsAudio && this.videos && this.button) {
+          console.log("Initting button");
+          this.init();
+        }
+      }
+
+      init() {
+        this.button.style.removeProperty('display');
+        this.button.addEventListener('click', this.togglePlayState.bind(this))
+        window.addEventListener('resize', this.muteAllVideos.bind(this))
+      }
+
+      togglePlayState() {
+        const currentVideo = this.getCurrentlyDisplayedVideo();
+        if (!currentVideo) {
+          return
+        }
+        if (currentVideo.muted || currentVideo.getAttribute('muted')) {
+          currentVideo.muted = false;
+          currentVideo.setAttribute('muted', false)
+          this.changeButtonToMute();
+        } else {
+          currentVideo.muted = true;
+          currentVideo.setAttribute('muted', true)
+          this.changeButtonToPlay();
+        }
+      }
+
+      getCurrentlyDisplayedVideo() {
+        console.log(this.videos);
+        const vidsArray = Array.from(this.videos)
+        let vid = vidsArray.find(vid=> {
+          return window.getComputedStyle(vid).display != "none";
+        });
+        if (vid) {
+          return vid
+        } else {
+          return false;
+        }
+      }
+      muteAllVideos() {
+        this.videos.forEach(vid=> {
+          vid.muted = true;
+        })
+        this.changeButtonToMute();
+      }
+
+      changeButtonToMute() {
+        this.button.setAttribute('aria-label', 'Play Music')
+        this.playLogo.classList.remove('not-displayed')
+        this.muteLogo.classList.add('not-displayed');
+      }
+      changeButtonToPlay() {
+        this.button.setAttribute('aria-label', 'Mute')
+        this.playLogo.classList.add('not-displayed')
+        this.muteLogo.classList.remove('not-displayed');
+      }
+    }
+
+
+    window.addEventListener('load', function() {
+      const audioVideos = document.querySelectorAll('[data-audio-controls]');
+      if (audioVideos) {
+        audioVideos.forEach(el=> {
+          new VidAudio(el);
+        })
+      }
+    })
+  </script>
+{%endif%}

@@ -9,3 +9,30 @@
     font-size: calc(3.4em + 1.82vw);
   }
 }
+
+.header__menu-item {
+  {% case settings.font_family_menu %}
+    {%when 'body' %}
+      font-family: var(--font-body-real);
+      font-weight: {{ settings.font_body.weight }};
+      {%when 'heading' %}
+      font-family: var(--font-heading-real);
+      font-weight: {{ settings.font_heading.weight }};
+      {%when 'extra' %}
+      font-family: var(--font-extra-real);
+      font-weight: {{ settings.font_extra.weight }};
+      {%when 'script' %}
+      font-family: var(--font-script-real);
+      font-weight: 400;
+    {%endcase %}
+    line-height: {{settings.menu_link_line_height | divided_by:10.0 }};
+    padding: {{settings.menu_link_padding_top | divided_by: 10.0 }}em  {{settings.menu_link_padding_horiz | divided_by: 10.0 }}em {{settings.menu_link_padding_bottom | divided_by: 10.0 }}em ;
+    text-transform: {{settings.menu_link_capitalization | default: "none"}};
+    font-weight: {{settings.menu_link_font_weight | default: "700"}};
+    letter-spacing: {{settings.menu_link_letter_spacing | default: 10 | divided_by: 20.0 | minus: 0.5 }}em;
+    font-style: {{settings.menu_link_text_style | default : "normal"}};
+    font-size: {{settings.menu_link_font_size | default: '17'}}px;
+    @media (max-width: 720px) {
+      font-size: {{settings.menu_link_font_size_mobile | default: '16'}}px;
+    }
+}
