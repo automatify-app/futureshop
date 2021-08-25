@@ -1,4 +1,5 @@
-<div id="block--{{id}}" class="content-column text--{{params.text_size}} {{classes}} type--{{type}} colsize--{{params.size}} align--{{params.align}} {% if params.expand == true %} padding--collapse {%endif%} {% if params.full-width == true %} fullwidth {%endif%}">
+
+<div id="block--{{id}}" class="content-column text--{{ params['text_size'] }} {{classes}} type--{{type}} colsize--{{params.size}} align--{{params.align}} {% if params.expand == true %} padding--collapse {%endif%} {% if params.full-width == true %} fullwidth {%endif%}">
 {% if id != blank %}
 <style>
 #block--{{block.id}} {

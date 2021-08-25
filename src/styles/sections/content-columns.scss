@@ -44,6 +44,12 @@
 }
 
 .content-column {
+  &__image {
+    display: block;
+    &:first-child {
+      margin-top: 0 !important;
+    }
+  }
   &.colsize--small {
     flex: 1 1 200px;
     max-width: 600px;
@@ -75,6 +81,11 @@
 
   margin:1%;
   padding: calc(12px + 1vw);
+
+  @include media-query($widescreen) {
+    padding: 18px;
+    margin: 12px;
+  }
 
   .button-wrap {
     text-align: inherit;

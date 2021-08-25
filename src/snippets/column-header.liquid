@@ -1,6 +1,6 @@
 
 {% if params.pre_title != blank or params.title != blank  and params.header_size != "hidden" %}
-    <div class="block-header section-header common-header__outer align--{{params.align_text}} font--{{params.header_size}} style--{{params.text_style}}">
+    <div class="block-header section-header common-header__outer align--{{params.align}} font--{{params.text_size}} style--{{params.style}}">
     {% comment %} Pre-title {% endcomment %}
        {% if params.pre_title != blank %}
         <h5 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label block-header__pre_title ">{{ params.pre_title | escape }}</h5>

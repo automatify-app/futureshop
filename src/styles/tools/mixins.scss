@@ -144,10 +144,10 @@
   font-style: $font-body-style;
 }
 
-%maxwidth {
+%maxwidth, %maxWidth {
   max-width: $grid-max-width;
     margin: auto;
-    width: 94%  ;
+    width: 92%  ;
 }
 
 %shadowBefore {
@@ -219,11 +219,7 @@
     margin: auto;
     width: 94%  ;
 }
-%maxWidth {
-  max-width: 1500px;
-  margin: auto;
-  width: 98%;
-}
+
 
 %line-button {
   display: flex;
